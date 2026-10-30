@@ -15,20 +15,37 @@
   <script src="curriculum-catalog.js"></script>
   <script src="auth-manager.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    (function() {
+    <script>
+    function getStoredThemePreference() {
       let saved = 'system';
-      let savedScale = null;
       try {
         saved = localStorage.getItem('al_study_tracker_theme') || 'system';
-        savedScale = localStorage.getItem('al_study_tracker_font_scale') || localStorage.getItem('al_study_tracker_font_size');
       } catch(e) {}
       const isDark = saved === 'dark' || (saved === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      return isDark ? 'dark' : 'light';
+    }
+
+    function applyPageTheme(theme) {
+      const isDark = theme === 'dark';
       if (isDark) {
         document.documentElement.classList.add('dark-mode');
+        if (document.body) document.body.classList.add('dark-mode');
       } else {
         document.documentElement.classList.remove('dark-mode');
+        if (document.body) document.body.classList.remove('dark-mode');
       }
+      return isDark;
+    }
+
+    // Apply immediately to html tag before render
+    const initialThemeMode = getStoredThemePreference();
+    applyPageTheme(initialThemeMode);
+
+    (function() {
+      let savedScale = null;
+      try {
+        savedScale = localStorage.getItem('al_study_tracker_font_scale') || localStorage.getItem('al_study_tracker_font_size');
+      } catch(e) {}
       let numScale = 100;
       if (savedScale) {
         const fontMap = { small: 85, normal: 100, large: 115, xlarge: 130 };
@@ -6212,9 +6229,222 @@
         top: 4px;
       }
     }
+  
+    /* =========================================================
+       ROBUST DARK MODE OVERRIDES & UNIVERSAL THEME SYNC
+       ========================================================= */
+    :root.dark-mode, html.dark-mode, html.dark-mode body, body.dark-mode {
+      --primary: #a29bfe;
+      --primary-dark: #6c5ce7;
+      --primary-light: #121822;
+      --card-bg: #090d14 !important;
+      --card-inner: #0e131d !important;
+      --border-color: #1e2530 !important;
+      --border-subtle: #161d28 !important;
+      --text-dark: #f0f6fc !important;
+      --text-main: #f0f6fc !important;
+      --text-muted: #8b949e !important;
+      background: linear-gradient(135deg, #030508 0%, #080c12 50%, #0a0e16 100%) !important;
+      color: #f0f6fc !important;
+    }
+
+    html.dark-mode .radar-header-card, body.dark-mode .radar-header-card,
+    html.dark-mode .ranking-card, body.dark-mode .ranking-card,
+    html.dark-mode .chart-card, body.dark-mode .chart-card,
+    html.dark-mode .radar-card, body.dark-mode .radar-card,
+    html.dark-mode .balance-alert-card, body.dark-mode .balance-alert-card,
+    html.dark-mode .ebbinghaus-card, body.dark-mode .ebbinghaus-card,
+    html.dark-mode .modal-window, body.dark-mode .modal-window,
+    html.dark-mode .subject-explorer-card, body.dark-mode .subject-explorer-card {
+      background: #090d14 !important;
+      color: #f0f6fc !important;
+      border: 1px solid #1e2530 !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    html.dark-mode .ranking-title, body.dark-mode .ranking-title,
+    html.dark-mode .chart-header, body.dark-mode .chart-header,
+    html.dark-mode .modal-title, body.dark-mode .modal-title {
+      color: #f0f6fc !important;
+    }
+
+    html.dark-mode .ranking-subtitle, body.dark-mode .ranking-subtitle {
+      color: #8b949e !important;
+    }
+
+    html.dark-mode .ranking-table, body.dark-mode .ranking-table {
+      background: #090d14 !important;
+      color: #f0f6fc !important;
+    }
+
+    html.dark-mode .ranking-table th, body.dark-mode .ranking-table th {
+      background: #121822 !important;
+      color: #8b949e !important;
+      border-bottom: 1px solid #1e2530 !important;
+    }
+
+    html.dark-mode .ranking-table td, body.dark-mode .ranking-table td {
+      border-bottom: 1px solid #161d28 !important;
+      color: #f0f6fc !important;
+    }
+
+    html.dark-mode .ranking-table tr:hover, body.dark-mode .ranking-table tr:hover {
+      background: rgba(140, 122, 230, 0.08) !important;
+    }
+
+    html.dark-mode .sub-unit-link, body.dark-mode .sub-unit-link,
+    html.dark-mode .unit-name-txt, body.dark-mode .unit-name-txt {
+      color: #f0f6fc !important;
+    }
+
+    html.dark-mode .chart-tab-bar, body.dark-mode .chart-tab-bar {
+      background: #161b22 !important;
+      border: 1px solid #30363d !important;
+    }
+
+    html.dark-mode .chart-tab-btn, body.dark-mode .chart-tab-btn {
+      color: #8b949e !important;
+    }
+
+    html.dark-mode .chart-tab-btn.active, body.dark-mode .chart-tab-btn.active {
+      background: #21262d !important;
+      color: #a29bfe !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4) !important;
+    }
+
+    html.dark-mode .radar-quick-nav, body.dark-mode .radar-quick-nav {
+      background: rgba(9, 13, 20, 0.92) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    html.dark-mode .chip-unit-no, body.dark-mode .chip-unit-no {
+      background: rgba(140, 122, 230, 0.18) !important;
+      color: #a29bfe !important;
+      border: 1px solid rgba(140, 122, 230, 0.35) !important;
+    }
+
+    /* --- Subject Drop Box / Dropdown Mechanism Styles --- */
+    .chart-dropbox-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(140, 122, 230, 0.12);
+      border: 1.5px solid rgba(140, 122, 230, 0.4);
+      border-radius: 10px;
+      padding: 3px 10px;
+      transition: all 0.2s;
+    }
+    .chart-dropbox-wrap:hover {
+      border-color: #8c7ae6;
+      box-shadow: 0 0 12px rgba(140, 122, 230, 0.25);
+    }
+    .chart-dropbox-select, .explorer-subject-select {
+      background: transparent;
+      color: var(--text-main, #f0f6fc);
+      border: none;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+      padding: 3px 4px;
+    }
+    .chart-dropbox-select option, .explorer-subject-select option {
+      background: #0e131d;
+      color: #f0f6fc;
+      padding: 6px;
+    }
+    body:not(.dark-mode) .chart-dropbox-select option, body:not(.dark-mode) .explorer-subject-select option {
+      background: #ffffff;
+      color: #2d3436;
+    }
+
+    /* Dedicated Subject Explorer Card */
+    .subject-explorer-card {
+      background: var(--card-bg, #090d14);
+      border: 1px solid var(--border-color, #1e2530);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-top: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      position: relative;
+    }
+    .explorer-selector-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .explorer-select-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted, #8b949e);
+    }
+    .explorer-select-wrap {
+      background: linear-gradient(135deg, rgba(140, 122, 230, 0.2), rgba(9, 132, 227, 0.2));
+      border: 1.5px solid #8c7ae6;
+      border-radius: 12px;
+      padding: 4px 12px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 16px rgba(140, 122, 230, 0.25);
+      transition: all 0.2s ease;
+    }
+    .explorer-select-wrap:hover {
+      border-color: #a29bfe;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(140, 122, 230, 0.35);
+    }
+    .explorer-subject-select {
+      font-size: 13px;
+      font-weight: 800;
+      color: #a29bfe;
+      min-width: 220px;
+    }
+    .subject-kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 14px 0 16px;
+    }
+    .subj-kpi-chip {
+      background: var(--card-inner, #0e131d);
+      border: 1px solid var(--border-color, #1e2530);
+      border-radius: 12px;
+      padding: 10px 14px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .subj-kpi-chip:hover {
+      border-color: #8c7ae6;
+      transform: translateY(-2px);
+    }
+    .subj-kpi-val {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main, #f0f6fc);
+      font-family: 'Space Grotesk', monospace;
+    }
+    .subj-kpi-lbl {
+      font-size: 10px;
+      color: var(--text-muted, #8b949e);
+      margin-top: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .quick-nav-chip.chip-explorer {
+      background: rgba(0, 206, 201, 0.15);
+      color: #00cec9;
+      border-color: rgba(0, 206, 201, 0.3);
+    }
+
   </style>
 </head>
-<body>
+<body class="dark-mode">
+  <script>
+    applyPageTheme(getStoredThemePreference());
+  </script>
   <div class="radar-page-container">
     <!-- Header Bar -->
     <header class="radar-header-card">
@@ -6246,6 +6476,7 @@
     <nav class="radar-quick-nav">
       <a href="#cardUrgentRadar" class="quick-nav-chip chip-radar">⚡ Urgent Radar (Model Paper 1)</a>
       <a href="#cardEbbinghaus" class="quick-nav-chip chip-sr">🧠 Spaced Repetition Cycles</a>
+      <a href="#cardSubjectExplorer" class="quick-nav-chip chip-explorer">📊 Subject Graph Explorer (Drop Box)</a>
       <a href="#fullPaperChartCard" class="quick-nav-chip chip-fp">📈 Full Papers Progression</a>
       <a href="#unitPaperChartCard" class="quick-nav-chip chip-up">📊 Unit Papers Progression</a>
       <a href="#cardTopHighestUnitPapers" class="quick-nav-chip chip-rank">🏆 Top 5 Unit Papers</a>
@@ -6365,10 +6596,88 @@
 
 
     <!-- 5-Tab Score Progression & Z-Score Card (moved to bottom per v15) -->
+        <!-- Dedicated Subject-by-Subject Graph & Analytics Explorer Card (Drop Box Mechanism) -->
+    <div class="chart-card subject-explorer-card" id="cardSubjectExplorer" style="margin-top: 14px;">
+      <div class="chart-header" style="flex-wrap: wrap; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="explorer-header-icon" style="font-size: 20px;">📊</span>
+          <div>
+            <div style="font-weight: 800; font-size: 14px; color: var(--text-main, #f0f6fc);">විෂය අනුව ප්‍රස්තාරික විමර්ශනය (Subject Graph Explorer)</div>
+            <div style="font-size: 11px; color: var(--text-muted, #8b949e);">Drop Box එකෙන් ඕනෑම විෂයයක් තෝරා එහි ඒකක ප්‍රස්ථාර සහ ප්‍රගතිය බලන්න</div>
+          </div>
+        </div>
+        <div class="explorer-selector-container">
+          <label for="subjectExplorerSelect" class="explorer-select-label">🎯 විෂය තෝරන්න (Drop Box):</label>
+          <div class="explorer-select-wrap">
+            <select id="subjectExplorerSelect" class="explorer-subject-select" onchange="onSubjectExplorerSelectChange(this.value)">
+              <!-- Populated dynamically with active subjects -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject KPI Diagnostics Strip -->
+      <div class="subject-kpi-strip" id="subjectKpiStrip">
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="subjKpiAvg">-</div>
+          <div class="subj-kpi-lbl">සාමාන්‍ය ලකුණු %</div>
+        </div>
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="subjKpiHigh">-</div>
+          <div class="subj-kpi-lbl">ඉහළම ලකුණු (Best)</div>
+        </div>
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="subjKpiTested">-</div>
+          <div class="subj-kpi-lbl">ප්‍රශ්න පත්‍ර කළ ඒකක</div>
+        </div>
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="subjKpiTotalPapers">-</div>
+          <div class="subj-kpi-lbl">මුළු Papers ගණන</div>
+        </div>
+      </div>
+
+      <!-- Mode Switcher Tabs for Explorer Graph -->
+      <div class="chart-tab-bar" style="margin: 10px 0 12px; display: flex; gap: 6px;">
+        <button type="button" class="chart-tab-btn active" id="btnExplorerModeUnits" onclick="switchExplorerMode('units')">📊 ඒකක අනුව ලකුණු (Unit-by-Unit Scores)</button>
+        <button type="button" class="chart-tab-btn" id="btnExplorerModeTrend" onclick="switchExplorerMode('trend')">📈 කාලානුක්‍රමික ප්‍රගතිය (Progression Timeline)</button>
+      </div>
+
+      <!-- Canvas for Explorer Chart -->
+      <div class="chart-container" style="height: 220px; position: relative;">
+        <canvas id="subjectExplorerChart"></canvas>
+        <div id="noSubjectExplorerMsg" class="chart-empty-msg" style="display: none;">මෙම විෂය සඳහා තවම ප්‍රශ්න පත්‍ර සටහන් කර නොමැත 📝</div>
+      </div>
+
+      <!-- Unit Performance Breakdown Table for Selected Subject -->
+      <div class="ranking-table-responsive" style="margin-top: 14px; max-height: 260px; overflow-y: auto;">
+        <table class="ranking-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">Unit No</th>
+              <th>Unit Name (පාඩමේ නම)</th>
+              <th style="text-align: center; width: 100px;">Papers Done</th>
+              <th style="text-align: center; width: 110px;">Latest Score</th>
+              <th style="text-align: center; width: 100px;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="subjectExplorerUnitsTbody">
+            <!-- Dynamically populated rows for each unit of this subject -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
     <div class="chart-card" id="fullPaperChartCard">
       <div class="chart-header">
         <span id="chartCardHeading">📈 Full Paper Score Progression (All %)</span>
-        <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <div class="chart-dropbox-wrap">
+            <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Drop Box:</span>
+            <select id="fullPaperSubjectSelect" class="chart-dropbox-select" onchange="switchChartTab(this.value)">
+              <option value="All">All Subjects</option>
+            </select>
+          </div>
           <span style="font-size: 8.5px; color: #a4b0be;" id="chartZoomIndicator">Adaptive Zoom</span>
           <button type="button" class="chart-data-toggle-btn" id="btnFullPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
           <button type="button" class="chart-fullscreen-btn" id="btnFullPaperFs" onclick="toggleChartFullscreen('fullPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
@@ -6482,14 +6791,20 @@
     <div class="chart-card" id="unitPaperChartCard" style="margin-top: 14px;">
       <div class="chart-header">
         <span id="unitChartCardHeading">📈 Unit Paper Score Progression (All)</span>
-        <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <div class="chart-dropbox-wrap">
+            <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Drop Box:</span>
+            <select id="unitPaperSubjectSelect" class="chart-dropbox-select" onchange="switchUnitChartTab(this.value)">
+              <option value="All">All Subjects</option>
+            </select>
+          </div>
           <span style="font-size: 8.5px; color: #a4b0be;" id="unitChartZoomIndicator">Adaptive Zoom</span>
           <button type="button" class="chart-data-toggle-btn" id="btnUnitPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
           <button type="button" class="chart-fullscreen-btn" id="btnUnitPaperFs" onclick="toggleChartFullscreen('unitPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
         </div>
       </div>
 
-      <div class="chart-tab-bar" id="unitChartTabBar" style="overflow-x: auto; white-space: nowrap; display: flex; gap: 4px;">
+      <div class="chart-tab-bar" id="unitPaperChartTabBar" style="overflow-x: auto; white-space: nowrap; display: flex; gap: 4px;">
         <button class="chart-tab-btn active" onclick="switchUnitChartTab('All')">All</button>
         <button class="chart-tab-btn" onclick="switchUnitChartTab('MATH')">MATH</button>
         <button class="chart-tab-btn" onclick="switchUnitChartTab('SCI')">SCI</button>
@@ -7223,13 +7538,290 @@
         .replace(/'/g, '&#39;');
     }
 
+
+    // --- Subject Explorer State & Handlers ---
+    let currentExplorerSubject = 'MATH';
+    let currentExplorerMode = 'units'; // 'units' or 'trend'
+    let subjectExplorerChartInstance = null;
+
     function toggleTheme() {
-      const isDark = document.documentElement.classList.toggle('dark-mode');
-      if (document.body) document.body.classList.toggle('dark-mode', isDark);
-      localStorage.setItem('al_study_tracker_theme', isDark ? 'dark' : 'light');
-      if (scoreChartInstance) renderMultiTabChart();
-      if (unitScoreChartInstance) renderUnitPaperChart();
+      const isCurrentlyDark = document.documentElement.classList.contains('dark-mode') || (document.body && document.body.classList.contains('dark-mode'));
+      const nextIsDark = !isCurrentlyDark;
+      if (nextIsDark) {
+        document.documentElement.classList.add('dark-mode');
+        if (document.body) document.body.classList.add('dark-mode');
+        localStorage.setItem('al_study_tracker_theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark-mode');
+        if (document.body) document.body.classList.remove('dark-mode');
+        localStorage.setItem('al_study_tracker_theme', 'light');
+      }
+      if (typeof renderMultiTabChart === 'function') renderMultiTabChart();
+      if (typeof renderUnitPaperChart === 'function') renderUnitPaperChart();
+      if (typeof renderSubjectExplorerChart === 'function') renderSubjectExplorerChart();
     }
+
+    function onSubjectExplorerSelectChange(subjCode) {
+      currentExplorerSubject = subjCode;
+      renderSubjectExplorerCard();
+    }
+
+    function switchExplorerMode(mode) {
+      currentExplorerMode = mode;
+      const bUnits = document.getElementById('btnExplorerModeUnits');
+      const bTrend = document.getElementById('btnExplorerModeTrend');
+      if (bUnits) bUnits.classList.toggle('active', mode === 'units');
+      if (bTrend) bTrend.classList.toggle('active', mode === 'trend');
+      renderSubjectExplorerChart();
+    }
+
+    function renderSubjectExplorerCard() {
+      if (!telemetryData) return;
+      const subjs = getActiveSubjects();
+      if (!subjs || subjs.length === 0) return;
+      
+      if (!currentExplorerSubject || !subjs.find(s => s.code === currentExplorerSubject)) {
+        currentExplorerSubject = subjs[0].code;
+      }
+
+      const selectEl = document.getElementById('subjectExplorerSelect');
+      if (selectEl) {
+        selectEl.innerHTML = subjs.map(s => `
+          <option value="${s.code}" ${s.code === currentExplorerSubject ? 'selected' : ''}>
+            ${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})
+          </option>
+        `).join('');
+        selectEl.value = currentExplorerSubject;
+      }
+
+      const subjMeta = getSubjectMeta(currentExplorerSubject);
+      const subjSyllabus = (telemetryData.syllabusList || []).filter(s => (s.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim());
+      const subjUnitPapers = (telemetryData.unitPapersHistory || []).filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks));
+      const subjFullPapers = (telemetryData.fullPapersHistory || []).filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks));
+
+      const allMarks = [...subjUnitPapers.map(p => Number(p.marks)), ...subjFullPapers.map(p => Number(p.marks))];
+      const avg = allMarks.length > 0 ? Math.round(allMarks.reduce((a, b) => a + b, 0) / allMarks.length) : 0;
+      const high = allMarks.length > 0 ? Math.max(...allMarks) : 0;
+
+      const testedSylIds = new Set(subjUnitPapers.map(p => p.syllabus_id));
+      const totalUnits = subjSyllabus.length;
+      const testedCount = testedSylIds.size;
+
+      const avgEl = document.getElementById('subjKpiAvg');
+      if (avgEl) {
+        avgEl.innerText = allMarks.length > 0 ? `${avg}%` : 'N/A';
+        avgEl.style.color = avg >= 75 ? '#20bf6b' : (avg >= 65 ? '#fdcb6e' : '#eb4d4b');
+      }
+      const highEl = document.getElementById('subjKpiHigh');
+      if (highEl) highEl.innerText = allMarks.length > 0 ? `${high}%` : 'N/A';
+      const testedEl = document.getElementById('subjKpiTested');
+      if (testedEl) testedEl.innerText = `${testedCount} / ${totalUnits}`;
+      const totalPapersEl = document.getElementById('subjKpiTotalPapers');
+      if (totalPapersEl) totalPapersEl.innerText = `${allMarks.length} Papers`;
+
+      renderSubjectExplorerChart();
+      renderSubjectExplorerTable(subjSyllabus, subjUnitPapers);
+    }
+
+    function renderSubjectExplorerChart() {
+      const canvas = document.getElementById('subjectExplorerChart');
+      const emptyMsg = document.getElementById('noSubjectExplorerMsg');
+      if (!canvas || !telemetryData) return;
+
+      const subjMeta = getSubjectMeta(currentExplorerSubject);
+      const color = subjMeta.color || '#6c5ce7';
+      const isDark = document.documentElement.classList.contains('dark-mode') || (document.body && document.body.classList.contains('dark-mode'));
+      const textColor = isDark ? '#e6edf3' : '#2d3436';
+      const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)';
+
+      const subjSyllabus = (telemetryData.syllabusList || []).filter(s => (s.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim());
+      const subjUnitPapers = (telemetryData.unitPapersHistory || []).filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks));
+
+      if (subjectExplorerChartInstance) {
+        subjectExplorerChartInstance.destroy();
+        subjectExplorerChartInstance = null;
+      }
+
+      if (currentExplorerMode === 'units') {
+        const labels = [];
+        const scores = [];
+        const backgroundColors = [];
+        const borderColors = [];
+
+        subjSyllabus.forEach((syl, i) => {
+          const uNo = syl.unit_number || syl.sub_lesson_code || (i + 1);
+          const papers = subjUnitPapers.filter(p => p.syllabus_id === syl.id);
+          labels.push(`Unit ${uNo}`);
+          if (papers.length > 0) {
+            const uAvg = Math.round(papers.reduce((a, b) => a + Number(b.marks), 0) / papers.length);
+            scores.push(uAvg);
+            if (uAvg >= 75) {
+              backgroundColors.push('rgba(32, 191, 107, 0.65)');
+              borderColors.push('#20bf6b');
+            } else if (uAvg >= 65) {
+              backgroundColors.push('rgba(253, 203, 110, 0.65)');
+              borderColors.push('#fdcb6e');
+            } else if (uAvg >= 50) {
+              backgroundColors.push('rgba(9, 132, 227, 0.65)');
+              borderColors.push('#0984e3');
+            } else {
+              backgroundColors.push('rgba(235, 77, 75, 0.65)');
+              borderColors.push('#eb4d4b');
+            }
+          } else {
+            scores.push(0);
+            backgroundColors.push('rgba(140, 122, 230, 0.12)');
+            borderColors.push('rgba(140, 122, 230, 0.3)');
+          }
+        });
+
+        if (subjSyllabus.length === 0) {
+          canvas.style.display = 'none';
+          if (emptyMsg) emptyMsg.style.display = 'flex';
+          return;
+        }
+
+        canvas.style.display = 'block';
+        if (emptyMsg) emptyMsg.style.display = 'none';
+
+        const ctx = canvas.getContext('2d');
+        subjectExplorerChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: `${currentExplorerSubject} Unit Scores %`,
+              data: scores,
+              backgroundColor: backgroundColors,
+              borderColor: borderColors,
+              borderWidth: 1.5,
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const val = context.parsed.y;
+                    return val > 0 ? `Latest Score: ${val}%` : 'Untested (තවම කර නැත)';
+                  }
+                }
+              }
+            },
+            scales: {
+              x: { grid: { color: gridColor }, ticks: { color: textColor, font: { size: 9.5 } } },
+              y: { min: 0, max: 100, grid: { color: gridColor }, ticks: { color: textColor, font: { size: 10 } } }
+            }
+          }
+        });
+
+      } else {
+        const combinedPapers = [
+          ...subjUnitPapers.map(p => ({
+            label: p.sub_lesson_code || 'Unit',
+            date: p.logged_at ? String(p.logged_at).substring(0, 10) : '-',
+            marks: Number(p.marks),
+            type: 'Unit Paper'
+          })),
+          ...((telemetryData.fullPapersHistory || [])
+            .filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks))
+            .map(p => ({
+              label: 'Full Paper',
+              date: p.date ? String(p.date).substring(0, 10) : '-',
+              marks: Number(p.marks),
+              type: 'Full Paper'
+            }))
+          )
+        ];
+
+        combinedPapers.sort((a, b) => (a.date > b.date ? 1 : -1));
+
+        if (combinedPapers.length === 0) {
+          canvas.style.display = 'none';
+          if (emptyMsg) emptyMsg.style.display = 'flex';
+          return;
+        }
+
+        canvas.style.display = 'block';
+        if (emptyMsg) emptyMsg.style.display = 'none';
+
+        const labels = combinedPapers.map(p => `${p.label} (${p.date.substring(5)})`);
+        const dataVals = combinedPapers.map(p => p.marks);
+
+        const ctx = canvas.getContext('2d');
+        subjectExplorerChartInstance = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: `${currentExplorerSubject} Progress %`,
+              data: dataVals,
+              borderColor: color,
+              backgroundColor: `${color}22`,
+              borderWidth: 2.5,
+              fill: true,
+              tension: 0.35,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              pointBackgroundColor: color
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false }
+            },
+            scales: {
+              x: { grid: { color: gridColor }, ticks: { color: textColor, font: { size: 9 } } },
+              y: { min: 0, max: 100, grid: { color: gridColor }, ticks: { color: textColor, font: { size: 10 } } }
+            }
+          }
+        });
+      }
+    }
+
+    function renderSubjectExplorerTable(subjSyllabus, subjUnitPapers) {
+      const tbody = document.getElementById('subjectExplorerUnitsTbody');
+      if (!tbody) return;
+
+      if (subjSyllabus.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:12px; color:var(--text-muted);">ඒකක දත්ත නොමැත.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = subjSyllabus.map((syl, i) => {
+        const uNo = syl.unit_number || syl.sub_lesson_code || (i + 1);
+        const uName = syl.unit_name || syl.sub_lesson_title || syl.unit_name_si || '-';
+        const papers = subjUnitPapers.filter(p => p.syllabus_id === syl.id);
+        const pCount = papers.length;
+        let scoreDisplay = '<span style="color:var(--text-muted); font-size:11px;">තවම කර නැත</span>';
+        if (pCount > 0) {
+          const latestMark = Number(papers[papers.length - 1].marks);
+          const pillClass = latestMark >= 75 ? 'marks-high' : (latestMark >= 65 ? 'marks-mid' : 'marks-low');
+          scoreDisplay = `<span class="marks-pill ${pillClass}">${latestMark}%</span>`;
+        }
+
+        return `
+          <tr>
+            <td><span class="chip-badge chip-unit-no">Unit ${uNo}</span></td>
+            <td>
+              <a href="javascript:void(0)" onclick="openDrilldownModal('${currentExplorerSubject}', '${escapeHtml(uNo)}')" class="sub-unit-link unit-name-txt">${escapeHtml(uName)}</a>
+            </td>
+            <td style="text-align: center;"><span style="font-weight:700; color:${pCount > 0 ? '#20bf6b' : 'var(--text-muted)'};">${pCount}</span></td>
+            <td style="text-align: center;">${scoreDisplay}</td>
+            <td style="text-align: center;">
+              <button type="button" class="btn-action-sm" onclick="openDrilldownModal('${currentExplorerSubject}', '${escapeHtml(uNo)}')" style="padding:3px 8px; font-size:10.5px;">🔍 විමසුම</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
 
     function getActiveSubjects() {
       if (window.ZenithCurriculum && typeof window.ZenithCurriculum.getActiveSubjects === 'function') {
@@ -7515,6 +8107,7 @@
         updateChartTabBars();
         renderMultiTabChart();
         renderUnitPaperChart();
+        renderSubjectExplorerCard();
         renderTopHighestCard();
         renderLowestScoreCard();
         renderOldestLessonPending();
@@ -7536,7 +8129,19 @@
     // --- Tab Switcher for Active Subjects in Charts ---
     function updateChartTabBars() {
       const subjs = getActiveSubjects();
-      
+
+      // 1. Full Paper Chart: Populate Drop Box & Tab Bar
+      const fpSelect = document.getElementById('fullPaperSubjectSelect');
+      if (fpSelect) {
+        let opts = '<option value="All">🌟 All Subjects (සමස්ත)</option>';
+        opts += '<option value="Overall Avg">🎯 සමස්ත සාමාන්‍යය %</option>';
+        subjs.forEach(s => {
+          opts += `<option value="${s.code}" ${currentActiveChartTab === s.code ? 'selected' : ''}>${s.icon || '📘'} ${s.code} — ${s.nameSi}</option>`;
+        });
+        fpSelect.innerHTML = opts;
+        fpSelect.value = currentActiveChartTab;
+      }
+
       const fpBar = document.getElementById('fullPaperChartTabBar');
       if (fpBar) {
         let html = '<button class="chart-tab-btn ' + (currentActiveChartTab === 'All' ? 'active' : '') + '" onclick="switchChartTab(\'All\')">All</button>';
@@ -7547,13 +8152,34 @@
         fpBar.innerHTML = html;
       }
 
-      const upBar = document.getElementById('unitPaperChartTabBar');
+      // 2. Unit Paper Chart: Populate Drop Box & Tab Bar
+      const upSelect = document.getElementById('unitPaperSubjectSelect');
+      if (upSelect) {
+        let opts = '<option value="All">🌟 All Unit Papers (සියල්ල)</option>';
+        subjs.forEach(s => {
+          opts += `<option value="${s.code}" ${currentActiveUnitChartTab === s.code ? 'selected' : ''}>${s.icon || '📘'} ${s.code} — ${s.nameSi}</option>`;
+        });
+        upSelect.innerHTML = opts;
+        upSelect.value = currentActiveUnitChartTab;
+      }
+
+      const upBar = document.getElementById('unitPaperChartTabBar') || document.getElementById('unitChartTabBar');
       if (upBar) {
         let html = '<button class="chart-tab-btn ' + (currentActiveUnitChartTab === 'All' ? 'active' : '') + '" onclick="switchUnitChartTab(\'All\')">All</button>';
         subjs.forEach(s => {
           html += `<button class="chart-tab-btn ${currentActiveUnitChartTab === s.code ? 'active' : ''}" onclick="switchUnitChartTab('${s.code}')">${s.code}</button>`;
         });
         upBar.innerHTML = html;
+      }
+
+      // 3. Subject Explorer Drop Box
+      const expSelect = document.getElementById('subjectExplorerSelect');
+      if (expSelect) {
+        expSelect.innerHTML = subjs.map(s => `
+          <option value="${s.code}" ${s.code === currentExplorerSubject ? 'selected' : ''}>
+            ${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})
+          </option>
+        `).join('');
       }
     }
 
@@ -7836,6 +8462,8 @@
     // --- 3. Full Paper Score Progression Chart ---
     function switchChartTab(tab) {
       currentActiveChartTab = tab;
+      const fpSelect = document.getElementById('fullPaperSubjectSelect');
+      if (fpSelect) fpSelect.value = tab;
       const bar = document.getElementById('fullPaperChartTabBar');
       if (bar) {
         bar.querySelectorAll('.chart-tab-btn').forEach(btn => {
@@ -7917,7 +8545,9 @@
     // --- 4. Unit Paper Score Progression Chart ---
     function switchUnitChartTab(tab) {
       currentActiveUnitChartTab = tab;
-      const bar = document.getElementById('unitPaperChartTabBar');
+      const upSelect = document.getElementById('unitPaperSubjectSelect');
+      if (upSelect) upSelect.value = tab;
+      const bar = document.getElementById('unitPaperChartTabBar') || document.getElementById('unitChartTabBar');
       if (bar) {
         bar.querySelectorAll('.chart-tab-btn').forEach(btn => {
           btn.classList.toggle('active', btn.innerText.includes(tab) || (tab === 'All' && btn.innerText === 'All'));
