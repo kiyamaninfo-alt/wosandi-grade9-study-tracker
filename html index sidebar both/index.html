@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <base target="_top">
-    <title>Wosandi Grade 9 Mission Control</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22appLogoGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%238c7ae6%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2300cec9%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2216%22%20fill%3D%22url(%23appLogoGrad)%22%2F%3E%3Cg%20transform%3D%22translate(8%2C%208)%20scale(2)%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M12%202L3%207L12%2012L21%207L12%202Z%22%20fill%3D%22%23ffffff%22%2F%3E%3Cpath%20d%3D%22M3%2013L12%2018L21%2013%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M3%2017L12%2022L21%2017%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
-    <link rel="apple-touch-icon" href="/app-logo.svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith O-Level • Smart Study Engine</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="app-logo.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -14,6 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="/env.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="curriculum-catalog.js"></script>
+    <script src="auth-manager.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       (function() {
@@ -5040,6 +5042,326 @@
           font-size: 10.5px !important;
         }
       }
+
+      /* --- Zenith O-Level Multi-Tenant Header & Topbar --- */
+      .zenith-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 18px;
+        background: var(--bg-card, rgba(255, 255, 255, 0.7));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-color, rgba(255, 255, 255, 0.2));
+        border-radius: 16px;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      body.dark-mode .zenith-topbar {
+        background: rgba(19, 27, 46, 0.85);
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      }
+      .zenith-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+      }
+      .zenith-brand-logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+      }
+      .zenith-brand-title {
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.2;
+      }
+      .zenith-brand-sub {
+        font-size: 10.5px;
+        color: var(--text-muted, #7f8fa6);
+        font-weight: 600;
+      }
+      .zenith-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .zenith-grade-picker {
+        background: var(--bg-input, rgba(255, 255, 255, 0.9));
+        border: 1px solid var(--border-color, #dcdde1);
+        color: var(--text-main, #2d3436);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 6px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.2s;
+      }
+      body.dark-mode .zenith-grade-picker {
+        background: #1e293b;
+        color: #f1f5f9;
+        border-color: #334155;
+      }
+      .zenith-user-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: rgba(99, 102, 241, 0.08);
+        border: 1px solid rgba(99, 102, 241, 0.25);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-main, #2f3542);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      body.dark-mode .zenith-user-chip {
+        background: rgba(99, 102, 241, 0.15);
+        color: #e2e8f0;
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+      .zenith-user-avatar {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .zenith-grade-badge {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 6px;
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: #fff;
+      }
+      .btn-auth-action {
+        background: #4f46e5;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 5px 12px;
+        font-size: 11.5px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s, opacity 0.15s;
+      }
+      .btn-auth-action:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+      .btn-zenith-admin {
+        background: linear-gradient(135deg, #ef4444, #f97316);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 5px 12px;
+        font-size: 11.5px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
+        animation: pulseAdminGlow 2s infinite;
+      }
+      @keyframes pulseAdminGlow {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+        50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+      }
+
+      /* --- Mobile Bottom Navigation Bar (World-class Mobile UI) --- */
+      .mobile-bottom-nav {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        body {
+          padding-bottom: 74px !important;
+        }
+        .mobile-bottom-nav {
+          display: flex;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 62px;
+          background: var(--bg-card, rgba(255, 255, 255, 0.95));
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+          z-index: 9999;
+          justify-content: space-around;
+          align-items: center;
+          padding: 4px 6px;
+          box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+        }
+        body.dark-mode .mobile-bottom-nav {
+          background: rgba(15, 23, 42, 0.95);
+          border-top-color: rgba(255, 255, 255, 0.08);
+          box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
+        }
+        .mob-nav-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          flex: 1;
+          height: 100%;
+          text-decoration: none;
+          color: var(--text-muted, #94a3b8);
+          font-size: 10px;
+          font-weight: 600;
+          gap: 2px;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          transition: color 0.2s, transform 0.15s;
+        }
+        .mob-nav-item:active {
+          transform: scale(0.92);
+        }
+        .mob-nav-item.active, .mob-nav-item:hover {
+          color: #6366f1;
+        }
+        .mob-nav-icon {
+          font-size: 19px;
+          line-height: 1;
+        }
+      }
+
+      /* --- Zenith Auth Modal Styling --- */
+      .zenith-auth-backdrop {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(10, 15, 29, 0.78);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 99999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .zenith-auth-dialog {
+        background: var(--bg-card, #ffffff);
+        color: var(--text-main, #1e293b);
+        border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+        border-radius: 20px;
+        width: 100%;
+        max-width: 440px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+      body.dark-mode .zenith-auth-dialog {
+        background: #131b2e;
+        color: #f8fafc;
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      .zenith-auth-nav {
+        display: flex;
+        background: rgba(0, 0, 0, 0.04);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      body.dark-mode .zenith-auth-nav {
+        background: rgba(0, 0, 0, 0.2);
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+      }
+      .zenith-auth-tab {
+        flex: 1;
+        padding: 12px;
+        background: transparent;
+        border: none;
+        font-weight: 700;
+        font-size: 13px;
+        color: #94a3b8;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: center;
+      }
+      .zenith-auth-tab.active {
+        color: #6366f1;
+        border-bottom: 2px solid #6366f1;
+        background: rgba(99, 102, 241, 0.05);
+      }
+      .zenith-oauth-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 11px 16px;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        background: #ffffff;
+        color: #1f2937;
+        font-weight: 600;
+        font-size: 13.5px;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      }
+      body.dark-mode .zenith-oauth-btn {
+        background: #1e293b;
+        color: #f8fafc;
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+      .zenith-oauth-btn:hover {
+        background: #f8fafc;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+      body.dark-mode .zenith-oauth-btn:hover {
+        background: #27354f;
+      }
+      .zenith-auth-input {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color, #cbd5e1);
+        background: var(--bg-input, #f8fafc);
+        color: var(--text-main, #0f172a);
+        font-size: 13px;
+        margin-bottom: 12px;
+        outline: none;
+        box-sizing: border-box;
+      }
+      body.dark-mode .zenith-auth-input {
+        background: #0f172a;
+        color: #f1f5f9;
+        border-color: #334155;
+      }
+      .zenith-auth-input:focus {
+        border-color: #6366f1;
+      }
+      .zenith-auth-submit {
+        width: 100%;
+        padding: 11px;
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 13.5px;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.15s;
+        box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+      }
+      .zenith-auth-submit:hover {
+        opacity: 0.95;
+        transform: translateY(-1px);
+      }
+
     </style>
   </head>
   <body>
@@ -5049,17 +5371,47 @@
       <div style="font-size: 11px; color: #636e72; margin-top: 4px;" id="printDateLbl"></div>
     </div>
 
-    <!-- Header -->
+    <!-- Zenith Top Navigation Bar -->
+    <header class="zenith-topbar" role="banner">
+      <div class="zenith-brand" onclick="scrollToTopDashboard()" title="Zenith O-Level • Smart Study Engine">
+        <img src="app-logo.svg" alt="Zenith Logo" class="zenith-brand-logo" />
+        <div>
+          <div class="zenith-brand-title">Zenith O-Level</div>
+          <div class="zenith-brand-sub">Smart Study Engine • Grades 6–11</div>
+        </div>
+      </div>
+
+      <div class="zenith-controls">
+        <label for="zenithGradeSelector" class="sr-only" style="display:none;">Select Grade</label>
+        <select id="zenithGradeSelector" class="zenith-grade-picker" onchange="onZenithGradeChange(this.value)" title="ශ්‍රේණිය තෝරන්න (Select Grade)">
+          <option value="6">Grade 6 (6 ශ්‍රේණිය)</option>
+          <option value="7">Grade 7 (7 ශ්‍රේණිය)</option>
+          <option value="8">Grade 8 (8 ශ්‍රේණිය)</option>
+          <option value="9" selected>Grade 9 (9 ශ්‍රේණිය)</option>
+          <option value="10">Grade 10 (10 ශ්‍රේණිය - O/L)</option>
+          <option value="11">Grade 11 (11 ශ්‍රේණිය - O/L Exam)</option>
+        </select>
+
+        <div id="zenithUserStatusBadge" class="zenith-user-chip guest" onclick="ZenithAuth.showAuthModal()" title="පරිශීලක ගිණුම (User Profile & Account)">
+          <img id="zenithUserAvatar" class="zenith-user-avatar" style="display:none;" alt="User Avatar" />
+          <span id="zenithUserName">Student (Guest)</span>
+          <span id="zenithUserGradeBadge" class="zenith-grade-badge">Grade 9</span>
+          <button type="button" id="btnZenithAuthAction" class="btn-auth-action" onclick="event.stopPropagation(); ZenithAuth.showAuthModal();">🔑 Sign In</button>
+        </div>
+
+        <button type="button" id="btnZenithAdminPortal" class="btn-zenith-admin" style="display: none;" onclick="ZenithAuth.openAdminPortal()" title="Platform Master Console (Admin: krishaja@gmail.com)">
+          ⚡ Master Console
+        </button>
+      </div>
+    </header>
+
+    <!-- Header Card -->
     <div class="header-card">
       <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 6px;">
-        <div class="app-logo-badge" style="width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #8c7ae6 0%, #00cec9 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(140, 122, 230, 0.4); flex-shrink: 0;">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L3 7L12 12L21 7L12 2Z" fill="#ffffff"/>
-            <path d="M3 13L12 18L21 13" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M3 17L12 22L21 17" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <div class="app-logo-badge" style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4); flex-shrink: 0;">
+          <img src="app-logo.svg" style="width: 30px; height: 30px;" alt="Logo" />
         </div>
-        <h2 class="title" id="appMainTitle" style="margin: 0;">Wosandi Grade 9 Mission Control</h2>
+        <h2 class="title" id="appMainTitle" style="margin: 0;">Zenith O-Level • Smart Study Engine</h2>
       </div>
       <div class="quote-box" id="appMainQuote">
         "විශ්වාසයෙන් සහ නොසැලෙන උත්සාහයෙන් පියවරෙන් පියවර ඉදිරියට යන්න. ඔබගේ ජයග්‍රහණය ස්ථිරයි!"
@@ -6753,12 +7105,13 @@ const SUPABASE_ANON_KEY = (typeof window !== 'undefined' && window.__ENV__ && wi
 var supabase = (window.supabase && typeof window.supabase.createClient === 'function' && SUPABASE_URL && SUPABASE_ANON_KEY)
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
       auth: {
-        persistSession: false,
-        autoRefreshToken: false,
-        detectSessionInUrl: false
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
       }
     })
   : null;
+window.supabaseClient = supabase;
       // --- Dynamic Grade 9 Subject Configuration Engine ---
       const DEFAULT_G9_SUBJECTS = [
         { code: 'MATH', nameSi: 'ගණිතය', nameEn: 'Mathematics', color: '#0984e3', icon: '📐', active: true },
@@ -6796,6 +7149,11 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
       }
 
       function getActiveSubjects() {
+        if (typeof ZenithCurriculum !== 'undefined') {
+          const user = (typeof ZenithAuth !== 'undefined' && ZenithAuth.getUser()) ? ZenithAuth.getUser() : null;
+          const uId = (user && !user.isGuest) ? user.id : null;
+          return ZenithCurriculum.getActiveSubjectsForUser(uId);
+        }
         if (!g9SubjectsCache) loadG9Subjects();
         return (g9SubjectsCache || []).filter(s => s.active !== false);
       }
@@ -6803,6 +7161,9 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
       function getSubjectMeta(code) {
         if (!code) return { code: 'UNKNOWN', nameSi: 'නොදනී', nameEn: 'Unknown', color: '#8c7ae6', icon: '📘', active: true };
         const upper = String(code).toUpperCase().trim();
+        if (typeof ZenithCurriculum !== 'undefined' && ZenithCurriculum.MASTER_SUBJECT_DICTIONARY[upper]) {
+          return { ...ZenithCurriculum.MASTER_SUBJECT_DICTIONARY[upper], active: true };
+        }
         const allSubjs = g9SubjectsCache || loadG9Subjects();
         const found = allSubjs.find(s => s.code.toUpperCase() === upper);
         if (found) return found;
@@ -8322,6 +8683,9 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
           session_date: startPayload.session_date,
           created_at: startPayload.created_at
         };
+        if (typeof ZenithAuth !== 'undefined' && ZenithAuth.getUserId()) {
+          dbPayload.user_id = ZenithAuth.getUserId();
+        }
 
         if (navigator.onLine && supabase && typeof supabase.from === 'function') {
           try {
@@ -8709,6 +9073,9 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
           status: 'completed',
           created_at: (target && target.created_at) ? target.created_at : nowIso
         };
+        if (typeof ZenithAuth !== 'undefined' && ZenithAuth.getUserId()) {
+          finishPayload.user_id = ZenithAuth.getUserId();
+        }
 
         if (target) {
           Object.assign(target, finishPayload);
@@ -8937,7 +9304,9 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
 
       function getLocalStoredSessions() {
         try {
-          const raw = localStorage.getItem('al_study_timer_sessions') || localStorage.getItem('al_study_sessions_cache');
+          const key1 = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getScopedKey('al_study_timer_sessions') : 'al_study_timer_sessions';
+          const key2 = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getScopedKey('al_study_sessions_cache') : 'al_study_sessions_cache';
+          const raw = localStorage.getItem(key1) || localStorage.getItem(key2);
           if (raw) {
             const parsed = JSON.parse(raw);
             if (Array.isArray(parsed)) {
@@ -8962,8 +9331,10 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
 
       function saveLocalStoredSessions(sessions) {
         try {
-          localStorage.setItem('al_study_timer_sessions', JSON.stringify(sessions));
-          localStorage.setItem('al_study_sessions_cache', JSON.stringify(sessions));
+          const key1 = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getScopedKey('al_study_timer_sessions') : 'al_study_timer_sessions';
+          const key2 = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getScopedKey('al_study_sessions_cache') : 'al_study_sessions_cache';
+          localStorage.setItem(key1, JSON.stringify(sessions));
+          localStorage.setItem(key2, JSON.stringify(sessions));
         } catch (e) {}
       }
 
@@ -9132,6 +9503,9 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
           status: sessionItem.status || 'completed',
           created_at: sessionItem.created_at
         };
+        if (typeof ZenithAuth !== 'undefined' && ZenithAuth.getUserId()) {
+          payload.user_id = ZenithAuth.getUserId();
+        }
 
         if (navigator.onLine && supabase && typeof supabase.from === 'function') {
           try {
@@ -9755,7 +10129,14 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
         if (navigator.onLine && supabase && typeof supabase.from === 'function') {
           (async () => {
             try {
-              let res = await supabase.from('study_timer_sessions').select('*').order('created_at', { ascending: false }).limit(200);
+              const sessUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+              let sessQuery = supabase.from('study_timer_sessions').select('*');
+              if (sessUid) {
+                sessQuery = sessQuery.eq('user_id', sessUid);
+              } else {
+                sessQuery = sessQuery.is('user_id', null);
+              }
+              let res = await sessQuery.order('created_at', { ascending: false }).limit(200);
               if (res.error) {
                 res = await supabase.from('study_sessions').select('*').order('created_at', { ascending: false }).limit(200);
               }
@@ -10407,12 +10788,30 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
 
           if (supabase && navigator.onLine) {
             try {
+              const currentUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+              let tpQuery = supabase.from('tracker_progress').select('*');
+              let srQuery = supabase.from('spaced_repetition_log').select('*').order('completed_at', { ascending: true });
+              let fpQuery = supabase.from('full_papers').select('*').order('exam_date', { ascending: true }).order('logged_at', { ascending: true });
+              let upQuery = supabase.from('unit_papers').select('*').order('logged_at', { ascending: true });
+
+              if (currentUid) {
+                tpQuery = tpQuery.eq('user_id', currentUid);
+                srQuery = srQuery.eq('user_id', currentUid);
+                fpQuery = fpQuery.eq('user_id', currentUid);
+                upQuery = upQuery.eq('user_id', currentUid);
+              } else {
+                tpQuery = tpQuery.is('user_id', null);
+                srQuery = srQuery.is('user_id', null);
+                fpQuery = fpQuery.is('user_id', null);
+                upQuery = upQuery.is('user_id', null);
+              }
+
               const promises = [
                 supabase.rpc('get_dashboard_telemetry'),
-                supabase.from('tracker_progress').select('*'),
-                supabase.from('spaced_repetition_log').select('*').order('completed_at', { ascending: true }),
-                supabase.from('full_papers').select('*').order('exam_date', { ascending: true }).order('logged_at', { ascending: true }),
-                supabase.from('unit_papers').select('*').order('logged_at', { ascending: true }),
+                tpQuery,
+                srQuery,
+                fpQuery,
+                upQuery,
                 supabase.from('canonical_syllabus').select('*').order('sort_order', { ascending: true })
               ];
 
@@ -16103,17 +16502,19 @@ function openSidebarModal() {
         btn.disabled = true;
 
         try {
+          const fpPayload = {
+            subject: subject,
+            exam_date: dateStr,
+            marks: numericMarks,
+            time_taken: timeTaken || null,
+            remarks: remarks || null
+          };
+          if (typeof ZenithAuth !== 'undefined' && ZenithAuth.getUserId()) {
+            fpPayload.user_id = ZenithAuth.getUserId();
+          }
           const { error } = await supabase
             .from('full_papers')
-            .insert([
-              {
-                subject: subject,
-                exam_date: dateStr,
-                marks: numericMarks,
-                time_taken: timeTaken || null,
-                remarks: remarks || null
-              }
-            ]);
+            .insert([fpPayload]);
 
           if (error) throw error;
 
@@ -16553,11 +16954,11 @@ function openSidebarModal() {
             updatePayload.updated_at = nowIso;
           }
 
-          const { data: updatedRows, error: updateErr } = await supabase
-            .from('tracker_progress')
-            .update(updatePayload)
-            .eq('syllabus_id', sylId)
-            .select();
+          const currentUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+          let tpUpdateQuery = supabase.from('tracker_progress').update(updatePayload).eq('syllabus_id', sylId);
+          if (currentUid) tpUpdateQuery = tpUpdateQuery.eq('user_id', currentUid);
+          else tpUpdateQuery = tpUpdateQuery.is('user_id', null);
+          const { data: updatedRows, error: updateErr } = await tpUpdateQuery.select();
 
           if (updateErr) throw updateErr;
 
@@ -16567,6 +16968,7 @@ function openSidebarModal() {
               subject: subj,
               ...updatePayload
             };
+            if (currentUid) insertPayload.user_id = currentUid;
             const { error: insErr } = await supabase.from('tracker_progress').insert([insertPayload]);
             if (insErr) throw insErr;
           }
@@ -16956,28 +17358,30 @@ function openSidebarModal() {
           if (sylErr || !syl) throw (sylErr || new Error('පාඩම හඳුනාගත නොහැකි විය.'));
 
           // Fetch existing papers to find the true max paper_no and prevent duplicate key violations (uq_unit_paper_entry)
-          const { data: existingPapers, error: cntErr } = await supabase
-            .from('unit_papers')
-            .select('paper_no')
-            .eq('syllabus_id', syl.id);
+          const currentUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+          let cntQuery = supabase.from('unit_papers').select('paper_no').eq('syllabus_id', syl.id);
+          if (currentUid) cntQuery = cntQuery.eq('user_id', currentUid);
+          else cntQuery = cntQuery.is('user_id', null);
+          const { data: existingPapers, error: cntErr } = await cntQuery;
 
           if (cntErr) throw cntErr;
 
           const maxExistingNo = (existingPapers || []).reduce((max, p) => Math.max(max, Number(p.paper_no) || 0), 0);
           const nextPaperNo = maxExistingNo + 1;
 
+          const upPayload = {
+            syllabus_id: syl.id,
+            subject: selectedSubLessonObj.subject,
+            sub_lesson_code: selectedSubLessonObj.code,
+            paper_no: nextPaperNo,
+            marks: numericMarks,
+            logged_at: new Date().toISOString()
+          };
+          if (currentUid) upPayload.user_id = currentUid;
+
           const { error: insErr } = await supabase
             .from('unit_papers')
-            .insert([
-              {
-                syllabus_id: syl.id,
-                subject: selectedSubLessonObj.subject,
-                sub_lesson_code: selectedSubLessonObj.code,
-                paper_no: nextPaperNo,
-                marks: numericMarks,
-                logged_at: new Date().toISOString()
-              }
-            ]);
+            .insert([upPayload]);
 
           if (insErr) throw insErr;
           if (passInput) passInput.value = '';
@@ -17904,5 +18308,180 @@ function openSidebarModal() {
       </div>
     </div>
 
+    <!-- Zenith Authentication & Account Modal -->
+    <div id="zenithAuthModal" class="zenith-auth-backdrop" onclick="if(event.target===this) ZenithAuth.hideAuthModal()">
+      <div class="zenith-auth-dialog" onclick="event.stopPropagation()">
+        <div class="zenith-auth-nav">
+          <button type="button" class="zenith-auth-tab active" id="authTabBtn_login" onclick="ZenithAuth.switchAuthTab('login')">🔑 Sign In</button>
+          <button type="button" class="zenith-auth-tab" id="authTabBtn_signup" onclick="ZenithAuth.switchAuthTab('signup')">✨ Create Account</button>
+          <button type="button" class="zenith-auth-tab" id="authTabBtn_guest" onclick="ZenithAuth.switchAuthTab('guest')">👤 Guest Mode</button>
+        </div>
+
+        <div style="padding: 24px;">
+          <!-- Google One-Click Login -->
+          <button type="button" class="zenith-oauth-btn" onclick="ZenithAuth.signInWithGoogle()">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.15z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.25 21.37 7.34 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12c0 2.02.46 3.84 1.26 5.42l4.02-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.25 2.63 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+            Continue with Google
+          </button>
+
+          <div style="display: flex; align-items: center; margin: 16px 0; color: #94a3b8; font-size: 11px;">
+            <div style="flex: 1; height: 1px; background: rgba(148, 163, 184, 0.2);"></div>
+            <span style="padding: 0 10px; font-weight: 600;">OR USE EMAIL</span>
+            <div style="flex: 1; height: 1px; background: rgba(148, 163, 184, 0.2);"></div>
+          </div>
+
+          <!-- TAB: LOGIN -->
+          <div id="authPane_login">
+            <form onsubmit="handleEmailLogin(event)">
+              <input type="email" id="loginEmail" class="zenith-auth-input" placeholder="Email Address (e.g. student@gmail.com)" required autocomplete="username" />
+              <input type="password" id="loginPassword" class="zenith-auth-input" placeholder="Password" required autocomplete="current-password" />
+              <div id="loginErrorMsg" style="display: none; color: #ef4444; font-size: 11.5px; margin-bottom: 10px; font-weight: 600;"></div>
+              <button type="submit" class="zenith-auth-submit" id="btnLoginSubmit">🔑 Sign In to Zenith</button>
+            </form>
+          </div>
+
+          <!-- TAB: SIGN UP -->
+          <div id="authPane_signup" style="display: none;">
+            <form onsubmit="handleEmailSignUp(event)">
+              <input type="text" id="signupFullName" class="zenith-auth-input" placeholder="Full Name (ශිෂ්‍යයාගේ සම්පූර්ණ නම)" required autocomplete="name" />
+              <input type="email" id="signupEmail" class="zenith-auth-input" placeholder="Email Address" required autocomplete="email" />
+              <input type="password" id="signupPassword" class="zenith-auth-input" placeholder="Password (Min. 6 chars)" minlength="6" required autocomplete="new-password" />
+              <label for="signupGrade" style="font-size: 11px; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 4px;">ශ්‍රේණිය (Grade):</label>
+              <select id="signupGrade" class="zenith-auth-input">
+                <option value="6">Grade 6 (6 ශ්‍රේණිය)</option>
+                <option value="7">Grade 7 (7 ශ්‍රේණිය)</option>
+                <option value="8">Grade 8 (8 ශ්‍රේණිය)</option>
+                <option value="9" selected>Grade 9 (9 ශ්‍රේණිය)</option>
+                <option value="10">Grade 10 (10 ශ්‍රේණිය - O/L)</option>
+                <option value="11">Grade 11 (11 ශ්‍රේණිය - O/L Exam)</option>
+              </select>
+              <div id="signupErrorMsg" style="display: none; color: #ef4444; font-size: 11.5px; margin-bottom: 10px; font-weight: 600;"></div>
+              <button type="submit" class="zenith-auth-submit" id="btnSignupSubmit">✨ Create Account</button>
+            </form>
+          </div>
+
+          <!-- TAB: GUEST MODE -->
+          <div id="authPane_guest" style="display: none;">
+            <p style="font-size: 12.5px; color: #94a3b8; line-height: 1.5; margin-bottom: 14px;">
+              Guest Mode lets you use all study tracking features offline on this device. For multi-device cloud sync and performance backup, we recommend logging in with Google.
+            </p>
+            <input type="text" id="guestNameInput" class="zenith-auth-input" placeholder="Your Display Name (Default: Wosandi)" value="Wosandi" />
+            <button type="button" class="zenith-auth-submit" style="background:#475569;" onclick="handleGuestSubmit()">
+              👤 Continue as Guest
+            </button>
+          </div>
+
+          <div style="text-align: center; margin-top: 14px;">
+            <button type="button" onclick="ZenithAuth.hideAuthModal()" style="background: none; border: none; color: #94a3b8; font-size: 11.5px; cursor: pointer;">✕ Close Window</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+      <button type="button" class="mob-nav-item active" onclick="scrollToTopDashboard()">
+        <span class="mob-nav-icon">🏠</span>
+        <span>Home</span>
+      </button>
+      <button type="button" class="mob-nav-item" onclick="scrollToSection('cardFocusTimer')">
+        <span class="mob-nav-icon">⏱️</span>
+        <span>Focus</span>
+      </button>
+      <button type="button" class="mob-nav-item" onclick="scrollToSection('dynamicSubjectRingsGrid')">
+        <span class="mob-nav-icon">📚</span>
+        <span>Syllabus</span>
+      </button>
+      <button type="button" class="mob-nav-item" onclick="openStudyAnalyticsPage()">
+        <span class="mob-nav-icon">📊</span>
+        <span>Analytics</span>
+      </button>
+      <button type="button" class="mob-nav-item" onclick="ZenithAuth.showAuthModal()">
+        <span class="mob-nav-icon">👤</span>
+        <span>Account</span>
+      </button>
+    </nav>
+
+    <script>
+      function onZenithGradeChange(newGrade) {
+        if (typeof ZenithCurriculum !== 'undefined') {
+          ZenithCurriculum.setActiveGrade(newGrade);
+        }
+        const badge = document.getElementById('zenithUserGradeBadge');
+        if (badge) badge.innerText = `Grade ${newGrade}`;
+        if (typeof refreshTelemetry === 'function') {
+          refreshTelemetry();
+        }
+      }
+
+      async function handleEmailLogin(e) {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const pass = document.getElementById('loginPassword').value;
+        const errEl = document.getElementById('loginErrorMsg');
+        const btn = document.getElementById('btnLoginSubmit');
+        if (errEl) errEl.style.display = 'none';
+        btn.disabled = true;
+        btn.innerText = 'Signing In...';
+
+        const res = await ZenithAuth.signInWithEmail(email, pass);
+        btn.disabled = false;
+        btn.innerText = '🔑 Sign In to Zenith';
+
+        if (res.error) {
+          if (errEl) {
+            errEl.innerText = res.error.message || 'Login failed. Please check credentials.';
+            errEl.style.display = 'block';
+          }
+        }
+      }
+
+      async function handleEmailSignUp(e) {
+        e.preventDefault();
+        const name = document.getElementById('signupFullName').value;
+        const email = document.getElementById('signupEmail').value;
+        const pass = document.getElementById('signupPassword').value;
+        const grade = document.getElementById('signupGrade').value;
+        const errEl = document.getElementById('signupErrorMsg');
+        const btn = document.getElementById('btnSignupSubmit');
+        if (errEl) errEl.style.display = 'none';
+        btn.disabled = true;
+        btn.innerText = 'Creating Account...';
+
+        const res = await ZenithAuth.signUpWithEmail(email, pass, name, grade);
+        btn.disabled = false;
+        btn.innerText = '✨ Create Account';
+
+        if (res.error) {
+          if (errEl) {
+            errEl.innerText = res.error.message || 'Sign up failed. Please try again.';
+            errEl.style.display = 'block';
+          }
+        }
+      }
+
+      function handleGuestSubmit() {
+        const name = document.getElementById('guestNameInput').value;
+        const gSelector = document.getElementById('zenithGradeSelector');
+        const grade = gSelector ? gSelector.value : 9;
+        ZenithAuth.continueAsGuest(name, grade);
+      }
+
+      function scrollToTopDashboard() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function scrollToSection(elemId) {
+        const el = document.getElementById(elemId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    </script>
   </body>
 </html>
