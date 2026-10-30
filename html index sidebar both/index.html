@@ -7636,6 +7636,95 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
         ]
 };
 
+      // Unified Normalizer for Syllabus Unit Objects (Supports database & local schema variations)
+      function normalizeSyllabusItem(item) {
+        if (!item || typeof item !== 'object') return null;
+        let uNum = 1;
+        if (item.unit_number !== null && item.unit_number !== undefined && !isNaN(item.unit_number)) {
+          uNum = Number(item.unit_number);
+        } else if (item.unitNum !== null && item.unitNum !== undefined && !isNaN(item.unitNum)) {
+          uNum = Number(item.unitNum);
+        } else if (item.unitNumber !== null && item.unitNumber !== undefined && !isNaN(item.unitNumber)) {
+          uNum = Number(item.unitNumber);
+        } else {
+          const txt = String(item.unit_name || item.unit || item.code || item.sub_lesson_code || item.sub_lesson_title || item.title || '');
+          const m = txt.match(/(?:unit|ඒකකය)?\s*0*(\d+)/i);
+          uNum = m ? parseInt(m[1], 10) : 1;
+        }
+
+        const rawName = String(item.unit_name || item.unit || item.sub_lesson_title || item.title || '').trim();
+        let uName = rawName;
+        if (!uName || /^unit\s*\d+$/i.test(uName) || /^ඒකකය\s*\d+$/i.test(uName)) {
+          if (item.unitTitle && String(item.unitTitle).trim()) {
+            uName = `ඒකකය ${String(uNum).padStart(2, '0')}: ${String(item.unitTitle).trim()}`;
+          } else {
+            uName = `ඒකකය ${String(uNum).padStart(2, '0')}`;
+          }
+        }
+
+        const subj = String(item.subject || 'MATH').toUpperCase().trim();
+        const code = String(item.sub_lesson_code || item.code || `Unit ${String(uNum).padStart(2, '0')}`).trim();
+        const cleanTitle = item.sub_lesson_title || item.unitTitle || uName;
+
+        return {
+          id: item.id || `unit_${subj}_${uNum}`,
+          subject: subj,
+          unit_number: uNum,
+          unitNum: uNum,
+          unitNumber: uNum,
+          unit_name: uName,
+          unit: uName,
+          sub_lesson_code: code,
+          code: code,
+          sub_lesson_title: cleanTitle,
+          unitTitle: cleanTitle,
+          sort_order: item.sort_order || item.sortOrder || (uNum * 10)
+        };
+      }
+
+      function buildFallbackSyllabusList() {
+        const list = [];
+        if (typeof CANONICAL_UNITS_FALLBACK !== 'undefined') {
+          for (const subj in CANONICAL_UNITS_FALLBACK) {
+            const units = CANONICAL_UNITS_FALLBACK[subj] || [];
+            units.forEach(u => {
+              const uNum = Number(u.unit_number || 1);
+              const formattedNum = String(uNum).padStart(2, '0');
+              const uName = u.unit_name || `ඒකකය ${formattedNum}`;
+              list.push({
+                id: `fallback_${subj}_${uNum}`,
+                subject: subj.toUpperCase().trim(),
+                unit_number: uNum,
+                unitNum: uNum,
+                unitNumber: uNum,
+                unit_name: uName,
+                unit: uName,
+                sub_lesson_code: `Unit ${formattedNum}`,
+                code: `Unit ${formattedNum}`,
+                sub_lesson_title: uName,
+                unitTitle: uName,
+                sort_order: uNum * 10
+              });
+            });
+          }
+        }
+        return list;
+      }
+
+      let cachedCanonicalSyllabus = null;
+      try {
+        const localCached = localStorage.getItem('g9_canonical_units_cache');
+        if (localCached) {
+          const parsed = JSON.parse(localCached);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            cachedCanonicalSyllabus = parsed.map(normalizeSyllabusItem).filter(Boolean);
+          }
+        }
+      } catch(e) {}
+      if (!cachedCanonicalSyllabus || cachedCanonicalSyllabus.length === 0) {
+        cachedCanonicalSyllabus = buildFallbackSyllabusList();
+      }
+
       let activeFocusSubject = localStorage.getItem('al_tracker_focus_subj') || 'MATH';
       let activeFocusUnit = null;
       try {
@@ -7924,31 +8013,41 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
 
       function getUnitsForSubject(subj) {
         const upper = String(subj || '').toUpperCase().trim();
+        const fallbackUnits = (typeof CANONICAL_UNITS_FALLBACK !== 'undefined' && CANONICAL_UNITS_FALLBACK[upper])
+          ? CANONICAL_UNITS_FALLBACK[upper]
+          : [];
+
         const sylList = (cachedCanonicalSyllabus && cachedCanonicalSyllabus.length > 0)
           ? cachedCanonicalSyllabus
           : (telemetryData && telemetryData.syllabusList ? telemetryData.syllabusList : []);
 
+        const unitsMap = new Map();
+
         if (sylList && sylList.length > 0) {
           const matching = sylList.filter(s => (s.subject || '').toUpperCase().trim() === upper);
-          if (matching.length > 0) {
-            const unitsMap = new Map();
-            matching.forEach(s => {
-              const uNum = (s.unit_number !== null && s.unit_number !== undefined)
-                ? Number(s.unit_number)
-                : parseInt(String(s.unit_name || '').match(/\d+/) || '1', 10);
-              if (!unitsMap.has(uNum)) {
-                const uName = String(s.unit_name || s.sub_lesson_title || `ඒකකය ${String(uNum).padStart(2, '0')}`).trim();
-                unitsMap.set(uNum, { unit_number: uNum, unit_name: uName });
+          matching.forEach(s => {
+            const norm = (typeof normalizeSyllabusItem === 'function') ? normalizeSyllabusItem(s) : null;
+            if (norm && norm.unit_number) {
+              if (!unitsMap.has(norm.unit_number)) {
+                unitsMap.set(norm.unit_number, { unit_number: norm.unit_number, unit_name: norm.unit_name });
               }
-            });
-            const list = Array.from(unitsMap.values()).sort((a, b) => a.unit_number - b.unit_number);
-            if (list.length > 0) return list;
-          }
+            }
+          });
         }
 
-        if (typeof CANONICAL_UNITS_FALLBACK !== 'undefined' && CANONICAL_UNITS_FALLBACK[upper]) {
-          return CANONICAL_UNITS_FALLBACK[upper];
+        // Always guarantee all units from canonical fallback are included if missing
+        if (fallbackUnits && fallbackUnits.length > 0) {
+          fallbackUnits.forEach(fb => {
+            const fbNum = Number(fb.unit_number || 1);
+            if (!unitsMap.has(fbNum)) {
+              unitsMap.set(fbNum, { unit_number: fbNum, unit_name: fb.unit_name });
+            }
+          });
         }
+
+        const list = Array.from(unitsMap.values()).sort((a, b) => a.unit_number - b.unit_number);
+        if (list.length > 0) return list;
+
         const fallbackList = [];
         for (let i = 1; i <= 10; i++) {
           fallbackList.push({
@@ -9812,43 +9911,6 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
           }
         }
       });
-      function buildFallbackSyllabusList() {
-        const list = [];
-        if (typeof CANONICAL_UNITS_FALLBACK !== 'undefined') {
-          for (const subj in CANONICAL_UNITS_FALLBACK) {
-            const units = CANONICAL_UNITS_FALLBACK[subj] || [];
-            units.forEach(u => {
-              const uNum = Number(u.unit_number || 1);
-              const formattedNum = String(uNum).padStart(2, '0');
-              const uName = u.unit_name || `ඒකකය ${formattedNum}`;
-              list.push({
-                id: `fallback_${subj}_${uNum}`,
-                subject: subj.toUpperCase().trim(),
-                unit_number: uNum,
-                unit_name: uName,
-                sub_lesson_code: `Unit ${formattedNum}`,
-                sub_lesson_title: uName,
-                sort_order: uNum * 10
-              });
-            });
-          }
-        }
-        return list;
-      }
-
-      let cachedCanonicalSyllabus = null;
-      try {
-        const localCached = localStorage.getItem('g9_canonical_units_cache');
-        if (localCached) {
-          const parsed = JSON.parse(localCached);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            cachedCanonicalSyllabus = parsed;
-          }
-        }
-      } catch(e) {}
-      if (!cachedCanonicalSyllabus || cachedCanonicalSyllabus.length === 0) {
-        cachedCanonicalSyllabus = buildFallbackSyllabusList();
-      }
 
       let globalActivityData = null;
       let currentSettingsTab = 'general';
@@ -10350,12 +10412,9 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
                 supabase.from('tracker_progress').select('*'),
                 supabase.from('spaced_repetition_log').select('*').order('completed_at', { ascending: true }),
                 supabase.from('full_papers').select('*').order('exam_date', { ascending: true }).order('logged_at', { ascending: true }),
-                supabase.from('unit_papers').select('*').order('logged_at', { ascending: true })
+                supabase.from('unit_papers').select('*').order('logged_at', { ascending: true }),
+                supabase.from('canonical_syllabus').select('*').order('sort_order', { ascending: true })
               ];
-
-              if (!cachedCanonicalSyllabus || cachedCanonicalSyllabus.length === 0) {
-                promises.push(supabase.from('canonical_syllabus').select('*').order('sort_order', { ascending: true }));
-              }
 
               const results = await Promise.allSettled(promises);
 
@@ -10364,9 +10423,10 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
               const srRes = results[2];
               const fpRes = results[3];
               const upRes = results[4];
+              const sylRes = results[5];
 
-              if (results[5] && results[5].status === 'fulfilled' && results[5].value.data && results[5].value.data.length > 0) {
-                cachedCanonicalSyllabus = results[5].value.data;
+              if (sylRes && sylRes.status === 'fulfilled' && sylRes.value.data && sylRes.value.data.length > 0) {
+                cachedCanonicalSyllabus = sylRes.value.data.map(normalizeSyllabusItem).filter(Boolean);
                 try { localStorage.setItem('g9_canonical_units_cache', JSON.stringify(cachedCanonicalSyllabus)); } catch(e) {}
               }
 
@@ -10400,7 +10460,9 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
               const localSyl = localStorage.getItem('g9_canonical_units_cache');
               if (localSyl) {
                 const parsed = JSON.parse(localSyl);
-                if (Array.isArray(parsed) && parsed.length > 0) cachedCanonicalSyllabus = parsed;
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                  cachedCanonicalSyllabus = parsed.map(normalizeSyllabusItem).filter(Boolean);
+                }
               }
             } catch(e) {}
             if (!cachedCanonicalSyllabus || cachedCanonicalSyllabus.length === 0) {

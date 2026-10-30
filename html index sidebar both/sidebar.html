@@ -991,10 +991,15 @@
                   id: row.id,
                   subject: subj,
                   unitNum: uNum,
+                  unit_number: uNum,
                   unit: rawUnitName,
+                  unit_name: rawUnitName,
                   code: code,
+                  sub_lesson_code: code,
                   unitTitle: cleanTitle,
-                  sortOrder: row.sort_order || (uNum * 10)
+                  sub_lesson_title: cleanTitle,
+                  sortOrder: row.sort_order || (uNum * 10),
+                  sort_order: row.sort_order || (uNum * 10)
                 });
               });
 
@@ -1215,10 +1220,15 @@
             id: 'local_' + subject + '_' + unitNumber + '_' + Date.now(),
             subject: subject,
             unitNum: unitNumber,
+            unit_number: unitNumber,
             unit: unitName,
+            unit_name: unitName,
             code: unitCode,
+            sub_lesson_code: unitCode,
             unitTitle: unitTitle,
-            sortOrder: unitNumber * 10
+            sub_lesson_title: unitTitle,
+            sortOrder: unitNumber * 10,
+            sort_order: unitNumber * 10
           };
           allLessons.push(newLesson);
           try {
@@ -1351,7 +1361,10 @@
 
         if (!supabase || typeof supabase.from !== 'function' || !navigator.onLine) {
           currentEditingItem.unit = fullUnitName;
+          currentEditingItem.unit_name = fullUnitName;
           currentEditingItem.unitTitle = newTitle;
+          currentEditingItem.sub_lesson_title = newTitle;
+          currentEditingItem.unit_number = currentEditingItem.unitNum;
           try {
             localStorage.setItem('g9_canonical_units_cache', JSON.stringify(allLessons));
           } catch(e) {}
