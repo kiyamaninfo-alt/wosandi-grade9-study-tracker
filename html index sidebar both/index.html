@@ -95,18 +95,49 @@
         padding: 6px 4px;
         text-align: center;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-        border-top: 3px solid var(--primary);
+        border-top: 3.5px solid var(--primary);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
+      .time-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+      }
+      /* 4 Unique Theme Colors for Countdown: Days, Hours, Min, Sec */
+      .time-card-days {
+        border-top: 3.5px solid #8c7ae6 !important;
+        background: linear-gradient(180deg, rgba(140, 122, 230, 0.08) 0%, var(--card-bg) 65%) !important;
+      }
+      .time-card-hours {
+        border-top: 3.5px solid #e84393 !important;
+        background: linear-gradient(180deg, rgba(232, 67, 147, 0.08) 0%, var(--card-bg) 65%) !important;
+      }
+      .time-card-mins {
+        border-top: 3.5px solid #00cec9 !important;
+        background: linear-gradient(180deg, rgba(0, 206, 201, 0.08) 0%, var(--card-bg) 65%) !important;
+      }
+      .time-card-secs {
+        border-top: 3.5px solid #f39c12 !important;
+        background: linear-gradient(180deg, rgba(243, 156, 18, 0.08) 0%, var(--card-bg) 65%) !important;
+      }
+
       .time-num {
-        font-size: 18px;
-        font-weight: 700;
-        color: #8c7ae6;
+        font-size: 19px;
+        font-weight: 800;
+        font-feature-settings: "tnum";
+        font-variant-numeric: tabular-nums;
       }
+      .time-num-days { color: #6c5ce7; }
+      .time-num-hours { color: #e84393; }
+      .time-num-mins { color: #00b894; }
+      .time-num-secs { color: #e67e22; }
+
       .time-lbl {
         font-size: 8px;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 0.8px;
         color: #7f8fa6;
+        font-weight: 600;
+        margin-top: 2px;
       }
 
       /* Streak Card */
@@ -1920,16 +1951,18 @@
 
       /* Modal for Subject & Unit Selection (Interactive Start Sequence) */
       .focus-target-modal-window {
-        max-width: 480px;
-        width: 92%;
-        border-radius: 16px;
+        max-width: 660px;
+        width: 95%;
+        border-radius: 18px;
         background: var(--card-bg, #ffffff);
-        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 16px 44px rgba(0, 0, 0, 0.25);
         overflow: hidden;
       }
       .focus-target-modal-body {
         padding: 16px;
         font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
+        max-height: 82vh;
+        overflow-y: auto;
       }
       .focus-modal-step-title {
         font-size: 13.5px;
@@ -1943,9 +1976,12 @@
         margin-bottom: 12px;
       }
       .focus-modal-subj-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 10px;
+        max-height: 56vh;
+        overflow-y: auto;
+        padding-right: 4px;
       }
       .focus-subj-card {
         display: flex;
@@ -2031,13 +2067,54 @@
         font-weight: 800;
         background: #f1f2f6;
       }
+      .focus-subj-switcher-bar {
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        padding: 4px 2px 8px 2px;
+        margin-bottom: 8px;
+      }
+      .focus-subj-switcher-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+        border: 1px solid #dfe6e9;
+        background: #ffffff;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.15s ease;
+        font-family: inherit;
+      }
+      .focus-subj-switcher-btn.active {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      }
+      .focus-unit-search-input {
+        width: 100%;
+        padding: 8px 12px;
+        border-radius: 9px;
+        border: 1.5px solid #dfe6e9;
+        font-size: 11.5px;
+        font-family: inherit;
+        background: #fafafa;
+        color: var(--text-dark, #2d3436);
+        outline: none;
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+      .focus-unit-search-input:focus {
+        border-color: #6c5ce7;
+        background: #ffffff;
+      }
       .focus-modal-units-list {
-        max-height: 290px;
+        max-height: 52vh;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        gap: 6px;
-        padding-right: 4px;
+        gap: 7px;
+        padding-right: 6px;
         margin-top: 8px;
       }
       .focus-unit-item-btn {
@@ -2227,6 +2304,22 @@
       body.dark-mode .focus-modal-active-subj-pill {
         background: #161d28 !important;
         color: #f0f6fc !important;
+      }
+      body.dark-mode .focus-subj-switcher-btn {
+        background: #0e131d !important;
+        border-color: #1e2530 !important;
+        color: #f0f6fc !important;
+      }
+      body.dark-mode .focus-subj-switcher-btn:hover {
+        background: #161e2b !important;
+      }
+      body.dark-mode .focus-unit-search-input {
+        background: #0e131d !important;
+        border-color: #1e2530 !important;
+        color: #f0f6fc !important;
+      }
+      body.dark-mode .focus-unit-search-input:focus {
+        border-color: #a29bfe !important;
       }
       body.dark-mode .focus-unit-item-btn {
         background: #0e131d !important;
@@ -2987,6 +3080,27 @@
         border: 1px solid #1e2530 !important;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
       }
+      /* Dark Mode 4-Color Countdown Specific Styling */
+      body.dark-mode .time-card-days {
+        border-top: 3.5px solid #a29bfe !important;
+        background: linear-gradient(180deg, rgba(162, 155, 254, 0.12) 0%, #090d14 70%) !important;
+      }
+      body.dark-mode .time-card-hours {
+        border-top: 3.5px solid #fd79a8 !important;
+        background: linear-gradient(180deg, rgba(253, 121, 168, 0.12) 0%, #090d14 70%) !important;
+      }
+      body.dark-mode .time-card-mins {
+        border-top: 3.5px solid #55efc4 !important;
+        background: linear-gradient(180deg, rgba(85, 239, 196, 0.12) 0%, #090d14 70%) !important;
+      }
+      body.dark-mode .time-card-secs {
+        border-top: 3.5px solid #f1c40f !important;
+        background: linear-gradient(180deg, rgba(241, 196, 15, 0.12) 0%, #090d14 70%) !important;
+      }
+      body.dark-mode .time-num-days { color: #a29bfe !important; }
+      body.dark-mode .time-num-hours { color: #fd79a8 !important; }
+      body.dark-mode .time-num-mins { color: #55efc4 !important; }
+      body.dark-mode .time-num-secs { color: #f1c40f !important; }
       body.dark-mode .quote-box,
       body.dark-mode .time-lbl,
       body.dark-mode .streak-header,
@@ -4959,20 +5073,20 @@
       </span>
     </div>
     <div class="countdown-container">
-      <div class="time-card">
-        <div class="time-num" id="d">00</div>
+      <div class="time-card time-card-days">
+        <div class="time-num time-num-days" id="d">00</div>
         <div class="time-lbl">දින (Days)</div>
       </div>
-      <div class="time-card">
-        <div class="time-num" id="h">00</div>
+      <div class="time-card time-card-hours">
+        <div class="time-num time-num-hours" id="h">00</div>
         <div class="time-lbl">පැය (Hours)</div>
       </div>
-      <div class="time-card">
-        <div class="time-num" id="m">00</div>
+      <div class="time-card time-card-mins">
+        <div class="time-num time-num-mins" id="m">00</div>
         <div class="time-lbl">මිනිත්තු (Min)</div>
       </div>
-      <div class="time-card">
-        <div class="time-num" id="s">00</div>
+      <div class="time-card time-card-secs">
+        <div class="time-num time-num-secs" id="s">00</div>
         <div class="time-lbl">තත්පර (Sec)</div>
       </div>
     </div>
@@ -6090,32 +6204,9 @@
           <!-- Step 1: Subject Selection -->
           <div id="focusTargetStepSubject" class="focus-target-step">
             <div class="focus-modal-step-title">1. විෂය තෝරන්න (Select Subject):</div>
-            <div class="focus-modal-step-sub">අධ්‍යයනය කිරීමට බලාපොරොත්තු වන විෂය ක්ලික් කරන්න:</div>
+            <div class="focus-modal-step-sub">අධ්‍යයනය කිරීමට බලාපොරොත්තු වන විෂය ක්ලික් කරන්න (Click to select subject):</div>
             <div class="focus-modal-subj-grid">
-              <button type="button" class="focus-subj-card btn-modal-subj-ict" onclick="selectFocusModalSubject('ICT')">
-                <span class="focus-subj-card-icon">💻</span>
-                <div class="focus-subj-card-info">
-                  <div class="focus-subj-card-code">ICT</div>
-                  <div class="focus-subj-card-name">තොරතුරු හා සන්නිවේදන තාක්ෂණය</div>
-                </div>
-                <span class="focus-subj-card-badge">13 Units ➔</span>
-              </button>
-              <button type="button" class="focus-subj-card btn-modal-subj-et" onclick="selectFocusModalSubject('ET')">
-                <span class="focus-subj-card-icon">⚙️</span>
-                <div class="focus-subj-card-info">
-                  <div class="focus-subj-card-code">ET</div>
-                  <div class="focus-subj-card-name">ඉංජිනේරු තාක්ෂණවේදය</div>
-                </div>
-                <span class="focus-subj-card-badge">14 Units ➔</span>
-              </button>
-              <button type="button" class="focus-subj-card btn-modal-subj-sft" onclick="selectFocusModalSubject('SFT')">
-                <span class="focus-subj-card-icon">🔬</span>
-                <div class="focus-subj-card-info">
-                  <div class="focus-subj-card-code">SFT</div>
-                  <div class="focus-subj-card-name">තාක්ෂණවේදය සඳහා විද්‍යාව</div>
-                </div>
-                <span class="focus-subj-card-badge">23 Units ➔</span>
-              </button>
+              <!-- Rendered dynamically via renderFocusModalSubjects() with all 13 Grade 9 subjects -->
             </div>
           </div>
 
@@ -6123,12 +6214,24 @@
           <div id="focusTargetStepUnit" class="focus-target-step" style="display: none;">
             <div class="focus-modal-unit-nav">
               <button type="button" class="btn-focus-modal-back" onclick="backToFocusModalSubjects()">
-                ← වෙනත් විෂයක් (Change Subject)
+                ← සියලු විෂයයන් (All Subjects)
               </button>
-              <span class="focus-modal-active-subj-pill" id="focusModalActiveSubjPill">ICT</span>
+              <span class="focus-modal-active-subj-pill" id="focusModalActiveSubjPill">MATH</span>
             </div>
-            <div class="focus-modal-step-title">2. පාඩම / ඒකකය තෝරන්න (Select Unit):</div>
-            <div class="focus-modal-step-sub">පාඩම ක්ලික් කළ වහාම Session එක Database එකට Save වී ටයිමරය ආරම්භ වේ:</div>
+
+            <!-- Quick Subject Switcher Pills -->
+            <div class="focus-subj-switcher-bar custom-scroll-container" id="focusSubjSwitcherBar"></div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 6px; margin-bottom: 6px;">
+              <div class="focus-modal-step-title" style="margin: 0;">2. පාඩම / ඒකකය තෝරන්න (Select Unit):</div>
+              <span id="focusUnitCountBadge" style="font-size: 11px; font-weight: 700; color: #6c5ce7; background: rgba(108, 92, 231, 0.1); padding: 2px 8px; border-radius: 10px;">0 Units</span>
+            </div>
+            <div class="focus-modal-step-sub" style="margin-bottom: 8px;">පාඩම ක්ලික් කළ වහාම Session එක Database එකට Save වී ටයිමරය ආරම්භ වේ:</div>
+
+            <!-- Quick Search Input for Units -->
+            <div style="position: relative; margin-bottom: 8px;">
+              <input type="text" id="focusUnitSearchInput" class="focus-unit-search-input" placeholder="🔍 පාඩම සොයන්න... (Search unit name or number)" oninput="filterFocusModalUnits(this.value)" autocomplete="off">
+            </div>
 
             <!-- General Revision Option -->
             <button type="button" class="focus-unit-item-btn focus-unit-general-btn" onclick="selectFocusModalUnit(0, 'සාමාන්‍ය පුනරීක්ෂණ (General Revision)')">
@@ -7689,27 +7792,88 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
         } catch (e) {}
       }
 
-      function playSoftCompletionChime() {
+      // RFC4122 Standard Compliant UUID Generator (Works reliably across all browser contexts)
+      function generateSafeUUID() {
+        if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+          try { return crypto.randomUUID(); } catch (_) {}
+        }
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          const r = (Math.random() * 16) | 0;
+          const v = c === 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+
+      // Continuous Alarm Synthesis & 60s Auto-stop Countdown
+      let completionAlarmInterval = null;
+      let completionAlarmCountdownTimer = null;
+      let completionAlarmSecondsLeft = 60;
+
+      function playSingleHarmonicChime() {
         try {
           const ctx = getWebAudioContext();
+          if (!ctx) return;
+          if (ctx.state === 'suspended') ctx.resume();
           const now = ctx.currentTime;
-          // Harmonic chime chords: C5 (523.25), E5 (659.25), G5 (783.99), C6 (1046.5)
+          // Harmonic chime chord: C5 (523.25), E5 (659.25), G5 (783.99), C6 (1046.5)
           const notes = [523.25, 659.25, 783.99, 1046.5];
           notes.forEach((freq, idx) => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, now + idx * 0.12);
-            gain.gain.setValueAtTime(0.14, now + idx * 0.12);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.12 + 2.2);
+            gain.gain.setValueAtTime(0.2, now + idx * 0.12);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.12 + 1.6);
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.start(now + idx * 0.12);
-            osc.stop(now + idx * 0.12 + 2.2);
+            osc.stop(now + idx * 0.12 + 1.6);
           });
         } catch (e) {
-          console.warn('Chime playback warning:', e);
+          console.warn('Alarm chime error:', e);
         }
+      }
+
+      function startContinuousCompletionAlarm() {
+        stopContinuousCompletionAlarmAudio();
+        completionAlarmSecondsLeft = 60;
+
+        const countTxt = document.getElementById('alarmCountdownTxt');
+        if (countTxt) countTxt.innerText = '60s';
+
+        // Play initial chime pulse
+        playSingleHarmonicChime();
+
+        // Repeat chime pulse continuously every 1.8 seconds until stopped or 60s elapses
+        completionAlarmInterval = setInterval(() => {
+          playSingleHarmonicChime();
+        }, 1800);
+
+        // 60-second real-time countdown timer
+        completionAlarmCountdownTimer = setInterval(() => {
+          completionAlarmSecondsLeft--;
+          const el = document.getElementById('alarmCountdownTxt');
+          if (el) el.innerText = completionAlarmSecondsLeft + 's';
+
+          if (completionAlarmSecondsLeft <= 0) {
+            stopAlarmAndClosePopup();
+          }
+        }, 1000);
+      }
+
+      function stopContinuousCompletionAlarmAudio() {
+        if (completionAlarmInterval) {
+          clearInterval(completionAlarmInterval);
+          completionAlarmInterval = null;
+        }
+        if (completionAlarmCountdownTimer) {
+          clearInterval(completionAlarmCountdownTimer);
+          completionAlarmCountdownTimer = null;
+        }
+      }
+
+      function playSoftCompletionChime() {
+        startContinuousCompletionAlarm();
       }
 
       function toggleFocusSound() {
@@ -7857,41 +8021,103 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
         if (modal) modal.style.display = 'none';
       }
 
+      let currentModalSubjectUnits = [];
+
       function selectFocusModalSubject(subj) {
         activeFocusSubject = subj || (getActiveSubjects()[0] ? getActiveSubjects()[0].code : 'MATH');
         const stepSubj = document.getElementById('focusTargetStepSubject');
         const stepUnit = document.getElementById('focusTargetStepUnit');
         const pill = document.getElementById('focusModalActiveSubjPill');
-        const list = document.getElementById('focusModalUnitsList');
+        const switcher = document.getElementById('focusSubjSwitcherBar');
+        const countBadge = document.getElementById('focusUnitCountBadge');
+        const searchInput = document.getElementById('focusUnitSearchInput');
 
         if (stepSubj) stepSubj.style.display = 'none';
         if (stepUnit) stepUnit.style.display = 'block';
 
+        if (searchInput) searchInput.value = '';
+
+        const meta = getSubjectMeta(activeFocusSubject);
+        const color = meta.color || '#8c7ae6';
+
         if (pill) {
-          const meta = getSubjectMeta(activeFocusSubject);
-          const color = meta.color || '#8c7ae6';
           pill.className = `focus-modal-active-subj-pill`;
           pill.style.background = `${color}25`;
           pill.style.color = color;
           pill.style.border = `1px solid ${color}55`;
-          pill.innerText = `${meta.icon || '📘'} ${activeFocusSubject}`;
+          pill.innerText = `${meta.icon || '📘'} ${activeFocusSubject} (${meta.nameSi || activeFocusSubject})`;
         }
 
-        // Full lessons only (no sub-units)
-        const units = getUnitsForSubject(activeFocusSubject);
-        if (list) {
-          list.innerHTML = units.map(u => {
-            const escapedName = (u.unit_name || `Unit ${u.unit_number}`).replace(/"/g, '&quot;');
-            const clickParam = escapedName.replace(/'/g, "\\'");
+        // Render Quick Subject Switcher Pills
+        if (switcher) {
+          const allSubjs = getActiveSubjects();
+          switcher.innerHTML = allSubjs.map(s => {
+            const isAct = s.code === activeFocusSubject;
+            const sm = getSubjectMeta(s.code);
+            const sc = s.color || sm.color || '#8c7ae6';
             return `
-              <button type="button" class="focus-unit-item-btn" onclick="selectFocusModalUnit(${u.unit_number}, '${clickParam}')">
-                <span class="unit-num-badge">Unit ${String(u.unit_number).padStart(2, '0')}</span>
-                <span class="unit-name-text">${escapeHtml(u.unit_name)}</span>
-                <span class="unit-start-arrow">▶ Start &amp; Save</span>
+              <button type="button" class="focus-subj-switcher-btn ${isAct ? 'active' : ''}" onclick="selectFocusModalSubject('${s.code}')" style="${isAct ? `background:${sc}; color:#fff; border-color:${sc}; font-weight:800;` : `color:${sc}; border-color:${sc}55;`}">
+                <span>${sm.icon || '📘'}</span> <span>${s.code}</span>
               </button>
             `;
           }).join('');
         }
+
+        // Fetch full lessons list for this subject
+        currentModalSubjectUnits = getUnitsForSubject(activeFocusSubject) || [];
+        if (countBadge) {
+          countBadge.innerText = `${currentModalSubjectUnits.length} Units`;
+          countBadge.style.color = color;
+          countBadge.style.background = `${color}20`;
+        }
+
+        renderFilteredModalUnits(currentModalSubjectUnits);
+      }
+
+      function renderFilteredModalUnits(units) {
+        const list = document.getElementById('focusModalUnitsList');
+        if (!list) return;
+
+        if (!units || units.length === 0) {
+          list.innerHTML = `<div style="text-align: center; padding: 24px; color: #7f8fa6; font-size: 12px;">ගැලපෙන පාඩම් හමු නොවීය (No matching units found)</div>`;
+          return;
+        }
+
+        const meta = getSubjectMeta(activeFocusSubject);
+        const color = meta.color || '#6c5ce7';
+
+        list.innerHTML = units.map(u => {
+          const uNum = Number(u.unit_number) || 1;
+          const uName = u.unit_name || `Unit ${uNum}`;
+          return `
+            <button type="button" class="focus-unit-item-btn" onclick="selectFocusModalUnitByNumber('${activeFocusSubject}', ${uNum})">
+              <span class="unit-num-badge" style="background: ${color}20; color: ${color};">Unit ${String(uNum).padStart(2, '0')}</span>
+              <span class="unit-name-text">${escapeHtml(uName)}</span>
+              <span class="unit-start-arrow" style="color: ${color};">▶ Start &amp; Save</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      function filterFocusModalUnits(query) {
+        const q = String(query || '').toLowerCase().trim();
+        if (!q) {
+          renderFilteredModalUnits(currentModalSubjectUnits);
+          return;
+        }
+        const filtered = (currentModalSubjectUnits || []).filter(u => {
+          const name = String(u.unit_name || '').toLowerCase();
+          const num = String(u.unit_number || '');
+          return name.includes(q) || num === q || ('unit ' + num).includes(q) || ('ඒකකය ' + num).includes(q);
+        });
+        renderFilteredModalUnits(filtered);
+      }
+
+      function selectFocusModalUnitByNumber(subjCode, unitNum) {
+        const units = getUnitsForSubject(subjCode);
+        const found = units.find(u => Number(u.unit_number) === Number(unitNum));
+        const unitName = found ? found.unit_name : `Unit ${unitNum}`;
+        selectFocusModalUnit(unitNum, unitName);
       }
 
       function backToFocusModalSubjects() {
@@ -7923,7 +8149,7 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
       }
 
       async function saveStartedStudySession() {
-        const sessionId = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : 'sess_' + Date.now();
+        const sessionId = generateSafeUUID();
         currentActiveSessionId = sessionId;
         const startNow = new Date();
         sessionStartTime = startNow.toISOString();
@@ -8000,7 +8226,7 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
 
         if (navigator.onLine && supabase && typeof supabase.from === 'function') {
           try {
-            const { error } = await supabase.from('study_timer_sessions').insert([dbPayload]);
+            const { error } = await supabase.from('study_timer_sessions').upsert([dbPayload], { onConflict: 'id' });
             if (!error) {
               startPayload.synced = true;
               const all = getLocalStoredSessions();
@@ -8361,78 +8587,82 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
         const nowHHMMSS = getLocalTimeString();
         const nowIso = new Date().toISOString();
 
-        if (activeSecs < 10) {
-          // If activeElapsedSeconds < 10 (Accidental Click):
-          // Completely delete this session record from LocalStorage and IndexedDB.
-          const sessions = getLocalStoredSessions().filter(s => s.id !== sessionId);
+        const durationSecs = Math.max(1, Number(activeSecs) || 1);
+        const durationMins = Math.max(1, Math.round(durationSecs / 60));
+
+        const sessions = getLocalStoredSessions();
+        const target = sessions.find(s => s.id === sessionId);
+
+        const finishPayload = {
+          id: sessionId,
+          subject: (target && target.subject) ? target.subject : (activeFocusSubject || 'MATH'),
+          unit_number: (target && target.unit_number !== undefined && target.unit_number !== null) ? target.unit_number : (activeFocusUnit ? (Number(activeFocusUnit.unitNumber) || 0) : 0),
+          unit_name: (target && target.unit_name) ? target.unit_name : (activeFocusUnit ? (activeFocusUnit.unitName || `Unit ${activeFocusUnit.unitNumber}`) : 'සාමාන්‍ය පුනරීක්ෂණ'),
+          timer_start_date: (target && target.timer_start_date) ? target.timer_start_date : todayYYYYMMDD,
+          timer_start_time: (target && target.timer_start_time) ? target.timer_start_time : nowHHMMSS,
+          timer_stop_date: todayYYYYMMDD,
+          timer_stop_time: nowHHMMSS,
+          start_time: (target && target.start_time) ? target.start_time : nowIso,
+          end_time: nowIso,
+          duration_seconds: durationSecs,
+          duration_minutes: durationMins,
+          session_date: (target && target.session_date) ? target.session_date : todayYYYYMMDD,
+          status: 'completed',
+          created_at: (target && target.created_at) ? target.created_at : nowIso
+        };
+
+        if (target) {
+          Object.assign(target, finishPayload);
           saveLocalStoredSessions(sessions);
+        } else {
+          sessions.unshift({ ...finishPayload, synced: false });
+          saveLocalStoredSessions(sessions);
+        }
 
+        try {
+          const db = await openOfflineDB();
+          if (db) {
+            const sName = db.objectStoreNames.contains('study_timer_sessions') ? 'study_timer_sessions' : 'study_sessions';
+            const tx = db.transaction(sName, 'readwrite');
+            tx.objectStore(sName).put({ ...finishPayload, synced: false });
+          }
+        } catch (_) {}
+
+        if (navigator.onLine && supabase && typeof supabase.from === 'function') {
           try {
-            const db = await openOfflineDB();
-            if (db) {
-              const sName = db.objectStoreNames.contains('study_timer_sessions') ? 'study_timer_sessions' : 'study_sessions';
-              const tx = db.transaction(sName, 'readwrite');
-              tx.objectStore(sName).delete(sessionId);
-            }
-          } catch (_) {}
-
-          if (navigator.onLine && supabase && typeof supabase.from === 'function') {
-            try {
-              let { error } = await supabase.from('study_timer_sessions').delete().eq('id', sessionId);
-              if (error) {
-                await supabase.from('study_sessions').delete().eq('id', sessionId);
+            let { error } = await supabase.from('study_timer_sessions').upsert([finishPayload], { onConflict: 'id' });
+            if (!error) {
+              const all = getLocalStoredSessions();
+              const idx = all.findIndex(s => s.id === sessionId);
+              if (idx !== -1) {
+                all[idx].synced = true;
+                saveLocalStoredSessions(all);
               }
-            } catch (_) {
-              await enqueueSyncTask('DELETE', 'study_timer_sessions', { id: sessionId }, sessionId);
+              try {
+                const db = await openOfflineDB();
+                if (db) {
+                  const sName = db.objectStoreNames.contains('study_timer_sessions') ? 'study_timer_sessions' : 'study_sessions';
+                  const tx = db.transaction(sName, 'readwrite');
+                  tx.objectStore(sName).put({ ...finishPayload, synced: true });
+                }
+              } catch (_) {}
+              await updateSyncUI();
+              return;
+            } else {
+              // Legacy table fallback
+              await supabase.from('study_sessions').upsert([{
+                id: sessionId,
+                subject: finishPayload.subject,
+                duration_minutes: finishPayload.duration_minutes,
+                session_date: finishPayload.session_date,
+                created_at: finishPayload.created_at
+              }], { onConflict: 'id' });
             }
-          } else {
-            await enqueueSyncTask('DELETE', 'study_timer_sessions', { id: sessionId }, sessionId);
+          } catch (_) {
+            await enqueueSyncTask('INSERT', 'study_timer_sessions', finishPayload, sessionId);
           }
         } else {
-          // If activeElapsedSeconds >= 10:
-          // Finalize payload
-          const finishPayload = {
-            status: 'completed',
-            duration_seconds: activeSecs,
-            duration_minutes: Math.max(1, Math.round(activeSecs / 60)),
-            timer_stop_date: todayYYYYMMDD,
-            timer_stop_time: nowHHMMSS,
-            end_time: nowIso
-          };
-
-          const sessions = getLocalStoredSessions();
-          const target = sessions.find(s => s.id === sessionId);
-          if (target) {
-            Object.assign(target, finishPayload);
-            saveLocalStoredSessions(sessions);
-          }
-
-          try {
-            const db = await openOfflineDB();
-            if (db) {
-              const sName = db.objectStoreNames.contains('study_timer_sessions') ? 'study_timer_sessions' : 'study_sessions';
-              const tx = db.transaction(sName, 'readwrite');
-              const gReq = tx.objectStore(sName).get(sessionId);
-              gReq.onsuccess = () => {
-                if (gReq.result) {
-                  tx.objectStore(sName).put({ ...gReq.result, ...finishPayload });
-                }
-              };
-            }
-          } catch (_) {}
-
-          if (navigator.onLine && supabase && typeof supabase.from === 'function') {
-            try {
-              let { error } = await supabase.from('study_timer_sessions').update(finishPayload).eq('id', sessionId);
-              if (error) {
-                await supabase.from('study_sessions').update({ duration_minutes: finishPayload.duration_minutes }).eq('id', sessionId);
-              }
-            } catch (_) {
-              await enqueueSyncTask('UPDATE', 'study_timer_sessions', finishPayload, sessionId);
-            }
-          } else {
-            await enqueueSyncTask('UPDATE', 'study_timer_sessions', finishPayload, sessionId);
-          }
+          await enqueueSyncTask('INSERT', 'study_timer_sessions', finishPayload, sessionId);
         }
 
         await updateSyncUI();
@@ -8467,8 +8697,8 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
         focusRemainingSeconds = focusTotalSeconds;
         updateFocusDisplay();
 
-        // Event 4: RESET
-        if (finalSessionId) {
+        // Event 4: RESET / MANUAL STOP -> Save to database if session was run!
+        if (finalSessionId && finalActiveSeconds > 0) {
           await finalizeOrDiscardSession(finalSessionId, finalActiveSeconds);
         }
 
@@ -8502,32 +8732,29 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
         focusRemainingSeconds = focusTotalSeconds;
         updateFocusDisplay();
 
-        // Event 4: Timer FINISH / MANUAL STOP
+        // Event 4: Timer FINISH / MANUAL STOP -> Always finalize and save to DB
         if (finalSessionId) {
           await finalizeOrDiscardSession(finalSessionId, finalActiveSeconds);
         }
 
-        if (finalActiveSeconds < 10) {
-          broadcastLiveTimerState('STOP');
-          showHtmlAlert('අධ්‍යයන සැසිය තත්පර 10කට අඩු බැවින් වාර්තා නොකෙරිණි (Session under 10s discarded)', false);
-        } else {
-          broadcastLiveTimerState('FINISH');
-          playSoftCompletionChime();
-          try {
-            confetti({
-              particleCount: 120,
-              spread: 90,
-              origin: { y: 0.6 },
-              colors: ['#00cec9', '#0984e3', '#fdcb6e', '#e17055', '#20bf6b', '#8c7ae6']
-            });
-          } catch (e) {}
+        broadcastLiveTimerState('FINISH');
+        try {
+          confetti({
+            particleCount: 120,
+            spread: 90,
+            origin: { y: 0.6 },
+            colors: ['#00cec9', '#0984e3', '#fdcb6e', '#e17055', '#20bf6b', '#8c7ae6']
+          });
+        } catch (e) {}
 
-          // Show Alarm Completion Modal
-          const popup = document.getElementById('timerAlarmPopup');
-          if (popup) {
-            popup.style.display = 'flex';
-            focusModal(popup);
-          }
+        // Start continuous chime alarm and open popup
+        startContinuousCompletionAlarm();
+
+        // Show Alarm Completion Modal
+        const popup = document.getElementById('timerAlarmPopup');
+        if (popup) {
+          popup.style.display = 'flex';
+          focusModal(popup);
         }
 
         currentActiveSessionId = null;
@@ -8539,6 +8766,7 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
       }
 
       function stopAlarmAndClosePopup() {
+        stopContinuousCompletionAlarmAudio();
         const popup = document.getElementById('timerAlarmPopup');
         if (popup) popup.style.display = 'none';
       }
@@ -8808,8 +9036,8 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
 
         if (navigator.onLine && supabase && typeof supabase.from === 'function') {
           try {
-            // First attempt to insert into dedicated study_timer_sessions
-            const { error } = await supabase.from('study_timer_sessions').insert([payload]);
+            // First attempt to upsert into dedicated study_timer_sessions
+            const { error } = await supabase.from('study_timer_sessions').upsert([payload], { onConflict: 'id' });
             if (!error) {
               sessionItem.synced = true;
               const all = getLocalStoredSessions();
@@ -8837,7 +9065,7 @@ var supabase = (window.supabase && typeof window.supabase.createClient === 'func
                 session_date: sessionItem.session_date,
                 created_at: sessionItem.created_at
               };
-              const { error: err2 } = await supabase.from('study_sessions').insert([legacyPayload]);
+              const { error: err2 } = await supabase.from('study_sessions').upsert([legacyPayload], { onConflict: 'id' });
               if (!err2) {
                 sessionItem.synced = true;
                 const all = getLocalStoredSessions();
