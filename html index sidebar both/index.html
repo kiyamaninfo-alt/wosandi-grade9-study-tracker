@@ -5043,6 +5043,338 @@
         }
       }
 
+      /* --- Zenith Landing Page & Features Styling --- */
+      .zenith-landing-wrap {
+        display: none;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 16px;
+        font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
+      }
+      .landing-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 20px;
+        background: var(--bg-card, rgba(255, 255, 255, 0.8));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-color, rgba(255, 255, 255, 0.2));
+        border-radius: 16px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      body.dark-mode .landing-header {
+        background: rgba(19, 27, 46, 0.85);
+        border-color: rgba(255, 255, 255, 0.08);
+      }
+      .landing-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .landing-logo-img {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(140, 122, 230, 0.35);
+      }
+      .landing-title-text {
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.2;
+      }
+      .landing-sub-text {
+        font-size: 11px;
+        color: var(--text-muted, #7f8fa6);
+        font-weight: 600;
+      }
+      .landing-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .landing-btn-secondary {
+        background: rgba(99, 102, 241, 0.12);
+        color: #6366f1;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 10px;
+        padding: 8px 16px;
+        font-size: 12.5px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .landing-btn-secondary:hover {
+        background: #6366f1;
+        color: #ffffff;
+      }
+      .landing-btn-primary {
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 18px;
+        font-size: 12.5px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+      }
+      .landing-btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.45);
+      }
+      .landing-hero {
+        text-align: center;
+        padding: 24px 16px 20px;
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .landing-badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 16px;
+        border-radius: 999px;
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.25);
+        color: #6366f1;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+      body.dark-mode .landing-badge-pill {
+        background: rgba(99, 102, 241, 0.2);
+        color: #a5b4fc;
+      }
+      .landing-hero-heading {
+        font-size: 27px;
+        font-weight: 800;
+        line-height: 1.35;
+        margin-bottom: 14px;
+        color: var(--text-main, #1e293b);
+      }
+      body.dark-mode .landing-hero-heading {
+        color: #f8fafc;
+      }
+      .landing-gradient-text {
+        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .landing-hero-p {
+        font-size: 14px;
+        line-height: 1.7;
+        color: var(--text-muted, #64748b);
+        margin-bottom: 24px;
+      }
+      body.dark-mode .landing-hero-p {
+        color: #94a3b8;
+      }
+      .landing-cta-row {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .landing-cta-btn-google {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 24px;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        background: #ffffff;
+        color: #1f2937;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        transition: transform 0.15s, box-shadow 0.2s;
+      }
+      body.dark-mode .landing-cta-btn-google {
+        background: #1e293b;
+        color: #f8fafc;
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+      .landing-cta-btn-google:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+      }
+      .landing-cta-btn-guest {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 12px;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        background: rgba(99, 102, 241, 0.1);
+        color: #6366f1;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      body.dark-mode .landing-cta-btn-guest {
+        background: rgba(99, 102, 241, 0.2);
+        color: #a5b4fc;
+      }
+      .landing-cta-btn-guest:hover {
+        background: #6366f1;
+        color: #ffffff;
+        transform: translateY(-2px);
+      }
+      .landing-features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 16px;
+        margin: 24px 0 36px;
+      }
+      .landing-card {
+        background: var(--bg-card, rgba(255, 255, 255, 0.7));
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+        border-radius: 16px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      body.dark-mode .landing-card {
+        background: rgba(19, 27, 46, 0.7);
+        border-color: rgba(255, 255, 255, 0.08);
+      }
+      .landing-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+      body.dark-mode .landing-card:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      }
+      .landing-card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 4px;
+      }
+      .landing-card-title {
+        font-size: 15.5px;
+        font-weight: 700;
+        margin: 0;
+        color: var(--text-main, #1e293b);
+      }
+      body.dark-mode .landing-card-title {
+        color: #f1f5f9;
+      }
+      .landing-card-desc {
+        font-size: 12.5px;
+        line-height: 1.6;
+        color: var(--text-muted, #64748b);
+        margin: 0;
+      }
+      body.dark-mode .landing-card-desc {
+        color: #94a3b8;
+      }
+      .landing-auth-section {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0 40px;
+      }
+      .landing-auth-card {
+        background: var(--bg-card, #ffffff);
+        border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+        border-radius: 20px;
+        width: 100%;
+        max-width: 460px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      body.dark-mode .landing-auth-card {
+        background: #131b2e;
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+      }
+      .landing-auth-nav {
+        display: flex;
+        background: rgba(0, 0, 0, 0.04);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      body.dark-mode .landing-auth-nav {
+        background: rgba(0, 0, 0, 0.2);
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+      }
+      .landing-auth-tab {
+        flex: 1;
+        padding: 13px;
+        background: transparent;
+        border: none;
+        font-weight: 700;
+        font-size: 13px;
+        color: #94a3b8;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: center;
+      }
+      .landing-auth-tab.active {
+        color: #6366f1;
+        border-bottom: 2px solid #6366f1;
+        background: rgba(99, 102, 241, 0.06);
+      }
+      .landing-footer {
+        text-align: center;
+        padding: 24px;
+        border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+        color: var(--text-muted, #94a3b8);
+        font-size: 12px;
+      }
+      body.dark-mode .landing-footer {
+        border-top-color: rgba(255, 255, 255, 0.08);
+      }
+      .btn-exam-target-settings {
+        background: rgba(99, 102, 241, 0.12);
+        color: #6366f1;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 20px;
+        padding: 5px 14px;
+        font-size: 11.5px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .btn-exam-target-settings:hover {
+        background: #6366f1;
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      }
+      body.dark-mode .btn-exam-target-settings {
+        background: rgba(99, 102, 241, 0.2);
+        color: #a5b4fc;
+        border-color: rgba(99, 102, 241, 0.4);
+      }
+      body.dark-mode .btn-exam-target-settings:hover {
+        background: #6366f1;
+        color: #ffffff;
+      }
+
       /* --- Zenith O-Level Multi-Tenant Header & Topbar --- */
       .zenith-topbar {
         display: flex;
@@ -5371,6 +5703,181 @@
       <div style="font-size: 11px; color: #636e72; margin-top: 4px;" id="printDateLbl"></div>
     </div>
 
+    <!-- ========================================================================= -->
+    <!-- ZENITH O-LEVEL LANDING PAGE & AUTHENTICATION PORTAL                       -->
+    <!-- ========================================================================= -->
+    <div id="zenithLandingPage" class="zenith-landing-wrap">
+      <!-- Landing Header -->
+      <header class="landing-header">
+        <div class="landing-brand">
+          <img src="app-logo.svg" alt="Zenith Logo" class="landing-logo-img" />
+          <div>
+            <div class="landing-title-text">Zenith O-Level</div>
+            <div class="landing-sub-text">Smart Study Engine • Grades 6–11</div>
+          </div>
+        </div>
+        <div class="landing-header-actions">
+          <button type="button" class="landing-btn-secondary" onclick="scrollToLandingAuth()">
+            🔑 පිවිසෙන්න (Sign In)
+          </button>
+          <button type="button" class="landing-btn-primary" onclick="showDashboardView()">
+            🚀 Dashboard එකට යන්න →
+          </button>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="landing-hero">
+        <div class="landing-badge-pill">
+          ✨ ශ්‍රී ලංකාවේ 6 – 11 ශ්‍රේණි (සාමාන්‍ය පෙළ) සිසුන් සඳහාමයි
+        </div>
+        <h1 class="landing-hero-heading">
+          ඔබේ විභාග ජයග්‍රහණය උදෙසා නිර්මාණය වූ <br>
+          <span class="landing-gradient-text">බුද්ධිමත් අධ්‍යයන මෙහෙයුම් පද්ධතිය</span>
+        </h1>
+        <p class="landing-hero-p">
+          විෂය නිර්දේශ ආවරණය, Deep Focus සැසි, විද්‍යාත්මක Spaced Repetition මතක් කිරීම්, ප්‍රශ්න පත්‍ර ලකුණු විශ්ලේෂණය සහ සජීවී Countdown ඔරලෝසුව සමඟ ඔබේ අධ්‍යයන කාලය උපරිම ඵලදායි කරගන්න.
+        </p>
+
+        <!-- Quick CTA Buttons -->
+        <div class="landing-cta-row">
+          <button type="button" class="landing-cta-btn-google" onclick="ZenithAuth.signInWithGoogle()">
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.25 21.37 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12c0 2.02.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.25 2.63 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+            Google සමඟ එක ක්ලික් එකෙන් පිවිසෙන්න
+          </button>
+          <button type="button" class="landing-cta-btn-guest" onclick="showDashboardView()">
+            👤 අමුත්තෙකු ලෙස Dashboard එක බලන්න (Guest Mode)
+          </button>
+        </div>
+      </section>
+
+      <!-- Detailed Feature Cards Grid (Sinhala Description) -->
+      <section class="landing-features-grid">
+        <div class="landing-card">
+          <div class="landing-card-icon" style="background: rgba(9, 132, 227, 0.15); color: #0984e3;">📚</div>
+          <h3 class="landing-card-title">සම්පූර්ණ විෂය නිර්දේශ ආවරණය</h3>
+          <p class="landing-card-desc">
+            6 ශ්‍රේණියේ සිට 11 ශ්‍රේණිය (O/L) දක්වා ගණිතය, විද්‍යාව ඇතුළු සියලුම ප්‍රධාන විෂයයන් සහ Basket 1, 2, 3 කාණ්ඩ විෂයයන් ඒකක මට්ටමින් නිවැරදිව ට්‍රැක් කරන්න.
+          </p>
+        </div>
+
+        <div class="landing-card">
+          <div class="landing-card-icon" style="background: rgba(108, 92, 231, 0.15); color: #6c5ce7;">⏱️</div>
+          <h3 class="landing-card-title">Deep Focus Session Timer</h3>
+          <p class="landing-card-desc">
+            අවධානය එකඟ කර ගැනීමට Brown Noise ශබ්ද, Screen Wake Lock සහ Countdown විරාම සහිතව සකස් කළ Focus Timer එකකින් ඔබේ පාඩම් කාලය වාර්තා කරගන්න.
+          </p>
+        </div>
+
+        <div class="landing-card">
+          <div class="landing-card-icon" style="background: rgba(0, 184, 148, 0.15); color: #00b894;">🧠</div>
+          <h3 class="landing-card-title">Spaced Repetition (ස්මාර්ට් මතක් කිරීම්)</h3>
+          <p class="landing-card-desc">
+            විද්‍යාත්මක Ebbinghaus මතක වක්‍රය අනුව පාඩම් කළ කරුණු නියමිත දිනවලදී (1, 3, 7, 14, 30 දින) ස්වයංක්‍රීයව මතක් කරමින් දීර්ඝකාලීන මතකයේ රඳවයි.
+          </p>
+        </div>
+
+        <div class="landing-card">
+          <div class="landing-card-icon" style="background: rgba(225, 112, 85, 0.15); color: #e17055;">📝</div>
+          <h3 class="landing-card-title">ප්‍රශ්න පත්‍ර හා ලකුණු විශ්ලේෂණය</h3>
+          <p class="landing-card-desc">
+            පාඩම් ප්‍රශ්න පත්‍ර (Unit Papers) සහ සම්පූර්ණ වාර විභාග ලකුණු සටහන් කිරීම, අඩු ලකුණු ඇති දුර්වල පාඩම් හඳුනාගැනීම සහ විභාග ඉලක්ක පුරෝකථනය.
+          </p>
+        </div>
+
+        <div class="landing-card">
+          <div class="landing-card-icon" style="background: rgba(243, 156, 18, 0.15); color: #f39c12;">📊</div>
+          <h3 class="landing-card-title">අධ්‍යයන ප්‍රස්ථාර සහ Heatmap</h3>
+          <p class="landing-card-desc">
+            දිනපතා පාඩම් කළ මිනිත්තු ගණන, දෛනික Streak එක සහ සතිපතා ඉලක්ක ප්‍රගතිය GitHub-Style Heatmap එකක් මඟින් පැහැදිලිව දර්ශනය කරයි.
+          </p>
+        </div>
+
+        <div class="landing-card">
+          <div class="landing-card-icon" style="background: rgba(0, 206, 201, 0.15); color: #00cec9;">☁️</div>
+          <h3 class="landing-card-title">Cloud Sync &amp; බහු උපාංග සහාය</h3>
+          <p class="landing-card-desc">
+            Google හෝ Email මඟින් ලොග් වී Phone, Tablet හෝ Computer ඕනෑම උපාංගයකින් ඔබගේ පුද්ගලික දත්තවලට පිවිසෙන්න. නොබැඳිව (Offline) වුවද ක්‍රියාත්මක වේ.
+          </p>
+        </div>
+      </section>
+
+      <!-- In-Page Landing Login & Register Box -->
+      <section class="landing-auth-section" id="landingAuthSection">
+        <div class="landing-auth-card">
+          <div class="landing-auth-nav">
+            <button type="button" class="landing-auth-tab active" id="lpAuthTab_login" onclick="switchLandingAuthTab('login')">
+              🔑 ගිණුමට පිවිසෙන්න (Sign In)
+            </button>
+            <button type="button" class="landing-auth-tab" id="lpAuthTab_signup" onclick="switchLandingAuthTab('signup')">
+              ✨ නව ගිණුමක් සාදන්න (Register)
+            </button>
+          </div>
+
+          <div style="padding: 24px;">
+            <!-- Google One-Click CTA in Card -->
+            <button type="button" class="zenith-oauth-btn" onclick="ZenithAuth.signInWithGoogle()" style="margin-bottom: 16px;">
+              <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.25 21.37 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12c0 2.02.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.25 2.63 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+              Google සමඟ පිවිසෙන්න (Continue with Google)
+            </button>
+
+            <div style="display: flex; align-items: center; margin: 16px 0; color: #94a3b8; font-size: 11px;">
+              <div style="flex: 1; height: 1px; background: rgba(148, 163, 184, 0.2);"></div>
+              <span style="padding: 0 10px; font-weight: 600;">හෝ EMAIL මඟින්</span>
+              <div style="flex: 1; height: 1px; background: rgba(148, 163, 184, 0.2);"></div>
+            </div>
+
+            <!-- TAB: LOGIN -->
+            <div id="lpAuthPane_login">
+              <form onsubmit="handleLandingEmailLogin(event)">
+                <input type="email" id="lpLoginEmail" class="zenith-auth-input" placeholder="Email ලිපිනය (e.g. student@gmail.com)" required autocomplete="username" />
+                <input type="password" id="lpLoginPassword" class="zenith-auth-input" placeholder="මුරපදය (Password)" required autocomplete="current-password" />
+                <div id="lpLoginError" style="display: none; color: #ef4444; font-size: 11.5px; margin-bottom: 10px; font-weight: 600;"></div>
+                <button type="submit" class="zenith-auth-submit" id="btnLpLoginSubmit">🔑 පිවිසෙන්න (Sign In)</button>
+              </form>
+            </div>
+
+            <!-- TAB: SIGN UP -->
+            <div id="lpAuthPane_signup" style="display: none;">
+              <form onsubmit="handleLandingEmailSignUp(event)">
+                <input type="text" id="lpSignupName" class="zenith-auth-input" placeholder="ශිෂ්‍යයාගේ නම (Full Name)" required autocomplete="name" />
+                <input type="email" id="lpSignupEmail" class="zenith-auth-input" placeholder="Email ලිපිනය" required autocomplete="email" />
+                <input type="password" id="lpSignupPassword" class="zenith-auth-input" placeholder="නව මුරපදය (අවම අකුරු 6ක්)" minlength="6" required autocomplete="new-password" />
+                <label for="lpSignupGrade" style="font-size: 11px; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 4px;">ශ්‍රේණිය තෝරන්න (Select Grade):</label>
+                <select id="lpSignupGrade" class="zenith-auth-input">
+                  <option value="6">Grade 6 (6 ශ්‍රේණිය)</option>
+                  <option value="7">Grade 7 (7 ශ්‍රේණිය)</option>
+                  <option value="8">Grade 8 (8 ශ්‍රේණිය)</option>
+                  <option value="9" selected>Grade 9 (9 ශ්‍රේණිය)</option>
+                  <option value="10">Grade 10 (10 ශ්‍රේණිය - O/L)</option>
+                  <option value="11">Grade 11 (11 ශ්‍රේණිය - O/L Exam)</option>
+                </select>
+                <div id="lpSignupError" style="display: none; color: #ef4444; font-size: 11.5px; margin-bottom: 10px; font-weight: 600;"></div>
+                <button type="submit" class="zenith-auth-submit" id="btnLpSignupSubmit">✨ ගිණුම සාදා පිවිසෙන්න</button>
+              </form>
+            </div>
+
+            <div style="margin-top: 18px; text-align: center;">
+              <button type="button" onclick="showDashboardView()" style="background: none; border: none; color: #6366f1; font-size: 12.5px; font-weight: 700; cursor: pointer; text-decoration: underline;">
+                ලොග් නොවී අමුත්තෙකු ලෙස Dashboard එක බලන්න (Guest Mode) →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Landing Footer -->
+      <footer class="landing-footer">
+        <div>Zenith O-Level • Smart Study Engine — Grade 6 to Grade 11 National Curriculum</div>
+        <div style="margin-top: 4px; font-size: 11px; color: #94a3b8;">Standalone PWA Edition • krishsoft</div>
+      </footer>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- ZENITH MISSION CONTROL DASHBOARD VIEW                                    -->
+    <!-- ========================================================================= -->
+    <div id="zenithDashboardView" class="zenith-dashboard-view">
+
     <!-- Zenith Top Navigation Bar -->
     <header class="zenith-topbar" role="banner">
       <div class="zenith-brand" onclick="scrollToTopDashboard()" title="Zenith O-Level • Smart Study Engine">
@@ -5382,6 +5889,10 @@
       </div>
 
       <div class="zenith-controls">
+        <button type="button" class="btn-action-pill" onclick="showLandingPage()" style="background: rgba(99,102,241,0.12); color: var(--text-main); font-size: 11.5px; border: 1px solid rgba(99,102,241,0.3); cursor: pointer;" title="Landing Page එකට යන්න">
+          🏠 About
+        </button>
+
         <label for="zenithGradeSelector" class="sr-only" style="display:none;">Select Grade</label>
         <select id="zenithGradeSelector" class="zenith-grade-picker" onchange="onZenithGradeChange(this.value)" title="ශ්‍රේණිය තෝරන්න (Select Grade)">
           <option value="6">Grade 6 (6 ශ්‍රේණිය)</option>
@@ -5405,24 +5916,15 @@
       </div>
     </header>
 
-    <!-- Header Card -->
-    <div class="header-card">
-      <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 6px;">
-        <div class="app-logo-badge" style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4); flex-shrink: 0;">
-          <img src="app-logo.svg" style="width: 30px; height: 30px;" alt="Logo" />
-        </div>
-        <h2 class="title" id="appMainTitle" style="margin: 0;">Zenith O-Level • Smart Study Engine</h2>
-      </div>
-      <div class="quote-box" id="appMainQuote">
-        "විශ්වාසයෙන් සහ නොසැලෙන උත්සාහයෙන් පියවරෙන් පියවර ඉදිරියට යන්න. ඔබගේ ජයග්‍රහණය ස්ථිරයි!"
-      </div>
-    </div>
-
-    <!-- Live Countdown -->
-    <div style="text-align: center; margin-bottom: 8px;">
-      <span id="countdownExamBadge" style="display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: var(--primary, #8c7ae6); background: rgba(140, 122, 230, 0.12); padding: 4px 14px; border-radius: 20px; border: 1px solid rgba(140, 122, 230, 0.25); letter-spacing: 0.2px;">
-        ⏳ ඉලක්කය (Target): 1st Term Test (1 වන වාර විභාගය)
+    <!-- Live Countdown Target & Exam Settings -->
+    <div class="exam-target-bar" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+      <span id="countdownExamBadge" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--primary, #8c7ae6); background: rgba(140, 122, 230, 0.12); padding: 5px 16px; border-radius: 20px; border: 1px solid rgba(140, 122, 230, 0.28); letter-spacing: 0.2px;">
+        ⏳ ඉලක්කය (Target): <strong>3rd Term Test (3 වන වාර විභාගය)</strong>
       </span>
+      <button type="button" class="btn-exam-target-settings" onclick="openExamTargetSettingsModal()" title="විභාග ඉලක්ක සැකසුම් (Exam Date Settings)">
+        <span>⚙️</span>
+        <span>විභාග සැකසුම් (Exam Settings)</span>
+      </button>
     </div>
     <div class="countdown-container">
       <div class="time-card time-card-days">
@@ -6999,7 +7501,7 @@
               </div>
               <div class="form-group" style="margin-bottom: 8px;">
                 <label style="font-size: 10px; font-weight: 600; display: block; margin-bottom: 3px;">Dashboard Title (ප්‍රධාන සිරස්තලය):</label>
-                <input type="text" class="form-input" id="settingAppTitle" placeholder="Wosandi Grade 9 Mission Control" style="width: 100%; padding: 6px 8px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-color, #dfe6e9); box-sizing: border-box;">
+                <input type="text" class="form-input" id="settingAppTitle" placeholder="Zenith O-Level • Smart Study Engine" style="width: 100%; padding: 6px 8px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-color, #dfe6e9); box-sizing: border-box;">
               </div>
               <div class="form-group" style="margin-bottom: 8px;">
                 <label style="font-size: 10px; font-weight: 600; display: block; margin-bottom: 3px;">Target Exam Name (ඉලක්ක විභාගයේ නම):</label>
@@ -7085,6 +7587,7 @@
         </div>
       </div>
     </div>
+    </div> <!-- /zenithDashboardView -->
 
 <!-- Embedded Sidebar Modal -->
  <div class="modal-overlay" id="sidebarModal" onclick="closeSidebarModal(event)">
@@ -7235,9 +7738,9 @@ window.supabaseClient = supabase;
       function getCountdownConfig() {
         const estimated = getEstimatedNextTerm();
         const defaultCfg = {
-          title: 'Wosandi Grade 9 Mission Control',
+          title: 'Zenith O-Level • Smart Study Engine',
           targetDate: estimated.targetDate,
-          examLabel: estimated.examLabel,
+          examLabel: '3rd Term Test (3 වන වාර විභාගය)',
           isAuto: true
         };
 
@@ -7255,14 +7758,14 @@ window.supabaseClient = supabase;
               return {
                 title: parsed.title || defaultCfg.title,
                 targetDate: parsed.targetDate,
-                examLabel: parsed.examLabel || 'Grade 9 Exam',
+                examLabel: parsed.examLabel || '3rd Term Test (3 වන වාර විභාගය)',
                 isAuto: false
               };
             } else if (parsed && parsed.title) {
               return {
                 ...defaultCfg,
                 title: parsed.title,
-                examLabel: (parsed.examLabel && parsed.examLabel !== 'Grade 9 Final Exam' && !parsed.isAuto) ? parsed.examLabel : estimated.examLabel
+                examLabel: (parsed.examLabel && parsed.examLabel !== 'Grade 9 Final Exam' && !parsed.isAuto) ? parsed.examLabel : '3rd Term Test (3 වන වාර විභාගය)'
               };
             }
           }
@@ -7284,9 +7787,9 @@ window.supabaseClient = supabase;
         }
         const badgeEl = document.getElementById('countdownExamBadge');
         if (badgeEl) {
-          badgeEl.innerHTML = `⏳ ඉලක්කය (Target): <strong>${cfg.examLabel || 'Term Test'}</strong>`;
+          badgeEl.innerHTML = `⏳ ඉලක්කය (Target): <strong>${cfg.examLabel || '3rd Term Test (3 වන වාර විභාගය)'}</strong>`;
         }
-        document.title = cfg.title || 'Wosandi Grade 9 Mission Control';
+        document.title = cfg.title || 'Zenith O-Level • Smart Study Engine';
       }
 
       function loadCountdownSettingsUI() {
@@ -7311,7 +7814,7 @@ window.supabaseClient = supabase;
       }
 
       function saveCountdownSettings(resetToAuto = false) {
-        const title = (document.getElementById('settingAppTitle') ? document.getElementById('settingAppTitle').value : '').trim() || 'Wosandi Grade 9 Mission Control';
+        const title = (document.getElementById('settingAppTitle') ? document.getElementById('settingAppTitle').value : '').trim() || 'Zenith O-Level • Smart Study Engine';
         const dateInput = document.getElementById('settingTargetDate') ? document.getElementById('settingTargetDate').value : '';
         const examInput = document.getElementById('settingExamLabel') ? document.getElementById('settingExamLabel').value.trim() : '';
 
@@ -18383,6 +18886,71 @@ function openSidebarModal() {
       </div>
     </div>
 
+    <!-- Dedicated Easy & Beautiful Exam Target Date Settings Modal -->
+    <div id="examTargetSettingsModal" class="modal-overlay" style="display: none; z-index: 100005;" onclick="closeExamTargetSettingsModal(event)">
+      <div class="modal-window" style="max-width: 480px; width: 94%;" onclick="event.stopPropagation()">
+        <div class="modal-header" style="background: linear-gradient(135deg, #4f46e5, #06b6d4);">
+          <div class="modal-title" style="display:flex; align-items:center; gap:8px;">
+            <span>🎯</span>
+            <span>විභාග ඉලක්ක සැකසුම් (Exam Target Date Settings)</span>
+          </div>
+          <button type="button" class="modal-close-btn" onclick="closeExamTargetSettingsModal()">✕</button>
+        </div>
+
+        <div class="modal-body" style="padding: 20px;">
+          <p style="font-size: 12px; color: var(--text-muted, #94a3b8); margin-bottom: 14px; line-height: 1.5;">
+            ඔබේ ඊළඟ විභාගයේ ඉලක්ක දිනය සහ වේලාව මෙහිදී පහසුවෙන් වෙනස් කළ හැක. සජීවී Countdown ඔරලෝසුව මෙම දිනයට අනුව ස්වයංක්‍රීයව ගණනය වේ.
+          </p>
+
+          <!-- Quick Presets -->
+          <div style="margin-bottom: 16px;">
+            <label style="font-size: 11px; font-weight: 700; color: var(--text-muted, #94a3b8); display: block; margin-bottom: 6px;">
+              ⚡ ඉක්මන් තේරීම් (Quick Presets):
+            </label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <button type="button" class="zenith-btn-sm" style="background: rgba(99,102,241,0.15); color: #6366f1; border: 1px solid rgba(99,102,241,0.3); padding: 8px 10px; text-align: left;" onclick="applyQuickExamPreset(3)">
+                🎯 3 වන වාර විභාගය<br><span style="font-size: 10px; opacity: 0.8;">~Nov 25, 08:30 AM</span>
+              </button>
+              <button type="button" class="zenith-btn-sm" style="background: rgba(0,206,201,0.15); color: #00cec9; border: 1px solid rgba(0,206,201,0.3); padding: 8px 10px; text-align: left;" onclick="applyQuickExamPreset(1)">
+                📘 1 වන වාර විභාගය<br><span style="font-size: 10px; opacity: 0.8;">~Apr 08, 08:30 AM</span>
+              </button>
+              <button type="button" class="zenith-btn-sm" style="background: rgba(0,184,148,0.15); color: #00b894; border: 1px solid rgba(0,184,148,0.3); padding: 8px 10px; text-align: left;" onclick="applyQuickExamPreset(2)">
+                🔬 2 වන වාර විභාගය<br><span style="font-size: 10px; opacity: 0.8;">~Aug 01, 08:30 AM</span>
+              </button>
+              <button type="button" class="zenith-btn-sm" style="background: rgba(235,77,75,0.15); color: #eb4d4b; border: 1px solid rgba(235,77,75,0.3); padding: 8px 10px; text-align: left;" onclick="applyQuickExamPreset('OL')">
+                🎓 O/L විභාගය<br><span style="font-size: 10px; opacity: 0.8;">~May / Dec Exam</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Custom Target Inputs -->
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label" for="examTargetNameInput" style="font-size: 11.5px; font-weight: 700;">
+              📌 විභාගයේ නම (Exam Target Title):
+            </label>
+            <input type="text" id="examTargetNameInput" class="form-input" placeholder="e.g. 3rd Term Test (3 වන වාර විභාගය)" style="font-size: 13px;" />
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label" for="examTargetDateInput" style="font-size: 11.5px; font-weight: 700;">
+              📅 ඉලක්ක දිනය සහ වේලාව (Target Date &amp; Time):
+            </label>
+            <input type="datetime-local" id="examTargetDateInput" class="form-input" style="font-size: 13px;" />
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+            <button type="button" class="zenith-btn-sm" style="background: rgba(148,163,184,0.15); color: var(--text-muted, #94a3b8); border: 1px solid rgba(148,163,184,0.3); padding: 8px 16px;" onclick="resetExamTargetToAuto()">
+              ⚡ ස්වයංක්‍රීයව සකසන්න (Reset Auto)
+            </button>
+            <button type="button" class="zenith-btn-sm" style="background: linear-gradient(135deg, #4f46e5, #6366f1); color: white; padding: 8px 20px; font-weight: 700; box-shadow: 0 4px 12px rgba(99,102,241,0.35);" onclick="saveExamTargetSettingsFromModal()">
+              💾 සුරකින්න (Save Target)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Mobile Bottom Navigation Bar -->
     <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
       <button type="button" class="mob-nav-item active" onclick="scrollToTopDashboard()">
@@ -18408,6 +18976,208 @@ function openSidebarModal() {
     </nav>
 
     <script>
+      function showLandingPage() {
+        const lp = document.getElementById('zenithLandingPage');
+        const dv = document.getElementById('zenithDashboardView');
+        const nav = document.querySelector('.mobile-bottom-nav');
+        if (lp) lp.style.display = 'block';
+        if (dv) dv.style.display = 'none';
+        if (nav) nav.style.display = 'none';
+        sessionStorage.setItem('zenith_current_view', 'landing');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function showDashboardView() {
+        const lp = document.getElementById('zenithLandingPage');
+        const dv = document.getElementById('zenithDashboardView');
+        const nav = document.querySelector('.mobile-bottom-nav');
+        if (lp) lp.style.display = 'none';
+        if (dv) dv.style.display = 'block';
+        if (nav && window.innerWidth <= 768) nav.style.display = 'flex';
+        sessionStorage.setItem('zenith_current_view', 'dashboard');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof refreshTelemetry === 'function') {
+          refreshTelemetry();
+        }
+      }
+
+      function checkInitialView() {
+        const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
+        const pref = sessionStorage.getItem('zenith_current_view');
+        if (pref === 'dashboard') {
+          showDashboardView();
+        } else if (user && !user.isGuest) {
+          showDashboardView();
+        } else if (pref === 'landing') {
+          showLandingPage();
+        } else {
+          showLandingPage();
+        }
+      }
+
+      function switchLandingAuthTab(tabId) {
+        const isLogin = (tabId === 'login');
+        const tabLogin = document.getElementById('lpAuthTab_login');
+        const tabSignup = document.getElementById('lpAuthTab_signup');
+        const paneLogin = document.getElementById('lpAuthPane_login');
+        const paneSignup = document.getElementById('lpAuthPane_signup');
+
+        if (tabLogin) tabLogin.classList.toggle('active', isLogin);
+        if (tabSignup) tabSignup.classList.toggle('active', !isLogin);
+        if (paneLogin) paneLogin.style.display = isLogin ? 'block' : 'none';
+        if (paneSignup) paneSignup.style.display = !isLogin ? 'block' : 'none';
+      }
+
+      function scrollToLandingAuth() {
+        const el = document.getElementById('landingAuthSection');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      async function handleLandingEmailLogin(e) {
+        e.preventDefault();
+        const email = document.getElementById('lpLoginEmail').value;
+        const pass = document.getElementById('lpLoginPassword').value;
+        const errEl = document.getElementById('lpLoginError');
+        const btn = document.getElementById('btnLpLoginSubmit');
+        if (errEl) errEl.style.display = 'none';
+        btn.disabled = true;
+        btn.innerText = 'පිවිසෙමින් පවතී...';
+
+        const res = await ZenithAuth.signInWithEmail(email, pass);
+        btn.disabled = false;
+        btn.innerText = '🔑 පිවිසෙන්න (Sign In)';
+
+        if (res.error) {
+          if (errEl) {
+            errEl.innerText = res.error.message || 'පිවිසීම අසාර්ථක විය. කරුණාකර නැවත උත්සාහ කරන්න.';
+            errEl.style.display = 'block';
+          }
+        } else {
+          showDashboardView();
+        }
+      }
+
+      async function handleLandingEmailSignUp(e) {
+        e.preventDefault();
+        const name = document.getElementById('lpSignupName').value;
+        const email = document.getElementById('lpSignupEmail').value;
+        const pass = document.getElementById('lpSignupPassword').value;
+        const grade = document.getElementById('lpSignupGrade').value;
+        const errEl = document.getElementById('lpSignupError');
+        const btn = document.getElementById('btnLpSignupSubmit');
+        if (errEl) errEl.style.display = 'none';
+        btn.disabled = true;
+        btn.innerText = 'ගිණුම සකසමින් පවතී...';
+
+        const res = await ZenithAuth.signUpWithEmail(email, pass, name, grade);
+        btn.disabled = false;
+        btn.innerText = '✨ ගිණුම සාදා පිවිසෙන්න';
+
+        if (res.error) {
+          if (errEl) {
+            errEl.innerText = res.error.message || 'ගිණුම සෑදීම අසාර්ථක විය. කරුණාකර නැවත උත්සාහ කරන්න.';
+            errEl.style.display = 'block';
+          }
+        } else {
+          showDashboardView();
+        }
+      }
+
+      function openExamTargetSettingsModal() {
+        const modal = document.getElementById('examTargetSettingsModal');
+        if (!modal) return;
+        const cfg = getCountdownConfig();
+        const estimated = getEstimatedNextTerm();
+        const nameInput = document.getElementById('examTargetNameInput');
+        const dateInput = document.getElementById('examTargetDateInput');
+        if (nameInput) nameInput.value = cfg.examLabel || '3rd Term Test (3 වන වාර විභාගය)';
+        if (dateInput) dateInput.value = cfg.targetDate || estimated.targetDate;
+        modal.style.display = 'flex';
+      }
+
+      function closeExamTargetSettingsModal(e) {
+        if (e && e.target && e.target.id !== 'examTargetSettingsModal' && !e.target.classList.contains('modal-close-btn')) return;
+        const modal = document.getElementById('examTargetSettingsModal');
+        if (modal) modal.style.display = 'none';
+      }
+
+      function applyQuickExamPreset(term) {
+        const year = new Date().getFullYear();
+        const pad = n => String(n).padStart(2, '0');
+        const formatDt = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+        
+        const nameInput = document.getElementById('examTargetNameInput');
+        const dateInput = document.getElementById('examTargetDateInput');
+
+        if (term === 1) {
+          const d = new Date(year, 3, 8, 8, 30);
+          if (nameInput) nameInput.value = '1st Term Test (1 වන වාර විභාගය)';
+          if (dateInput) dateInput.value = formatDt(d);
+        } else if (term === 2) {
+          const d = new Date(year, 7, 1, 8, 30);
+          if (nameInput) nameInput.value = '2nd Term Test (2 වන වාර විභාගය)';
+          if (dateInput) dateInput.value = formatDt(d);
+        } else if (term === 3) {
+          const d = new Date(year, 10, 25, 8, 30);
+          if (nameInput) nameInput.value = '3rd Term Test (3 වන වාර විභාගය)';
+          if (dateInput) dateInput.value = formatDt(d);
+        } else if (term === 'OL') {
+          const d = new Date(year + 1, 4, 15, 8, 30);
+          if (nameInput) nameInput.value = 'G.C.E. O/L විභාගය (O-Level Final Exam)';
+          if (dateInput) dateInput.value = formatDt(d);
+        }
+      }
+
+      function saveExamTargetSettingsFromModal() {
+        const nameInput = document.getElementById('examTargetNameInput');
+        const dateInput = document.getElementById('examTargetDateInput');
+        const title = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : '3rd Term Test (3 වන වාර විභාගය)';
+        const targetDate = (dateInput && dateInput.value) ? dateInput.value : getEstimatedNextTerm().targetDate;
+
+        const cfg = {
+          title: 'Zenith O-Level • Smart Study Engine',
+          examLabel: title,
+          targetDate: targetDate,
+          isAuto: false
+        };
+
+        try {
+          localStorage.setItem('g9_countdown_config', JSON.stringify(cfg));
+        } catch (_) {}
+
+        applyHeaderAndCountdownConfig();
+        if (typeof startLiveCountdown === 'function') {
+          startLiveCountdown();
+        }
+
+        const modal = document.getElementById('examTargetSettingsModal');
+        if (modal) modal.style.display = 'none';
+
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+        }
+      }
+
+      function resetExamTargetToAuto() {
+        const estimated = getEstimatedNextTerm();
+        const cfg = {
+          title: 'Zenith O-Level • Smart Study Engine',
+          examLabel: estimated.examLabel || '3rd Term Test (3 වන වාර විභාගය)',
+          targetDate: estimated.targetDate,
+          isAuto: true
+        };
+        try {
+          localStorage.setItem('g9_countdown_config', JSON.stringify(cfg));
+        } catch (_) {}
+
+        applyHeaderAndCountdownConfig();
+        if (typeof startLiveCountdown === 'function') {
+          startLiveCountdown();
+        }
+        const modal = document.getElementById('examTargetSettingsModal');
+        if (modal) modal.style.display = 'none';
+      }
+
       function onZenithGradeChange(newGrade) {
         if (typeof ZenithCurriculum !== 'undefined') {
           ZenithCurriculum.setActiveGrade(newGrade);
@@ -18438,6 +19208,8 @@ function openSidebarModal() {
             errEl.innerText = res.error.message || 'Login failed. Please check credentials.';
             errEl.style.display = 'block';
           }
+        } else {
+          showDashboardView();
         }
       }
 
@@ -18462,6 +19234,8 @@ function openSidebarModal() {
             errEl.innerText = res.error.message || 'Sign up failed. Please try again.';
             errEl.style.display = 'block';
           }
+        } else {
+          showDashboardView();
         }
       }
 
@@ -18470,6 +19244,7 @@ function openSidebarModal() {
         const gSelector = document.getElementById('zenithGradeSelector');
         const grade = gSelector ? gSelector.value : 9;
         ZenithAuth.continueAsGuest(name, grade);
+        showDashboardView();
       }
 
       function scrollToTopDashboard() {
@@ -18482,6 +19257,19 @@ function openSidebarModal() {
           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }
+
+      // Check initial landing vs dashboard view
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkInitialView);
+      } else {
+        setTimeout(checkInitialView, 50);
+      }
+      window.addEventListener('ZENITH_USER_CHANGED', () => {
+        const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
+        if (user && !user.isGuest) {
+          showDashboardView();
+        }
+      });
     </script>
   </body>
 </html>
