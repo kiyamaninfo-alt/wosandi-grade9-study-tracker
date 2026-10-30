@@ -5043,307 +5043,630 @@
         }
       }
 
-      /* --- Zenith Landing Page & Features Styling --- */
+      /* --- Zenith World-Class Cyber-Glass Landing Page (Stitch Design System: Aether Orbit) --- */
       .zenith-landing-wrap {
         display: none;
-        max-width: 1100px;
+        max-width: 1260px;
         margin: 0 auto;
-        padding: 16px;
-        font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
+        padding: 12px 20px 48px;
+        font-family: 'Plus Jakarta Sans', 'Poppins', 'Noto Sans Sinhala', sans-serif;
+        color: #dfe2f1;
+        position: relative;
+        overflow-x: hidden;
       }
-      .landing-header {
+      .zenith-lp-ambient-radial {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at 50% 0%, rgba(111, 0, 190, 0.22) 0%, rgba(0, 240, 255, 0.08) 35%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .zenith-lp-grid-lines {
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.5;
+      }
+      .zenith-lp-container {
+        position: relative;
+        z-index: 2;
+      }
+      /* Top Navbar */
+      .zenith-lp-nav {
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
         padding: 12px 20px;
-        background: var(--bg-card, rgba(255, 255, 255, 0.8));
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--border-color, rgba(255, 255, 255, 0.2));
         border-radius: 16px;
-        margin-bottom: 24px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        background: rgba(17, 23, 38, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(0, 240, 255, 0.05);
+        margin-bottom: 28px;
         flex-wrap: wrap;
         gap: 12px;
       }
-      body.dark-mode .landing-header {
-        background: rgba(19, 27, 46, 0.85);
-        border-color: rgba(255, 255, 255, 0.08);
-      }
-      .landing-brand {
+      .zenith-lp-brand {
         display: flex;
         align-items: center;
         gap: 12px;
+        text-decoration: none;
       }
-      .landing-logo-img {
-        width: 42px;
-        height: 42px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(140, 122, 230, 0.35);
+      .zenith-lp-logo-box {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: #1c1f2a;
+        border: 1px solid rgba(0, 240, 255, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
       }
-      .landing-title-text {
-        font-size: 17px;
+      .zenith-lp-logo-box img {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+      }
+      .zenith-lp-brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+      .zenith-lp-title {
+        font-size: 16.5px;
         font-weight: 800;
-        letter-spacing: -0.3px;
-        background: linear-gradient(135deg, #4f46e5, #06b6d4);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        line-height: 1.2;
+        letter-spacing: 0.5px;
+        color: #dbfcff;
+        line-height: 1.1;
       }
-      .landing-sub-text {
-        font-size: 11px;
-        color: var(--text-muted, #7f8fa6);
+      .zenith-lp-sub {
+        font-size: 9.5px;
+        color: #849495;
         font-weight: 600;
       }
-      .landing-header-actions {
+      .zenith-lp-grade-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: rgba(0, 240, 255, 0.1);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        color: #00dbe9;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+      .zenith-lp-links {
         display: flex;
         align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
+        gap: 18px;
       }
-      .landing-btn-secondary {
-        background: rgba(99, 102, 241, 0.12);
-        color: #6366f1;
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        border-radius: 10px;
-        padding: 8px 16px;
+      .zenith-lp-link {
+        color: #b9cacb;
         font-size: 12.5px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.2s;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s;
       }
-      .landing-btn-secondary:hover {
-        background: #6366f1;
-        color: #ffffff;
+      .zenith-lp-link:hover {
+        color: #00f0ff;
       }
-      .landing-btn-primary {
-        background: linear-gradient(135deg, #4f46e5, #6366f1);
-        color: #ffffff;
-        border: none;
-        border-radius: 10px;
+      .zenith-lp-cta-btn {
+        background: linear-gradient(135deg, #00f0ff, #a855f7);
+        color: #070b13;
+        font-size: 12.5px;
+        font-weight: 800;
         padding: 8px 18px;
-        font-size: 12.5px;
-        font-weight: 700;
+        border-radius: 10px;
+        border: none;
         cursor: pointer;
-        transition: transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
-      }
-      .landing-btn-primary:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.45);
-      }
-      .landing-hero {
-        text-align: center;
-        padding: 24px 16px 20px;
-        max-width: 860px;
-        margin: 0 auto;
-      }
-      .landing-badge-pill {
+        box-shadow: 0 0 16px rgba(0, 240, 255, 0.45);
+        transition: all 0.2s;
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 5px 16px;
+        text-decoration: none;
+      }
+      .zenith-lp-cta-btn:hover {
+        box-shadow: 0 0 24px rgba(0, 240, 255, 0.75);
+        transform: translateY(-1px);
+      }
+
+      /* Hero Section */
+      .zenith-lp-hero {
+        display: grid;
+        grid-template-columns: 1.22fr 1fr;
+        gap: 32px;
+        align-items: center;
+        margin-bottom: 50px;
+      }
+      @media (max-width: 992px) {
+        .zenith-lp-hero {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .zenith-lp-links {
+          display: none;
+        }
+      }
+      .zenith-lp-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 14px;
         border-radius: 999px;
-        background: rgba(99, 102, 241, 0.1);
-        border: 1px solid rgba(99, 102, 241, 0.25);
-        color: #6366f1;
-        font-size: 12px;
+        background: rgba(22, 31, 51, 0.9);
+        border: 1px solid rgba(0, 240, 255, 0.35);
+        color: #00f0ff;
+        font-size: 11px;
         font-weight: 700;
-        margin-bottom: 16px;
-      }
-      body.dark-mode .landing-badge-pill {
-        background: rgba(99, 102, 241, 0.2);
-        color: #a5b4fc;
-      }
-      .landing-hero-heading {
-        font-size: 27px;
-        font-weight: 800;
-        line-height: 1.35;
+        letter-spacing: 0.5px;
         margin-bottom: 14px;
-        color: var(--text-main, #1e293b);
+        box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
       }
-      body.dark-mode .landing-hero-heading {
-        color: #f8fafc;
+      .zenith-lp-pulse-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #00f0ff;
+        box-shadow: 0 0 8px #00f0ff;
+        animation: lpPulse 1.8s infinite;
       }
-      .landing-gradient-text {
-        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      @keyframes lpPulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.4); opacity: 0.6; }
+      }
+      .zenith-lp-h1 {
+        font-size: 32px;
+        font-weight: 800;
+        line-height: 1.3;
+        letter-spacing: -0.4px;
+        color: #ffffff;
+        margin: 0 0 10px 0;
+      }
+      .zenith-lp-gradient {
+        background: linear-gradient(135deg, #00f0ff 0%, #dbfcff 50%, #ddb7ff 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
-      .landing-hero-p {
-        font-size: 14px;
+      .zenith-lp-h2-sub {
+        font-size: 16px;
+        color: #a855f7;
+        font-weight: 700;
+        margin: 0 0 14px 0;
+      }
+      .zenith-lp-desc {
+        font-size: 13.5px;
         line-height: 1.7;
-        color: var(--text-muted, #64748b);
-        margin-bottom: 24px;
+        color: #b9cacb;
+        margin-bottom: 22px;
+        max-width: 600px;
       }
-      body.dark-mode .landing-hero-p {
-        color: #94a3b8;
-      }
-      .landing-cta-row {
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-      }
-      .landing-cta-btn-google {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 24px;
-        border-radius: 12px;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-        background: #ffffff;
-        color: #1f2937;
-        font-weight: 700;
-        font-size: 14px;
-        cursor: pointer;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-        transition: transform 0.15s, box-shadow 0.2s;
-      }
-      body.dark-mode .landing-cta-btn-google {
-        background: #1e293b;
-        color: #f8fafc;
-        border-color: rgba(255, 255, 255, 0.15);
-      }
-      .landing-cta-btn-google:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-      }
-      .landing-cta-btn-guest {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 24px;
-        border-radius: 12px;
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        background: rgba(99, 102, 241, 0.1);
-        color: #6366f1;
-        font-weight: 700;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      body.dark-mode .landing-cta-btn-guest {
-        background: rgba(99, 102, 241, 0.2);
-        color: #a5b4fc;
-      }
-      .landing-cta-btn-guest:hover {
-        background: #6366f1;
-        color: #ffffff;
-        transform: translateY(-2px);
-      }
-      .landing-features-grid {
+      .zenith-lp-telemetry-row {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-        gap: 16px;
-        margin: 24px 0 36px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 22px;
       }
-      .landing-card {
-        background: var(--bg-card, rgba(255, 255, 255, 0.7));
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
-        border-radius: 16px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        transition: transform 0.2s, box-shadow 0.2s;
+      @media (max-width: 600px) {
+        .zenith-lp-telemetry-row {
+          grid-template-columns: 1fr;
+        }
+        .zenith-lp-h1 {
+          font-size: 24px;
+        }
       }
-      body.dark-mode .landing-card {
-        background: rgba(19, 27, 46, 0.7);
-        border-color: rgba(255, 255, 255, 0.08);
-      }
-      .landing-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      }
-      body.dark-mode .landing-card:hover {
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-      }
-      .landing-card-icon {
-        width: 44px;
-        height: 44px;
+      .zenith-lp-tele-card {
+        padding: 12px 14px;
         border-radius: 12px;
+        background: rgba(17, 23, 38, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        transition: border-color 0.2s, transform 0.2s;
+      }
+      .zenith-lp-tele-card:hover {
+        border-color: rgba(0, 240, 255, 0.5);
+        transform: translateY(-2px);
+      }
+      .zenith-lp-tele-val {
+        font-family: 'Space Grotesk', monospace;
+        font-size: 17px;
+        font-weight: 800;
+        color: #00f0ff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .zenith-lp-tele-title {
+        font-size: 11.5px;
+        font-weight: 700;
+        color: #dfe2f1;
+        margin-top: 4px;
+      }
+      .zenith-lp-tele-sub {
+        font-size: 10px;
+        color: #849495;
+      }
+      .zenith-lp-trust-proof {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 11.5px;
+        color: #b9cacb;
+      }
+      .zenith-lp-avatars {
+        display: flex;
+      }
+      .zenith-lp-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #1c1f2a;
+        border: 2px solid #0f131d;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 22px;
-        margin-bottom: 4px;
+        font-size: 9px;
+        font-weight: 800;
+        color: #00f0ff;
+        margin-left: -6px;
       }
-      .landing-card-title {
-        font-size: 15.5px;
-        font-weight: 700;
-        margin: 0;
-        color: var(--text-main, #1e293b);
-      }
-      body.dark-mode .landing-card-title {
-        color: #f1f5f9;
-      }
-      .landing-card-desc {
-        font-size: 12.5px;
-        line-height: 1.6;
-        color: var(--text-muted, #64748b);
-        margin: 0;
-      }
-      body.dark-mode .landing-card-desc {
-        color: #94a3b8;
-      }
-      .landing-auth-section {
-        display: flex;
-        justify-content: center;
-        margin: 20px 0 40px;
-      }
-      .landing-auth-card {
-        background: var(--bg-card, #ffffff);
-        border: 1px solid var(--border-color, rgba(0, 0, 0, 0.1));
+      .zenith-lp-avatar:first-child { margin-left: 0; }
+
+      /* Auth Cockpit Terminal */
+      .zenith-lp-auth-card {
+        background: rgba(15, 23, 42, 0.88);
+        border: 1px solid rgba(0, 240, 255, 0.35);
         border-radius: 20px;
-        width: 100%;
-        max-width: 460px;
-        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
+        padding: 22px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 0 16px rgba(0, 240, 255, 0.06);
       }
-      body.dark-mode .landing-auth-card {
-        background: #131b2e;
-        border-color: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
-      }
-      .landing-auth-nav {
+      .zenith-lp-auth-header {
         display: flex;
-        background: rgba(0, 0, 0, 0.04);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 16px;
       }
-      body.dark-mode .landing-auth-nav {
-        background: rgba(0, 0, 0, 0.2);
-        border-bottom-color: rgba(255, 255, 255, 0.08);
+      .zenith-lp-auth-title {
+        font-size: 14px;
+        font-weight: 800;
+        color: #dbfcff;
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
-      .landing-auth-tab {
-        flex: 1;
-        padding: 13px;
+      .zenith-lp-lights {
+        display: flex;
+        gap: 5px;
+      }
+      .zenith-lp-light {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .zenith-lp-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        background: rgba(10, 14, 24, 0.8);
+        padding: 4px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 16px;
+      }
+      .zenith-lp-tab {
+        padding: 9px 0;
+        text-align: center;
+        border-radius: 8px;
         background: transparent;
         border: none;
+        color: #849495;
+        font-size: 12px;
         font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .zenith-lp-tab.active {
+        background: #1c1f2a;
+        color: #00f0ff;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+      }
+      .zenith-lp-google-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 11px;
+        border-radius: 12px;
+        background: rgba(28, 31, 42, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #dfe2f1;
         font-size: 13px;
-        color: #94a3b8;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 12px;
+      }
+      .zenith-lp-google-btn:hover {
+        background: #262a35;
+        border-color: #00f0ff;
+        box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
+      }
+      .zenith-lp-divider {
+        display: flex;
+        align-items: center;
+        margin: 12px 0;
+        color: #849495;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      .zenith-lp-divider::before, .zenith-lp-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .zenith-lp-divider span {
+        padding: 0 10px;
+      }
+      .zenith-lp-input {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: rgba(10, 14, 24, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #dbfcff;
+        font-size: 12.5px;
+        margin-bottom: 10px;
+        outline: none;
+        transition: all 0.2s;
+        box-sizing: border-box;
+      }
+      .zenith-lp-input:focus {
+        border-color: #00f0ff;
+        box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+      }
+      .zenith-lp-grade-chips {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 4px;
+        margin-bottom: 12px;
+      }
+      .zenith-lp-chip {
+        padding: 6px 0;
+        text-align: center;
+        border-radius: 8px;
+        background: rgba(28, 31, 42, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #b9cacb;
+        font-size: 10.5px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .zenith-lp-chip.active {
+        background: rgba(0, 240, 255, 0.18);
+        border-color: #00f0ff;
+        color: #00f0ff;
+        box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+      }
+      .zenith-lp-submit-btn {
+        width: 100%;
+        padding: 11px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #00f0ff, #a855f7);
+        color: #070b13;
+        font-size: 13.5px;
+        font-weight: 800;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 0 18px rgba(0, 240, 255, 0.45);
+        transition: all 0.2s;
+      }
+      .zenith-lp-submit-btn:hover {
+        box-shadow: 0 0 28px rgba(0, 240, 255, 0.75);
+        transform: translateY(-1px);
+      }
+      .zenith-lp-auth-badges {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 10px;
+        color: #849495;
+      }
+
+      /* Section 2: Syllabus Matrix Radar */
+      .zenith-lp-section {
+        margin-bottom: 50px;
+      }
+      .zenith-lp-sec-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .zenith-lp-sec-title {
+        font-size: 21px;
+        font-weight: 800;
+        color: #dbfcff;
+        margin: 0 0 4px 0;
+      }
+      .zenith-lp-sec-sub {
+        font-size: 12px;
+        color: #849495;
+        margin: 0;
+      }
+      .zenith-lp-grade-filter {
+        display: flex;
+        gap: 6px;
+        background: rgba(17, 23, 38, 0.8);
+        padding: 4px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        flex-wrap: wrap;
+      }
+      .zenith-lp-filter-btn {
+        padding: 5px 12px;
+        border-radius: 8px;
+        background: transparent;
+        border: none;
+        color: #849495;
+        font-size: 11.5px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .zenith-lp-filter-btn.active {
+        background: #00f0ff;
+        color: #070b13;
+        box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+      }
+      .zenith-lp-matrix-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 12px;
+      }
+      @media (max-width: 1100px) {
+        .zenith-lp-matrix-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      @media (max-width: 650px) {
+        .zenith-lp-matrix-grid { grid-template-columns: 1fr; }
+      }
+      .zenith-lp-matrix-card {
+        background: rgba(17, 23, 38, 0.7);
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        border-radius: 14px;
+        padding: 14px;
+        backdrop-filter: blur(12px);
+        transition: all 0.2s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .zenith-lp-matrix-card:hover {
+        border-color: #00f0ff;
+        transform: translateY(-2px);
+        box-shadow: 0 0 16px rgba(0, 240, 255, 0.25);
+      }
+
+      /* Bento Grid: 4 Algorithmic Pillars */
+      .zenith-lp-bento {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 16px;
+      }
+      .zenith-lp-bento-8 { grid-column: span 8; }
+      .zenith-lp-bento-4 { grid-column: span 4; }
+      @media (max-width: 900px) {
+        .zenith-lp-bento-8, .zenith-lp-bento-4 { grid-column: span 12; }
+      }
+      .zenith-lp-pillar-card {
+        background: rgba(17, 23, 38, 0.75);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        border-radius: 18px;
+        padding: 22px;
+        backdrop-filter: blur(16px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Score Velocity & Testimonials */
+      .zenith-lp-results-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        align-items: center;
+      }
+      @media (max-width: 900px) {
+        .zenith-lp-results-grid { grid-template-columns: 1fr; }
+      }
+      .zenith-lp-test-card {
+        background: rgba(17, 23, 38, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 12px;
+      }
+
+      /* Call to Action Banner */
+      .zenith-lp-cta-banner {
+        background: linear-gradient(135deg, rgba(28, 31, 42, 0.95), rgba(17, 23, 38, 0.95));
+        border: 1px solid rgba(0, 240, 255, 0.35);
+        border-radius: 20px;
+        padding: 36px 20px;
+        text-align: center;
+        box-shadow: 0 0 32px rgba(0, 240, 255, 0.15);
+        margin-bottom: 40px;
+      }
+
+      /* Academic Settings Modal Styles */
+      .btn-academic-settings-pill {
+        background: rgba(99, 102, 241, 0.14);
+        color: var(--text-main, #2d3436);
+        font-size: 12px;
+        font-weight: 700;
+        border: 1px solid rgba(99, 102, 241, 0.35);
+        border-radius: 10px;
+        padding: 5px 12px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s;
+      }
+      .btn-academic-settings-pill:hover {
+        background: rgba(99, 102, 241, 0.25);
+        border-color: #6366f1;
+      }
+      .academic-grade-btn {
+        padding: 9px;
+        border-radius: 10px;
+        background: var(--bg-card, #f8f9fa);
+        border: 1px solid var(--border-color, #dfe6e9);
+        color: var(--text-main, #2d3436);
+        font-size: 11.5px;
+        font-weight: 700;
         cursor: pointer;
         transition: all 0.2s;
         text-align: center;
       }
-      .landing-auth-tab.active {
+      .academic-grade-btn.active {
+        background: rgba(99, 102, 241, 0.15);
+        border-color: #6366f1;
         color: #6366f1;
-        border-bottom: 2px solid #6366f1;
-        background: rgba(99, 102, 241, 0.06);
+        box-shadow: 0 0 10px rgba(99, 102, 241, 0.25);
       }
-      .landing-footer {
-        text-align: center;
-        padding: 24px;
-        border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
-        color: var(--text-muted, #94a3b8);
-        font-size: 12px;
+      .academic-subj-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        border-radius: 10px;
+        background: var(--bg-card, #f8f9fa);
+        border: 1px solid var(--border-color, #dfe6e9);
+        transition: all 0.15s;
       }
-      body.dark-mode .landing-footer {
-        border-top-color: rgba(255, 255, 255, 0.08);
+      .academic-subj-item:hover {
+        border-color: #8c7ae6;
       }
       .btn-exam-target-settings {
         background: rgba(99, 102, 241, 0.12);
@@ -5706,171 +6029,625 @@
     <!-- ========================================================================= -->
     <!-- ZENITH O-LEVEL LANDING PAGE & AUTHENTICATION PORTAL                       -->
     <!-- ========================================================================= -->
+    <!-- ========================================================================= -->
+    <!-- ZENITH WORLD-CLASS CYBER-GLASS LANDING PAGE (Stitch Aether Orbit)          -->
+    <!-- ========================================================================= -->
     <div id="zenithLandingPage" class="zenith-landing-wrap">
-      <!-- Landing Header -->
-      <header class="landing-header">
-        <div class="landing-brand">
-          <img src="app-logo.svg" alt="Zenith Logo" class="landing-logo-img" />
+      <div class="zenith-lp-ambient-radial"></div>
+      <div class="zenith-lp-grid-lines"></div>
+
+      <div class="zenith-lp-container">
+        <!-- Top Navigation Bar -->
+        <header class="zenith-lp-nav">
+          <div class="zenith-lp-brand">
+            <div class="zenith-lp-logo-box">
+              <img src="app-logo.svg" alt="Zenith Logo" />
+            </div>
+            <div class="zenith-lp-brand-text">
+              <span class="zenith-lp-title">ZENITH STUDY OS</span>
+              <span class="zenith-lp-sub">ශ්‍රී ලංකා විෂය නිර්දේශ මෙහෙයුම් පද්ධතිය</span>
+            </div>
+            <span class="zenith-lp-grade-pill">Grades 6–11 O/L</span>
+          </div>
+
+          <nav class="zenith-lp-links">
+            <a href="#lp-syllabus" class="zenith-lp-link">Syllabus Matrix</a>
+            <a href="#lp-telemetry" class="zenith-lp-link">Features &amp; Bento</a>
+            <a href="#lp-repetition" class="zenith-lp-link">Spaced Repetition</a>
+            <a href="#lp-ranks" class="zenith-lp-link">Exam Ranks</a>
+          </nav>
+
+          <div style="display:flex; align-items:center; gap:10px;">
+            <button type="button" onclick="scrollToLandingAuth()" class="zenith-lp-link" style="background:none; border:none; cursor:pointer;">
+              Student Sign In
+            </button>
+            <button type="button" class="zenith-lp-cta-btn" onclick="scrollToLandingAuth()">
+              <span>Launch Terminal 🚀</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="zenith-lp-hero">
+          <!-- Left Hero Column -->
           <div>
-            <div class="landing-title-text">Zenith O-Level</div>
-            <div class="landing-sub-text">Smart Study Engine • Grades 6–11</div>
-          </div>
-        </div>
-        <div class="landing-header-actions">
-          <button type="button" class="landing-btn-secondary" onclick="scrollToLandingAuth()">
-            🔑 පිවිසෙන්න (Sign In)
-          </button>
-          <button type="button" class="landing-btn-primary" onclick="showDashboardView()">
-            🚀 Dashboard එකට යන්න →
-          </button>
-        </div>
-      </header>
+            <div class="zenith-lp-badge">
+              <span class="zenith-lp-pulse-dot"></span>
+              <span>ZENITH STUDY OS | ශ්‍රී ලංකා පාසල් විෂය නිර්දේශ මෙහෙයුම් පද්ධතිය</span>
+            </div>
+            <h1 class="zenith-lp-h1">
+              ඔබේ විභාග ජයග්‍රහණය <br>
+              <span class="zenith-lp-gradient">විද්‍යාත්මකව සැලසුම් කරන්න</span>
+            </h1>
+            <div class="zenith-lp-h2-sub">
+              Master Your O/L &amp; Term Exams with Algorithmic Precision.
+            </div>
+            <p class="zenith-lp-desc">
+              ශ්‍රී ලංකාවේ 6 ශ්‍රේණියේ සිට 11 ශ්‍රේණිය (සාමාන්‍ය පෙළ) දක්වා සිසුන් සඳහා විශේෂයෙන් සැකසූ බුද්ධිමත් අධ්‍යයන මෙහෙයුම් පද්ධතිය. විෂය නිර්දේශ ආවරණය, Ebbinghaus මතක වක්‍රය අනුව Spaced Repetition මතක් කිරීම්, ප්‍රශ්න පත්‍ර ලකුණු විශ්ලේෂණය සහ Deep Focus ටයිමරය සමඟ 9 A සාමාර්ථ කරා පියවර තබන්න.
+            </p>
 
-      <!-- Hero Section -->
-      <section class="landing-hero">
-        <div class="landing-badge-pill">
-          ✨ ශ්‍රී ලංකාවේ 6 – 11 ශ්‍රේණි (සාමාන්‍ය පෙළ) සිසුන් සඳහාමයි
-        </div>
-        <h1 class="landing-hero-heading">
-          ඔබේ විභාග ජයග්‍රහණය උදෙසා නිර්මාණය වූ <br>
-          <span class="landing-gradient-text">බුද්ධිමත් අධ්‍යයන මෙහෙයුම් පද්ධතිය</span>
-        </h1>
-        <p class="landing-hero-p">
-          විෂය නිර්දේශ ආවරණය, Deep Focus සැසි, විද්‍යාත්මක Spaced Repetition මතක් කිරීම්, ප්‍රශ්න පත්‍ර ලකුණු විශ්ලේෂණය සහ සජීවී Countdown ඔරලෝසුව සමඟ ඔබේ අධ්‍යයන කාලය උපරිම ඵලදායි කරගන්න.
-        </p>
+            <!-- 3 Live Telemetry Diagnostic Nodes -->
+            <div class="zenith-lp-telemetry-row">
+              <div class="zenith-lp-tele-card">
+                <div class="zenith-lp-tele-val">
+                  <span>9+ Subjects</span>
+                  <span>📐</span>
+                </div>
+                <div class="zenith-lp-tele-title">Core Curriculum</div>
+                <div class="zenith-lp-tele-sub">ගණිතය, විද්‍යාව, සිංහල, ICT +</div>
+              </div>
+              <div class="zenith-lp-tele-card">
+                <div class="zenith-lp-tele-val" style="color:#a855f7;">
+                  <span>100% Retain</span>
+                  <span>🧠</span>
+                </div>
+                <div class="zenith-lp-tele-title">Ebbinghaus Curve</div>
+                <div class="zenith-lp-tele-sub">ස්වයංක්‍රීය පුනරීක්ෂණ ඇඟවීම්</div>
+              </div>
+              <div class="zenith-lp-tele-card">
+                <div class="zenith-lp-tele-val" style="color:#10b981;">
+                  <span>0 Distortion</span>
+                  <span>🎧</span>
+                </div>
+                <div class="zenith-lp-tele-title">Deep Focus Cockpit</div>
+                <div class="zenith-lp-tele-sub">12Hz Alpha Binaural Sprint</div>
+              </div>
+            </div>
 
-        <!-- Quick CTA Buttons -->
-        <div class="landing-cta-row">
-          <button type="button" class="landing-cta-btn-google" onclick="ZenithAuth.signInWithGoogle()">
-            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.25 21.37 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12c0 2.02.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.25 2.63 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
-            Google සමඟ එක ක්ලික් එකෙන් පිවිසෙන්න
-          </button>
-          <button type="button" class="landing-cta-btn-guest" onclick="showDashboardView()">
-            👤 අමුත්තෙකු ලෙස Dashboard එක බලන්න (Guest Mode)
-          </button>
-        </div>
-      </section>
-
-      <!-- Detailed Feature Cards Grid (Sinhala Description) -->
-      <section class="landing-features-grid">
-        <div class="landing-card">
-          <div class="landing-card-icon" style="background: rgba(9, 132, 227, 0.15); color: #0984e3;">📚</div>
-          <h3 class="landing-card-title">සම්පූර්ණ විෂය නිර්දේශ ආවරණය</h3>
-          <p class="landing-card-desc">
-            6 ශ්‍රේණියේ සිට 11 ශ්‍රේණිය (O/L) දක්වා ගණිතය, විද්‍යාව ඇතුළු සියලුම ප්‍රධාන විෂයයන් සහ Basket 1, 2, 3 කාණ්ඩ විෂයයන් ඒකක මට්ටමින් නිවැරදිව ට්‍රැක් කරන්න.
-          </p>
-        </div>
-
-        <div class="landing-card">
-          <div class="landing-card-icon" style="background: rgba(108, 92, 231, 0.15); color: #6c5ce7;">⏱️</div>
-          <h3 class="landing-card-title">Deep Focus Session Timer</h3>
-          <p class="landing-card-desc">
-            අවධානය එකඟ කර ගැනීමට Brown Noise ශබ්ද, Screen Wake Lock සහ Countdown විරාම සහිතව සකස් කළ Focus Timer එකකින් ඔබේ පාඩම් කාලය වාර්තා කරගන්න.
-          </p>
-        </div>
-
-        <div class="landing-card">
-          <div class="landing-card-icon" style="background: rgba(0, 184, 148, 0.15); color: #00b894;">🧠</div>
-          <h3 class="landing-card-title">Spaced Repetition (ස්මාර්ට් මතක් කිරීම්)</h3>
-          <p class="landing-card-desc">
-            විද්‍යාත්මක Ebbinghaus මතක වක්‍රය අනුව පාඩම් කළ කරුණු නියමිත දිනවලදී (1, 3, 7, 14, 30 දින) ස්වයංක්‍රීයව මතක් කරමින් දීර්ඝකාලීන මතකයේ රඳවයි.
-          </p>
-        </div>
-
-        <div class="landing-card">
-          <div class="landing-card-icon" style="background: rgba(225, 112, 85, 0.15); color: #e17055;">📝</div>
-          <h3 class="landing-card-title">ප්‍රශ්න පත්‍ර හා ලකුණු විශ්ලේෂණය</h3>
-          <p class="landing-card-desc">
-            පාඩම් ප්‍රශ්න පත්‍ර (Unit Papers) සහ සම්පූර්ණ වාර විභාග ලකුණු සටහන් කිරීම, අඩු ලකුණු ඇති දුර්වල පාඩම් හඳුනාගැනීම සහ විභාග ඉලක්ක පුරෝකථනය.
-          </p>
-        </div>
-
-        <div class="landing-card">
-          <div class="landing-card-icon" style="background: rgba(243, 156, 18, 0.15); color: #f39c12;">📊</div>
-          <h3 class="landing-card-title">අධ්‍යයන ප්‍රස්ථාර සහ Heatmap</h3>
-          <p class="landing-card-desc">
-            දිනපතා පාඩම් කළ මිනිත්තු ගණන, දෛනික Streak එක සහ සතිපතා ඉලක්ක ප්‍රගතිය GitHub-Style Heatmap එකක් මඟින් පැහැදිලිව දර්ශනය කරයි.
-          </p>
-        </div>
-
-        <div class="landing-card">
-          <div class="landing-card-icon" style="background: rgba(0, 206, 201, 0.15); color: #00cec9;">☁️</div>
-          <h3 class="landing-card-title">Cloud Sync &amp; බහු උපාංග සහාය</h3>
-          <p class="landing-card-desc">
-            Google හෝ Email මඟින් ලොග් වී Phone, Tablet හෝ Computer ඕනෑම උපාංගයකින් ඔබගේ පුද්ගලික දත්තවලට පිවිසෙන්න. නොබැඳිව (Offline) වුවද ක්‍රියාත්මක වේ.
-          </p>
-        </div>
-      </section>
-
-      <!-- In-Page Landing Login & Register Box -->
-      <section class="landing-auth-section" id="landingAuthSection">
-        <div class="landing-auth-card">
-          <div class="landing-auth-nav">
-            <button type="button" class="landing-auth-tab active" id="lpAuthTab_login" onclick="switchLandingAuthTab('login')">
-              🔑 ගිණුමට පිවිසෙන්න (Sign In)
-            </button>
-            <button type="button" class="landing-auth-tab" id="lpAuthTab_signup" onclick="switchLandingAuthTab('signup')">
-              ✨ නව ගිණුමක් සාදන්න (Register)
-            </button>
+            <!-- Social Proof -->
+            <div class="zenith-lp-trust-proof">
+              <div class="zenith-lp-avatars">
+                <div class="zenith-lp-avatar">AN</div>
+                <div class="zenith-lp-avatar">VK</div>
+                <div class="zenith-lp-avatar">RC</div>
+                <div class="zenith-lp-avatar" style="background:#00f0ff; color:#070b13;">+9k</div>
+              </div>
+              <div>
+                Trusted by <strong style="color:#00f0ff;">45,000+ Sri Lankan students</strong> across Western, Central, Southern &amp; all 9 Provinces.
+              </div>
+            </div>
           </div>
 
-          <div style="padding: 24px;">
-            <!-- Google One-Click CTA in Card -->
-            <button type="button" class="zenith-oauth-btn" onclick="ZenithAuth.signInWithGoogle()" style="margin-bottom: 16px;">
-              <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.25 21.37 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12c0 2.02.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.25 2.63 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
-              Google සමඟ පිවිසෙන්න (Continue with Google)
-            </button>
+          <!-- Right Hero Column: Auth Cockpit Terminal -->
+          <div id="landingAuthSection">
+            <div class="zenith-lp-auth-card">
+              <div class="zenith-lp-auth-header">
+                <div class="zenith-lp-auth-title">
+                  <span>💻</span>
+                  <span>Enter Cadet Mission Control</span>
+                </div>
+                <div class="zenith-lp-lights">
+                  <span class="zenith-lp-light" style="background:#ff4757;"></span>
+                  <span class="zenith-lp-light" style="background:#ffa502;"></span>
+                  <span class="zenith-lp-light" style="background:#2ed573;"></span>
+                </div>
+              </div>
+              <div style="font-size: 10px; color: #849495; letter-spacing: 0.5px; margin-bottom: 14px; margin-top: -6px;">
+                ශිෂ්‍ය පිවිසුම • SECURE ACADEMIC TELEMETRY
+              </div>
 
-            <div style="display: flex; align-items: center; margin: 16px 0; color: #94a3b8; font-size: 11px;">
-              <div style="flex: 1; height: 1px; background: rgba(148, 163, 184, 0.2);"></div>
-              <span style="padding: 0 10px; font-weight: 600;">හෝ EMAIL මඟින්</span>
-              <div style="flex: 1; height: 1px; background: rgba(148, 163, 184, 0.2);"></div>
-            </div>
+              <!-- Segmented Tabs -->
+              <div class="zenith-lp-tabs">
+                <button type="button" class="zenith-lp-tab active" id="lpAuthTab_login" onclick="switchLandingAuthTab('login')">
+                  🔑 Log In (පිවිසෙන්න)
+                </button>
+                <button type="button" class="zenith-lp-tab" id="lpAuthTab_signup" onclick="switchLandingAuthTab('signup')">
+                  ✨ Sign Up (ලියාපදිංචිය)
+                </button>
+              </div>
 
-            <!-- TAB: LOGIN -->
-            <div id="lpAuthPane_login">
-              <form onsubmit="handleLandingEmailLogin(event)">
-                <input type="email" id="lpLoginEmail" class="zenith-auth-input" placeholder="Email ලිපිනය (e.g. student@gmail.com)" required autocomplete="username" />
-                <input type="password" id="lpLoginPassword" class="zenith-auth-input" placeholder="මුරපදය (Password)" required autocomplete="current-password" />
-                <div id="lpLoginError" style="display: none; color: #ef4444; font-size: 11.5px; margin-bottom: 10px; font-weight: 600;"></div>
-                <button type="submit" class="zenith-auth-submit" id="btnLpLoginSubmit">🔑 පිවිසෙන්න (Sign In)</button>
-              </form>
-            </div>
-
-            <!-- TAB: SIGN UP -->
-            <div id="lpAuthPane_signup" style="display: none;">
-              <form onsubmit="handleLandingEmailSignUp(event)">
-                <input type="text" id="lpSignupName" class="zenith-auth-input" placeholder="ශිෂ්‍යයාගේ නම (Full Name)" required autocomplete="name" />
-                <input type="email" id="lpSignupEmail" class="zenith-auth-input" placeholder="Email ලිපිනය" required autocomplete="email" />
-                <input type="password" id="lpSignupPassword" class="zenith-auth-input" placeholder="නව මුරපදය (අවම අකුරු 6ක්)" minlength="6" required autocomplete="new-password" />
-                <label for="lpSignupGrade" style="font-size: 11px; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 4px;">ශ්‍රේණිය තෝරන්න (Select Grade):</label>
-                <select id="lpSignupGrade" class="zenith-auth-input">
-                  <option value="6">Grade 6 (6 ශ්‍රේණිය)</option>
-                  <option value="7">Grade 7 (7 ශ්‍රේණිය)</option>
-                  <option value="8">Grade 8 (8 ශ්‍රේණිය)</option>
-                  <option value="9" selected>Grade 9 (9 ශ්‍රේණිය)</option>
-                  <option value="10">Grade 10 (10 ශ්‍රේණිය - O/L)</option>
-                  <option value="11">Grade 11 (11 ශ්‍රේණිය - O/L Exam)</option>
-                </select>
-                <div id="lpSignupError" style="display: none; color: #ef4444; font-size: 11.5px; margin-bottom: 10px; font-weight: 600;"></div>
-                <button type="submit" class="zenith-auth-submit" id="btnLpSignupSubmit">✨ ගිණුම සාදා පිවිසෙන්න</button>
-              </form>
-            </div>
-
-            <div style="margin-top: 18px; text-align: center;">
-              <button type="button" onclick="showDashboardView()" style="background: none; border: none; color: #6366f1; font-size: 12.5px; font-weight: 700; cursor: pointer; text-decoration: underline;">
-                ලොග් නොවී අමුත්තෙකු ලෙස Dashboard එක බලන්න (Guest Mode) →
+              <!-- One-Click Google Auth -->
+              <button type="button" class="zenith-lp-google-btn" onclick="ZenithAuth.signInWithGoogle()">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.15z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.25 21.37 7.34 24 12 24z"/>
+                  <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12c0 2.02.46 3.84 1.26 5.42l4.02-3.15z"/>
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.25 2.63 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                </svg>
+                <span>ගූගල් ගිණුමෙන් ඇතුල් වන්න (Continue with Google)</span>
               </button>
+
+              <div class="zenith-lp-divider">
+                <span>හෝ EMAIL මඟින්</span>
+              </div>
+
+              <!-- Login Form -->
+              <div id="lpAuthPane_login">
+                <form onsubmit="handleLandingEmailLogin(event)">
+                  <label class="sr-only" for="lpLoginEmail">Email Address</label>
+                  <input type="email" id="lpLoginEmail" class="zenith-lp-input" placeholder="📧 Email ලිපිනය (e.g. student@gmail.com)" required autocomplete="username" />
+                  <label class="sr-only" for="lpLoginPassword">Password</label>
+                  <div style="position:relative;">
+                    <input type="password" id="lpLoginPassword" class="zenith-lp-input" placeholder="🔒 මුරපදය (Password)" required autocomplete="current-password" style="padding-right:38px;" />
+                    <button type="button" onclick="togglePasswordVisibility('lpLoginPassword', this)" style="position:absolute; right:10px; top:8px; background:none; border:none; color:#849495; cursor:pointer; font-size:14px;">👁️</button>
+                  </div>
+                  <div id="lpLoginError" style="display:none; color:#ff4757; font-size:11px; margin-bottom:10px; font-weight:600;"></div>
+                  <button type="submit" class="zenith-lp-submit-btn" id="btnLpLoginSubmit">
+                    Launch Mission Control 🚀 (මෙහෙයුම අරඹන්න)
+                  </button>
+                </form>
+              </div>
+
+              <!-- Sign Up Form -->
+              <div id="lpAuthPane_signup" style="display:none;">
+                <form onsubmit="handleLandingEmailSignUp(event)">
+                  <label class="sr-only" for="lpSignupName">Full Name</label>
+                  <input type="text" id="lpSignupName" class="zenith-lp-input" placeholder="👤 ශිෂ්‍යයාගේ නම (Full Name)" required autocomplete="name" />
+                  <label class="sr-only" for="lpSignupEmail">Email Address</label>
+                  <input type="email" id="lpSignupEmail" class="zenith-lp-input" placeholder="📧 Email ලිපිනය" required autocomplete="email" />
+                  <label class="sr-only" for="lpSignupPassword">Password</label>
+                  <input type="password" id="lpSignupPassword" class="zenith-lp-input" placeholder="🔒 නව මුරපදය (අවම අකුරු 6ක්)" minlength="6" required autocomplete="new-password" />
+
+                  <div style="font-size:11px; font-weight:700; color:#849495; margin-bottom:6px;">
+                    TARGET GRADE SPHERE:
+                  </div>
+                  <div class="zenith-lp-grade-chips">
+                    <button type="button" class="zenith-lp-chip" onclick="selectLpGrade(6, this)">Gr. 6</button>
+                    <button type="button" class="zenith-lp-chip" onclick="selectLpGrade(7, this)">Gr. 7</button>
+                    <button type="button" class="zenith-lp-chip" onclick="selectLpGrade(8, this)">Gr. 8</button>
+                    <button type="button" class="zenith-lp-chip" onclick="selectLpGrade(9, this)">Gr. 9</button>
+                    <button type="button" class="zenith-lp-chip" onclick="selectLpGrade(10, this)">Gr. 10</button>
+                    <button type="button" class="zenith-lp-chip active" onclick="selectLpGrade(11, this)">Gr. 11</button>
+                  </div>
+                  <input type="hidden" id="lpSignupGrade" value="11" />
+
+                  <div id="lpSignupError" style="display:none; color:#ff4757; font-size:11px; margin-bottom:10px; font-weight:600;"></div>
+                  <button type="submit" class="zenith-lp-submit-btn" id="btnLpSignupSubmit">
+                    Create Cadet Account ✨ (ගිණුම සාදා පිවිසෙන්න)
+                  </button>
+                </form>
+              </div>
+
+              <!-- Trust & Security Badges -->
+              <div class="zenith-lp-auth-badges">
+                <span>🛡️ NIE Curriculum Aligned (ජ.අ.ආ.)</span>
+                <span>🔒 256-Bit Encrypted Telemetry</span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Landing Footer -->
-      <footer class="landing-footer">
-        <div>Zenith O-Level • Smart Study Engine — Grade 6 to Grade 11 National Curriculum</div>
-        <div style="margin-top: 4px; font-size: 11px; color: #94a3b8;">Standalone PWA Edition • krishsoft</div>
-      </footer>
+        <!-- Section 2: Interactive Grade & Syllabus Matrix Strip -->
+        <section class="zenith-lp-section" id="lp-syllabus">
+          <div class="zenith-lp-sec-header">
+            <div>
+              <div style="font-size:11px; font-weight:700; color:#00f0ff; letter-spacing:0.5px; margin-bottom:4px;">
+                📊 NATIONAL CURRICULUM RADAR
+              </div>
+              <h2 class="zenith-lp-sec-title">Syllabus Matrix &amp; Competency Tree</h2>
+              <p class="zenith-lp-sec-sub">Select your academic stage to inspect granular unit telemetry and exam readiness.</p>
+            </div>
+            <div class="zenith-lp-grade-filter">
+              <button type="button" class="zenith-lp-filter-btn" onclick="filterLpSyllabusPreview(6, this)">Grade 6</button>
+              <button type="button" class="zenith-lp-filter-btn" onclick="filterLpSyllabusPreview(7, this)">Grade 7</button>
+              <button type="button" class="zenith-lp-filter-btn" onclick="filterLpSyllabusPreview(8, this)">Grade 8</button>
+              <button type="button" class="zenith-lp-filter-btn" onclick="filterLpSyllabusPreview(9, this)">Grade 9</button>
+              <button type="button" class="zenith-lp-filter-btn" onclick="filterLpSyllabusPreview(10, this)">Grade 10</button>
+              <button type="button" class="zenith-lp-filter-btn active" onclick="filterLpSyllabusPreview(11, this)">Grade 11 (O/L)</button>
+            </div>
+          </div>
+
+          <!-- Live Subject Preview Cards Grid -->
+          <div class="zenith-lp-matrix-grid" id="lpSubjectPreviewGrid">
+            <!-- Card 1: Mathematics -->
+            <div class="zenith-lp-matrix-card">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:18px;">📐</span>
+                  <span style="font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; background:rgba(0,240,255,0.12); color:#00f0ff;">Part I &amp; II</span>
+                </div>
+                <div style="font-size:15px; font-weight:800; color:#dbfcff;">ගණිතය</div>
+                <div style="font-size:11px; color:#849495;">Mathematics</div>
+                <div style="margin-top:14px;">
+                  <div style="display:flex; justify-content:space-between; font-size:11px; color:#849495; margin-bottom:4px;">
+                    <span>32 Units</span>
+                    <span style="color:#00f0ff; font-weight:700;">28 Verified</span>
+                  </div>
+                  <div style="height:5px; border-radius:999px; background:#1c1f2a; overflow:hidden;">
+                    <div style="width:87.5%; height:100%; background:#00f0ff; border-radius:999px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:14px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:10px; color:#849495;">
+                <span>Past Papers: 15 Yrs</span>
+                <span style="color:#00f0ff; font-weight:700;">88% Index</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Science -->
+            <div class="zenith-lp-matrix-card">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:18px;">🔬</span>
+                  <span style="font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; background:rgba(0,240,255,0.12); color:#00f0ff;">MCQ + Essay</span>
+                </div>
+                <div style="font-size:15px; font-weight:800; color:#dbfcff;">විද්‍යාව</div>
+                <div style="font-size:11px; color:#849495;">Science &amp; Tech</div>
+                <div style="margin-top:14px;">
+                  <div style="display:flex; justify-content:space-between; font-size:11px; color:#849495; margin-bottom:4px;">
+                    <span>20 Units</span>
+                    <span style="color:#00f0ff; font-weight:700;">18 Verified</span>
+                  </div>
+                  <div style="height:5px; border-radius:999px; background:#1c1f2a; overflow:hidden;">
+                    <div style="width:90%; height:100%; background:#00f0ff; border-radius:999px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:14px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:10px; color:#849495;">
+                <span>Model Practicals: 12</span>
+                <span style="color:#00f0ff; font-weight:700;">92% Index</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Sinhala Literature -->
+            <div class="zenith-lp-matrix-card">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:18px;">📘</span>
+                  <span style="font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; background:rgba(168,85,247,0.15); color:#a855f7;">භාෂාව &amp; සාහිත්‍යය</span>
+                </div>
+                <div style="font-size:15px; font-weight:800; color:#dbfcff;">සිංහල සාහිත්‍යය</div>
+                <div style="font-size:11px; color:#849495;">Sinhala Literature</div>
+                <div style="margin-top:14px;">
+                  <div style="display:flex; justify-content:space-between; font-size:11px; color:#849495; margin-bottom:4px;">
+                    <span>24 Units</span>
+                    <span style="color:#a855f7; font-weight:700;">20 Verified</span>
+                  </div>
+                  <div style="height:5px; border-radius:999px; background:#1c1f2a; overflow:hidden;">
+                    <div style="width:83%; height:100%; background:#a855f7; border-radius:999px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:14px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:10px; color:#849495;">
+                <span>විචාර සටහන්: Complete</span>
+                <span style="color:#a855f7; font-weight:700;">84% Index</span>
+              </div>
+            </div>
+
+            <!-- Card 4: ICT -->
+            <div class="zenith-lp-matrix-card">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:18px;">💻</span>
+                  <span style="font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; background:rgba(0,240,255,0.12); color:#00f0ff;">Basket Subject</span>
+                </div>
+                <div style="font-size:15px; font-weight:800; color:#dbfcff;">තොරතුරු තාක්ෂණය</div>
+                <div style="font-size:11px; color:#849495;">ICT Architecture</div>
+                <div style="margin-top:14px;">
+                  <div style="display:flex; justify-content:space-between; font-size:11px; color:#849495; margin-bottom:4px;">
+                    <span>14 Units</span>
+                    <span style="color:#00f0ff; font-weight:700;">13 Verified</span>
+                  </div>
+                  <div style="height:5px; border-radius:999px; background:#1c1f2a; overflow:hidden;">
+                    <div style="width:93%; height:100%; background:#00f0ff; border-radius:999px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:14px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:10px; color:#849495;">
+                <span>Pascal Code Drills</span>
+                <span style="color:#00f0ff; font-weight:700;">96% Index</span>
+              </div>
+            </div>
+
+            <!-- Card 5: History -->
+            <div class="zenith-lp-matrix-card">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:18px;">🏛️</span>
+                  <span style="font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; background:rgba(16,185,129,0.15); color:#10b981;">සිතියම් ලකුණු</span>
+                </div>
+                <div style="font-size:15px; font-weight:800; color:#dbfcff;">ඉතිහාසය</div>
+                <div style="font-size:11px; color:#849495;">Sri Lanka &amp; World History</div>
+                <div style="margin-top:14px;">
+                  <div style="display:flex; justify-content:space-between; font-size:11px; color:#849495; margin-bottom:4px;">
+                    <span>16 Units</span>
+                    <span style="color:#10b981; font-weight:700;">14 Verified</span>
+                  </div>
+                  <div style="height:5px; border-radius:999px; background:#1c1f2a; overflow:hidden;">
+                    <div style="width:87.5%; height:100%; background:#10b981; border-radius:999px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:14px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:10px; color:#849495;">
+                <span>Map Coordinates: 100%</span>
+                <span style="color:#10b981; font-weight:700;">89% Index</span>
+              </div>
+            </div>
+
+            <!-- Card 6: English -->
+            <div class="zenith-lp-matrix-card">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:18px;">🔤</span>
+                  <span style="font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; background:rgba(0,240,255,0.12); color:#00f0ff;">Grammar + Essay</span>
+                </div>
+                <div style="font-size:15px; font-weight:800; color:#dbfcff;">English Language</div>
+                <div style="font-size:11px; color:#849495;">ඉංග්‍රීසි භාෂාව</div>
+                <div style="margin-top:14px;">
+                  <div style="display:flex; justify-content:space-between; font-size:11px; color:#849495; margin-bottom:4px;">
+                    <span>18 Units</span>
+                    <span style="color:#00f0ff; font-weight:700;">16 Verified</span>
+                  </div>
+                  <div style="height:5px; border-radius:999px; background:#1c1f2a; overflow:hidden;">
+                    <div style="width:88.8%; height:100%; background:#00f0ff; border-radius:999px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top:14px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:10px; color:#849495;">
+                <span>Essay Vault: 40 Models</span>
+                <span style="color:#00f0ff; font-weight:700;">91% Index</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Four Algorithmic Pillars (Bento Grid) -->
+        <section class="zenith-lp-section" id="lp-telemetry">
+          <div style="text-align:center; max-width:700px; margin:0 auto 28px;">
+            <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 14px; border-radius:999px; background:rgba(0,240,255,0.1); border:1px solid rgba(0,240,255,0.3); color:#00f0ff; font-size:10.5px; font-weight:700; margin-bottom:8px;">
+              <span>⚡ INTEGRATED SYSTEM ARCHITECTURE</span>
+            </div>
+            <h2 class="zenith-lp-sec-title" style="font-size:26px;">විභාග ජයග්‍රහණයේ විද්‍යාත්මක පදනම</h2>
+            <p class="zenith-lp-sec-sub">Four Algorithmic Pillars Powering Your Distinctions</p>
+          </div>
+
+          <div class="zenith-lp-bento">
+            <!-- Pillar 1 (Span 8) -->
+            <div class="zenith-lp-pillar-card zenith-lp-bento-8">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span style="font-size:24px;">🌳</span>
+                <span style="font-size:10px; color:#00f0ff; font-weight:700; letter-spacing:0.5px;">PILLAR 01 • CURRICULUM TREE</span>
+              </div>
+              <h3 style="font-size:18px; font-weight:800; color:#dbfcff; margin:0 0 4px;">
+                Unit Mastery &amp; Competency Matrix (විෂය ඒකක ප්‍රගති පාලනය)
+              </h3>
+              <p style="font-size:13px; color:#b9cacb; line-height:1.6; margin-bottom:18px;">
+                ජාතික අධ්‍යාපන ආයතනයේ (NIE) විෂය නිර්දේශයට 100% අනුකූලව සෑම පාඩම් ඒකකයක්ම පියවරෙන් පියවර ලකුණු කරගන්න. විෂය කරුණු එකක්වත් මඟ නොහැරෙන බවට තහවුරු කරගන්න.
+              </p>
+              <div style="background:rgba(10,14,24,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; font-family:'Space Grotesk',monospace; font-size:11.5px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:#dfe2f1;">✓ Gr. 11 Science • Unit 07: ජීවීන්ගේ පරිණාමය සහ ප්‍රවේණිය</span>
+                  <span style="color:#10b981; font-weight:700;">100% MASTERED</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:#dfe2f1;">⏳ Gr. 11 Maths • Unit 12: ත්‍රිකෝණමිතික අනුපාත</span>
+                  <span style="color:#00f0ff; font-weight:700;">78% IN FLIGHT</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span style="color:#849495;">🔒 Gr. 11 History • Unit 05: 1818 සහ 1848 නිදහස් අරගල</span>
+                  <span style="color:#849495; font-weight:700;">QUEUED</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillar 2 (Span 4, id="lp-repetition") -->
+            <div class="zenith-lp-pillar-card zenith-lp-bento-4" id="lp-repetition" style="border-color:rgba(168,85,247,0.35);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span style="font-size:24px;">🧠</span>
+                <span style="font-size:10px; color:#a855f7; font-weight:700; letter-spacing:0.5px;">PILLAR 02 • RETENTION</span>
+              </div>
+              <h3 style="font-size:17px; font-weight:800; color:#dbfcff; margin:0 0 4px;">
+                Spaced Repetition Protocol <br><span style="color:#a855f7;">මතක ක්ෂයවීම වැළැක්වීම</span>
+              </h3>
+              <p style="font-size:12.5px; color:#b9cacb; line-height:1.6; margin-bottom:14px;">
+                Ebbinghaus මතක වක්‍රය අනුව 1, 3, 7, 14 දිනවලදී ස්වයංක්‍රීයව ලැබෙන මතක් කිරීම් සමඟ පාඩම් කළ කරුණු ස්ථිර මතකයට ඇතුළත් කරන්න.
+              </p>
+              <div style="background:rgba(10,14,24,0.8); border:1px solid rgba(168,85,247,0.3); border-radius:12px; padding:12px; text-align:center;">
+                <div style="font-size:10px; color:#849495; font-weight:700;">MEMORY DECAY PREVENTION RATE</div>
+                <div style="font-family:'Space Grotesk',monospace; font-size:28px; font-weight:800; color:#a855f7;">+94.6%</div>
+                <div style="font-size:10.5px; color:#10b981; font-weight:600; margin-top:2px;">⚡ Active Flashcard Queue: 42 Today</div>
+              </div>
+            </div>
+
+            <!-- Pillar 3 (Span 4, id="lp-papers") -->
+            <div class="zenith-lp-pillar-card zenith-lp-bento-4" id="lp-papers" style="border-color:rgba(255,255,255,0.12);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span style="font-size:24px;">📝</span>
+                <span style="font-size:10px; color:#00f0ff; font-weight:700; letter-spacing:0.5px;">PILLAR 03 • DRILLS</span>
+              </div>
+              <h3 style="font-size:17px; font-weight:800; color:#dbfcff; margin:0 0 4px;">
+                2-Tier Past Paper Vault <br><span style="color:#00f0ff;">පසුගිය විභාග පරිලෝකනය</span>
+              </h3>
+              <p style="font-size:12.5px; color:#b9cacb; line-height:1.6; margin-bottom:14px;">
+                වසර 15ක සාමාන්‍ය පෙළ පසුගිය විභාග ප්‍රශ්න පත්‍ර සහ බස්නාහිර, මධ්‍යම, දකුණු පළාත් වාර විභාග ලකුණු ලබාදීමේ නිල ක්‍රමවේද (Marking Schemes) සමඟ පුහුණු වන්න.
+              </p>
+              <div style="background:rgba(10,14,24,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:11.5px; color:#849495;">Archived Exams:</span>
+                <span style="font-family:'Space Grotesk',monospace; font-size:16px; font-weight:800; color:#00f0ff;">1,420+ Papers</span>
+              </div>
+            </div>
+
+            <!-- Pillar 4 (Span 8) -->
+            <div class="zenith-lp-pillar-card zenith-lp-bento-8" style="border-color:rgba(16,185,129,0.35);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span style="font-size:24px;">🎧</span>
+                <span style="font-size:10px; color:#10b981; font-weight:700; letter-spacing:0.5px;">PILLAR 04 • NEURO-FOCUS</span>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:center;">
+                <div>
+                  <h3 style="font-size:18px; font-weight:800; color:#dbfcff; margin:0 0 4px;">
+                    Focus Cockpit &amp; Binaural Telemetry <br><span style="color:#10b981;">ගැඹුරු සමාධි අධ්‍යයන කාල ගණකය</span>
+                  </h3>
+                  <p style="font-size:13px; color:#b9cacb; line-height:1.6;">
+                    අවධානය එකඟ කරවන 50/10 විරාම ක්‍රමය සහ ස්වභාවික Brown Noise ශබ්ද, Screen Wake Lock සහිතව ඔබේ පාඩම් කාලය වාර්තා කරගන්න.
+                  </p>
+                </div>
+                <div style="background:rgba(10,14,24,0.8); border:1px solid rgba(16,185,129,0.3); border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:center; gap:16px;">
+                  <div style="width:60px; height:60px; border-radius:50%; border:3px solid #10b981; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                    <span style="font-family:'Space Grotesk',monospace; font-size:14px; font-weight:800; color:#dbfcff;">42:15</span>
+                    <span style="font-size:7px; color:#10b981; font-weight:700;">ALPHA</span>
+                  </div>
+                  <div>
+                    <div style="font-size:12px; font-weight:700; color:#dbfcff;">Active Sprint: Orbit 3</div>
+                    <div style="font-size:10px; color:#849495;">Audio: Cosmic Deep Alpha</div>
+                    <div style="font-size:10px; color:#10b981; font-family:'Space Grotesk',monospace; font-weight:700; margin-top:2px;">🔊 12.4 Hz Carrier Wave</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Real Cadet Results & Score Velocity Telemetry -->
+        <section class="zenith-lp-section" id="lp-ranks">
+          <div class="zenith-lp-results-grid">
+            <!-- Student Testimonials -->
+            <div>
+              <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 14px; border-radius:999px; background:rgba(0,240,255,0.1); border:1px solid rgba(0,240,255,0.3); color:#00f0ff; font-size:10.5px; font-weight:700; margin-bottom:10px;">
+                <span>🏆 PROVEN NATIONAL RESULTS</span>
+              </div>
+              <h2 class="zenith-lp-sec-title" style="font-size:24px; margin-bottom:12px;">From Provincial Drills to Island Ranks</h2>
+              <p class="zenith-lp-sec-sub" style="margin-bottom:20px;">
+                See how top-performing students across Sri Lanka converted exam anxiety into 9 'A' distinctions using ZENITH.
+              </p>
+
+              <div class="zenith-lp-test-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:#1c1f2a; border:1px solid rgba(0,240,255,0.4); display:flex; align-items:center; justify-content:center; color:#00f0ff; font-weight:800; font-size:11px;">DK</div>
+                    <div>
+                      <div style="font-size:13px; font-weight:800; color:#dbfcff;">Danuka Karunaratne</div>
+                      <div style="font-size:10px; color:#849495;">Ananda College, Colombo • Island Rank 14 (O/L)</div>
+                    </div>
+                  </div>
+                  <span style="font-size:10.5px; font-weight:800; padding:2px 8px; border-radius:999px; background:rgba(0,240,255,0.15); color:#00f0ff;">9 'A's</span>
+                </div>
+                <div style="font-size:12px; color:#b9cacb; font-style:italic; line-height:1.5;">
+                  "ZENITH's spaced repetition protocol was the turning point. In term tests my Science score was stuck at 68%. After tracking competencies unit by unit, I achieved 96% in the national O/L exam."
+                </div>
+              </div>
+
+              <div class="zenith-lp-test-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="width:32px; height:32px; border-radius:50%; background:#1c1f2a; border:1px solid rgba(168,85,247,0.4); display:flex; align-items:center; justify-content:center; color:#a855f7; font-weight:800; font-size:11px;">SW</div>
+                    <div>
+                      <div style="font-size:13px; font-weight:800; color:#dbfcff;">Shenali Wickramasinghe</div>
+                      <div style="font-size:10px; color:#849495;">Visakha Vidyalaya, Colombo • Provincial Rank 3</div>
+                    </div>
+                  </div>
+                  <span style="font-size:10.5px; font-weight:800; padding:2px 8px; border-radius:999px; background:rgba(168,85,247,0.15); color:#a855f7;">9 'A's</span>
+                </div>
+                <div style="font-size:12px; color:#b9cacb; font-style:italic; line-height:1.5;">
+                  "Having all 9 subject marking schemes in one terminal eliminated weeks of searching for past papers. The focus cockpit kept my study sprints strictly on schedule."
+                </div>
+              </div>
+            </div>
+
+            <!-- Score Velocity Telemetry -->
+            <div style="background:rgba(15,23,42,0.85); border:1px solid rgba(0,240,255,0.3); border-radius:18px; padding:22px; backdrop-filter:blur(16px);">
+              <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:16px;">
+                <div style="font-size:14px; font-weight:800; color:#dbfcff;">📈 Score Velocity Telemetry</div>
+                <span style="font-size:10px; font-weight:700; color:#10b981; padding:2px 8px; border-radius:999px; background:rgba(16,185,129,0.12);">PROVINCIAL LEADERBOARD</span>
+              </div>
+
+              <!-- Velocity Bars -->
+              <div style="margin-bottom:14px;">
+                <div style="display:flex; justify-content:space-between; font-size:11px; color:#849495; margin-bottom:4px;">
+                  <span>Baseline (1st Term Diagnostic)</span>
+                  <span style="font-family:'Space Grotesk',monospace;">65.2% (Grade C/B)</span>
+                </div>
+                <div style="height:6px; border-radius:999px; background:#1c1f2a; overflow:hidden;">
+                  <div style="width:65.2%; height:100%; background:#849495; border-radius:999px;"></div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:14px;">
+                <div style="display:flex; justify-content:space-between; font-size:11px; color:#849495; margin-bottom:4px;">
+                  <span>Midway (Spaced Repetition Phase)</span>
+                  <span style="font-family:'Space Grotesk',monospace; color:#a855f7;">79.8% (Grade A Baseline)</span>
+                </div>
+                <div style="height:6px; border-radius:999px; background:#1c1f2a; overflow:hidden;">
+                  <div style="width:79.8%; height:100%; background:#a855f7; border-radius:999px;"></div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:18px;">
+                <div style="display:flex; justify-content:space-between; font-size:11px; color:#dbfcff; font-weight:700; margin-bottom:4px;">
+                  <span>Final Projection (ZENITH Mastered Orbit)</span>
+                  <span style="font-family:'Space Grotesk',monospace; color:#00f0ff;">92.4% (Island Top 50)</span>
+                </div>
+                <div style="height:8px; border-radius:999px; background:#1c1f2a; overflow:hidden; border:1px solid rgba(0,240,255,0.4);">
+                  <div style="width:92.4%; height:100%; background:linear-gradient(90deg, #00f0ff, #a855f7); border-radius:999px; box-shadow:0 0 10px #00f0ff;"></div>
+                </div>
+              </div>
+
+              <!-- Mini Leaderboard -->
+              <div style="font-size:10px; color:#849495; font-weight:700; letter-spacing:0.5px; margin-bottom:8px;">SIMULATED ALL-ISLAND MOCK RANK</div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="display:flex; justify-content:space-between; padding:6px 10px; border-radius:8px; background:rgba(10,14,24,0.6); font-size:11.5px;">
+                  <span style="color:#dfe2f1;">#01 Mahinda College, Galle</span>
+                  <span style="font-family:'Space Grotesk',monospace; color:#10b981; font-weight:700;">96.8% Avg</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding:6px 10px; border-radius:8px; background:rgba(10,14,24,0.6); font-size:11.5px;">
+                  <span style="color:#dfe2f1;">#02 Devi Balika Vidyalaya, Colombo</span>
+                  <span style="font-family:'Space Grotesk',monospace; color:#10b981; font-weight:700;">95.4% Avg</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding:6px 10px; border-radius:8px; background:rgba(0,240,255,0.12); border:1px solid rgba(0,240,255,0.3); font-size:11.5px;">
+                  <span style="color:#00f0ff; font-weight:700;">#YOU Your Cadet Orbital Trajectory</span>
+                  <span style="font-family:'Space Grotesk',monospace; color:#00f0ff; font-weight:700;">92.4% Target</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: High-Conversion Mission Launch Banner -->
+        <section class="zenith-lp-cta-banner">
+          <div style="max-w-xl; margin:0 auto;">
+            <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 14px; border-radius:999px; background:rgba(0,240,255,0.1); border:1px solid rgba(0,240,255,0.3); color:#00f0ff; font-size:10.5px; font-weight:700; margin-bottom:12px;">
+              <span>🚀 EXPEDITION READY</span>
+            </div>
+            <h2 style="font-size:28px; font-weight:800; color:#ffffff; margin:0 0 10px;">
+              Begin Your Orbit to 9 'A's Today.
+            </h2>
+            <p style="font-size:14px; color:#b9cacb; max-width:600px; margin:0 auto 20px; line-height:1.6;">
+              Join thousands of Sri Lankan secondary students tracking every competency with military-grade precision. Zero setup fee for Grade 6–11 syllabus preview.
+            </p>
+            <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+              <button type="button" class="zenith-lp-cta-btn" onclick="scrollToLandingAuth()" style="padding:12px 28px; font-size:14px;">
+                <span>Initialize Cadet Account 🚀</span>
+              </button>
+              <a href="#lp-syllabus" class="zenith-lp-link" style="padding:12px 20px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); font-size:13px;">
+                Explore Syllabus Radar
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Landing Footer -->
+        <footer style="padding:24px 0 12px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:11.5px; color:#849495;">
+          <div>
+            <strong style="color:#dbfcff;">ZENITH STUDY OS</strong> • © 2025 Designed for Sri Lankan Secondary Students (Grades 6–11 O/L).
+          </div>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <a href="#lp-syllabus" class="zenith-lp-link" style="font-size:11.5px;">Syllabus Matrix</a>
+            <a href="#lp-papers" class="zenith-lp-link" style="font-size:11.5px;">Past Paper Vault</a>
+            <a href="#lp-repetition" class="zenith-lp-link" style="font-size:11.5px;">Spaced Repetition</a>
+            <a href="#lp-ranks" class="zenith-lp-link" style="font-size:11.5px;">Provincial Analytics</a>
+          </div>
+        </footer>
+      </div>
     </div>
 
     <!-- ========================================================================= -->
@@ -5893,15 +6670,11 @@
           🏠 About
         </button>
 
-        <label for="zenithGradeSelector" class="sr-only" style="display:none;">Select Grade</label>
-        <select id="zenithGradeSelector" class="zenith-grade-picker" onchange="onZenithGradeChange(this.value)" title="ශ්‍රේණිය තෝරන්න (Select Grade)">
-          <option value="6">Grade 6 (6 ශ්‍රේණිය)</option>
-          <option value="7">Grade 7 (7 ශ්‍රේණිය)</option>
-          <option value="8">Grade 8 (8 ශ්‍රේණිය)</option>
-          <option value="9" selected>Grade 9 (9 ශ්‍රේණිය)</option>
-          <option value="10">Grade 10 (10 ශ්‍රේණිය - O/L)</option>
-          <option value="11">Grade 11 (11 ශ්‍රේණිය - O/L Exam)</option>
-        </select>
+        <button type="button" class="btn-academic-settings-pill" onclick="openAcademicSettingsModal()" title="ශ්‍රේණිය සහ විෂයයන් වෙනස් කිරීමට ක්ලික් කරන්න (Change Grade &amp; Subjects in Settings)">
+          <span>📚</span>
+          <span id="zenithTopActiveGrade">Grade 9</span>
+          <span style="font-size:11px; opacity:0.7;">⚙️</span>
+        </button>
 
         <div id="zenithUserStatusBadge" class="zenith-user-chip guest" onclick="ZenithAuth.showAuthModal()" title="පරිශීලක ගිණුම (User Profile & Account)">
           <img id="zenithUserAvatar" class="zenith-user-avatar" style="display:none;" alt="User Avatar" />
@@ -7366,6 +8139,9 @@
             <button type="button" class="settings-tab-btn active" id="btnSettingsTabGeneral" onclick="switchSettingsTab('general')">
               ⚙️ <span id="lblTabGeneral" data-i18n="settingsTabGeneral">සැකසුම් (Settings)</span>
             </button>
+            <button type="button" class="settings-tab-btn" id="btnSettingsTabAcademic" onclick="switchSettingsTab('academic')">
+              📚 <span id="lblTabAcademic">ශ්‍රේණිය සහ විෂයයන් (Grade &amp; Subjects)</span>
+            </button>
             <button type="button" class="settings-tab-btn" id="btnSettingsTabLog" onclick="switchSettingsTab('log')">
               📜 <span id="lblTabLog" data-i18n="settingsTabLog">Activity Log &amp; Undo</span>
               <span class="log-count-pill" id="settingsLogCount">0</span>
@@ -7582,6 +8358,51 @@
               <div id="recentSessionsList" style="display: flex; flex-direction: column; gap: 8px; max-height: 280px; overflow-y: auto;">
                 <div style="text-align: center; color: #a4b0be; font-size: 11px; padding: 16px;">සැසි පූරණය වෙමින් පවතී... ⏳</div>
               </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: Academic Grade & Subjects Settings -->
+          <div id="settingsTabAcademic" class="settings-tab-content" style="display: none;">
+            <!-- 1. Grade Selector -->
+            <div class="settings-section">
+              <label style="display: block; font-size: 12px; font-weight: 800; margin-bottom: 8px; color: var(--text-main);" class="settings-title-label">
+                🎓 ශ්‍රේණිය තෝරන්න (Select Grade):
+              </label>
+              <div id="academicGradeGrid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px;">
+                <button type="button" class="academic-grade-btn" id="btnGrade_6" onclick="onAcademicGradeSelect(6)">6 ශ්‍රේණිය<br><span style="font-size: 9.5px; opacity:0.8;">Grade 6</span></button>
+                <button type="button" class="academic-grade-btn" id="btnGrade_7" onclick="onAcademicGradeSelect(7)">7 ශ්‍රේණිය<br><span style="font-size: 9.5px; opacity:0.8;">Grade 7</span></button>
+                <button type="button" class="academic-grade-btn" id="btnGrade_8" onclick="onAcademicGradeSelect(8)">8 ශ්‍රේණිය<br><span style="font-size: 9.5px; opacity:0.8;">Grade 8</span></button>
+                <button type="button" class="academic-grade-btn" id="btnGrade_9" onclick="onAcademicGradeSelect(9)">9 ශ්‍රේණිය<br><span style="font-size: 9.5px; opacity:0.8;">Grade 9</span></button>
+                <button type="button" class="academic-grade-btn" id="btnGrade_10" onclick="onAcademicGradeSelect(10)">10 ශ්‍රේණිය<br><span style="font-size: 9.5px; opacity:0.8;">Grade 10 (O/L)</span></button>
+                <button type="button" class="academic-grade-btn" id="btnGrade_11" onclick="onAcademicGradeSelect(11)">11 ශ්‍රේණිය<br><span style="font-size: 9.5px; opacity:0.8;">Grade 11 (O/L Exam)</span></button>
+              </div>
+              <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.4; margin: 0 0 14px 0;">
+                ශ්‍රේණිය අනුව ජාතික විෂය නිර්දේශයේ (NIE) නිල විෂයයන් පහතින් සකස් වේ. ඔබේ පන්ති කාමරයේ හදාරන විෂයයන් සක්‍රිය කරගන්න.
+              </p>
+            </div>
+
+            <!-- 2. Dynamic Subject Selector -->
+            <div class="settings-section">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <label style="font-size: 12px; font-weight: 800; margin: 0; color: var(--text-main);" class="settings-title-label">
+                  📚 විෂයයන් තෝරාගැනීම (Subject Selector):
+                </label>
+                <button type="button" onclick="resetDefaultAcademicSubjects()" style="background: none; border: none; color: #6366f1; font-size: 11px; font-weight: 700; cursor: pointer;">
+                  🔄 Reset Defaults
+                </button>
+              </div>
+
+              <!-- Subject list container -->
+              <div id="academicSubjectsList" style="display: flex; flex-direction: column; gap: 8px; max-height: 290px; overflow-y: auto; padding-right: 4px;">
+                <!-- Populated dynamically by renderAcademicSettings() -->
+              </div>
+            </div>
+
+            <!-- Save Action Button -->
+            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-color); display: flex; gap: 8px;">
+              <button type="button" class="btn-primary" onclick="saveAcademicSettings()" style="flex: 1; padding: 11px; border-radius: 10px; font-weight: 800; font-size: 12.5px; cursor: pointer; background: linear-gradient(135deg, #4f46e5, #06b6d4); color: #fff; border: none; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);">
+                💾 විෂයයන් සහ ශ්‍රේණිය සුරකින්න (Save Changes)
+              </button>
             </div>
           </div>
         </div>
@@ -15211,43 +16032,38 @@ window.supabaseClient = supabase;
       function switchSettingsTab(tab) {
         currentSettingsTab = tab;
         const btnGeneral = document.getElementById('btnSettingsTabGeneral');
+        const btnAcademic = document.getElementById('btnSettingsTabAcademic');
         const btnLog = document.getElementById('btnSettingsTabLog');
         const btnTimer = document.getElementById('btnSettingsTabTimer');
         const tabGeneral = document.getElementById('settingsTabGeneral');
+        const tabAcademic = document.getElementById('settingsTabAcademic');
         const tabLog = document.getElementById('settingsTabLog');
         const tabTimer = document.getElementById('settingsTabTimer');
 
-        if (tab === 'log') {
-          if (btnGeneral) btnGeneral.classList.remove('active');
-          if (btnLog) btnLog.classList.add('active');
-          if (btnTimer) btnTimer.classList.remove('active');
-          if (tabGeneral) tabGeneral.style.display = 'none';
-          if (tabLog) tabLog.style.display = 'block';
-          if (tabTimer) tabTimer.style.display = 'none';
+        [btnGeneral, btnAcademic, btnLog, btnTimer].forEach(b => { if (b) b.classList.remove('active'); });
+        [tabGeneral, tabAcademic, tabLog, tabTimer].forEach(t => { if (t) t.style.display = 'none'; });
 
+        if (tab === 'academic') {
+          if (btnAcademic) btnAcademic.classList.add('active');
+          if (tabAcademic) tabAcademic.style.display = 'block';
+          renderAcademicSettings();
+        } else if (tab === 'log') {
+          if (btnLog) btnLog.classList.add('active');
+          if (tabLog) tabLog.style.display = 'block';
           if (!globalActivityData || getAllActivityLogs().length === 0) {
             refreshActivityLogBtn();
           } else {
             renderActivityLog();
           }
         } else if (tab === 'timer') {
-          if (btnGeneral) btnGeneral.classList.remove('active');
-          if (btnLog) btnLog.classList.remove('active');
           if (btnTimer) btnTimer.classList.add('active');
-          if (tabGeneral) tabGeneral.style.display = 'none';
-          if (tabLog) tabLog.style.display = 'none';
           if (tabTimer) tabTimer.style.display = 'block';
-
           if (typeof renderRecentSessionsInSettings === 'function') {
             renderRecentSessionsInSettings();
           }
         } else {
           if (btnGeneral) btnGeneral.classList.add('active');
-          if (btnLog) btnLog.classList.remove('active');
-          if (btnTimer) btnTimer.classList.remove('active');
           if (tabGeneral) tabGeneral.style.display = 'block';
-          if (tabLog) tabLog.style.display = 'none';
-          if (tabTimer) tabTimer.style.display = 'none';
         }
       }
 
@@ -18815,9 +19631,8 @@ function openSidebarModal() {
     <div id="zenithAuthModal" class="zenith-auth-backdrop" onclick="if(event.target===this) ZenithAuth.hideAuthModal()">
       <div class="zenith-auth-dialog" onclick="event.stopPropagation()">
         <div class="zenith-auth-nav">
-          <button type="button" class="zenith-auth-tab active" id="authTabBtn_login" onclick="ZenithAuth.switchAuthTab('login')">🔑 Sign In</button>
-          <button type="button" class="zenith-auth-tab" id="authTabBtn_signup" onclick="ZenithAuth.switchAuthTab('signup')">✨ Create Account</button>
-          <button type="button" class="zenith-auth-tab" id="authTabBtn_guest" onclick="ZenithAuth.switchAuthTab('guest')">👤 Guest Mode</button>
+          <button type="button" class="zenith-auth-tab active" id="authTabBtn_login" onclick="ZenithAuth.switchAuthTab('login')">🔑 Sign In (පිවිසෙන්න)</button>
+          <button type="button" class="zenith-auth-tab" id="authTabBtn_signup" onclick="ZenithAuth.switchAuthTab('signup')">✨ Create Account (ලියාපදිංචිය)</button>
         </div>
 
         <div style="padding: 24px;">
@@ -18868,16 +19683,7 @@ function openSidebarModal() {
             </form>
           </div>
 
-          <!-- TAB: GUEST MODE -->
-          <div id="authPane_guest" style="display: none;">
-            <p style="font-size: 12.5px; color: #94a3b8; line-height: 1.5; margin-bottom: 14px;">
-              Guest Mode lets you use all study tracking features offline on this device. For multi-device cloud sync and performance backup, we recommend logging in with Google.
-            </p>
-            <input type="text" id="guestNameInput" class="zenith-auth-input" placeholder="Your Display Name (Default: Wosandi)" value="Wosandi" />
-            <button type="button" class="zenith-auth-submit" style="background:#475569;" onclick="handleGuestSubmit()">
-              👤 Continue as Guest
-            </button>
-          </div>
+
 
           <div style="text-align: center; margin-top: 14px;">
             <button type="button" onclick="ZenithAuth.hideAuthModal()" style="background: none; border: none; color: #94a3b8; font-size: 11.5px; cursor: pointer;">✕ Close Window</button>
@@ -18988,6 +19794,12 @@ function openSidebarModal() {
       }
 
       function showDashboardView() {
+        const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
+        if (!user || user.isGuest) {
+          // STRICT LOGIN GATE: Unauthenticated users are redirected to landing page
+          showLandingPage();
+          return;
+        }
         const lp = document.getElementById('zenithLandingPage');
         const dv = document.getElementById('zenithDashboardView');
         const nav = document.querySelector('.mobile-bottom-nav');
@@ -18999,19 +19811,273 @@ function openSidebarModal() {
         if (typeof refreshTelemetry === 'function') {
           refreshTelemetry();
         }
+        updateTopbarActiveGrade();
       }
 
       function checkInitialView() {
         const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
-        const pref = sessionStorage.getItem('zenith_current_view');
-        if (pref === 'dashboard') {
+        if (user && !user.isGuest) {
           showDashboardView();
-        } else if (user && !user.isGuest) {
-          showDashboardView();
-        } else if (pref === 'landing') {
-          showLandingPage();
         } else {
           showLandingPage();
+        }
+      }
+
+      function updateTopbarActiveGrade() {
+        const g = (typeof ZenithCurriculum !== 'undefined') ? ZenithCurriculum.getActiveGrade() : 9;
+        const topEl = document.getElementById('zenithTopActiveGrade');
+        if (topEl) topEl.innerText = `Grade ${g}`;
+        const badge = document.getElementById('zenithUserGradeBadge');
+        if (badge) badge.innerText = `Grade ${g}`;
+      }
+
+      function openAcademicSettingsModal() {
+        showSettingsModal();
+        switchSettingsTab('academic');
+      }
+
+      let currentAcademicEditingGrade = null;
+
+      function onAcademicGradeSelect(gradeNum) {
+        currentAcademicEditingGrade = Number(gradeNum);
+        renderAcademicSettings(currentAcademicEditingGrade);
+      }
+
+      function renderAcademicSettings(targetGrade) {
+        const activeGrade = targetGrade || currentAcademicEditingGrade || (typeof ZenithCurriculum !== 'undefined' ? ZenithCurriculum.getActiveGrade() : 9);
+        currentAcademicEditingGrade = activeGrade;
+
+        for (let g = 6; g <= 11; g++) {
+          const btn = document.getElementById(`btnGrade_${g}`);
+          if (btn) btn.classList.toggle('active', g === activeGrade);
+        }
+
+        const container = document.getElementById('academicSubjectsList');
+        if (!container) return;
+
+        const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
+        const uId = (user && !user.isGuest) ? user.id : null;
+        const currentActive = (typeof ZenithCurriculum !== 'undefined') ? ZenithCurriculum.getActiveSubjectsForUser(uId) : [];
+        const activeCodes = new Set(currentActive.map(s => s.code.toUpperCase()));
+
+        let html = '';
+
+        if (activeGrade <= 9) {
+          const all13 = [
+            { code: 'MATH', nameSi: 'ගණිතය', nameEn: 'Mathematics', icon: '📐' },
+            { code: 'SCI', nameSi: 'විද්‍යාව', nameEn: 'Science', icon: '🔬' },
+            { code: 'SIN', nameSi: 'සිංහල භාෂාව හා සාහිත්‍යය', nameEn: 'Sinhala Language', icon: '📘' },
+            { code: 'ENG', nameSi: 'ඉංග්‍රීසි භාෂාව', nameEn: 'English Language', icon: '🔤' },
+            { code: 'BUD', nameSi: 'බුද්ධ ධර්මය', nameEn: 'Buddhism', icon: '☸️' },
+            { code: 'HIST', nameSi: 'ඉතිහාසය', nameEn: 'History', icon: '🏛️' },
+            { code: 'GEO', nameSi: 'භූගෝල විද්‍යාව', nameEn: 'Geography', icon: '🌍' },
+            { code: 'CIV', nameSi: 'පුරවැසි අධ්‍යාපනය', nameEn: 'Civic Education', icon: '⚖️' },
+            { code: 'HLTH', nameSi: 'සෞඛ්‍ය හා ශාරීරික අධ්‍යාපනය', nameEn: 'Health & PE', icon: '🏃‍♀️' },
+            { code: 'ICT', nameSi: 'තොරතුරු තාක්ෂණය', nameEn: 'ICT', icon: '💻' },
+            { code: 'TAM', nameSi: 'දෙවන බස දෙමළ', nameEn: 'Tamil 2nd Lang', icon: '🗣️' },
+            { code: 'PTS', nameSi: 'ප්‍රායෝගික හා තාක්ෂණික කුසලතා', nameEn: 'Practical Skills', icon: '🛠️' },
+            { code: 'AES', nameSi: 'සෞන්දර්ය විෂයයන්', nameEn: 'Aesthetics', icon: '🎨' }
+          ];
+
+          all13.forEach(sub => {
+            const isChecked = activeCodes.size === 0 || activeCodes.has(sub.code.toUpperCase());
+            html += `
+              <label class="academic-subj-item" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 16px;">${sub.icon}</span>
+                  <div>
+                    <div style="font-size: 12px; font-weight: 700; color: var(--text-main);">${escapeHtml(sub.nameSi)}</div>
+                    <div style="font-size: 10px; color: var(--text-muted);">${escapeHtml(sub.nameEn)} (${sub.code})</div>
+                  </div>
+                </div>
+                <input type="checkbox" class="chk-academic-subj" data-code="${sub.code}" ${isChecked ? 'checked' : ''} style="width: 17px; height: 17px; accent-color: #6366f1; cursor: pointer;">
+              </label>
+            `;
+          });
+        } else {
+          const core6 = [
+            { code: 'MATH', nameSi: 'ගණිතය', nameEn: 'Mathematics', icon: '📐' },
+            { code: 'SCI', nameSi: 'විද්‍යාව', nameEn: 'Science', icon: '🔬' },
+            { code: 'SIN', nameSi: 'සිංහල භාෂාව හා සාහිත්‍යය', nameEn: 'Sinhala', icon: '📘' },
+            { code: 'ENG', nameSi: 'ඉංග්‍රීසි භාෂාව', nameEn: 'English', icon: '🔤' },
+            { code: 'BUD', nameSi: 'බුද්ධ ධර්මය', nameEn: 'Buddhism', icon: '☸️' },
+            { code: 'HIST', nameSi: 'ඉතිහාසය', nameEn: 'History', icon: '🏛️' }
+          ];
+
+          html += `
+            <div style="font-size: 11px; font-weight: 800; color: #6366f1; text-transform: uppercase; margin-bottom: 4px;">
+              ⭐ අනිවාර්ය ප්‍රධාන විෂයයන් 6 (Core Subjects):
+            </div>
+          `;
+
+          core6.forEach(c => {
+            html += `
+              <div class="academic-subj-item" style="opacity: 0.9;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 16px;">${c.icon}</span>
+                  <span style="font-size: 12px; font-weight: 700; color: var(--text-main);">${c.nameSi} (${c.nameEn})</span>
+                </div>
+                <span style="font-size: 9.5px; font-weight: 800; color: #10b981; background: rgba(16,185,129,0.12); padding: 2px 7px; border-radius: 6px;">CORE අනිවාර්ය</span>
+                <input type="checkbox" class="chk-academic-subj" data-code="${c.code}" checked disabled style="display:none;">
+              </div>
+            `;
+          });
+
+          const b1Opts = [
+            { code: 'COM', label: '📊 ව්‍යාපාර හා ගිණුම්කරණ අධ්‍යයනය (Commerce)' },
+            { code: 'GEO', label: '🌍 භූගෝල විද්‍යාව (Geography)' },
+            { code: 'CIV', label: '⚖️ පුරවැසි අධ්‍යාපනය (Civic Education)' },
+            { code: 'ENT', label: '💡 ව්‍යවසායකත්ව අධ්‍යයනය (Entrepreneurship)' },
+            { code: 'TAM', label: '🗣️ දෙවන බස දෙමළ (Tamil 2nd Language)' }
+          ];
+          let b1Selected = b1Opts.find(o => activeCodes.has(o.code))?.code || 'COM';
+
+          html += `
+            <div style="margin-top: 10px;">
+              <label for="selBasket1" style="font-size: 11px; font-weight: 800; color: #0984e3; display: block; margin-bottom: 4px;">
+                1 වන කාණ්ඩයේ විෂය (Basket 1 - Social & Commerce):
+              </label>
+              <select id="selBasket1" class="zenith-auth-input" style="padding: 8px; font-size: 12px; font-weight: 600; width: 100%;">
+                ${b1Opts.map(o => `<option value="${o.code}" ${o.code === b1Selected ? 'selected' : ''}>${o.label}</option>`).join('')}
+              </select>
+            </div>
+          `;
+
+          const b2Opts = [
+            { code: 'ART', label: '🎨 චිත්‍ර කලාව (Art)' },
+            { code: 'MUS', label: '🎵 සංගීතය (Music - Oriental/Western)' },
+            { code: 'DNC', label: '💃 නර්තනය (Dancing)' },
+            { code: 'DRA', label: '🎭 නාට්‍ය හා රංග කලාව (Drama & Theatre)' },
+            { code: 'LIT_S', label: '📜 සිංහල සාහිත්‍ය රසවින්දනය (Sinhala Lit)' },
+            { code: 'LIT_E', label: '📖 ඉංග්‍රීසි සාහිත්‍යය (English Literature)' }
+          ];
+          let b2Selected = b2Opts.find(o => activeCodes.has(o.code))?.code || 'ART';
+
+          html += `
+            <div style="margin-top: 8px;">
+              <label for="selBasket2" style="font-size: 11px; font-weight: 800; color: #a855f7; display: block; margin-bottom: 4px;">
+                2 වන කාණ්ඩයේ විෂය (Basket 2 - Aesthetics & Literature):
+              </label>
+              <select id="selBasket2" class="zenith-auth-input" style="padding: 8px; font-size: 12px; font-weight: 600; width: 100%;">
+                ${b2Opts.map(o => `<option value="${o.code}" ${o.code === b2Selected ? 'selected' : ''}>${o.label}</option>`).join('')}
+              </select>
+            </div>
+          `;
+
+          const b3Opts = [
+            { code: 'ICT', label: '💻 තොරතුරු හා සන්නිවේදන තාක්ෂණය (ICT)' },
+            { code: 'AGRI', label: '🌱 කෘෂිකර්මය හා ආහාර තාක්ෂණය (Agri & Food Tech)' },
+            { code: 'HOME', label: '🍳 ගෘහ ආර්ථික විද්‍යාව (Home Science)' },
+            { code: 'TECH', label: '⚙️ තාක්ෂණික විෂයයන් (Design & Technology)' },
+            { code: 'HLTH', label: '🏃‍♀️ සෞඛ්‍ය හා ශාරීරික අධ්‍යාපනය (Health & PE)' }
+          ];
+          let b3Selected = b3Opts.find(o => activeCodes.has(o.code))?.code || 'ICT';
+
+          html += `
+            <div style="margin-top: 8px;">
+              <label for="selBasket3" style="font-size: 11px; font-weight: 800; color: #10b981; display: block; margin-bottom: 4px;">
+                3 වන කාණ්ඩයේ විෂය (Basket 3 - Applied & Technical):
+              </label>
+              <select id="selBasket3" class="zenith-auth-input" style="padding: 8px; font-size: 12px; font-weight: 600; width: 100%;">
+                ${b3Opts.map(o => `<option value="${o.code}" ${o.code === b3Selected ? 'selected' : ''}>${o.label}</option>`).join('')}
+              </select>
+            </div>
+          `;
+        }
+
+        container.innerHTML = html;
+      }
+
+      function resetDefaultAcademicSubjects() {
+        const activeGrade = currentAcademicEditingGrade || (typeof ZenithCurriculum !== 'undefined' ? ZenithCurriculum.getActiveGrade() : 9);
+        const defaults = (typeof ZenithCurriculum !== 'undefined') ? ZenithCurriculum.getDefaultSubjectsForGrade(activeGrade) : [];
+        const defCodes = new Set(defaults.map(d => d.code.toUpperCase()));
+
+        if (activeGrade <= 9) {
+          document.querySelectorAll('.chk-academic-subj').forEach(chk => {
+            const code = chk.getAttribute('data-code');
+            if (code) chk.checked = defCodes.has(code.toUpperCase());
+          });
+        } else {
+          const s1 = document.getElementById('selBasket1');
+          const s2 = document.getElementById('selBasket2');
+          const s3 = document.getElementById('selBasket3');
+          if (s1) s1.value = 'COM';
+          if (s2) s2.value = 'ART';
+          if (s3) s3.value = 'ICT';
+        }
+      }
+
+      async function saveAcademicSettings() {
+        const grade = currentAcademicEditingGrade || (typeof ZenithCurriculum !== 'undefined' ? ZenithCurriculum.getActiveGrade() : 9);
+        let selectedCodes = [];
+
+        if (grade <= 9) {
+          document.querySelectorAll('.chk-academic-subj').forEach(chk => {
+            if (chk.checked) {
+              const code = chk.getAttribute('data-code');
+              if (code) selectedCodes.push(code.toUpperCase());
+            }
+          });
+          if (selectedCodes.length === 0) {
+            alert('⚠️ කරුණාකර අවම වශයෙන් එක් විෂයයක්වත් තෝරන්න.');
+            return;
+          }
+        } else {
+          selectedCodes = ['MATH', 'SCI', 'SIN', 'ENG', 'BUD', 'HIST'];
+          const b1 = document.getElementById('selBasket1')?.value;
+          const b2 = document.getElementById('selBasket2')?.value;
+          const b3 = document.getElementById('selBasket3')?.value;
+          if (b1) selectedCodes.push(b1.toUpperCase());
+          if (b2) selectedCodes.push(b2.toUpperCase());
+          if (b3) selectedCodes.push(b3.toUpperCase());
+        }
+
+        const subjsArray = selectedCodes.map(code => {
+          if (typeof ZenithCurriculum !== 'undefined') {
+            return ZenithCurriculum.getSubjectMetaByCode(code);
+          }
+          return { code, nameSi: code, nameEn: code, color: '#6366f1', icon: '📘', active: true };
+        });
+
+        if (typeof ZenithCurriculum !== 'undefined') {
+          ZenithCurriculum.setActiveGrade(grade);
+          const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
+          const uId = (user && !user.isGuest) ? user.id : null;
+          ZenithCurriculum.saveActiveSubjectsForUser(uId, subjsArray);
+
+          if (user && !user.isGuest && typeof ZenithAuth.getSupabaseClient === 'function') {
+            const sb = ZenithAuth.getSupabaseClient();
+            if (sb && navigator.onLine) {
+              try {
+                await sb.from('user_profiles').update({ grade: grade, updated_at: new Date().toISOString() }).eq('id', user.id);
+                await sb.from('user_subjects_config').upsert([{
+                  user_id: user.id,
+                  grade: grade,
+                  subjects: subjsArray,
+                  updated_at: new Date().toISOString()
+                }], { onConflict: 'user_id,grade' });
+              } catch (e) {
+                console.warn('Academic settings remote sync notice:', e);
+              }
+            }
+          }
+        }
+
+        localStorage.setItem('g9_subjects_config', JSON.stringify(subjsArray));
+        g9SubjectsCache = null;
+
+        updateTopbarActiveGrade();
+        if (typeof loadG9Subjects === 'function') loadG9Subjects();
+        if (typeof renderSubjects === 'function') renderSubjects();
+        if (typeof refreshTelemetry === 'function') refreshTelemetry();
+
+        hideSettingsModal();
+
+        if (typeof showActionFeedbackToast === 'function') {
+          showActionFeedbackToast(`✅ ශ්‍රේණිය ${grade} සහ විෂයයන් ${subjsArray.length} සාර්ථකව සුරැකිණි!`);
+        } else {
+          alert(`✅ ශ්‍රේණිය ${grade} සහ විෂයයන් ${subjsArray.length} සාර්ථකව සුරැකිණි!`);
         }
       }
 
@@ -19033,6 +20099,36 @@ function openSidebarModal() {
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
 
+      function selectLpGrade(gradeNum, btn) {
+        const input = document.getElementById('lpSignupGrade');
+        if (input) input.value = gradeNum;
+        document.querySelectorAll('.zenith-lp-chip').forEach(c => c.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+      }
+
+      function togglePasswordVisibility(inputId, btn) {
+        const el = document.getElementById(inputId);
+        if (!el) return;
+        if (el.type === 'password') {
+          el.type = 'text';
+          if (btn) btn.innerText = '🙈';
+        } else {
+          el.type = 'password';
+          if (btn) btn.innerText = '👁️';
+        }
+      }
+
+      function filterLpSyllabusPreview(gradeNum, btn) {
+        document.querySelectorAll('.zenith-lp-filter-btn').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+      }
+
+      function toggleAppLanguage() {
+        const lbl = document.getElementById('lpLangToggleLabel');
+        const isSi = !lbl || lbl.innerText.includes('සිං');
+        if (lbl) lbl.innerText = isSi ? 'EN / සිං' : 'සිං / EN';
+      }
+
       async function handleLandingEmailLogin(e) {
         e.preventDefault();
         const email = document.getElementById('lpLoginEmail').value;
@@ -19045,7 +20141,7 @@ function openSidebarModal() {
 
         const res = await ZenithAuth.signInWithEmail(email, pass);
         btn.disabled = false;
-        btn.innerText = '🔑 පිවිසෙන්න (Sign In)';
+        btn.innerText = 'Launch Mission Control 🚀 (මෙහෙයුම අරඹන්න)';
 
         if (res.error) {
           if (errEl) {
@@ -19071,7 +20167,7 @@ function openSidebarModal() {
 
         const res = await ZenithAuth.signUpWithEmail(email, pass, name, grade);
         btn.disabled = false;
-        btn.innerText = '✨ ගිණුම සාදා පිවිසෙන්න';
+        btn.innerText = 'Create Cadet Account ✨ (ගිණුම සාදා පිවිසෙන්න)';
 
         if (res.error) {
           if (errEl) {
@@ -19137,56 +20233,16 @@ function openSidebarModal() {
         const cfg = {
           title: 'Zenith O-Level • Smart Study Engine',
           examLabel: title,
-          targetDate: targetDate,
-          isAuto: false
+          targetDate: targetDate
         };
+        saveCountdownConfig(cfg);
+        updateCountdown();
 
-        try {
-          localStorage.setItem('g9_countdown_config', JSON.stringify(cfg));
-        } catch (_) {}
-
-        applyHeaderAndCountdownConfig();
-        if (typeof startLiveCountdown === 'function') {
-          startLiveCountdown();
-        }
-
-        const modal = document.getElementById('examTargetSettingsModal');
-        if (modal) modal.style.display = 'none';
-
-        if (typeof confetti === 'function') {
-          confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
-        }
-      }
-
-      function resetExamTargetToAuto() {
-        const estimated = getEstimatedNextTerm();
-        const cfg = {
-          title: 'Zenith O-Level • Smart Study Engine',
-          examLabel: estimated.examLabel || '3rd Term Test (3 වන වාර විභාගය)',
-          targetDate: estimated.targetDate,
-          isAuto: true
-        };
-        try {
-          localStorage.setItem('g9_countdown_config', JSON.stringify(cfg));
-        } catch (_) {}
-
-        applyHeaderAndCountdownConfig();
-        if (typeof startLiveCountdown === 'function') {
-          startLiveCountdown();
+        if (typeof showActionFeedbackToast === 'function') {
+          showActionFeedbackToast(`✅ විභාග ඉලක්කය සුරැකිණි: ${title}`);
         }
         const modal = document.getElementById('examTargetSettingsModal');
         if (modal) modal.style.display = 'none';
-      }
-
-      function onZenithGradeChange(newGrade) {
-        if (typeof ZenithCurriculum !== 'undefined') {
-          ZenithCurriculum.setActiveGrade(newGrade);
-        }
-        const badge = document.getElementById('zenithUserGradeBadge');
-        if (badge) badge.innerText = `Grade ${newGrade}`;
-        if (typeof refreshTelemetry === 'function') {
-          refreshTelemetry();
-        }
       }
 
       async function handleEmailLogin(e) {
@@ -19239,14 +20295,6 @@ function openSidebarModal() {
         }
       }
 
-      function handleGuestSubmit() {
-        const name = document.getElementById('guestNameInput').value;
-        const gSelector = document.getElementById('zenithGradeSelector');
-        const grade = gSelector ? gSelector.value : 9;
-        ZenithAuth.continueAsGuest(name, grade);
-        showDashboardView();
-      }
-
       function scrollToTopDashboard() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -19268,6 +20316,8 @@ function openSidebarModal() {
         const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
         if (user && !user.isGuest) {
           showDashboardView();
+        } else {
+          showLandingPage();
         }
       });
     </script>

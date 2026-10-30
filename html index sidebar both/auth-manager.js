@@ -104,6 +104,9 @@
       sb.auth.onAuthStateChange(async (event, newSession) => {
         if (event === 'SIGNED_IN' && newSession && newSession.user) {
           await handleAuthenticatedUser(newSession.user);
+          if (typeof global.showDashboardView === 'function') {
+            global.showDashboardView();
+          }
           window.dispatchEvent(new CustomEvent('ZENITH_USER_CHANGED', { detail: currentUser }));
           if (typeof global.refreshTelemetry === 'function') {
             global.refreshTelemetry();
@@ -111,6 +114,9 @@
         } else if (event === 'SIGNED_OUT') {
           currentUser = getStoredGuestUser();
           updateAuthUI();
+          if (typeof global.showLandingPage === 'function') {
+            global.showLandingPage();
+          }
           window.dispatchEvent(new CustomEvent('ZENITH_USER_CHANGED', { detail: currentUser }));
           if (typeof global.refreshTelemetry === 'function') {
             global.refreshTelemetry();
@@ -183,6 +189,8 @@
       gradeBadge.innerText = `Grade ${user.grade || 9}`;
       gradeBadge.style.display = 'inline-block';
     }
+    const topGradeEl = document.getElementById('zenithTopActiveGrade');
+    if (topGradeEl) topGradeEl.innerText = `Grade ${user.grade || 9}`;
 
     if (avatarEl) {
       if (user.avatarUrl) {
@@ -280,6 +288,9 @@
     }
     currentUser = getStoredGuestUser();
     updateAuthUI();
+    if (typeof global.showLandingPage === 'function') {
+      global.showLandingPage();
+    }
     window.dispatchEvent(new CustomEvent('ZENITH_USER_CHANGED', { detail: currentUser }));
     if (typeof global.refreshTelemetry === 'function') {
       global.refreshTelemetry();
