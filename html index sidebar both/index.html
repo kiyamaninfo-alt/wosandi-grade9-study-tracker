@@ -6017,7 +6017,136 @@
         transform: translateY(-1px);
       }
 
-    </style>
+    
+    /* --- Exam Radar & Progression Portal Banner --- */
+    .radar-portal-banner {
+      background: linear-gradient(135deg, rgba(235, 77, 75, 0.08) 0%, rgba(108, 92, 231, 0.08) 50%, rgba(9, 132, 227, 0.08) 100%);
+      border: 1px solid rgba(235, 77, 75, 0.28);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin: 18px 0 24px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .radar-portal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .radar-portal-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .portal-badge-glow {
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(235, 77, 75, 0.2), rgba(240, 147, 43, 0.2));
+      border: 1px solid rgba(235, 77, 75, 0.4);
+      box-shadow: 0 0 20px rgba(235, 77, 75, 0.3);
+      flex-shrink: 0;
+    }
+    .radar-portal-title h3 {
+      font-size: 16px;
+      font-weight: 800;
+      margin: 0;
+      color: var(--text-main, #ffffff);
+    }
+    .radar-portal-title p {
+      font-size: 11.5px;
+      color: var(--text-muted, #8b949e);
+      margin: 4px 0 0;
+      max-width: 600px;
+      line-height: 1.4;
+    }
+    .btn-portal-launch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #eb4d4b 0%, #f0932b 100%);
+      color: #ffffff !important;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(235, 77, 75, 0.4);
+      transition: all 0.25s ease;
+    }
+    .btn-portal-launch:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 24px rgba(235, 77, 75, 0.55);
+      filter: brightness(1.1);
+    }
+    .radar-portal-quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .portal-quick-chip {
+      background: var(--card-inner, rgba(255, 255, 255, 0.04));
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .portal-quick-chip:hover {
+      transform: translateY(-2px);
+      border-color: #8c7ae6;
+      background: rgba(140, 122, 230, 0.1);
+    }
+    .portal-quick-chip .chip-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .portal-quick-chip .chip-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .portal-quick-chip .chip-val {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-main, #ffffff);
+      font-family: 'Space Grotesk', monospace;
+    }
+    .portal-quick-chip .chip-lbl {
+      font-size: 10px;
+      color: var(--text-muted, #8b949e);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 600px) {
+      .radar-portal-banner {
+        padding: 14px 12px;
+      }
+      .radar-portal-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .btn-portal-launch {
+        width: 100%;
+        justify-content: center;
+      }
+      .radar-portal-quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+  </style>
   </head>
   <body>
     <!-- Printable Report Header (Hidden in Screen View) -->
@@ -6670,6 +6799,10 @@
           🏠 About
         </button>
 
+        <a href="study-radar.html" class="btn-action-pill" style="background: linear-gradient(135deg, rgba(235,77,75,0.2), rgba(240,147,43,0.2)); color: #eb4d4b; font-size: 11.5px; border: 1px solid rgba(235,77,75,0.4); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; font-weight: 700;" title="Urgent Radar & Exam Score Progression පිටුවට පිවිසෙන්න">
+          ⚡ Exam Radar
+        </a>
+
         <button type="button" class="btn-academic-settings-pill" onclick="openAcademicSettingsModal()" title="ශ්‍රේණිය සහ විෂයයන් වෙනස් කිරීමට ක්ලික් කරන්න (Change Grade &amp; Subjects in Settings)">
           <span>📚</span>
           <span id="zenithTopActiveGrade">Grade 9</span>
@@ -6925,6 +7058,7 @@
       </div>
 
       <div class="action-bar-btns">
+        <a href="study-radar.html" class="btn-action-pill" style="background: linear-gradient(135deg, #eb4d4b, #f0932b); color: white; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;" title="Urgent Radar & Exam Score Progression">⚡ Urgent Radar</a>
         <button class="btn-action-pill" style="background: linear-gradient(135deg, #fdcb6e, #e17055); color: white;" onclick="openSidebarModal()">📚 Syllabus Manager</button>
         <button class="btn-action-pill btn-submit-marks" onclick="openSubmitMarksSelectorModal()" style="background: linear-gradient(135deg, #0984e3, #6c5ce7); color: white; font-weight: 700; box-shadow: 0 3px 10px rgba(9, 132, 227, 0.35);">+ 📝 Submit Marks</button>
         <button class="btn-action-pill btn-settings" onclick="openSettingsModal()">⚙️ Settings</button>
@@ -6954,651 +7088,52 @@
       </div>
     </div>
 
-    <!-- Urgent Review Radar -->
-    <div class="ranking-card radar-card" id="cardUrgentRadar" onclick="handleCardClick('urgentRadar', event)">
-      <div class="ranking-header">
-        <div class="ranking-title">
-          <span class="ranking-icon">⚡</span>
-          <span id="urgentRadarCardTitle">⚡ වහාම Model Paper 1 කළ යුතු පාඩම් (Urgent Radar)</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="urgentRadarCardBadge" style="background: rgba(235, 77, 75, 0.12); color: #eb4d4b;">Urgent Radar</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('urgentRadar', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
-        </div>
-      </div>
-      <div class="ranking-subtitle" id="urgentRadarCardSubtitle">
-        පාඩම් කිරීම (HW) අවසන් වූ නමුත් තවමත් ප්‍රශ්න පත්‍රයක් සම්පූර්ණ නොකළ පාඩම්.
-      </div>
-      <div class="ranking-tab-group" style="margin: 0 0 10px 0; display: none !important;" onclick="event.stopPropagation()">
-        <button type="button" class="ranking-tab-btn active" id="btnUrgentTabSubunit" onclick="switchUrgentRadarTab('subunit', event)">
-          <span>📑 Sub-Unit Radar</span>
-        </button>
-        <button type="button" class="ranking-tab-btn" id="btnUrgentTabFullunit" onclick="switchUrgentRadarTab('fullunit', event)">
-          <span>📚 Full Unit Radar</span>
-        </button>
-      </div>
-      <div class="ranking-table-responsive">
-        <table class="ranking-table">
-          <thead>
-            <tr id="urgentRadarHeadRow">
-              <th class="col-rank">Done</th>
-              <th class="col-subj">Subject</th>
-              <th class="col-unit-no">Unit No</th>
-              <th class="col-unit-name">Unit Name</th>
-              <th class="col-metric-wide">Days Elapsed</th>
-            </tr>
-          </thead>
-          <tbody id="radarList">
-            <tr>
-              <td colspan="5" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත පූරණය වෙමින් පවතී... ⏳</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Subject Balance Alert Banner -->
-    <div class="balance-alert-card" id="balanceAlertBox">
-      <span style="font-size: 14px;">⚖️</span>
-      <span id="balanceAlertTxt">විෂයයන් අතර ප්‍රශ්න පත්‍ර ප්‍රගතිය සමතුලිතව පවත්වා ගන්න.</span>
-    </div>
-
-    <!-- Hermann Ebbinghaus Forgetting Curve Card — v16 Multi-Cycle -->
-    <div class="ranking-card ebbinghaus-card" id="cardEbbinghaus" onclick="handleCardClick('ebbinghaus', event)">
-      <div class="ranking-header">
-        <div class="ranking-title">
-          <span class="ranking-icon">🧠</span>
-          <span>🧠 හර්මන් එබින්ගවුස්ගේ "අමතකවීමේ වක්‍රය" — Spaced Repetition Cycles</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" style="background: rgba(140, 122, 230, 0.12); color: #8c7ae6;">Cycles</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('ebbinghaus', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
-        </div>
-      </div>
-      <div class="ranking-subtitle">
-        දිගුකාලීන මතකය (Long-term Memory) තහවුරු කරගැනීම සඳහා නියමිත කාල පරාසයන්හිදී නැවත පුනරීක්ෂණය කරන්න.
-      </div>
-
-      <!-- Cycle Tab Bar (dynamically populated by JS) -->
-      <div id="ebbCycleTabBar" style="display:flex; gap:6px; flex-wrap:wrap; padding:6px 0 4px; border-bottom:1px solid #f0f0f7;">
-        <!-- Tabs injected by renderEbbCycleTabs() -->
-        <div style="font-size:10px; color:#a4b0be; padding:4px;">දත්ත පූරණය වෙමින්...</div>
-      </div>
-
-      <!-- Day Stage Filter Buttons -->
-      <div style="padding:6px 0 4px; display:flex; align-items:center; flex-wrap:wrap; gap:4px;">
-        <span style="font-size:8.5px; color:#8c7ae6; font-weight:600; margin-right:2px;">👇 Filter:</span>
-        <button class="ebb-filter-btn" id="ebbF0"  onclick="filterEbbinghaus(0)"  style="background:#636e72; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">📋 සියල්ල</button>
-        <button class="ebb-filter-btn" id="ebbF1"  onclick="filterEbbinghaus(1)"  style="background:#e74c3c; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">⚡ දිනය 1</button>
-        <button class="ebb-filter-btn" id="ebbF3"  onclick="filterEbbinghaus(3)"  style="background:#f39c12; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">📝 දිනය 3</button>
-        <button class="ebb-filter-btn" id="ebbF7"  onclick="filterEbbinghaus(7)"  style="background:#e67e22; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">🔁 දිනය 7</button>
-        <button class="ebb-filter-btn" id="ebbF21" onclick="filterEbbinghaus(21)" style="background:#8c7ae6; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">🧠 දිනය 21</button>
-        <button class="ebb-filter-btn" id="ebbF45" onclick="filterEbbinghaus(45)" style="background:#27ae60; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">♾️ දිනය 45+</button>
-      </div>
-
-      <!-- Cycle description line -->
-      <div id="ebbCycleDesc" style="font-size:9px; color:#636e72; padding:2px 0 6px; font-style:italic;">
-        Cycle 1 — ප්‍රථම Spaced Repetition චක්‍රය (Day 1 → 3 → 7 → 21 → 45+)
-      </div>
-
-      <!-- Table format with Done checkbox -->
-      <div class="ranking-table-responsive">
-        <table class="ranking-table">
-          <thead>
-            <tr>
-              <th class="col-rank">Done</th>
-              <th class="col-subj">Subject</th>
-              <th class="col-unit-no">Unit No</th>
-              <th class="col-unit-name">Unit Name</th>
-              <th class="col-metric-wide">Stage &amp; Days</th>
-            </tr>
-          </thead>
-          <tbody id="ebbinghausList">
-            <tr>
-              <td colspan="5" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත පූරණය වෙමින් පවතී... ⏳</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-
-    <!-- 5-Tab Score Progression & Z-Score Card (moved to bottom per v15) -->
-    <div class="chart-card" id="fullPaperChartCard">
-      <div class="chart-header">
-        <span id="chartCardHeading">📈 Full Paper Score Progression (All %)</span>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 8.5px; color: #a4b0be;" id="chartZoomIndicator">Adaptive Zoom</span>
-          <button type="button" class="chart-data-toggle-btn" id="btnFullPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
-          <button type="button" class="chart-fullscreen-btn" id="btnFullPaperFs" onclick="toggleChartFullscreen('fullPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
-        </div>
-      </div>
-
-      <div class="chart-tab-bar" id="fullPaperChartTabBar" style="overflow-x: auto; white-space: nowrap; display: flex; gap: 4px;">
-        <button class="chart-tab-btn active" onclick="switchChartTab('All')">All</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('MATH')">MATH</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('SCI')">SCI</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('SIN')">SIN</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('ENG')">ENG</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('Overall Avg')">🎯 සමස්ත සාමාන්‍යය %</button>
-      </div>
-
-      <!-- Custom HTML Legend for Full Paper Progression -->
-      <div class="chart-custom-legend" id="fullPaperCustomLegend"></div>
-
-      <div class="chart-container" onclick="openChartFullscreenIfNormal('fullPaperChartCard')" style="cursor: pointer;" title="Click to view full screen (සම්පූර්ණ තිරය සඳහා ක්ලික් කරන්න)">
-        <canvas id="scoreChart" style="display: none;"></canvas>
-        <div id="noChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Full Paper එකක් සටහන් කර නොමැත 📝</div>
-      </div>
-      <!-- Full Paper Quick Summary Bar -->
-      <div id="fullPaperSummaryBar" style="display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 12px 4px; border-top: 1px dashed rgba(0,0,0,0.06); font-size: 9.5px;">
-        <div style="flex: 1; min-width: 110px; background: rgba(108, 92, 231, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(108, 92, 231, 0.15);">
-          <span style="color: #636e72;">මුළු Papers:</span> <strong id="fpSummaryTotal" style="color: #6c5ce7;">0</strong>
-        </div>
-        <div style="flex: 1; min-width: 160px; background: rgba(243, 156, 18, 0.08); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(243, 156, 18, 0.25);">
-          <span style="color: #636e72;">පසුගිය Papers 5 සාමාන්‍යය:</span> <strong id="fpSummaryLast5Avg" style="color: #d35400;">-</strong>
-        </div>
-        <div style="flex: 1; min-width: 110px; background: rgba(39, 174, 96, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(39, 174, 96, 0.15);">
-          <span style="color: #636e72;">සමස්ත සාමාන්‍යය:</span> <strong id="fpSummaryOverallAvg" style="color: #27ae60;">-</strong>
-        </div>
-      </div>
-
-      <!-- Full Paper Multi-Window Analytics Panel (Dynamic by tab: ICT, ET, SFT, All, Z-score) -->
-      <div class="zscore-panel" id="fullPaperAnalyticsPanel">
-        <div class="zscore-panel-title">
-          <span id="fullPanelTitle">📊 Full Paper සාමාන්‍ය ලකුණු විග්‍රහය (Analytics)</span>
-          <span style="font-size: 8px; color: #6c5ce7; font-weight: 600;" id="fullPanelBadge">📘 ICT විෂය සඳහා</span>
-        </div>
-
-        <div class="zscore-grid">
-          <div class="zscore-box">
-            <div class="zscore-box-lbl" id="fullTimeBoxLbl">📅 කාල පරාස අනුව</div>
-            <div class="zscore-row">
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 7:</span>
-                <span class="zscore-pill-val empty" id="z_time_7d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 14:</span>
-                <span class="zscore-pill-val empty" id="z_time_14d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">මාස 1:</span>
-                <span class="zscore-pill-val empty" id="z_time_1m">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">මාස 3:</span>
-                <span class="zscore-pill-val empty" id="z_time_3m">-</span>
-              </div>
-              <div class="zscore-pill" id="fp_pill_time_all" style="flex: 1 1 100%;">
-                <span class="zscore-pill-tag">සියලු කාලය:</span>
-                <span class="zscore-pill-val empty" id="z_time_all">-</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="zscore-box">
-            <div class="zscore-box-lbl" id="fullCntBoxLbl">📝 ප්‍රශ්න පත්‍ර ගණන අනුව</div>
-            <div class="zscore-row">
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 3:</span>
-                <span class="zscore-pill-val empty" id="z_cnt_3">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 5:</span>
-                <span class="zscore-pill-val empty" id="z_cnt_5">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 7:</span>
-                <span class="zscore-pill-val empty" id="z_cnt_7">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 10:</span>
-                <span class="zscore-pill-val empty" id="z_cnt_10">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 20:</span>
-                <span class="zscore-pill-val empty" id="z_cnt_20">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 50:</span>
-                <span class="zscore-pill-val empty" id="z_cnt_50">-</span>
-              </div>
-              <div class="zscore-pill" id="fp_pill_cnt_all" style="flex: 1 1 100%;">
-                <span class="zscore-pill-tag">සියලු Papers (All):</span>
-                <span class="zscore-pill-val empty" id="z_cnt_all">-</span>
-              </div>
-            </div>
+        <!-- ========================================================================= -->
+    <!-- EXAM RADAR & SCORE PROGRESSION PORTAL BANNER (Relocated to dedicated page) -->
+    <!-- ========================================================================= -->
+    <div class="radar-portal-banner" id="cardRadarPortal">
+      <div class="radar-portal-header">
+        <div class="radar-portal-title">
+          <span class="portal-badge-glow">⚡</span>
+          <div>
+            <h3>⚡ විභාග සහ ප්‍රශ්න පත්‍ර රේඩාර් (Exam Radar & Score Progression)</h3>
+            <p>Model Paper 1 Urgent Radar, Spaced Repetition (Ebbinghaus), Full & Unit Paper Score Progression සහ Rankings වෙනම පිටුවකට ගෙන ගොස් ඇත.</p>
           </div>
         </div>
-        <div class="zscore-footnote" id="fullPanelFootnote">
-          * තෝරාගත් විෂය පථය අනුව සාමාන්‍ය ලකුණු ගණනය කෙරේ.
-        </div>
+        <a href="study-radar.html" class="btn-portal-launch" title="Urgent Radar & Exam Score Progression පිටුව විවෘත කරන්න">
+          <span>⚡ Exam Radar විවෘත කරන්න</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
-    </div>
-
-    <!-- Unit Test Paper Score Progression Card -->
-    <div class="chart-card" id="unitPaperChartCard" style="margin-top: 14px;">
-      <div class="chart-header">
-        <span id="unitChartCardHeading">📈 Unit Paper Score Progression (All)</span>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 8.5px; color: #a4b0be;" id="unitChartZoomIndicator">Adaptive Zoom</span>
-          <button type="button" class="chart-data-toggle-btn" id="btnUnitPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
-          <button type="button" class="chart-fullscreen-btn" id="btnUnitPaperFs" onclick="toggleChartFullscreen('unitPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
-        </div>
-      </div>
-
-      <div class="chart-tab-bar" id="unitChartTabBar" style="overflow-x: auto; white-space: nowrap; display: flex; gap: 4px;">
-        <button class="chart-tab-btn active" onclick="switchUnitChartTab('All')">All</button>
-        <button class="chart-tab-btn" onclick="switchUnitChartTab('MATH')">MATH</button>
-        <button class="chart-tab-btn" onclick="switchUnitChartTab('SCI')">SCI</button>
-        <button class="chart-tab-btn" onclick="switchUnitChartTab('SIN')">SIN</button>
-        <button class="chart-tab-btn" onclick="switchUnitChartTab('ENG')">ENG</button>
-      </div>
-
-      <!-- Custom HTML Legend for Unit Paper Progression -->
-      <div class="chart-custom-legend" id="unitPaperCustomLegend"></div>
-
-      <div class="chart-container" onclick="openChartFullscreenIfNormal('unitPaperChartCard')" style="cursor: pointer;" title="Click to view full screen (සම්පූර්ණ තිරය සඳහා ක්ලික් කරන්න)">
-        <canvas id="unitScoreChart" style="display: none;"></canvas>
-        <div id="noUnitChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Unit Paper එකක් සටහන් කර නොමැත 📝</div>
-      </div>
-
-      <!-- Unit Papers Quick Summary Bar -->
-      <div id="unitPaperSummaryBar" style="display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 12px 4px; border-top: 1px dashed rgba(0,0,0,0.06); font-size: 9.5px;">
-        <div style="flex: 1; min-width: 110px; background: rgba(108, 92, 231, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(108, 92, 231, 0.15);">
-          <span style="color: #636e72;">මුළු Papers:</span> <strong id="upSummaryTotal" style="color: #6c5ce7;">0</strong>
-        </div>
-        <div style="flex: 1; min-width: 160px; background: rgba(243, 156, 18, 0.08); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(243, 156, 18, 0.25);">
-          <span style="color: #636e72;">පසුගිය Papers 5 සාමාන්‍යය:</span> <strong id="upSummaryLast5Avg" style="color: #d35400;">-</strong>
-        </div>
-        <div style="flex: 1; min-width: 110px; background: rgba(39, 174, 96, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(39, 174, 96, 0.15);">
-          <span style="color: #636e72;">සමස්ත සාමාන්‍යය:</span> <strong id="upSummaryOverallAvg" style="color: #27ae60;">-</strong>
-        </div>
-      </div>
-
-      <!-- Unit Paper Multi-Window Analytics Panel (Count: 3,5,7,10,20,50,All & Time: 3,5,7,14,30,60,90d,All) -->
-      <div class="zscore-panel" id="upAnalyticsPanel" style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed #dfe6e9;">
-        <div class="zscore-panel-title">
-          <span>📊 Unit Paper සාමාන්‍ය ලකුණු විග්‍රහය (Analytics)</span>
-          <span style="font-size: 8.5px; color: #6c5ce7; font-weight: 600;" id="upAnalyticsSubjectBadge">සියලු විෂයයන් (All)</span>
-        </div>
-
-        <div class="zscore-grid">
-          <!-- 1. By Paper Count -->
-          <div class="zscore-box">
-            <div class="zscore-box-lbl">📝 ප්‍රශ්න පත්‍ර ගණන අනුව (Count Avg)</div>
-            <div class="zscore-row">
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 3:</span>
-                <span class="zscore-pill-val empty" id="up_cnt_3">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 5:</span>
-                <span class="zscore-pill-val empty" id="up_cnt_5">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 7:</span>
-                <span class="zscore-pill-val empty" id="up_cnt_7">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 10:</span>
-                <span class="zscore-pill-val empty" id="up_cnt_10">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 20:</span>
-                <span class="zscore-pill-val empty" id="up_cnt_20">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 50:</span>
-                <span class="zscore-pill-val empty" id="up_cnt_50">-</span>
-              </div>
-              <div class="zscore-pill" style="flex: 1 1 100%;">
-                <span class="zscore-pill-tag">සියල්ල (All Papers):</span>
-                <span class="zscore-pill-val empty" id="up_cnt_all">-</span>
-              </div>
-            </div>
+      <div class="radar-portal-quick-grid">
+        <a href="study-radar.html#cardUrgentRadar" class="portal-quick-chip chip-radar" title="Urgent Model Papers">
+          <span class="chip-icon">⚡</span>
+          <div class="chip-info">
+            <span class="chip-val" id="portalUrgentCount">0</span>
+            <span class="chip-lbl">Urgent Model Papers</span>
           </div>
-
-          <!-- 2. By Time Range -->
-          <div class="zscore-box">
-            <div class="zscore-box-lbl">📅 කාල පරාස අනුව (Time Window Avg)</div>
-            <div class="zscore-row">
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 3:</span>
-                <span class="zscore-pill-val empty" id="up_time_3d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 5:</span>
-                <span class="zscore-pill-val empty" id="up_time_5d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 7:</span>
-                <span class="zscore-pill-val empty" id="up_time_7d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 14:</span>
-                <span class="zscore-pill-val empty" id="up_time_14d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 30:</span>
-                <span class="zscore-pill-val empty" id="up_time_30d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 60:</span>
-                <span class="zscore-pill-val empty" id="up_time_60d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 90:</span>
-                <span class="zscore-pill-val empty" id="up_time_90d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">සමස්ත කාලය:</span>
-                <span class="zscore-pill-val empty" id="up_time_all">-</span>
-              </div>
-            </div>
+        </a>
+        <a href="study-radar.html#cardEbbinghaus" class="portal-quick-chip chip-sr" title="Spaced Repetition Cycles">
+          <span class="chip-icon">🧠</span>
+          <div class="chip-info">
+            <span class="chip-val" id="portalEbbCount">0</span>
+            <span class="chip-lbl">Spaced Repetition</span>
           </div>
-        </div>
-        <div class="zscore-footnote" id="upAnalyticsFootnote">
-          * තෝරාගත් විෂය පථය අනුව සාමාන්‍ය ලකුණු ගණනය කෙරේ.
-        </div>
-      </div>
-    </div>
-
-    <!-- Full Unit Test Paper Score Progression Card (3rd Chart) - Unified into Unit Papers Chart -->
-    <div class="chart-card" id="fullUnitPaperChartCard" style="margin-top: 14px; display: none !important;">
-      <div class="chart-header">
-        <span id="fullUnitChartCardHeading">📈 Full Unit Paper Score Progression (All)</span>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 8.5px; color: #a4b0be;" id="fullUnitChartZoomIndicator">Adaptive Zoom</span>
-          <button type="button" class="chart-data-toggle-btn" id="btnFullUnitPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
-          <button type="button" class="chart-fullscreen-btn" id="btnFullUnitPaperFs" onclick="toggleChartFullscreen('fullUnitPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
-        </div>
-      </div>
-
-      <div class="chart-tab-bar" id="fullUnitChartTabBar">
-        <button class="chart-tab-btn active" onclick="switchFullUnitChartTab('All')">All</button>
-        <button class="chart-tab-btn" onclick="switchFullUnitChartTab('ICT')">ICT</button>
-        <button class="chart-tab-btn" onclick="switchFullUnitChartTab('ET')">ET</button>
-        <button class="chart-tab-btn" onclick="switchFullUnitChartTab('SFT')">SFT</button>
-      </div>
-
-      <!-- Custom HTML Legend for Full Unit Paper Progression -->
-      <div class="chart-custom-legend" id="fullUnitPaperCustomLegend"></div>
-
-      <div class="chart-container" onclick="openChartFullscreenIfNormal('fullUnitPaperChartCard')" style="cursor: pointer;" title="Click to view full screen (සම්පූර්ණ තිරය සඳහා ක්ලික් කරන්න)">
-        <canvas id="fullUnitScoreChart" style="display: none;"></canvas>
-        <div id="noFullUnitChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Full Unit Paper එකක් සටහන් කර නොමැත 📝</div>
-      </div>
-
-      <!-- Full Unit Papers Quick Summary Bar -->
-      <div id="fullUnitPaperSummaryBar" style="display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 12px 4px; border-top: 1px dashed rgba(0,0,0,0.06); font-size: 9.5px;">
-        <div style="flex: 1; min-width: 110px; background: rgba(108, 92, 231, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(108, 92, 231, 0.15);">
-          <span style="color: #636e72;">මුළු Full Unit Papers:</span> <strong id="fupSummaryTotal" style="color: #6c5ce7;">0</strong>
-        </div>
-        <div style="flex: 1; min-width: 160px; background: rgba(243, 156, 18, 0.08); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(243, 156, 18, 0.25);">
-          <span style="color: #636e72;">පසුගිය Papers 5 සාමාන්‍යය:</span> <strong id="fupSummaryLast5Avg" style="color: #d35400;">-</strong>
-        </div>
-        <div style="flex: 1; min-width: 110px; background: rgba(39, 174, 96, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(39, 174, 96, 0.15);">
-          <span style="color: #636e72;">සමස්ත සාමාන්‍යය:</span> <strong id="fupSummaryOverallAvg" style="color: #27ae60;">-</strong>
-        </div>
-      </div>
-
-      <!-- Full Unit Paper Multi-Window Analytics Panel -->
-      <div class="zscore-panel" id="fupAnalyticsPanel" style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed #dfe6e9;">
-        <div class="zscore-panel-title">
-          <span>📊 Full Unit Paper සාමාන්‍ය ලකුණු විග්‍රහය (Analytics)</span>
-          <span style="font-size: 8.5px; color: #6c5ce7; font-weight: 600;" id="fupAnalyticsSubjectBadge">සියලු විෂයයන් (All)</span>
-        </div>
-
-        <div class="zscore-grid">
-          <!-- 1. By Paper Count -->
-          <div class="zscore-box">
-            <div class="zscore-box-lbl">📝 ප්‍රශ්න පත්‍ර ගණන අනුව (Count Avg)</div>
-            <div class="zscore-row">
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 3:</span>
-                <span class="zscore-pill-val empty" id="fup_cnt_3">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 5:</span>
-                <span class="zscore-pill-val empty" id="fup_cnt_5">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 7:</span>
-                <span class="zscore-pill-val empty" id="fup_cnt_7">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 10:</span>
-                <span class="zscore-pill-val empty" id="fup_cnt_10">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 20:</span>
-                <span class="zscore-pill-val empty" id="fup_cnt_20">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">Papers 50:</span>
-                <span class="zscore-pill-val empty" id="fup_cnt_50">-</span>
-              </div>
-              <div class="zscore-pill" style="flex: 1 1 100%;">
-                <span class="zscore-pill-tag">සියල්ල (All Papers):</span>
-                <span class="zscore-pill-val empty" id="fup_cnt_all">-</span>
-              </div>
-            </div>
+        </a>
+        <a href="study-radar.html#fullPaperChartCard" class="portal-quick-chip chip-fp" title="Full Paper Score Progression">
+          <span class="chip-icon">📈</span>
+          <div class="chip-info">
+            <span class="chip-val" id="portalFpAvg">0%</span>
+            <span class="chip-lbl">Full Paper Avg</span>
           </div>
-
-          <!-- 2. By Time Range -->
-          <div class="zscore-box">
-            <div class="zscore-box-lbl">📅 කාල පරාස අනුව (Time Window Avg)</div>
-            <div class="zscore-row">
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 3:</span>
-                <span class="zscore-pill-val empty" id="fup_time_3d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 5:</span>
-                <span class="zscore-pill-val empty" id="fup_time_5d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 7:</span>
-                <span class="zscore-pill-val empty" id="fup_time_7d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 14:</span>
-                <span class="zscore-pill-val empty" id="fup_time_14d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 30:</span>
-                <span class="zscore-pill-val empty" id="fup_time_30d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 60:</span>
-                <span class="zscore-pill-val empty" id="fup_time_60d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">දින 90:</span>
-                <span class="zscore-pill-val empty" id="fup_time_90d">-</span>
-              </div>
-              <div class="zscore-pill">
-                <span class="zscore-pill-tag">සමස්ත කාලය:</span>
-                <span class="zscore-pill-val empty" id="fup_time_all">-</span>
-              </div>
-            </div>
+        </a>
+        <a href="study-radar.html#cardTopHighestUnitPapers" class="portal-quick-chip chip-rank" title="Top Unit Paper Score">
+          <span class="chip-icon">🏆</span>
+          <div class="chip-info">
+            <span class="chip-val" id="portalTopScore">0%</span>
+            <span class="chip-lbl">Top Unit Score</span>
           </div>
-        </div>
-        <div class="zscore-footnote" id="fupAnalyticsFootnote">
-          * තෝරාගත් විෂය පථය අනුව සාමාන්‍ය ලකුණු ගණනය කෙරේ.
-        </div>
-      </div>
-    </div>
-
-    <!-- Card (B): Top 5 Highest Score Unit Papers -->
-    <div class="ranking-card" id="cardTopHighestUnitPapers" onclick="handleCardClick('topHighest', event)">
-      <div class="ranking-header">
-        <div class="ranking-title">
-          <span class="ranking-icon">🏆</span>
-          <span id="cardBTitle">🏆 වැඩිම ලකුණු සහිත Unit Papers</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="cardBBadge" style="background: rgba(39, 174, 96, 0.12); color: #27ae60;">Top 5 High</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('topHighest', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
-        </div>
-      </div>
-      <div class="ranking-subtitle" id="cardBSub">
-        විභාග සාර්ථකත්වය වෙනුවෙන් ඉහළම ප්‍රතිඵල ලබාගත් Unit Papers 5.
-      </div>
-
-      <!-- Tab Controls for Card B -->
-      <div class="ranking-tab-group" id="topHighestTabBar" style="display: none !important;" onclick="event.stopPropagation()">
-        <button type="button" class="ranking-tab-btn active" id="btnTopHighestSubUnit" onclick="switchTopHighestTab('subunit', event)">
-          <span>📑 Unit Breakdown</span>
-        </button>
-        <button type="button" class="ranking-tab-btn" id="btnTopHighestUnit" onclick="switchTopHighestTab('unit', event)">
-          <span>📚 Main Unit-Wise Average</span>
-        </button>
-      </div>
-
-      <div class="ranking-table-responsive">
-        <table class="ranking-table">
-          <thead id="topHighestHead">
-            <tr>
-              <th class="col-rank">Rank</th>
-              <th class="col-subj">Subject</th>
-              <th class="col-unit-no">Unit No</th>
-              <th class="col-unit-name">Unit Name</th>
-              <th class="col-metric">Avg Marks</th>
-              <th class="col-date">Date</th>
-            </tr>
-          </thead>
-          <tbody id="topHighestUnitPapersBody">
-            <tr>
-              <td colspan="6" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත ලබාගනිමින් පවතී... ⏳</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Card (C): Lowest 5 Score Unit Papers -->
-    <div class="ranking-card" id="cardLowestScoreUnitPapers" onclick="handleCardClick('lowestScore', event)">
-      <div class="ranking-header">
-        <div class="ranking-title">
-          <span class="ranking-icon">⚠️</span>
-          <span id="cardCTitle">📉 අඩුම ලකුණු සහිත Unit Papers</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="cardCBadge" style="background: rgba(235, 77, 75, 0.12); color: #eb4d4b;">Least 5</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('lowestScore', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
-        </div>
-      </div>
-      <div class="ranking-subtitle" id="cardCSub">
-        නැවත සමාලෝචනය හා වැඩිදියුණු කිරීම අවශ්‍ය අවම ලකුණු ලැබූ Unit Papers 5.
-      </div>
-
-      <!-- Tab Controls for Card C -->
-      <div class="ranking-tab-group" id="lowestScoreTabBar" style="display: none !important;" onclick="event.stopPropagation()">
-        <button type="button" class="ranking-tab-btn active" id="btnLowestScoreSubUnit" onclick="switchLowestScoreTab('subunit', event)">
-          <span>📑 Unit Breakdown</span>
-        </button>
-        <button type="button" class="ranking-tab-btn" id="btnLowestScoreUnit" onclick="switchLowestScoreTab('unit', event)">
-          <span>📚 Main Unit-Wise Average</span>
-        </button>
-      </div>
-
-      <div class="ranking-table-responsive">
-        <table class="ranking-table">
-          <thead id="lowestScoreHead">
-            <tr>
-              <th class="col-rank">Rank</th>
-              <th class="col-subj">Subject</th>
-              <th class="col-unit-no">Unit No</th>
-              <th class="col-unit-name">Unit Name</th>
-              <th class="col-metric">Avg Marks</th>
-              <th class="col-date">Date</th>
-            </tr>
-          </thead>
-          <tbody id="lowestScoreUnitPapersBody">
-            <tr>
-              <td colspan="6" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත ලබාගනිමින් පවතී... ⏳</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Card (D): Currently Teaching Lessons (දැනට උගන්වන පාඩම්) -->
-    <div class="ranking-card" id="cardOldestLessonPending" onclick="handleCardClick('currentlyTeaching', event)">
-      <div class="ranking-header">
-        <div class="ranking-title">
-          <span class="ranking-icon">📘</span>
-          <span id="cardDTitle">📘 📘 දැනට උගන්වන පාඩම්</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="cardDBadge" style="background: rgba(9, 132, 227, 0.12); color: #0984e3;">දැනට උගන්වන</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('currentlyTeaching', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
-        </div>
-      </div>
-      <div class="ranking-subtitle" id="cardDSub">
-        ඉගෙනීම ආරම්භ කර ඇති නමුත් තවමත් ගෙදර වැඩ සහ පේපර් අවසන් නොවූ පාඩම්.
-      </div>
-      <div class="ranking-table-responsive">
-        <table class="ranking-table">
-          <thead>
-            <tr>
-              <th class="col-rank">Rank</th>
-              <th class="col-subj">Subject</th>
-              <th class="col-unit-no">Unit No</th>
-              <th class="col-unit-name">Unit Name</th>
-              <th class="col-metric">Lesson Days</th>
-              <th class="col-print" style="text-align: center;">Print</th>
-              <th class="col-print-days" style="text-align: center;">Print Days</th>
-              <th class="col-date">Date</th>
-            </tr>
-          </thead>
-          <tbody id="oldestLessonPendingBody">
-            <tr>
-              <td colspan="8" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත ලබාගනිමින් පවතී... ⏳</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Card (E): Pending Test Papers (උගන්නලා ‌, පාඩම් කරලා තියන නමුත් පේපර් නොකරපු පාඩම් ) -->
-    <div class="ranking-card" id="cardOldestBothPendingNoPaper" onclick="handleCardClick('pendingTestPapers', event)">
-      <div class="ranking-header">
-        <div class="ranking-title">
-          <span class="ranking-icon">⏳</span>
-          <span id="cardETitle">⏳ ⏳ ⏳ උගන්නලා , පාඩම් කරලා තියන නමුත් පේපර් නොකරපු පාඩම්</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="cardEBadge" style="background: rgba(225, 112, 85, 0.12); color: #e17055;">පේපර් කළ යුතු</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('pendingTestPapers', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
-        </div>
-      </div>
-      <div class="ranking-subtitle" id="cardESub">
-        පාඩම සහ ගෙදර වැඩ (HW) අවසන් වූ, ප්‍රශ්න පත්‍ර කළ යුතු පාඩම්.
-      </div>
-      <div class="ranking-table-responsive">
-        <table class="ranking-table">
-          <thead>
-            <tr>
-              <th class="col-rank">Rank</th>
-              <th class="col-subj">Subject</th>
-              <th class="col-unit-no">Unit No</th>
-              <th class="col-unit-name">Unit Name</th>
-              <th class="col-metric">Paper Days</th>
-              <th class="col-print" style="text-align: center;">Print</th>
-              <th class="col-print-days" style="text-align: center;">Print Days</th>
-              <th class="col-date">Date</th>
-            </tr>
-          </thead>
-          <tbody id="oldestBothPendingBody">
-            <tr>
-              <td colspan="8" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත ලබාගනිමින් පවතී... ⏳</td>
-            </tr>
-          </tbody>
-        </table>
+        </a>
       </div>
     </div>
 
@@ -12605,6 +12140,13 @@ window.supabaseClient = supabase;
 
       function renderUrgentRadarCard() {
         const radarDiv = document.getElementById('radarList');
+        const pUrgent = document.getElementById('portalUrgentCount');
+        if (pUrgent) {
+          const items = (globalUrgentRadarFullList && globalUrgentRadarFullList.length > 0)
+            ? globalUrgentRadarFullList
+            : (globalUrgentRadarFullUnitList || []);
+          pUrgent.innerText = items.length;
+        }
         const titleEl = document.getElementById('urgentRadarCardTitle');
         const badgeEl = document.getElementById('urgentRadarCardBadge');
         const subEl = document.getElementById('urgentRadarCardSubtitle');
@@ -12798,11 +12340,14 @@ window.supabaseClient = supabase;
         renderUrgentRadarCard();
 
         const balanceBox = document.getElementById('balanceAlertBox');
-        if (data.balanceAlert) {
-          balanceBox.style.display = 'flex';
-          document.getElementById('balanceAlertTxt').innerText = data.balanceAlert.message;
-        } else {
-          balanceBox.style.display = 'none';
+        if (balanceBox) {
+          if (data.balanceAlert) {
+            balanceBox.style.display = 'flex';
+            const bTxt = document.getElementById('balanceAlertTxt');
+            if (bTxt) bTxt.innerText = data.balanceAlert.message;
+          } else {
+            balanceBox.style.display = 'none';
+          }
         }
 
         // v16: Multi-Cycle Ebbinghaus initialisation
@@ -12912,6 +12457,11 @@ window.supabaseClient = supabase;
           }
         }
 
+        const pEbb = document.getElementById('portalEbbCount');
+        if (pEbb && ebbCycleData) {
+          const items = ebbCycleData[currentEbbCycle || 1] || [];
+          pEbb.innerText = items.length;
+        }
         const ebbList = document.getElementById('ebbinghausList');
         if (!ebbList) return;
 
@@ -13575,6 +13125,18 @@ window.supabaseClient = supabase;
         const heading = document.getElementById('chartCardHeading');
         const zoomIndicator = document.getElementById('chartZoomIndicator');
 
+        const pFpAvg = document.getElementById('portalFpAvg');
+        if (pFpAvg && telemetryData) {
+          const history = (telemetryData.fullPapersHistory || []).filter(h => h.marks !== null && !isNaN(h.marks));
+          if (history.length > 0) {
+            const avg = Math.round(history.reduce((a, b) => a + Number(b.marks), 0) / history.length);
+            pFpAvg.innerText = `${avg}%`;
+          } else {
+            pFpAvg.innerText = '0%';
+          }
+        }
+        if (!canvas || !heading) return;
+
         const history = (telemetryData.fullPapersHistory || []).filter(h => h.marks !== null && !isNaN(h.marks));
         const overallMetrics = telemetryData.overallAvgAnalytics || computeOverallAvgMetrics(history);
 
@@ -14101,6 +13663,12 @@ window.supabaseClient = supabase;
         const emptyMsg = document.getElementById('noUnitChartMsg');
         const heading = document.getElementById('unitChartCardHeading');
         const zoomIndicator = document.getElementById('unitChartZoomIndicator');
+
+        const pTopScore = document.getElementById('portalTopScore');
+        if (pTopScore && globalTopHighestUnitList && globalTopHighestUnitList.length > 0) {
+          pTopScore.innerText = `${globalTopHighestUnitList[0].avgMarks || 0}%`;
+        }
+        if (!canvas || !heading) return;
 
         const totalEl = document.getElementById('upSummaryTotal');
         const last5AvgEl = document.getElementById('upSummaryLast5Avg');

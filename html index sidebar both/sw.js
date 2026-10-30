@@ -1,7 +1,9 @@
-const CACHE_NAME = 'al-study-tracker-v11';
+const CACHE_NAME = 'al-study-tracker-v12';
 const PRECACHE_ASSETS = [
   './',
   './app-logo.svg',
+  './study-radar',
+  './study-radar.html',
   './study-analytics',
   './study-analytics.html',
   './sidebar.html',
