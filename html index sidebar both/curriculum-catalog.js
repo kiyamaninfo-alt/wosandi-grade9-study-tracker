@@ -143,6 +143,7 @@
     setActiveGrade,
     getSubjectMetaByCode,
     getDefaultSubjectsForGrade,
+    getActiveSubjects: getActiveSubjectsForUser,
     getActiveSubjectsForUser,
     saveActiveSubjectsForUser
   };

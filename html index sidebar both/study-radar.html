@@ -6439,6 +6439,26 @@
       border-color: rgba(0, 206, 201, 0.3);
     }
 
+    body:not(.dark-mode) .subj-kpi-chip {
+      background: #ffffff !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    body:not(.dark-mode) .subj-kpi-val {
+      color: #2d3436 !important;
+    }
+    body:not(.dark-mode) .subj-kpi-lbl {
+      color: #636e72 !important;
+    }
+    body:not(.dark-mode) .explorer-select-wrap {
+      background: #ffffff !important;
+      border: 1.5px solid #8c7ae6 !important;
+      box-shadow: 0 2px 8px rgba(140, 122, 230, 0.15) !important;
+    }
+    body:not(.dark-mode) .explorer-subject-select {
+      color: #6c5ce7 !important;
+    }
+
   </style>
 </head>
 <body class="dark-mode">
@@ -6668,29 +6688,50 @@
     </div>
 
 
-    <div class="chart-card" id="fullPaperChartCard">
-      <div class="chart-header">
-        <span id="chartCardHeading">📈 Full Paper Score Progression (All %)</span>
-        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-          <div class="chart-dropbox-wrap">
-            <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Drop Box:</span>
-            <select id="fullPaperSubjectSelect" class="chart-dropbox-select" onchange="switchChartTab(this.value)">
-              <option value="All">All Subjects</option>
-            </select>
+    <div class="chart-card subject-explorer-card" id="fullPaperChartCard" style="margin-top: 14px;">
+      <div class="chart-header" style="flex-wrap: wrap; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="explorer-header-icon" style="font-size: 20px;">📈</span>
+          <div>
+            <div style="font-weight: 800; font-size: 14px; color: var(--text-main, #f0f6fc);" id="chartCardHeading">සම්පූර්ණ ප්‍රශ්න පත්‍ර ප්‍රගතිය (Full Paper Progression)</div>
+            <div style="font-size: 11px; color: var(--text-muted, #8b949e);">Drop Box එකෙන් විෂය හෝ සමස්ත සාමාන්‍යය තෝරා ලකුණු ප්‍රස්ථාරය බලන්න</div>
           </div>
-          <span style="font-size: 8.5px; color: #a4b0be;" id="chartZoomIndicator">Adaptive Zoom</span>
-          <button type="button" class="chart-data-toggle-btn" id="btnFullPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
-          <button type="button" class="chart-fullscreen-btn" id="btnFullPaperFs" onclick="toggleChartFullscreen('fullPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <div class="explorer-selector-container">
+            <label for="fullPaperSubjectSelect" class="explorer-select-label">🎯 විෂය තෝරන්න (Drop Box):</label>
+            <div class="explorer-select-wrap">
+              <select id="fullPaperSubjectSelect" class="explorer-subject-select" onchange="switchChartTab(this.value)">
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 9.5px; color: var(--text-muted, #a4b0be); font-weight: 600;" id="chartZoomIndicator">Adaptive Zoom</span>
+            <button type="button" class="chart-data-toggle-btn" id="btnFullPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
+            <button type="button" class="chart-fullscreen-btn" id="btnFullPaperFs" onclick="toggleChartFullscreen('fullPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
+          </div>
         </div>
       </div>
 
-      <div class="chart-tab-bar" id="fullPaperChartTabBar" style="overflow-x: auto; white-space: nowrap; display: flex; gap: 4px;">
-        <button class="chart-tab-btn active" onclick="switchChartTab('All')">All</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('MATH')">MATH</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('SCI')">SCI</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('SIN')">SIN</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('ENG')">ENG</button>
-        <button class="chart-tab-btn" onclick="switchChartTab('Overall Avg')">🎯 සමස්ත සාමාන්‍යය %</button>
+      <!-- Subject KPI Diagnostics Strip for Full Papers -->
+      <div class="subject-kpi-strip" id="fullPaperKpiStrip">
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="fpKpiTotal">0</div>
+          <div class="subj-kpi-lbl">මුළු Full Papers</div>
+        </div>
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="fpKpiAvg">-</div>
+          <div class="subj-kpi-lbl">සමස්ත සාමාන්‍යය %</div>
+        </div>
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="fpKpiLast5Avg">-</div>
+          <div class="subj-kpi-lbl">පසුගිය Papers 5 සාමාන්‍යය</div>
+        </div>
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="fpKpiBest">-</div>
+          <div class="subj-kpi-lbl">ඉහළම ලකුණු (Best)</div>
+        </div>
       </div>
 
       <!-- Custom HTML Legend for Full Paper Progression -->
@@ -6699,18 +6740,6 @@
       <div class="chart-container" onclick="openChartFullscreenIfNormal('fullPaperChartCard')" style="cursor: pointer;" title="Click to view full screen (සම්පූර්ණ තිරය සඳහා ක්ලික් කරන්න)">
         <canvas id="scoreChart" style="display: none;"></canvas>
         <div id="noChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Full Paper එකක් සටහන් කර නොමැත 📝</div>
-      </div>
-      <!-- Full Paper Quick Summary Bar -->
-      <div id="fullPaperSummaryBar" style="display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 12px 4px; border-top: 1px dashed rgba(0,0,0,0.06); font-size: 9.5px;">
-        <div style="flex: 1; min-width: 110px; background: rgba(108, 92, 231, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(108, 92, 231, 0.15);">
-          <span style="color: #636e72;">මුළු Papers:</span> <strong id="fpSummaryTotal" style="color: #6c5ce7;">0</strong>
-        </div>
-        <div style="flex: 1; min-width: 160px; background: rgba(243, 156, 18, 0.08); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(243, 156, 18, 0.25);">
-          <span style="color: #636e72;">පසුගිය Papers 5 සාමාන්‍යය:</span> <strong id="fpSummaryLast5Avg" style="color: #d35400;">-</strong>
-        </div>
-        <div style="flex: 1; min-width: 110px; background: rgba(39, 174, 96, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(39, 174, 96, 0.15);">
-          <span style="color: #636e72;">සමස්ත සාමාන්‍යය:</span> <strong id="fpSummaryOverallAvg" style="color: #27ae60;">-</strong>
-        </div>
       </div>
 
       <!-- Full Paper Multi-Window Analytics Panel (Dynamic by tab: ICT, ET, SFT, All, Z-score) -->
@@ -6788,28 +6817,50 @@
     </div>
 
     <!-- Unit Test Paper Score Progression Card -->
-    <div class="chart-card" id="unitPaperChartCard" style="margin-top: 14px;">
-      <div class="chart-header">
-        <span id="unitChartCardHeading">📈 Unit Paper Score Progression (All)</span>
-        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-          <div class="chart-dropbox-wrap">
-            <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Drop Box:</span>
-            <select id="unitPaperSubjectSelect" class="chart-dropbox-select" onchange="switchUnitChartTab(this.value)">
-              <option value="All">All Subjects</option>
-            </select>
+    <div class="chart-card subject-explorer-card" id="unitPaperChartCard" style="margin-top: 14px;">
+      <div class="chart-header" style="flex-wrap: wrap; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="explorer-header-icon" style="font-size: 20px;">📝</span>
+          <div>
+            <div style="font-weight: 800; font-size: 14px; color: var(--text-main, #f0f6fc);" id="unitChartCardHeading">ඒකක ප්‍රශ්න පත්‍ර ප්‍රගතිය (Unit Paper Progression)</div>
+            <div style="font-size: 11px; color: var(--text-muted, #8b949e);">Drop Box එකෙන් විෂය තෝරා එක් එක් ඒකකයේ ප්‍රශ්න පත්‍ර ලකුණු ප්‍රස්ථාරය බලන්න</div>
           </div>
-          <span style="font-size: 8.5px; color: #a4b0be;" id="unitChartZoomIndicator">Adaptive Zoom</span>
-          <button type="button" class="chart-data-toggle-btn" id="btnUnitPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
-          <button type="button" class="chart-fullscreen-btn" id="btnUnitPaperFs" onclick="toggleChartFullscreen('unitPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <div class="explorer-selector-container">
+            <label for="unitPaperSubjectSelect" class="explorer-select-label">🎯 විෂය තෝරන්න (Drop Box):</label>
+            <div class="explorer-select-wrap">
+              <select id="unitPaperSubjectSelect" class="explorer-subject-select" onchange="switchUnitChartTab(this.value)">
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 9.5px; color: var(--text-muted, #a4b0be); font-weight: 600;" id="unitChartZoomIndicator">Adaptive Zoom</span>
+            <button type="button" class="chart-data-toggle-btn" id="btnUnitPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
+            <button type="button" class="chart-fullscreen-btn" id="btnUnitPaperFs" onclick="toggleChartFullscreen('unitPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
+          </div>
         </div>
       </div>
 
-      <div class="chart-tab-bar" id="unitPaperChartTabBar" style="overflow-x: auto; white-space: nowrap; display: flex; gap: 4px;">
-        <button class="chart-tab-btn active" onclick="switchUnitChartTab('All')">All</button>
-        <button class="chart-tab-btn" onclick="switchUnitChartTab('MATH')">MATH</button>
-        <button class="chart-tab-btn" onclick="switchUnitChartTab('SCI')">SCI</button>
-        <button class="chart-tab-btn" onclick="switchUnitChartTab('SIN')">SIN</button>
-        <button class="chart-tab-btn" onclick="switchUnitChartTab('ENG')">ENG</button>
+      <!-- Subject KPI Diagnostics Strip for Unit Papers -->
+      <div class="subject-kpi-strip" id="unitPaperKpiStrip">
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="upKpiTotal">0</div>
+          <div class="subj-kpi-lbl">මුළු Unit Papers</div>
+        </div>
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="upKpiAvg">-</div>
+          <div class="subj-kpi-lbl">සාමාන්‍ය ලකුණු %</div>
+        </div>
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="upKpiLast5Avg">-</div>
+          <div class="subj-kpi-lbl">පසුගිය Papers 5 සාමාන්‍යය</div>
+        </div>
+        <div class="subj-kpi-chip">
+          <div class="subj-kpi-val" id="upKpiBest">-</div>
+          <div class="subj-kpi-lbl">ඉහළම ලකුණු (Best)</div>
+        </div>
       </div>
 
       <!-- Custom HTML Legend for Unit Paper Progression -->
@@ -6818,19 +6869,6 @@
       <div class="chart-container" onclick="openChartFullscreenIfNormal('unitPaperChartCard')" style="cursor: pointer;" title="Click to view full screen (සම්පූර්ණ තිරය සඳහා ක්ලික් කරන්න)">
         <canvas id="unitScoreChart" style="display: none;"></canvas>
         <div id="noUnitChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Unit Paper එකක් සටහන් කර නොමැත 📝</div>
-      </div>
-
-      <!-- Unit Papers Quick Summary Bar -->
-      <div id="unitPaperSummaryBar" style="display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 12px 4px; border-top: 1px dashed rgba(0,0,0,0.06); font-size: 9.5px;">
-        <div style="flex: 1; min-width: 110px; background: rgba(108, 92, 231, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(108, 92, 231, 0.15);">
-          <span style="color: #636e72;">මුළු Papers:</span> <strong id="upSummaryTotal" style="color: #6c5ce7;">0</strong>
-        </div>
-        <div style="flex: 1; min-width: 160px; background: rgba(243, 156, 18, 0.08); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(243, 156, 18, 0.25);">
-          <span style="color: #636e72;">පසුගිය Papers 5 සාමාන්‍යය:</span> <strong id="upSummaryLast5Avg" style="color: #d35400;">-</strong>
-        </div>
-        <div style="flex: 1; min-width: 110px; background: rgba(39, 174, 96, 0.06); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(39, 174, 96, 0.15);">
-          <span style="color: #636e72;">සමස්ත සාමාන්‍යය:</span> <strong id="upSummaryOverallAvg" style="color: #27ae60;">-</strong>
-        </div>
       </div>
 
       <!-- Unit Paper Multi-Window Analytics Panel (Count: 3,5,7,10,20,50,All & Time: 3,5,7,14,30,60,90d,All) -->
@@ -7823,35 +7861,69 @@
     }
 
 
-    function getActiveSubjects() {
-      if (window.ZenithCurriculum && typeof window.ZenithCurriculum.getActiveSubjects === 'function') {
-        return window.ZenithCurriculum.getActiveSubjects();
-      }
+    // --- Dynamic Grade 9 Subject Configuration Engine ---
+    const DEFAULT_G9_SUBJECTS = [
+      { code: 'MATH', nameSi: 'ගණිතය', nameEn: 'Mathematics', color: '#0984e3', icon: '📐', active: true },
+      { code: 'SCI', nameSi: 'විද්‍යාව', nameEn: 'Science', color: '#00b894', icon: '🔬', active: true },
+      { code: 'SIN', nameSi: 'සිංහල', nameEn: 'Sinhala', color: '#e17055', icon: '📘', active: true },
+      { code: 'ENG', nameSi: 'ඉංග්‍රීසි', nameEn: 'English', color: '#6c5ce7', icon: '🔤', active: true },
+      { code: 'BUD', nameSi: 'බුද්ධ ධර්මය', nameEn: 'Buddhism', color: '#f39c12', icon: '☸️', active: true },
+      { code: 'HIST', nameSi: 'ඉතිහාසය', nameEn: 'History', color: '#d35400', icon: '🏛️', active: true },
+      { code: 'GEO', nameSi: 'භූගෝල විද්‍යාව', nameEn: 'Geography', color: '#27ae60', icon: '🌍', active: true },
+      { code: 'CIV', nameSi: 'පුරවැසි අධ්‍යාපනය', nameEn: 'Civic Education', color: '#8e44ad', icon: '⚖️', active: true },
+      { code: 'HLTH', nameSi: 'සෞඛ්‍ය හා ශාරීරික අධ්‍යාපනය', nameEn: 'Health & PE', color: '#e84393', icon: '🏃‍♀️', active: true },
+      { code: 'ICT', nameSi: 'තොරතුරු තාක්ෂණය', nameEn: 'ICT', color: '#20bf6b', icon: '💻', active: true },
+      { code: 'TAM', nameSi: 'දෙමළ', nameEn: 'Tamil', color: '#00cec9', icon: '🗣️', active: true },
+      { code: 'AES', nameSi: 'සෞන්දර්ය විෂය', nameEn: 'Aesthetics', color: '#fd79a8', icon: '🎨', active: true },
+      { code: 'PTS', nameSi: 'ප්‍රායෝගික හා තාක්ෂණික කුසලතා', nameEn: 'PTS', color: '#636e72', icon: '🛠️', active: true }
+    ];
+
+    let g9SubjectsCache = null;
+
+    function loadG9Subjects() {
       try {
         const raw = localStorage.getItem('g9_subjects_config');
         if (raw) {
           const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed.filter(s => s.active !== false);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            g9SubjectsCache = parsed;
+            return g9SubjectsCache;
+          }
         }
-      } catch(_) {}
-      return [
-        { code: 'MATH', nameSi: 'ගණිතය', nameEn: 'Mathematics', color: '#ff7675', icon: '📐' },
-        { code: 'SCI', nameSi: 'විද්‍යාව', nameEn: 'Science', color: '#00cec9', icon: '🔬' },
-        { code: 'SIN', nameSi: 'සිංහල භාෂාව', nameEn: 'Sinhala', color: '#fdcb6e', icon: '📖' },
-        { code: 'ENG', nameSi: 'ඉංග්‍රීසි', nameEn: 'English', color: '#0984e3', icon: '🔤' },
-        { code: 'HIS', nameSi: 'ඉතිහාසය', nameEn: 'History', color: '#e17055', icon: '🏛️' },
-        { code: 'GEO', nameSi: 'භූගෝල විද්‍යාව', nameEn: 'Geography', color: '#20bf6b', icon: '🌍' },
-        { code: 'CIV', nameSi: 'පුරවැසි අධ්‍යාපනය', nameEn: 'Civic Ed', color: '#a29bfe', icon: '⚖️' },
-        { code: 'ICT', nameSi: 'තොරතුරු තාක්ෂණය', nameEn: 'ICT', color: '#6c5ce7', icon: '💻' }
-      ];
+      } catch(e) {
+        console.warn('Error reading g9_subjects_config:', e);
+      }
+      g9SubjectsCache = JSON.parse(JSON.stringify(DEFAULT_G9_SUBJECTS));
+      return g9SubjectsCache;
+    }
+
+    function getActiveSubjects() {
+      if (typeof ZenithCurriculum !== 'undefined') {
+        const user = (typeof ZenithAuth !== 'undefined' && ZenithAuth.getCurrentUser) ? ZenithAuth.getCurrentUser() : null;
+        const uId = (user && !user.isGuest && user.id !== 'wosandi_legacy_user') ? user.id : null;
+        if (typeof ZenithCurriculum.getActiveSubjectsForUser === 'function') {
+          return ZenithCurriculum.getActiveSubjectsForUser(uId);
+        }
+        if (typeof ZenithCurriculum.getActiveSubjects === 'function') {
+          return ZenithCurriculum.getActiveSubjects(uId);
+        }
+      }
+      if (!g9SubjectsCache) loadG9Subjects();
+      return (g9SubjectsCache || []).filter(s => s.active !== false);
     }
 
     function getSubjectMeta(code) {
-      const list = getActiveSubjects();
-      const upper = String(code || '').toUpperCase().trim();
-      const found = list.find(s => s.code.toUpperCase() === upper);
+      if (!code) return { code: 'UNKNOWN', nameSi: 'නොදනී', nameEn: 'Unknown', color: '#8c7ae6', icon: '📘', active: true };
+      const upper = String(code).toUpperCase().trim();
+      if (typeof ZenithCurriculum !== 'undefined' && ZenithCurriculum.MASTER_SUBJECT_DICTIONARY && ZenithCurriculum.MASTER_SUBJECT_DICTIONARY[upper]) {
+        return { ...ZenithCurriculum.MASTER_SUBJECT_DICTIONARY[upper], active: true };
+      }
+      const allSubjs = g9SubjectsCache || loadG9Subjects();
+      const found = allSubjs.find(s => s.code.toUpperCase() === upper);
       if (found) return found;
-      return { code: upper, nameSi: upper, nameEn: upper, color: '#8c7ae6', icon: '📘' };
+      const def = DEFAULT_G9_SUBJECTS.find(s => s.code.toUpperCase() === upper);
+      if (def) return def;
+      return { code: upper, nameSi: upper, nameEn: upper, color: '#8c7ae6', icon: '📘', active: true };
     }
 
     function renderSubjectPill(subjCode) {
@@ -7909,38 +7981,42 @@
         ? window.ZenithCurriculum.getActiveGrade()
         : 9;
 
-      const userId = user && !user.isGuest ? user.id : null;
+      const userId = (window.ZenithAuth && typeof window.ZenithAuth.getUserId === 'function')
+        ? window.ZenithAuth.getUserId()
+        : (user && !user.isGuest && user.id !== 'wosandi_legacy_user' ? user.id : null);
 
       try {
-        // 1. Fetch canonical syllabus
-        let sylQuery = supabase.from('canonical_syllabus').select('*').order('sort_order', { ascending: true });
-        if (userGrade) sylQuery = sylQuery.eq('grade', userGrade);
-        let { data: syllabusList, error: sylErr } = await sylQuery;
-        if (sylErr || !syllabusList || syllabusList.length === 0) {
-          const fallback = supabase.from('canonical_syllabus').select('*').order('sort_order', { ascending: true });
-          const res = await fallback;
-          syllabusList = res.data || [];
+        // Resilient parallel data fetching
+        const sylPromise = supabase.from('canonical_syllabus').select('*').order('sort_order', { ascending: true });
+        const tpPromise = userId ? supabase.from('tracker_progress').select('*').eq('user_id', userId) : supabase.from('tracker_progress').select('*').is('user_id', null);
+        const upPromise = userId ? supabase.from('unit_papers').select('*').eq('user_id', userId).order('logged_at', { ascending: true }) : supabase.from('unit_papers').select('*').is('user_id', null).order('logged_at', { ascending: true });
+        const fpPromise = userId ? supabase.from('full_papers').select('*').eq('user_id', userId).order('exam_date', { ascending: true }).order('logged_at', { ascending: true }) : supabase.from('full_papers').select('*').order('exam_date', { ascending: true }).order('logged_at', { ascending: true });
+        const srPromise = userId ? supabase.from('spaced_repetition_log').select('*').eq('user_id', userId) : supabase.from('spaced_repetition_log').select('*').is('user_id', null);
+
+        const [sylRes, tpRes, upRes, fpRes, srRes] = await Promise.allSettled([sylPromise, tpPromise, upPromise, fpPromise, srPromise]);
+
+        let syllabusList = (sylRes.status === 'fulfilled' && sylRes.value && sylRes.value.data) ? sylRes.value.data : [];
+        let tpList = (tpRes.status === 'fulfilled' && tpRes.value && tpRes.value.data) ? tpRes.value.data : [];
+        let unitPapers = (upRes.status === 'fulfilled' && upRes.value && upRes.value.data) ? upRes.value.data : [];
+        let rawFullPapers = (fpRes.status === 'fulfilled' && fpRes.value && fpRes.value.data) ? fpRes.value.data : [];
+        let srLogs = (srRes.status === 'fulfilled' && srRes.value && srRes.value.data) ? srRes.value.data : [];
+
+        // Dynamic Subjects Configuration Sync from Database
+        const subjectsConfigRow = rawFullPapers.find(r => r.time_taken === 'APP_CONFIG_SUBJECTS');
+        if (subjectsConfigRow && subjectsConfigRow.remarks) {
+          try {
+            const parsedSubjs = JSON.parse(subjectsConfigRow.remarks);
+            if (Array.isArray(parsedSubjs) && parsedSubjs.length > 0) {
+              g9SubjectsCache = parsedSubjs;
+              try { localStorage.setItem('g9_subjects_config', JSON.stringify(parsedSubjs)); } catch(_) {}
+            }
+          } catch(e) {
+            console.warn('Error syncing subjects config row from database:', e);
+          }
         }
 
-        // 2. Fetch tracker progress
-        let tpQuery = supabase.from('tracker_progress').select('*');
-        if (userId) tpQuery = tpQuery.eq('user_id', userId);
-        const { data: tpList } = await tpQuery;
-
-        // 3. Fetch unit papers
-        let upQuery = supabase.from('unit_papers').select('*').order('logged_at', { ascending: true });
-        if (userId) upQuery = upQuery.eq('user_id', userId);
-        const { data: unitPapers } = await upQuery;
-
-        // 4. Fetch full papers
-        let fpQuery = supabase.from('full_papers').select('*').order('date', { ascending: true });
-        if (userId) fpQuery = fpQuery.eq('user_id', userId);
-        const { data: fullPapers } = await fpQuery;
-
-        // 5. Fetch spaced repetition logs
-        let srQuery = supabase.from('sr_logs').select('*');
-        if (userId) srQuery = srQuery.eq('user_id', userId);
-        const { data: srLogs } = await srQuery;
+        // Filter valid full papers (excluding system config rows)
+        const fullPapers = rawFullPapers.filter(r => r.time_taken !== 'APP_CONFIG_PRINTED_PAPERS' && r.time_taken !== 'APP_CONFIG_SUBJECTS');
 
         // Map lookups
         const tpMap = {};
@@ -8126,50 +8202,31 @@
       }
     }
 
-    // --- Tab Switcher for Active Subjects in Charts ---
+    // --- Drop Box Switcher for Active Subjects in All Charts ---
     function updateChartTabBars() {
       const subjs = getActiveSubjects();
 
-      // 1. Full Paper Chart: Populate Drop Box & Tab Bar
+      // 1. Full Paper Chart: Populate Drop Box
       const fpSelect = document.getElementById('fullPaperSubjectSelect');
       if (fpSelect) {
-        let opts = '<option value="All">🌟 All Subjects (සමස්ත)</option>';
-        opts += '<option value="Overall Avg">🎯 සමස්ත සාමාන්‍යය %</option>';
+        let opts = '<option value="All">🌟 All Subjects (සමස්ත විෂයයන්)</option>';
+        opts += '<option value="Overall Avg">🎯 සමස්ත සාමාන්‍යය % (Overall Avg)</option>';
         subjs.forEach(s => {
-          opts += `<option value="${s.code}" ${currentActiveChartTab === s.code ? 'selected' : ''}>${s.icon || '📘'} ${s.code} — ${s.nameSi}</option>`;
+          opts += `<option value="${s.code}" ${currentActiveChartTab === s.code ? 'selected' : ''}>${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})</option>`;
         });
         fpSelect.innerHTML = opts;
         fpSelect.value = currentActiveChartTab;
       }
 
-      const fpBar = document.getElementById('fullPaperChartTabBar');
-      if (fpBar) {
-        let html = '<button class="chart-tab-btn ' + (currentActiveChartTab === 'All' ? 'active' : '') + '" onclick="switchChartTab(\'All\')">All</button>';
-        subjs.forEach(s => {
-          html += `<button class="chart-tab-btn ${currentActiveChartTab === s.code ? 'active' : ''}" onclick="switchChartTab('${s.code}')">${s.code}</button>`;
-        });
-        html += '<button class="chart-tab-btn ' + (currentActiveChartTab === 'Overall Avg' ? 'active' : '') + '" onclick="switchChartTab(\'Overall Avg\')">🎯 සමස්ත සාමාන්‍යය %</button>';
-        fpBar.innerHTML = html;
-      }
-
-      // 2. Unit Paper Chart: Populate Drop Box & Tab Bar
+      // 2. Unit Paper Chart: Populate Drop Box
       const upSelect = document.getElementById('unitPaperSubjectSelect');
       if (upSelect) {
-        let opts = '<option value="All">🌟 All Unit Papers (සියල්ල)</option>';
+        let opts = '<option value="All">🌟 All Unit Papers (සියලු ඒකක පත්‍ර)</option>';
         subjs.forEach(s => {
-          opts += `<option value="${s.code}" ${currentActiveUnitChartTab === s.code ? 'selected' : ''}>${s.icon || '📘'} ${s.code} — ${s.nameSi}</option>`;
+          opts += `<option value="${s.code}" ${currentActiveUnitChartTab === s.code ? 'selected' : ''}>${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})</option>`;
         });
         upSelect.innerHTML = opts;
         upSelect.value = currentActiveUnitChartTab;
-      }
-
-      const upBar = document.getElementById('unitPaperChartTabBar') || document.getElementById('unitChartTabBar');
-      if (upBar) {
-        let html = '<button class="chart-tab-btn ' + (currentActiveUnitChartTab === 'All' ? 'active' : '') + '" onclick="switchUnitChartTab(\'All\')">All</button>';
-        subjs.forEach(s => {
-          html += `<button class="chart-tab-btn ${currentActiveUnitChartTab === s.code ? 'active' : ''}" onclick="switchUnitChartTab('${s.code}')">${s.code}</button>`;
-        });
-        upBar.innerHTML = html;
       }
 
       // 3. Subject Explorer Drop Box
@@ -8180,6 +8237,7 @@
             ${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})
           </option>
         `).join('');
+        expSelect.value = currentExplorerSubject;
       }
     }
 
@@ -8299,7 +8357,11 @@
           paper_days: 0,
           updated_at: new Date().toISOString()
         }).eq('syllabus_id', item.syllabusId);
-        if (userId) tpUp = tpUp.eq('user_id', userId);
+        if (userId) {
+          tpUp = tpUp.eq('user_id', userId);
+        } else {
+          tpUp = tpUp.is('user_id', null);
+        }
         await tpUp;
 
         cancelUrgentRadarConfirm();
@@ -8440,12 +8502,13 @@
         const insPayload = {
           syllabus_id: item.syllabusId,
           subject: item.subject,
-          cycle_no: currentEbbCycle,
-          stage_days: item.stageBucket,
+          sub_lesson_code: item.sub_lesson_code || (item.unitNumber ? ('Unit ' + String(item.unitNumber).padStart(2, '0')) : 'Unit 01'),
+          cycle: currentEbbCycle || 1,
+          day_stage: item.stageBucket || 1,
           completed_at: new Date().toISOString()
         };
         if (userId) insPayload.user_id = userId;
-        await supabase.from('sr_logs').insert([insPayload]);
+        await supabase.from('spaced_repetition_log').insert([insPayload]);
 
         cancelEbbConfirm();
         try {
@@ -8459,17 +8522,111 @@
       }
     }
 
+    // --- Analytics Pill Helper ---
+    function setPillVal(id, val) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (val === null || val === undefined || isNaN(val) || val === '') {
+        el.innerText = '-';
+        el.className = 'zscore-pill-val empty';
+        el.style.color = '';
+      } else {
+        el.innerText = `${val}%`;
+        el.className = 'zscore-pill-val';
+        el.style.color = val >= 75 ? '#20bf6b' : (val >= 65 ? '#fdcb6e' : '#eb4d4b');
+      }
+    }
+
+    function updateFullPaperAnalytics(papers, marks) {
+      const badge = document.getElementById('fullPanelBadge');
+      if (badge) {
+        const meta = getSubjectMeta(currentActiveChartTab);
+        badge.innerText = currentActiveChartTab === 'All' ? '🌟 සියලු විෂයයන්' : (currentActiveChartTab === 'Overall Avg' ? '🎯 සමස්ත සාමාන්‍යය' : `${meta.icon || '📘'} ${meta.nameSi} (${currentActiveChartTab})`);
+      }
+
+      const getSliceAvg = (n) => {
+        if (!marks || marks.length === 0) return null;
+        const slice = marks.slice(-n);
+        if (slice.length === 0) return null;
+        return Math.round(slice.reduce((a, b) => a + b, 0) / slice.length);
+      };
+
+      setPillVal('z_cnt_3', marks.length >= 3 ? getSliceAvg(3) : (marks.length > 0 ? getSliceAvg(marks.length) : null));
+      setPillVal('z_cnt_5', marks.length >= 5 ? getSliceAvg(5) : null);
+      setPillVal('z_cnt_7', marks.length >= 7 ? getSliceAvg(7) : null);
+      setPillVal('z_cnt_10', marks.length >= 10 ? getSliceAvg(10) : null);
+      setPillVal('z_cnt_20', marks.length >= 20 ? getSliceAvg(20) : null);
+      setPillVal('z_cnt_50', marks.length >= 50 ? getSliceAvg(50) : null);
+      setPillVal('z_cnt_all', marks.length > 0 ? getSliceAvg(marks.length) : null);
+
+      const now = Date.now();
+      const getTimeAvg = (days) => {
+        const cutoff = now - days * 86400000;
+        const inWindow = papers.filter(p => {
+          const d = p.exam_date || p.date || p.logged_at;
+          if (!d) return false;
+          return new Date(d).getTime() >= cutoff;
+        });
+        if (inWindow.length === 0) return null;
+        return Math.round(inWindow.reduce((a, b) => a + Number(b.marks), 0) / inWindow.length);
+      };
+
+      setPillVal('z_time_7d', getTimeAvg(7));
+      setPillVal('z_time_14d', getTimeAvg(14));
+      setPillVal('z_time_1m', getTimeAvg(30));
+      setPillVal('z_time_3m', getTimeAvg(90));
+      setPillVal('z_time_all', marks.length > 0 ? getSliceAvg(marks.length) : null);
+    }
+
+    function updateUnitPaperAnalytics(papers, marks) {
+      const badge = document.getElementById('upAnalyticsSubjectBadge');
+      if (badge) {
+        const meta = getSubjectMeta(currentActiveUnitChartTab);
+        badge.innerText = currentActiveUnitChartTab === 'All' ? '🌟 සියලු විෂයයන්' : `${meta.icon || '📘'} ${meta.nameSi} (${currentActiveUnitChartTab})`;
+      }
+
+      const getSliceAvg = (n) => {
+        if (!marks || marks.length === 0) return null;
+        const slice = marks.slice(-n);
+        if (slice.length === 0) return null;
+        return Math.round(slice.reduce((a, b) => a + b, 0) / slice.length);
+      };
+
+      setPillVal('up_cnt_3', marks.length >= 3 ? getSliceAvg(3) : (marks.length > 0 ? getSliceAvg(marks.length) : null));
+      setPillVal('up_cnt_5', marks.length >= 5 ? getSliceAvg(5) : null);
+      setPillVal('up_cnt_7', marks.length >= 7 ? getSliceAvg(7) : null);
+      setPillVal('up_cnt_10', marks.length >= 10 ? getSliceAvg(10) : null);
+      setPillVal('up_cnt_20', marks.length >= 20 ? getSliceAvg(20) : null);
+      setPillVal('up_cnt_50', marks.length >= 50 ? getSliceAvg(50) : null);
+      setPillVal('up_cnt_all', marks.length > 0 ? getSliceAvg(marks.length) : null);
+
+      const now = Date.now();
+      const getTimeAvg = (days) => {
+        const cutoff = now - days * 86400000;
+        const inWindow = papers.filter(p => {
+          const d = p.logged_at || p.created_at;
+          if (!d) return false;
+          return new Date(d).getTime() >= cutoff;
+        });
+        if (inWindow.length === 0) return null;
+        return Math.round(inWindow.reduce((a, b) => a + Number(b.marks), 0) / inWindow.length);
+      };
+
+      setPillVal('up_time_3d', getTimeAvg(3));
+      setPillVal('up_time_5d', getTimeAvg(5));
+      setPillVal('up_time_7d', getTimeAvg(7));
+      setPillVal('up_time_14d', getTimeAvg(14));
+      setPillVal('up_time_30d', getTimeAvg(30));
+      setPillVal('up_time_60d', getTimeAvg(60));
+      setPillVal('up_time_90d', getTimeAvg(90));
+      setPillVal('up_time_all', marks.length > 0 ? getSliceAvg(marks.length) : null);
+    }
+
     // --- 3. Full Paper Score Progression Chart ---
     function switchChartTab(tab) {
       currentActiveChartTab = tab;
       const fpSelect = document.getElementById('fullPaperSubjectSelect');
       if (fpSelect) fpSelect.value = tab;
-      const bar = document.getElementById('fullPaperChartTabBar');
-      if (bar) {
-        bar.querySelectorAll('.chart-tab-btn').forEach(btn => {
-          btn.classList.toggle('active', btn.innerText.includes(tab) || (tab === 'All' && btn.innerText === 'All') || (tab === 'Overall Avg' && btn.innerText.includes('සමස්ත')));
-        });
-      }
       renderMultiTabChart();
     }
 
@@ -8483,7 +8640,39 @@
       const history = (telemetryData && telemetryData.fullPapersHistory) ? telemetryData.fullPapersHistory.filter(h => h.marks !== null && !isNaN(h.marks)) : [];
       let filtered = currentActiveChartTab === 'All' || currentActiveChartTab === 'Overall Avg' ? history : history.filter(h => (h.subject || '').toUpperCase().trim() === currentActiveChartTab);
 
-      heading.innerText = `📈 Full Paper Score Progression (${currentActiveChartTab})`;
+      const subjMeta = getSubjectMeta(currentActiveChartTab);
+      heading.innerText = currentActiveChartTab === 'All'
+        ? '📈 සම්පූර්ණ ප්‍රශ්න පත්‍ර ප්‍රගතිය (Full Paper Progression - All)'
+        : (currentActiveChartTab === 'Overall Avg'
+          ? '🎯 සමස්ත සාමාන්‍ය ප්‍රගතිය (Overall Average %)'
+          : `📈 ${subjMeta.icon || '📘'} ${subjMeta.nameSi} (${currentActiveChartTab}) Full Paper ප්‍රගතිය`);
+
+      // Update Full Paper KPI Diagnostics Strip
+      const fpTotalEl = document.getElementById('fpKpiTotal');
+      const fpAvgEl = document.getElementById('fpKpiAvg');
+      const fpLast5El = document.getElementById('fpKpiLast5Avg');
+      const fpBestEl = document.getElementById('fpKpiBest');
+
+      const marks = filtered.map(h => Number(h.marks));
+      const totalCount = filtered.length;
+      const overallAvg = totalCount > 0 ? Math.round(marks.reduce((a, b) => a + b, 0) / totalCount) : 0;
+      const last5 = marks.slice(-5);
+      const last5Avg = last5.length > 0 ? Math.round(last5.reduce((a, b) => a + b, 0) / last5.length) : 0;
+      const bestMark = marks.length > 0 ? Math.max(...marks) : 0;
+
+      if (fpTotalEl) fpTotalEl.innerText = `${totalCount} Papers`;
+      if (fpAvgEl) {
+        fpAvgEl.innerText = totalCount > 0 ? `${overallAvg}%` : '-';
+        fpAvgEl.style.color = overallAvg >= 75 ? '#20bf6b' : (overallAvg >= 65 ? '#fdcb6e' : '#eb4d4b');
+      }
+      if (fpLast5El) {
+        fpLast5El.innerText = last5.length > 0 ? `${last5Avg}%` : '-';
+        fpLast5El.style.color = last5Avg >= 75 ? '#20bf6b' : (last5Avg >= 65 ? '#fdcb6e' : '#eb4d4b');
+      }
+      if (fpBestEl) fpBestEl.innerText = marks.length > 0 ? `${bestMark}%` : '-';
+
+      // Update Analytics Panel
+      updateFullPaperAnalytics(filtered, marks);
 
       if (filtered.length === 0) {
         canvas.style.display = 'none';
@@ -8499,15 +8688,14 @@
       canvas.style.display = 'block';
       if (emptyMsg) emptyMsg.style.display = 'none';
 
-      const labels = filtered.map((h, i) => h.date ? String(h.date).substring(5) : `P${i+1}`);
-      const marks = filtered.map(h => Number(h.marks));
-      const avg = Math.round(marks.reduce((a, b) => a + b, 0) / marks.length);
+      const labels = filtered.map((h, i) => h.exam_date ? String(h.exam_date).substring(5) : (h.date ? String(h.date).substring(5) : (h.logged_at ? String(h.logged_at).substring(5, 10) : `P${i+1}`)));
 
-      if (zoomIndicator) zoomIndicator.innerText = `Papers: ${filtered.length} • Avg: ${avg}%`;
+      if (zoomIndicator) zoomIndicator.innerText = `Papers: ${filtered.length} • Avg: ${overallAvg}%`;
 
-      const isDark = document.documentElement.classList.contains('dark-mode');
+      const isDark = document.documentElement.classList.contains('dark-mode') || (document.body && document.body.classList.contains('dark-mode'));
       const textColor = isDark ? '#e6edf3' : '#2d3436';
       const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)';
+      const chartColor = (currentActiveChartTab !== 'All' && currentActiveChartTab !== 'Overall Avg' && subjMeta.color) ? subjMeta.color : '#6c5ce7';
 
       if (scoreChartInstance) scoreChartInstance.destroy();
       const ctx = canvas.getContext('2d');
@@ -8518,14 +8706,14 @@
           datasets: [{
             label: `${currentActiveChartTab} Score %`,
             data: marks,
-            borderColor: '#6c5ce7',
-            backgroundColor: 'rgba(108, 92, 231, 0.15)',
+            borderColor: chartColor,
+            backgroundColor: `${chartColor}22`,
             borderWidth: 2.5,
             fill: true,
             tension: 0.35,
             pointRadius: 4,
             pointHoverRadius: 6,
-            pointBackgroundColor: '#6c5ce7'
+            pointBackgroundColor: chartColor
           }]
         },
         options: {
@@ -8547,12 +8735,6 @@
       currentActiveUnitChartTab = tab;
       const upSelect = document.getElementById('unitPaperSubjectSelect');
       if (upSelect) upSelect.value = tab;
-      const bar = document.getElementById('unitPaperChartTabBar') || document.getElementById('unitChartTabBar');
-      if (bar) {
-        bar.querySelectorAll('.chart-tab-btn').forEach(btn => {
-          btn.classList.toggle('active', btn.innerText.includes(tab) || (tab === 'All' && btn.innerText === 'All'));
-        });
-      }
       renderUnitPaperChart();
     }
 
@@ -8566,7 +8748,37 @@
       const history = (telemetryData && telemetryData.unitPapersHistory) ? telemetryData.unitPapersHistory.filter(h => h.marks !== null && !isNaN(h.marks)) : [];
       let filtered = currentActiveUnitChartTab === 'All' ? history : history.filter(h => (h.subject || '').toUpperCase().trim() === currentActiveUnitChartTab);
 
-      heading.innerText = `📈 Unit Paper Score Progression (${currentActiveUnitChartTab})`;
+      const subjMeta = getSubjectMeta(currentActiveUnitChartTab);
+      heading.innerText = currentActiveUnitChartTab === 'All'
+        ? '📈 ඒකක ප්‍රශ්න පත්‍ර ප්‍රගතිය (Unit Paper Progression - All)'
+        : `📈 ${subjMeta.icon || '📘'} ${subjMeta.nameSi} (${currentActiveUnitChartTab}) Unit Paper ප්‍රගතිය`;
+
+      // Update Unit Paper KPI Diagnostics Strip
+      const upTotalEl = document.getElementById('upKpiTotal');
+      const upAvgEl = document.getElementById('upKpiAvg');
+      const upLast5El = document.getElementById('upKpiLast5Avg');
+      const upBestEl = document.getElementById('upKpiBest');
+
+      const marks = filtered.map(h => Number(h.marks));
+      const totalCount = filtered.length;
+      const overallAvg = totalCount > 0 ? Math.round(marks.reduce((a, b) => a + b, 0) / totalCount) : 0;
+      const last5 = marks.slice(-5);
+      const last5Avg = last5.length > 0 ? Math.round(last5.reduce((a, b) => a + b, 0) / last5.length) : 0;
+      const bestMark = marks.length > 0 ? Math.max(...marks) : 0;
+
+      if (upTotalEl) upTotalEl.innerText = `${totalCount} Papers`;
+      if (upAvgEl) {
+        upAvgEl.innerText = totalCount > 0 ? `${overallAvg}%` : '-';
+        upAvgEl.style.color = overallAvg >= 75 ? '#20bf6b' : (overallAvg >= 65 ? '#fdcb6e' : '#eb4d4b');
+      }
+      if (upLast5El) {
+        upLast5El.innerText = last5.length > 0 ? `${last5Avg}%` : '-';
+        upLast5El.style.color = last5Avg >= 75 ? '#20bf6b' : (last5Avg >= 65 ? '#fdcb6e' : '#eb4d4b');
+      }
+      if (upBestEl) upBestEl.innerText = marks.length > 0 ? `${bestMark}%` : '-';
+
+      // Update Unit Paper Analytics Panel
+      updateUnitPaperAnalytics(filtered, marks);
 
       if (filtered.length === 0) {
         canvas.style.display = 'none';
@@ -8582,15 +8794,14 @@
       canvas.style.display = 'block';
       if (emptyMsg) emptyMsg.style.display = 'none';
 
-      const labels = filtered.map((h, i) => h.sub_lesson_code || `U${i+1}`);
-      const marks = filtered.map(h => Number(h.marks));
-      const avg = Math.round(marks.reduce((a, b) => a + b, 0) / marks.length);
+      const labels = filtered.map((h, i) => h.sub_lesson_code || (h.logged_at ? String(h.logged_at).substring(5, 10) : `U${i+1}`));
 
-      if (zoomIndicator) zoomIndicator.innerText = `Unit Papers: ${filtered.length} • Avg: ${avg}%`;
+      if (zoomIndicator) zoomIndicator.innerText = `Unit Papers: ${filtered.length} • Avg: ${overallAvg}%`;
 
-      const isDark = document.documentElement.classList.contains('dark-mode');
+      const isDark = document.documentElement.classList.contains('dark-mode') || (document.body && document.body.classList.contains('dark-mode'));
       const textColor = isDark ? '#e6edf3' : '#2d3436';
       const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)';
+      const chartColor = (currentActiveUnitChartTab !== 'All' && subjMeta.color) ? subjMeta.color : '#0984e3';
 
       if (unitScoreChartInstance) unitScoreChartInstance.destroy();
       const ctx = canvas.getContext('2d');
@@ -8601,14 +8812,14 @@
           datasets: [{
             label: `${currentActiveUnitChartTab} Unit %`,
             data: marks,
-            borderColor: '#0984e3',
-            backgroundColor: 'rgba(9, 132, 227, 0.15)',
+            borderColor: chartColor,
+            backgroundColor: `${chartColor}22`,
             borderWidth: 2.5,
             fill: true,
             tension: 0.35,
             pointRadius: 4,
             pointHoverRadius: 6,
-            pointBackgroundColor: '#0984e3'
+            pointBackgroundColor: chartColor
           }]
         },
         options: {
@@ -8921,10 +9132,11 @@
       try {
         const ins = {
           subject: subj,
-          date: dt,
+          exam_date: dt,
           marks: marks,
-          time_taken: time,
-          remarks: rem
+          time_taken: time || 'N/A',
+          remarks: rem || '',
+          logged_at: new Date().toISOString()
         };
         if (userId) ins.user_id = userId;
 
