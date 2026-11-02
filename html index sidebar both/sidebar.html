@@ -64,6 +64,7 @@
         --text-dark: #f0f6fc;
         --text-muted: #8b949e;
         --border-color: #30363d;
+        color-scheme: dark;
       }
       body {
         font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
@@ -161,6 +162,16 @@
       }
       .form-input:focus, .form-select:focus {
         border-color: var(--primary);
+      }
+      .form-input:disabled {
+        background: #f1f2f6;
+        color: #7f8fa6;
+        cursor: not-allowed;
+      }
+      :root.dark-mode .form-input:disabled, body.dark-mode .form-input:disabled {
+        background: #161b22;
+        color: #8b949e;
+        border-color: #30363d;
       }
 
       /* Locked Prefix Input Group */
@@ -281,12 +292,6 @@
         gap: 3px;
       }
 
-      :root.dark-mode #addPasswordError, body.dark-mode #addPasswordError,
-      :root.dark-mode #editPasswordError, body.dark-mode #editPasswordError,
-      :root.dark-mode #subjPasswordError, body.dark-mode #subjPasswordError {
-        color: #ff6b6b !important;
-      }
-
       .res-title { font-weight: 600; font-size: 11px; line-height: 1.3; }
       :root.dark-mode .res-title, body.dark-mode .res-title { color: #f0f6fc; }
       .res-unit { font-size: 9px; color: var(--text-muted); }
@@ -308,11 +313,32 @@
         color: #c9d1d9;
         border-color: #30363d;
       }
+      .action-btn:hover { background: #dfe6e9; }
+      :root.dark-mode .action-btn:hover, body.dark-mode .action-btn:hover { background: #30363d; color: #f0f6fc; }
       .action-btn.jump:hover { background: #8c7ae6; color: white; border-color: #8c7ae6; }
       .action-btn.edit:hover { background: #00cec9; color: white; border-color: #00cec9; }
       .action-btn.del:hover { background: #e74c3c; color: white; border-color: #e74c3c; }
 
-      /* Subject Item Card */
+      /* Subject Manager Form & Card */
+      #subjectForm {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 12px;
+      }
+      :root.dark-mode #subjectForm, body.dark-mode #subjectForm {
+        background: #21262d;
+        border-color: #30363d;
+      }
+      :root.dark-mode #subjColor, body.dark-mode #subjColor {
+        border-color: #30363d;
+        background: #0d1117;
+      }
+      #subjActive {
+        accent-color: var(--primary);
+      }
+
       .subject-card-item {
         background: var(--card-bg);
         border: 1px solid var(--border-color);
@@ -327,6 +353,13 @@
       :root.dark-mode .subject-card-item, body.dark-mode .subject-card-item {
         background: #161b22;
         border-color: #30363d;
+      }
+      .subject-card-item:hover {
+        border-color: var(--primary);
+      }
+      :root.dark-mode .subject-card-item:hover, body.dark-mode .subject-card-item:hover {
+        border-color: var(--primary);
+        background: #1c2128;
       }
       .subj-card-top {
         display: flex;
@@ -438,15 +471,7 @@
             <input type="text" class="form-input" id="unitTitleInput" placeholder="උදා: සංඛ්‍යා රටා" required>
           </div>
 
-          <div class="form-group" style="margin-top: 8px;">
-            <label class="form-label" style="font-weight: 700;">🔒 තහවුරු කිරීමේ මුරපදය (Security Password) *</label>
-            <input type="password" class="form-input" id="addPassword" placeholder="මුරපදය ඇතුළත් කරන්න (3408)" style="font-size: 11px; padding: 7px 10px; text-align: center; letter-spacing: 2px;" autocomplete="off" required>
-            <div id="addPasswordError" style="display: none; color: #d63031; font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
-              ⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.
-            </div>
-          </div>
-
-          <button type="submit" class="btn-primary" id="addBtn">+ නව ඒකකය සුරකින්න</button>
+          <button type="submit" class="btn-primary" id="addBtn" style="margin-top: 10px;">+ නව ඒකකය සුරකින්න</button>
         </form>
         <div class="status-box" id="addStatus"></div>
       </div>
@@ -473,15 +498,10 @@
             </div>
           </div>
 
-          <div class="form-group" style="margin-top: 8px;">
-            <label class="form-label" style="font-weight: 700;">🔒 තහවුරු කිරීමේ මුරපදය (Security Password) *</label>
-            <input type="password" class="form-input" id="editPassword" placeholder="මුරපදය ඇතුළත් කරන්න (3408)" style="font-size: 11px; padding: 7px 10px; text-align: center; letter-spacing: 2px;" autocomplete="off" required>
-            <div id="editPasswordError" style="display: none; color: #d63031; font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
-              ⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.
-            </div>
+          <div style="display: flex; gap: 6px; margin-top: 12px;">
+            <button type="submit" class="btn-primary" id="editBtn" style="flex: 2;">💾 නම යාවත්කාලීන කරන්න</button>
+            <button type="button" class="btn-secondary" id="editDeleteBtn" onclick="deleteLesson(currentEditingItem ? currentEditingItem.subject : null, currentEditingItem ? currentEditingItem.unitNum : null)" style="flex: 1; background: #e74c3c; color: #fff; border: none; padding: 8px 10px; font-weight: 600; font-size: 11px; border-radius: 6px; cursor: pointer;">🗑️ මකන්න</button>
           </div>
-
-          <button type="submit" class="btn-primary" id="editBtn">💾 නම යාවත්කාලීන කරන්න</button>
         </form>
         <div class="status-box" id="editStatus"></div>
       </div>
@@ -501,7 +521,7 @@
         </div>
 
         <!-- Add / Edit Subject Form -->
-        <form id="subjectForm" onsubmit="submitSubjectForm(event)" style="background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 12px;">
+        <form id="subjectForm" onsubmit="submitSubjectForm(event)">
           <div style="font-weight: 700; font-size: 11px; margin-bottom: 8px; color: var(--primary);" id="subjFormTitle">➕ නව විෂයයක් එක් කරන්න</div>
           
           <div class="form-group">
@@ -534,15 +554,7 @@
             </div>
           </div>
 
-          <div class="form-group" style="margin-top: 6px;">
-            <label class="form-label" style="font-weight: 700;">🔒 තහවුරු කිරීමේ මුරපදය (Security Password) *</label>
-            <input type="password" class="form-input" id="subjPassword" placeholder="මුරපදය ඇතුළත් කරන්න (3408)" style="font-size: 11px; padding: 6px 8px; text-align: center; letter-spacing: 2px;" autocomplete="off" required>
-            <div id="subjPasswordError" style="display: none; color: #d63031; font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
-              ⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.
-            </div>
-          </div>
-
-          <div style="display: flex; gap: 6px;">
+          <div style="display: flex; gap: 6px; margin-top: 10px;">
             <button type="submit" class="btn-primary" id="subjSubmitBtn">+ නව විෂය එක් කරන්න</button>
             <button type="button" class="btn-secondary" id="cancelEditSubjBtn" onclick="cancelEditSubject()" style="display: none; width: auto; padding: 8px 12px;">අවලංගු කරන්න</button>
           </div>
@@ -706,8 +718,9 @@
           }
         }
 
-        // Fallback / Legacy Wosandi sync to Supabase full_papers
-        if (supabase && typeof supabase.from === 'function') {
+        // Master / Admin fallback sync to Supabase full_papers
+        const isAdmin = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.isAdminUser === 'function') ? ZenithAuth.isAdminUser() : false;
+        if (isAdmin && supabase && typeof supabase.from === 'function') {
           try {
             const jsonStr = JSON.stringify(g9Subjects);
             const nowIso = new Date().toISOString();
@@ -736,6 +749,47 @@
           } catch (err) {
             console.warn("Could not save subjects to Supabase:", err);
           }
+        }
+      }
+
+      // --- Tenant & Custom Units Helpers ---
+      function getLocalCustomUnits() {
+        const isAdmin = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.isAdminUser === 'function') && ZenithAuth.isAdminUser();
+        if (isAdmin) return [];
+        const userId = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.getUserId === 'function') ? ZenithAuth.getUserId() : null;
+        if (!userId) {
+          try {
+            const raw = localStorage.getItem('zenith_guest_custom_units');
+            return raw ? JSON.parse(raw) : [];
+          } catch (e) {
+            return [];
+          }
+        } else {
+          try {
+            const cacheKey = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.getScopedKey === 'function')
+              ? ZenithAuth.getScopedKey('zenith_custom_units_cache')
+              : 'zenith_custom_units_cache';
+            const raw = localStorage.getItem(cacheKey);
+            return raw ? JSON.parse(raw) : [];
+          } catch (e) {
+            return [];
+          }
+        }
+      }
+
+      function saveLocalCustomUnits(units) {
+        const userId = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.getUserId === 'function') ? ZenithAuth.getUserId() : null;
+        if (!userId) {
+          try {
+            localStorage.setItem('zenith_guest_custom_units', JSON.stringify(units));
+          } catch (e) {}
+        } else {
+          try {
+            const cacheKey = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.getScopedKey === 'function')
+              ? ZenithAuth.getScopedKey('zenith_custom_units_cache')
+              : 'zenith_custom_units_cache';
+            localStorage.setItem(cacheKey, JSON.stringify(units));
+          } catch (e) {}
         }
       }
 
@@ -831,17 +885,7 @@
         container.innerHTML = html;
       }
 
-      function promptPin() {
-        const pin = prompt("🔒 තහවුරු කිරීමේ මුරපදය ඇතුළත් කරන්න (Security Password):");
-        if (pin !== '3408') {
-          if (pin !== null) alert("⚠️ මුරපදය වැරදියි!");
-          return false;
-        }
-        return true;
-      }
-
       function toggleSubjectActive(code) {
-        if (!promptPin()) return;
         const s = g9Subjects.find(x => x.code === code);
         if (s) {
           s.active = !s.active;
@@ -854,8 +898,7 @@
       }
 
       function deleteSubject(code) {
-        if (!confirm(`ඔබට [${code}] විෂය ඉවත් කිරීමට අවශ්‍ය බව තහවුරු කරන්න?`)) return;
-        if (!promptPin()) return;
+        if (!confirm(`ඔබට [${code}] විෂය ඉවත් කිරීමට අවශ්‍ය බව තහවුරු කරන්න? / Confirm delete subject?`)) return;
         g9Subjects = g9Subjects.filter(s => s.code !== code);
         saveSubjects(g9Subjects);
         renderSubjectsList();
@@ -865,8 +908,11 @@
       }
 
       function resetSubjectsToDefault() {
-        if (!confirm("පෙරනිමි විෂයයන් 13 යථා තත්ත්වයට පත් කිරීමට අවශ්‍යද?")) return;
-        if (!promptPin()) return;
+        const typed = prompt("⚠️ සියලු විෂයයන් පෙරනිමි තත්ත්වයට පත් කිරීමට 'RESET' ලෙස ටයිප් කරන්න / Type 'RESET' to restore default subjects:");
+        if (!typed || typed.trim().toUpperCase() !== 'RESET') {
+          if (typed !== null) alert("ක්‍රියාව අවලංගු විය: 'RESET' නිවැරදිව ටයිප් කරන්න / Action canceled: Type 'RESET' to confirm.");
+          return;
+        }
         g9Subjects = JSON.parse(JSON.stringify(DEFAULT_G9_SUBJECTS));
         saveSubjects(g9Subjects);
         renderSubjectsList();
@@ -891,11 +937,6 @@
         document.getElementById('subjSubmitBtn').innerText = "💾 විෂය යාවත්කාලීන කරන්න";
         document.getElementById('cancelEditSubjBtn').style.display = 'block';
 
-        const p = document.getElementById('subjPassword');
-        if (p) p.value = '';
-        const pe = document.getElementById('subjPasswordError');
-        if (pe) pe.style.display = 'none';
-
         document.getElementById('subjectForm').scrollIntoView({ behavior: 'smooth' });
       }
 
@@ -909,28 +950,12 @@
         document.getElementById('subjColor').value = '#0984e3';
         document.getElementById('subjIcon').value = '📘';
         document.getElementById('subjActive').checked = true;
-        document.getElementById('subjPassword').value = '';
         document.getElementById('subjSubmitBtn').innerText = "+ නව විෂය එක් කරන්න";
         document.getElementById('cancelEditSubjBtn').style.display = 'none';
-        const pe = document.getElementById('subjPasswordError');
-        if (pe) pe.style.display = 'none';
       }
 
       async function submitSubjectForm(e) {
         e.preventDefault();
-        const passInput = document.getElementById('subjPassword');
-        const passVal = passInput ? passInput.value.trim() : '';
-        const passErr = document.getElementById('subjPasswordError');
-
-        if (passVal !== '3408') {
-          if (passErr) {
-            passErr.innerText = passVal === '' ? '⚠️ කරුණාකර මුරපදය ඇතුළත් කරන්න!' : '⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.';
-            passErr.style.display = 'block';
-          }
-          if (passInput) passInput.focus();
-          return;
-        }
-        if (passErr) passErr.style.display = 'none';
 
         const rawCode = document.getElementById('subjCode').value.trim().toUpperCase();
         const nameSi = document.getElementById('subjNameSi').value.trim();
@@ -982,6 +1007,8 @@
       // --- Syllabus Loading & Tabs ---
       async function loadSyllabus() {
         let loadedFromSupabase = false;
+        let canonicalList = [];
+
         if (supabase && typeof supabase.from === 'function' && navigator.onLine) {
           try {
             const { data, error } = await supabase
@@ -991,7 +1018,6 @@
 
             if (!error && data && data.length > 0) {
               const seen = new Set();
-              allLessons = [];
 
               data.forEach(row => {
                 const uNum = (row.unit_number !== null && row.unit_number !== undefined)
@@ -1012,7 +1038,7 @@
                 }
                 if (!cleanTitle) cleanTitle = rawUnitName;
 
-                allLessons.push({
+                canonicalList.push({
                   id: row.id,
                   subject: subj,
                   unitNum: uNum,
@@ -1030,7 +1056,7 @@
 
               loadedFromSupabase = true;
               try {
-                localStorage.setItem('g9_canonical_units_cache', JSON.stringify(allLessons));
+                localStorage.setItem('g9_canonical_units_cache', JSON.stringify(canonicalList));
               } catch(e) {}
             }
           } catch (err) {
@@ -1039,14 +1065,13 @@
         }
 
         if (!loadedFromSupabase) {
-          // Robust Offline Fallback: load from localStorage cache
+          // Robust Offline Fallback: load canonical syllabus from localStorage cache
           try {
             const cached = localStorage.getItem('g9_canonical_units_cache');
             if (cached) {
               const parsed = JSON.parse(cached);
               if (Array.isArray(parsed) && parsed.length > 0) {
-                // Ensure items are properly normalized
-                allLessons = parsed.map(item => ({
+                canonicalList = parsed.map(item => ({
                   id: item.id || `local_${item.subject}_${item.unit_number || item.unitNum || 1}`,
                   subject: (item.subject || 'MATH').toUpperCase().trim(),
                   unitNum: Number(item.unit_number || item.unitNum || 1),
@@ -1062,6 +1087,95 @@
           }
         }
 
+        // Build base map
+        const lessonMap = new Map();
+        canonicalList.forEach(item => {
+          const key = `${item.subject}_${item.unitNum}`;
+          lessonMap.set(key, item);
+        });
+
+        // Overlay tenant / student / guest custom units
+        const isAdmin = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.isAdminUser === 'function') ? ZenithAuth.isAdminUser() : false;
+        const userId = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.getUserId === 'function') ? ZenithAuth.getUserId() : null;
+
+        if (!isAdmin) {
+          let customUnits = [];
+
+          if (userId) {
+            // Authenticated Student: sync from Supabase user_custom_units if online
+            if (supabase && typeof supabase.from === 'function' && navigator.onLine) {
+              try {
+                const { data: customData, error: customErr } = await supabase
+                  .from('user_custom_units')
+                  .select('id, user_id, subject, unit_number, unit_name, sub_lesson_code, sub_lesson_title, is_deleted, sort_order')
+                  .eq('user_id', userId);
+                if (!customErr && Array.isArray(customData)) {
+                  saveLocalCustomUnits(customData);
+                }
+              } catch (e) {
+                console.warn("Could not fetch remote user_custom_units:", e);
+              }
+            }
+            customUnits = getLocalCustomUnits();
+          } else {
+            // Guest Student: read from dedicated localStorage key zenith_guest_custom_units
+            try {
+              const raw = localStorage.getItem('zenith_guest_custom_units');
+              customUnits = raw ? JSON.parse(raw) : [];
+            } catch (e) {
+              customUnits = [];
+            }
+          }
+
+          // Apply overlay
+          if (Array.isArray(customUnits)) {
+            customUnits.forEach(cu => {
+              const subj = String(cu.subject || '').toUpperCase().trim();
+              const uNum = Number(cu.unit_number || cu.unitNum || 1);
+              const key = `${subj}_${uNum}`;
+
+              if (cu.is_deleted === true) {
+                // Tombstone: delete from visible lessons
+                lessonMap.delete(key);
+              } else if (lessonMap.has(key)) {
+                // Rename existing unit
+                const existing = lessonMap.get(key);
+                const rawName = cu.unit_name || existing.unit;
+                const cleanTitle = cu.sub_lesson_title || cu.unitTitle || rawName.replace(/^ඒකකය\s*\d+\s*[:\-–]?\s*/i, '').trim();
+                existing.unit = rawName;
+                existing.unit_name = rawName;
+                existing.unitTitle = cleanTitle;
+                existing.sub_lesson_title = cleanTitle;
+              } else {
+                // Newly added custom unit
+                const formattedNum = String(uNum).padStart(2, '0');
+                const rawName = cu.unit_name || `ඒකකය ${formattedNum}: ${cu.sub_lesson_title || ''}`;
+                const cleanTitle = cu.sub_lesson_title || rawName.replace(/^ඒකකය\s*\d+\s*[:\-–]?\s*/i, '').trim();
+                lessonMap.set(key, {
+                  id: cu.id || `custom_${subj}_${uNum}`,
+                  subject: subj,
+                  unitNum: uNum,
+                  unit_number: uNum,
+                  unit: rawName,
+                  unit_name: rawName,
+                  code: cu.sub_lesson_code || `Unit ${formattedNum}`,
+                  sub_lesson_code: cu.sub_lesson_code || `Unit ${formattedNum}`,
+                  unitTitle: cleanTitle,
+                  sub_lesson_title: cleanTitle,
+                  sortOrder: cu.sort_order || (uNum * 10),
+                  sort_order: cu.sort_order || (uNum * 10)
+                });
+              }
+            });
+          }
+        }
+
+        allLessons = Array.from(lessonMap.values());
+        allLessons.sort((a, b) => {
+          if (a.subject !== b.subject) return a.subject.localeCompare(b.subject);
+          return Number(a.unitNum) - Number(b.unitNum);
+        });
+
         handleSearch();
         onAddSubjectChange();
       }
@@ -1072,26 +1186,10 @@
 
         const tabBtns = document.querySelectorAll('.tab-btn');
         if (tabId === 'tabSearch') tabBtns[0].classList.add('active');
-        if (tabId === 'tabAdd') {
-          tabBtns[1].classList.add('active');
-          const p = document.getElementById('addPassword');
-          if (p) p.value = '';
-          const pe = document.getElementById('addPasswordError');
-          if (pe) pe.style.display = 'none';
-        }
-        if (tabId === 'tabEdit') {
-          tabBtns[2].classList.add('active');
-          const p = document.getElementById('editPassword');
-          if (p) p.value = '';
-          const pe = document.getElementById('editPasswordError');
-          if (pe) pe.style.display = 'none';
-        }
+        if (tabId === 'tabAdd') tabBtns[1].classList.add('active');
+        if (tabId === 'tabEdit') tabBtns[2].classList.add('active');
         if (tabId === 'tabSubjects') {
           tabBtns[3].classList.add('active');
-          const p = document.getElementById('subjPassword');
-          if (p) p.value = '';
-          const pe = document.getElementById('subjPasswordError');
-          if (pe) pe.style.display = 'none';
           renderSubjectsList();
         }
 
@@ -1152,6 +1250,7 @@
               <div class="res-actions">
                 <button type="button" class="action-btn jump" onclick="jumpToRow('${item.subject}', '${escapeHtml(item.code)}', ${item.unitNum})">🎯 පනින්න</button>
                 <button type="button" class="action-btn edit" onclick="startEditing('${item.subject}', ${item.unitNum})">✏️ Edit</button>
+                <button type="button" class="action-btn del" onclick="deleteLesson('${item.subject}', ${item.unitNum})" style="background: rgba(231, 76, 60, 0.15); color: #e74c3c;">🗑️ මකන්න</button>
               </div>
             </div>
           `;
@@ -1210,26 +1309,13 @@
           return;
         }
 
-        const passInput = document.getElementById('addPassword');
-        const passVal = passInput ? passInput.value.trim() : '';
-        const passErr = document.getElementById('addPasswordError');
-        if (passVal !== '3408') {
-          if (passErr) {
-            passErr.innerText = passVal === '' ? '⚠️ කරුණාකර මුරපදය ඇතුළත් කරන්න!' : '⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.';
-            passErr.style.display = 'block';
-          }
-          if (passInput) passInput.focus();
-          return;
-        }
-        if (passErr) passErr.style.display = 'none';
-
         const unitNumber = parseInt(unitNumVal, 10);
         if (isNaN(unitNumber) || unitNumber < 1) {
           showStatus('addStatus', "දෝෂයකි: වලංගු ඒකක අංකයක් ඇතුළත් කරන්න!", false);
           return;
         }
 
-        // Duplicate check
+        // Duplicate check against current visible lessons
         const existing = allLessons.find(l => l.subject === subject && Number(l.unitNum) === unitNumber);
         if (existing) {
           showStatus('addStatus', `දෝෂයකි: [${subject}] ඒකකය ${unitNumber} දැනටමත් පද්ධතියේ පවතී!`, false);
@@ -1240,78 +1326,122 @@
         const unitName = "ඒකකය " + formattedNum + ": " + unitTitle;
         const unitCode = "Unit " + formattedNum;
 
-        if (!supabase || typeof supabase.from !== 'function' || !navigator.onLine) {
-          const newLesson = {
-            id: 'local_' + subject + '_' + unitNumber + '_' + Date.now(),
-            subject: subject,
-            unitNum: unitNumber,
-            unit_number: unitNumber,
-            unit: unitName,
-            unit_name: unitName,
-            code: unitCode,
-            sub_lesson_code: unitCode,
-            unitTitle: unitTitle,
-            sub_lesson_title: unitTitle,
-            sortOrder: unitNumber * 10,
-            sort_order: unitNumber * 10
-          };
-          allLessons.push(newLesson);
-          try {
-            localStorage.setItem('g9_canonical_units_cache', JSON.stringify(allLessons));
-          } catch(e) {}
-          btn.disabled = false;
-          btn.innerText = "+ නව ඒකකය සුරකින්න";
-          showStatus('addStatus', `[${subject}] ඒකකය ${formattedNum} සාර්ථකව ඇතුළත් කරන ලදී (Offline)!`, true);
-          document.getElementById('unitTitleInput').value = '';
-          if (passInput) passInput.value = '';
-          handleSearch();
-          onAddSubjectChange();
-          if (window.parent && window.parent !== window) {
-            window.parent.postMessage({ action: 'SYLLABUS_UPDATED' }, '*');
-          }
-          return;
-        }
-
         btn.disabled = true;
         btn.innerText = "සුරැකෙමින් පවතී...";
 
+        const isAdmin = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.isAdminUser === 'function') ? ZenithAuth.isAdminUser() : false;
+        const userId = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.getUserId === 'function') ? ZenithAuth.getUserId() : null;
+
         try {
-          let payload = {
-            subject: subject,
-            unit_number: unitNumber,
-            unit_name: unitName,
-            sub_lesson_code: unitCode,
-            sub_lesson_title: unitName,
-            sort_order: unitNumber * 10
-          };
+          if (isAdmin) {
+            // Admin: Save directly to canonical_syllabus in Supabase
+            if (!supabase || typeof supabase.from !== 'function' || !navigator.onLine) {
+              const newLesson = {
+                id: 'local_' + subject + '_' + unitNumber + '_' + Date.now(),
+                subject: subject,
+                unitNum: unitNumber,
+                unit_number: unitNumber,
+                unit: unitName,
+                unit_name: unitName,
+                code: unitCode,
+                sub_lesson_code: unitCode,
+                unitTitle: unitTitle,
+                sub_lesson_title: unitTitle,
+                sortOrder: unitNumber * 10,
+                sort_order: unitNumber * 10
+              };
+              allLessons.push(newLesson);
+              try {
+                localStorage.setItem('g9_canonical_units_cache', JSON.stringify(allLessons));
+              } catch(e) {}
+            } else {
+              let payload = {
+                subject: subject,
+                unit_number: unitNumber,
+                unit_name: unitName,
+                sub_lesson_code: unitCode,
+                sub_lesson_title: unitName,
+                sort_order: unitNumber * 10
+              };
 
-          let { error } = await supabase.from('canonical_syllabus').insert([payload]);
+              let { error } = await supabase.from('canonical_syllabus').insert([payload]);
 
-          // Handle database generated column or constraint fallback if needed
-          if (error && (error.code === '428C9' || (error.message && error.message.includes('generated column')))) {
-            delete payload.sort_order;
-            const retry = await supabase.from('canonical_syllabus').insert([payload]);
-            error = retry.error;
-          }
-          if (error && (error.code === '22P02' || (error.message && error.message.includes('numeric')))) {
-            delete payload.sort_order;
-            payload.sub_lesson_code = String(unitNumber);
-            const retry = await supabase.from('canonical_syllabus').insert([payload]);
-            error = retry.error;
-          }
+              if (error && (error.code === '428C9' || (error.message && error.message.includes('generated column')))) {
+                delete payload.sort_order;
+                const retry = await supabase.from('canonical_syllabus').insert([payload]);
+                error = retry.error;
+              }
+              if (error && (error.code === '22P02' || (error.message && error.message.includes('numeric')))) {
+                delete payload.sort_order;
+                payload.sub_lesson_code = String(unitNumber);
+                const retry = await supabase.from('canonical_syllabus').insert([payload]);
+                error = retry.error;
+              }
 
-          if (error) {
-            if (error.code === '23505') {
-              throw new Error(`[${subject}] ඒකකය ${unitNumber} දැනටමත් පද්ධතියේ පවතී.`);
+              if (error) {
+                if (error.code === '23505') {
+                  throw new Error(`[${subject}] ඒකකය ${unitNumber} දැනටමත් පද්ධතියේ පවතී.`);
+                }
+                throw error;
+              }
             }
-            throw error;
+          } else if (userId) {
+            // Authenticated Student: Upsert to user_custom_units table
+            const customPayload = {
+              user_id: userId,
+              subject: subject,
+              unit_number: unitNumber,
+              unit_name: unitName,
+              sub_lesson_code: unitCode,
+              sub_lesson_title: unitTitle,
+              is_deleted: false,
+              updated_at: new Date().toISOString()
+            };
+
+            if (supabase && typeof supabase.from === 'function' && navigator.onLine) {
+              const { error } = await supabase.from('user_custom_units').upsert([customPayload], { onConflict: 'user_id,subject,unit_number' });
+              if (error) console.warn("Supabase user_custom_units upsert error:", error);
+            }
+
+            let localUnits = getLocalCustomUnits();
+            const idx = localUnits.findIndex(u => u.subject === subject && Number(u.unit_number || u.unitNum) === unitNumber);
+            if (idx >= 0) {
+              localUnits[idx] = { ...localUnits[idx], ...customPayload };
+            } else {
+              localUnits.push(customPayload);
+            }
+            saveLocalCustomUnits(localUnits);
+          } else {
+            // Guest Student: Save to zenith_guest_custom_units in localStorage
+            const guestPayload = {
+              subject: subject,
+              unit_number: unitNumber,
+              unit_name: unitName,
+              sub_lesson_code: unitCode,
+              sub_lesson_title: unitTitle,
+              is_deleted: false,
+              updated_at: new Date().toISOString()
+            };
+
+            let guestUnits = [];
+            try {
+              const raw = localStorage.getItem('zenith_guest_custom_units');
+              guestUnits = raw ? JSON.parse(raw) : [];
+            } catch(e) {}
+
+            const idx = guestUnits.findIndex(u => u.subject === subject && Number(u.unit_number || u.unitNum) === unitNumber);
+            if (idx >= 0) {
+              guestUnits[idx] = { ...guestUnits[idx], ...guestPayload };
+            } else {
+              guestUnits.push(guestPayload);
+            }
+            localStorage.setItem('zenith_guest_custom_units', JSON.stringify(guestUnits));
           }
 
           btn.disabled = false;
           btn.innerText = "+ නව ඒකකය සුරකින්න";
           showStatus('addStatus', `[${subject}] ඒකකය ${formattedNum} සාර්ථකව ඇතුළත් කරන ලදී!`, true);
           document.getElementById('unitTitleInput').value = '';
-          if (passInput) passInput.value = '';
           await loadSyllabus();
           onAddSubjectChange();
 
@@ -1344,10 +1474,6 @@
         document.getElementById('editPrefix').innerText = `ඒකකය ${formattedUnitNum}:`;
         document.getElementById('editUnitTitleInput').value = item.unitTitle || '';
 
-        const editPass = document.getElementById('editPassword');
-        if (editPass) editPass.value = '';
-        const editErr = document.getElementById('editPasswordError');
-        if (editErr) editErr.style.display = 'none';
         const editStat = document.getElementById('editStatus');
         if (editStat) editStat.style.display = 'none';
 
@@ -1357,19 +1483,6 @@
       async function submitEditLesson(e) {
         e.preventDefault();
         if (!currentEditingItem) return;
-
-        const passInput = document.getElementById('editPassword');
-        const passVal = passInput ? passInput.value.trim() : '';
-        const passErr = document.getElementById('editPasswordError');
-        if (passVal !== '3408') {
-          if (passErr) {
-            passErr.innerText = passVal === '' ? '⚠️ කරුණාකර මුරපදය ඇතුළත් කරන්න!' : '⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.';
-            passErr.style.display = 'block';
-          }
-          if (passInput) passInput.focus();
-          return;
-        }
-        if (passErr) passErr.style.display = 'none';
 
         const btn = document.getElementById('editBtn');
         const newTitle = document.getElementById('editUnitTitleInput').value.trim();
@@ -1384,51 +1497,98 @@
         btn.disabled = true;
         btn.innerText = "යාවත්කාලීන වෙමින් පවතී...";
 
-        if (!supabase || typeof supabase.from !== 'function' || !navigator.onLine) {
-          currentEditingItem.unit = fullUnitName;
-          currentEditingItem.unit_name = fullUnitName;
-          currentEditingItem.unitTitle = newTitle;
-          currentEditingItem.sub_lesson_title = newTitle;
-          currentEditingItem.unit_number = currentEditingItem.unitNum;
-          try {
-            localStorage.setItem('g9_canonical_units_cache', JSON.stringify(allLessons));
-          } catch(e) {}
-          btn.disabled = false;
-          btn.innerText = "💾 නම යාවත්කාලීන කරන්න";
-          showStatus('editStatus', `[${currentEditingItem.subject}] ඒකකය ${formattedUnitNum} සාර්ථකව යාවත්කාලීන කරන ලදී (Offline)!`, true);
-          if (passInput) passInput.value = '';
-          handleSearch();
-          if (window.parent && window.parent !== window) {
-            window.parent.postMessage({ action: 'SYLLABUS_UPDATED' }, '*');
-          }
-          return;
-        }
+        const isAdmin = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.isAdminUser === 'function') ? ZenithAuth.isAdminUser() : false;
+        const userId = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.getUserId === 'function') ? ZenithAuth.getUserId() : null;
 
         try {
-          const updatePayload = {
-            unit_name: fullUnitName,
-            sub_lesson_title: fullUnitName,
-            updated_at: new Date().toISOString()
-          };
+          if (isAdmin) {
+            // Admin: Update canonical_syllabus
+            if (!supabase || typeof supabase.from !== 'function' || !navigator.onLine) {
+              currentEditingItem.unit = fullUnitName;
+              currentEditingItem.unit_name = fullUnitName;
+              currentEditingItem.unitTitle = newTitle;
+              currentEditingItem.sub_lesson_title = newTitle;
+              currentEditingItem.unit_number = currentEditingItem.unitNum;
+              try {
+                localStorage.setItem('g9_canonical_units_cache', JSON.stringify(allLessons));
+              } catch(e) {}
+            } else {
+              const updatePayload = {
+                unit_name: fullUnitName,
+                sub_lesson_title: fullUnitName,
+                updated_at: new Date().toISOString()
+              };
 
-          let query;
-          if (currentEditingItem.id) {
-            query = supabase.from('canonical_syllabus').update(updatePayload).eq('id', currentEditingItem.id);
-          } else {
-            query = supabase.from('canonical_syllabus').update(updatePayload).match({
+              let query;
+              if (currentEditingItem.id && !String(currentEditingItem.id).startsWith('local_')) {
+                query = supabase.from('canonical_syllabus').update(updatePayload).eq('id', currentEditingItem.id);
+              } else {
+                query = supabase.from('canonical_syllabus').update(updatePayload).match({
+                  subject: currentEditingItem.subject,
+                  unit_number: currentEditingItem.unitNum
+                });
+              }
+
+              const { error } = await query;
+              if (error) throw error;
+            }
+          } else if (userId) {
+            // Authenticated Student: Upsert to user_custom_units
+            const customPayload = {
+              user_id: userId,
               subject: currentEditingItem.subject,
-              unit_number: currentEditingItem.unitNum
-            });
-          }
+              unit_number: currentEditingItem.unitNum,
+              unit_name: fullUnitName,
+              sub_lesson_code: currentEditingItem.code || `Unit ${formattedUnitNum}`,
+              sub_lesson_title: newTitle,
+              is_deleted: false,
+              updated_at: new Date().toISOString()
+            };
 
-          const { error } = await query;
-          if (error) throw error;
+            if (supabase && typeof supabase.from === 'function' && navigator.onLine) {
+              const { error } = await supabase.from('user_custom_units').upsert([customPayload], { onConflict: 'user_id,subject,unit_number' });
+              if (error) console.warn("Supabase user_custom_units edit error:", error);
+            }
+
+            let localUnits = getLocalCustomUnits();
+            const idx = localUnits.findIndex(u => u.subject === currentEditingItem.subject && Number(u.unit_number || u.unitNum) === currentEditingItem.unitNum);
+            if (idx >= 0) {
+              localUnits[idx] = { ...localUnits[idx], ...customPayload };
+            } else {
+              localUnits.push(customPayload);
+            }
+            saveLocalCustomUnits(localUnits);
+          } else {
+            // Guest Student: Update in zenith_guest_custom_units in localStorage
+            const guestPayload = {
+              subject: currentEditingItem.subject,
+              unit_number: currentEditingItem.unitNum,
+              unit_name: fullUnitName,
+              sub_lesson_code: currentEditingItem.code || `Unit ${formattedUnitNum}`,
+              sub_lesson_title: newTitle,
+              is_deleted: false,
+              updated_at: new Date().toISOString()
+            };
+
+            let guestUnits = [];
+            try {
+              const raw = localStorage.getItem('zenith_guest_custom_units');
+              guestUnits = raw ? JSON.parse(raw) : [];
+            } catch(e) {}
+
+            const idx = guestUnits.findIndex(u => u.subject === currentEditingItem.subject && Number(u.unit_number || u.unitNum) === currentEditingItem.unitNum);
+            if (idx >= 0) {
+              guestUnits[idx] = { ...guestUnits[idx], ...guestPayload };
+            } else {
+              guestUnits.push(guestPayload);
+            }
+            localStorage.setItem('zenith_guest_custom_units', JSON.stringify(guestUnits));
+          }
 
           btn.disabled = false;
           btn.innerText = "💾 නම යාවත්කාලීන කරන්න";
           showStatus('editStatus', `[${currentEditingItem.subject}] ඒකකය ${formattedUnitNum} සාර්ථකව යාවත්කාලීන කරන ලදී!`, true);
-          if (passInput) passInput.value = '';
-          
+
           await loadSyllabus();
           if (window.parent && window.parent !== window) {
             window.parent.postMessage({ action: 'SYLLABUS_UPDATED' }, '*');
@@ -1437,6 +1597,113 @@
           btn.disabled = false;
           btn.innerText = "💾 නම යාවත්කාලීන කරන්න";
           showStatus('editStatus', "දෝෂයකි: " + (err.message || "යාවත්කාලීන කිරීම අසාර්ථක විය"), false);
+        }
+      }
+
+      async function deleteLesson(subject, unitNum) {
+        if (!subject || unitNum === null || unitNum === undefined) {
+          if (currentEditingItem) {
+            subject = currentEditingItem.subject;
+            unitNum = currentEditingItem.unitNum;
+          } else {
+            return;
+          }
+        }
+
+        const item = allLessons.find(l => l.subject === subject && Number(l.unitNum) === Number(unitNum));
+        if (!item) return;
+
+        const formattedNum = String(item.unitNum).padStart(2, '0');
+        const unitDisplay = item.unitTitle || item.unit || `Unit ${formattedNum}`;
+        if (!confirm(`ඔබට [${item.subject}] ඒකකය ${formattedNum} (${unitDisplay}) ඉවත් කිරීමට අවශ්‍ය බව තහවුරු කරන්න?\nAre you sure you want to delete this unit?`)) {
+          return;
+        }
+
+        const isAdmin = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.isAdminUser === 'function') ? ZenithAuth.isAdminUser() : false;
+        const userId = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.getUserId === 'function') ? ZenithAuth.getUserId() : null;
+
+        try {
+          if (isAdmin) {
+            // Admin: Delete directly from canonical_syllabus in Supabase
+            if (supabase && typeof supabase.from === 'function' && navigator.onLine) {
+              let query;
+              if (item.id && !String(item.id).startsWith('local_')) {
+                query = supabase.from('canonical_syllabus').delete().eq('id', item.id);
+              } else {
+                query = supabase.from('canonical_syllabus').delete().match({
+                  subject: item.subject,
+                  unit_number: item.unitNum
+                });
+              }
+              const { error } = await query;
+              if (error) throw error;
+            }
+          } else if (userId) {
+            // Authenticated Student: Upsert tombstone { is_deleted: true } in user_custom_units
+            const tombstone = {
+              user_id: userId,
+              subject: item.subject,
+              unit_number: item.unitNum,
+              unit_name: item.unit_name || item.unit,
+              sub_lesson_code: item.code || `Unit ${formattedNum}`,
+              sub_lesson_title: item.unitTitle || item.sub_lesson_title || '',
+              is_deleted: true,
+              updated_at: new Date().toISOString()
+            };
+            if (supabase && typeof supabase.from === 'function' && navigator.onLine) {
+              const { error } = await supabase.from('user_custom_units').upsert([tombstone], { onConflict: 'user_id,subject,unit_number' });
+              if (error) console.warn("Supabase user_custom_units tombstone error:", error);
+            }
+            let localUnits = getLocalCustomUnits();
+            const idx = localUnits.findIndex(u => u.subject === item.subject && Number(u.unit_number || u.unitNum) === Number(item.unitNum));
+            if (idx >= 0) {
+              localUnits[idx].is_deleted = true;
+              localUnits[idx].updated_at = tombstone.updated_at;
+            } else {
+              localUnits.push(tombstone);
+            }
+            saveLocalCustomUnits(localUnits);
+          } else {
+            // Guest Mode: Record tombstone { is_deleted: true } in zenith_guest_custom_units
+            let guestUnits = [];
+            try {
+              const raw = localStorage.getItem('zenith_guest_custom_units');
+              guestUnits = raw ? JSON.parse(raw) : [];
+            } catch (e) {}
+            const idx = guestUnits.findIndex(u => u.subject === item.subject && Number(u.unit_number || u.unitNum) === Number(item.unitNum));
+            const guestTombstone = {
+              subject: item.subject,
+              unit_number: item.unitNum,
+              unit_name: item.unit_name || item.unit,
+              sub_lesson_code: item.code || `Unit ${formattedNum}`,
+              sub_lesson_title: item.unitTitle || item.sub_lesson_title || '',
+              is_deleted: true,
+              updated_at: new Date().toISOString()
+            };
+            if (idx >= 0) {
+              guestUnits[idx] = { ...guestUnits[idx], ...guestTombstone };
+            } else {
+              guestUnits.push(guestTombstone);
+            }
+            localStorage.setItem('zenith_guest_custom_units', JSON.stringify(guestUnits));
+          }
+
+          // If currently editing this item, reset edit form
+          if (currentEditingItem && currentEditingItem.subject === item.subject && Number(currentEditingItem.unitNum) === Number(item.unitNum)) {
+            currentEditingItem = null;
+            document.getElementById('editForm').style.display = 'none';
+            document.getElementById('editEmptyMsg').style.display = 'block';
+            switchTab('tabSearch');
+          }
+
+          showStatus('editStatus', `[${item.subject}] ඒකකය ${formattedNum} ඉවත් කරන ලදී!`, true);
+          await loadSyllabus();
+
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ action: 'SYLLABUS_UPDATED' }, '*');
+          }
+        } catch (err) {
+          alert("දෝෂයකි: " + (err.message || "ඉවත් කිරීම අසාර්ථක විය"));
         }
       }
 
