@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <base target="_top">
-    <title>Zenith O-Level • Smart Study Engine</title>
+    <title>Krishsoft Smart Study Engine • Grades 6–11</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="app-logo.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -51,7 +51,12 @@
         --accent-pink: #f8a5c2;
         --accent-mint: #55efc4;
         --card-bg: rgba(255, 255, 255, 0.95);
+        --bg-card: #f8f9fa;
+        --border-color: #dfe6e9;
+        --border-subtle: #edf2f7;
         --text-dark: #2d3436;
+        --text-main: #2d3436;
+        --text-muted: #7f8fa6;
       }
       body {
  font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
@@ -3053,11 +3058,19 @@
       /* =========================================================
          THEME & DARK MODE STYLES
          ========================================================= */
+      :root.dark-mode,
+      html.dark-mode,
       html.dark-mode body,
       body.dark-mode {
+        --primary: #a29bfe;
         --primary-light: #121822;
-        --card-bg: #090d14;
-        --text-dark: #f0f6fc;
+        --card-bg: #090d14 !important;
+        --bg-card: #151b26 !important;
+        --border-color: #30363d !important;
+        --border-subtle: #1e2530 !important;
+        --text-dark: #f0f6fc !important;
+        --text-main: #f0f6fc !important;
+        --text-muted: #8b949e !important;
         background: linear-gradient(135deg, #030508 0%, #080c12 50%, #0a0e16 100%) !important;
         color: #f0f6fc !important;
       }
@@ -5668,6 +5681,96 @@
       .academic-subj-item:hover {
         border-color: #8c7ae6;
       }
+
+      /* Academic Settings Modal - Dark Mode */
+      body.dark-mode .btn-academic-settings-pill,
+      :root.dark-mode .btn-academic-settings-pill {
+        background: rgba(99, 102, 241, 0.22) !important;
+        color: #f0f6fc !important;
+        border-color: rgba(99, 102, 241, 0.45) !important;
+      }
+      body.dark-mode .btn-academic-settings-pill:hover,
+      :root.dark-mode .btn-academic-settings-pill:hover {
+        background: rgba(99, 102, 241, 0.35) !important;
+        border-color: #818cf8 !important;
+      }
+
+      body.dark-mode .academic-grade-btn,
+      :root.dark-mode .academic-grade-btn {
+        background: #151b26 !important;
+        border: 1px solid #30363d !important;
+        color: #f0f6fc !important;
+      }
+      body.dark-mode .academic-grade-btn:hover,
+      :root.dark-mode .academic-grade-btn:hover {
+        background: #1e2530 !important;
+        border-color: #818cf8 !important;
+      }
+      body.dark-mode .academic-grade-btn.active,
+      :root.dark-mode .academic-grade-btn.active {
+        background: rgba(99, 102, 241, 0.28) !important;
+        border-color: #818cf8 !important;
+        color: #a5b4fc !important;
+        box-shadow: 0 0 12px rgba(99, 102, 241, 0.4) !important;
+      }
+
+      body.dark-mode .academic-subj-item,
+      :root.dark-mode .academic-subj-item {
+        background: #151b26 !important;
+        border: 1px solid #30363d !important;
+        color: #f0f6fc !important;
+      }
+      body.dark-mode .academic-subj-item:hover,
+      :root.dark-mode .academic-subj-item:hover {
+        background: #1c2128 !important;
+        border-color: #8c7ae6 !important;
+      }
+      body.dark-mode .academic-subj-title,
+      :root.dark-mode .academic-subj-title {
+        color: #f0f6fc !important;
+      }
+      body.dark-mode .academic-subj-code,
+      :root.dark-mode .academic-subj-code {
+        color: #8b949e !important;
+      }
+      body.dark-mode .academic-desc-text,
+      :root.dark-mode .academic-desc-text {
+        color: #8b949e !important;
+      }
+
+      body.dark-mode #settingsModal select.zenith-auth-input,
+      :root.dark-mode #settingsModal select.zenith-auth-input {
+        background: #151b26 !important;
+        border: 1px solid #30363d !important;
+        color: #f0f6fc !important;
+      }
+      body.dark-mode #settingsModal select.zenith-auth-input option,
+      :root.dark-mode #settingsModal select.zenith-auth-input option {
+        background: #151b26 !important;
+        color: #f0f6fc !important;
+      }
+
+      /* Settings Modal General & Focus Tab Inputs & Buttons in Dark Mode */
+      body.dark-mode .btn-scale-step,
+      :root.dark-mode .btn-scale-step {
+        background: #21262d !important;
+        border: 1px solid #30363d !important;
+        color: #c9d1d9 !important;
+      }
+      body.dark-mode .btn-scale-step:hover,
+      :root.dark-mode .btn-scale-step:hover {
+        background: #30363d !important;
+        border-color: #58a6ff !important;
+        color: #58a6ff !important;
+      }
+
+      body.dark-mode #settingTimerDurationInput,
+      :root.dark-mode #settingTimerDurationInput {
+        background: #0d1117 !important;
+        border: 1px solid #30363d !important;
+        color: #f0f6fc !important;
+      }
+
       .btn-exam-target-settings {
         background: rgba(99, 102, 241, 0.12);
         color: #6366f1;
@@ -5698,142 +5801,1051 @@
         color: #ffffff;
       }
 
-      /* --- Zenith O-Level Multi-Tenant Header & Topbar --- */
-      .zenith-topbar {
+      /* =========================================================
+         SMART STUDY ASSISTANT FULL SCREEN MODAL POPUP (ZENITH STITCH DESIGN)
+         ========================================================= */
+      .study-modal-overlay {
+        --study-primary: #4f46e5;
+        --study-primary-hover: #4338ca;
+        --study-accent: #06b6d4;
+        --study-text-main: #0f172a;
+        --study-text-muted: #64748b;
+        --study-bg-overlay: rgba(15, 23, 42, 0.78);
+        --study-bg-card: #ffffff;
+        --study-card-border: rgba(226, 232, 240, 0.9);
+        --study-card-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35), 0 0 35px -5px rgba(99, 102, 241, 0.15);
+        --study-bg-box: #f8fafc;
+        --study-border-box: #e2e8f0;
+        --study-box-hover-border: rgba(99, 102, 241, 0.4);
+        --study-box-hover-shadow: 0 12px 28px -6px rgba(99, 102, 241, 0.12);
+        --study-header-border: #f1f5f9;
+        --study-footer-bg: #f8fafc;
+        --study-footer-border: #e2e8f0;
+        --study-badge-bg: rgba(79, 70, 229, 0.08);
+        --study-badge-border: rgba(79, 70, 229, 0.2);
+        --study-badge-text: #4f46e5;
+        --study-banner-bg: linear-gradient(135deg, rgba(79, 70, 229, 0.07), rgba(6, 182, 212, 0.07));
+        --study-banner-border: rgba(99, 102, 241, 0.25);
+        --study-glow-1: rgba(99, 102, 241, 0.08);
+        --study-glow-2: rgba(6, 182, 212, 0.08);
+        --study-close-bg: #f1f5f9;
+        --study-close-color: #64748b;
+        --study-close-hover: #e2e8f0;
+        --study-btn-secondary-bg: #f1f5f9;
+        --study-btn-secondary-border: #cbd5e1;
+        --study-btn-secondary-text: #475569;
+        --study-pill-tag-bg: rgba(241, 245, 249, 0.9);
+        --study-pill-tag-border: #e2e8f0;
+        --study-pill-tag-text: #64748b;
+
+        position: fixed;
+        inset: 0;
+        background: var(--study-bg-overlay);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100010;
+        padding: 16px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+      }
+
+      .study-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .study-modal-card {
+        background: var(--study-bg-card);
+        max-width: 900px;
+        width: 100%;
+        border-radius: 24px;
+        border: 1px solid var(--study-card-border);
+        box-shadow: var(--study-card-shadow);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        max-height: 92vh;
+        overflow: hidden;
+        color: var(--study-text-main);
+        transform: scale(0.96) translateY(12px);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      }
+
+      .study-modal-overlay.active .study-modal-card {
+        transform: scale(1) translateY(0);
+      }
+
+      /* Ambient interior glow cones */
+      .study-modal-card::before {
+        content: '';
+        position: absolute;
+        top: -80px;
+        right: 15%;
+        width: 320px;
+        height: 220px;
+        background: radial-gradient(circle, var(--study-glow-1) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .study-modal-card::after {
+        content: '';
+        position: absolute;
+        bottom: -80px;
+        left: 10%;
+        width: 320px;
+        height: 220px;
+        background: radial-gradient(circle, var(--study-glow-2) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Modal Header (Compact & Sleek) */
+      .study-modal-header {
+        position: relative;
+        z-index: 2;
+        padding: 16px 24px 12px;
+        border-bottom: 1px solid var(--study-header-border);
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        padding: 10px 18px;
-        background: var(--bg-card, rgba(255, 255, 255, 0.7));
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--border-color, rgba(255, 255, 255, 0.2));
-        border-radius: 16px;
-        margin-bottom: 14px;
+      }
+
+      .study-modal-header-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
         flex-wrap: wrap;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
       }
+
+      .study-modal-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--study-badge-bg);
+        border: 1px solid var(--study-badge-border);
+        color: var(--study-badge-text);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 9999px;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .study-modal-badge .badge-icon {
+        font-size: 12px;
+      }
+
+      .study-modal-badge .badge-dot {
+        opacity: 0.4;
+      }
+
+      .study-modal-badge .badge-desc {
+        color: var(--study-text-muted);
+        font-weight: 500;
+        text-transform: none;
+      }
+
+      .study-modal-card .modal-title {
+        font-size: 19px;
+        font-weight: 800;
+        color: var(--study-text-main);
+        line-height: 1.25;
+        margin-bottom: 2px;
+        letter-spacing: -0.01em;
+      }
+
+      .study-modal-card .modal-subtitle {
+        font-size: 12.5px;
+        color: var(--study-text-muted);
+        line-height: 1.4;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+      .study-modal-card .subtitle-highlight {
+        color: var(--study-primary);
+        font-weight: 600;
+      }
+
+      .study-modal-card .subtitle-divider {
+        color: var(--study-text-muted);
+        opacity: 0.5;
+      }
+
+      .study-modal-card .modal-close-btn {
+        position: static;
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        background: var(--study-close-bg);
+        border: 1px solid var(--study-border-box);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 22px;
+        color: var(--study-close-color);
+        transition: all 0.2s ease;
+      }
+
+      .study-modal-card .modal-close-btn:hover {
+        background: var(--study-close-hover);
+        color: var(--study-text-main);
+        transform: rotate(90deg);
+      }
+
+      /* Modal Body with Custom Scrollbar */
+      .study-modal-body {
+        position: relative;
+        z-index: 1;
+        padding: 24px 32px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .study-modal-body::-webkit-scrollbar {
+        width: 6px;
+      }
+      .study-modal-body::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .study-modal-body::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.35);
+        border-radius: 9999px;
+      }
+      .study-modal-body::-webkit-scrollbar-thumb:hover {
+        background: rgba(99, 102, 241, 0.5);
+      }
+
+      /* 4-Step Interactive Workflow Cards Grid */
+      .study-workflow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .study-step-card {
+        background: var(--study-bg-box);
+        border: 1px solid var(--study-border-box);
+        border-radius: 18px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 14px;
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .study-step-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--study-box-hover-border);
+        box-shadow: var(--study-box-hover-shadow);
+      }
+
+      .study-step-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .study-step-num-icon {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .study-step-number {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .step-1-color .study-step-number {
+        background: rgba(79, 70, 229, 0.12);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        color: #4f46e5;
+      }
+      .step-2-color .study-step-number {
+        background: rgba(239, 68, 68, 0.12);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        color: #ef4444;
+      }
+      .step-3-color .study-step-number {
+        background: rgba(168, 85, 247, 0.12);
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        color: #a855f7;
+      }
+      .step-4-color .study-step-number {
+        background: rgba(6, 182, 212, 0.12);
+        border: 1px solid rgba(6, 182, 212, 0.3);
+        color: #06b6d4;
+      }
+
+      .study-step-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: var(--study-card-bg);
+        border: 1px solid var(--study-border-box);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+
+      .study-step-badge {
+        font-size: 10.5px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        border: 1px solid transparent;
+      }
+
+      .step-1-color .study-step-badge {
+        background: rgba(79, 70, 229, 0.08);
+        border-color: rgba(79, 70, 229, 0.2);
+        color: #4f46e5;
+      }
+      .step-2-color .study-step-badge {
+        background: rgba(239, 68, 68, 0.08);
+        border-color: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+      }
+      .step-3-color .study-step-badge {
+        background: rgba(168, 85, 247, 0.08);
+        border-color: rgba(168, 85, 247, 0.2);
+        color: #a855f7;
+      }
+      .step-4-color .study-step-badge {
+        background: rgba(6, 182, 212, 0.08);
+        border-color: rgba(6, 182, 212, 0.2);
+        color: #0891b2;
+      }
+
+      .study-step-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--study-text-main);
+        line-height: 1.4;
+      }
+
+      .study-step-desc {
+        font-size: 13.5px;
+        color: var(--study-text-muted);
+        line-height: 1.6;
+      }
+
+      .study-step-pill-tag {
+        border-top: 1px solid var(--study-border-box);
+        padding-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11.5px;
+        color: var(--study-pill-tag-text);
+        font-weight: 600;
+      }
+
+      .study-step-pill-tag .tag-dot {
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      /* Highlighted Bottom Banner */
+      .study-workflow-summary-banner {
+        border-radius: 16px;
+        background: var(--study-banner-bg);
+        border: 1px solid var(--study-banner-border);
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .summary-banner-icon {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        border-radius: 12px;
+        background: rgba(79, 70, 229, 0.15);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+
+      .summary-banner-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .summary-banner-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--study-text-main);
+        line-height: 1.4;
+      }
+
+      .summary-banner-desc {
+        font-size: 12.5px;
+        color: var(--study-text-muted);
+        line-height: 1.5;
+      }
+
+      /* Modal Actions Footer */
+      /* Modal Actions Footer (Positioned at the end of content) */
+      .study-modal-footer {
+        position: relative;
+        z-index: 1;
+        margin-top: 10px;
+        padding: 20px 24px;
+        border: 1px solid var(--study-footer-border);
+        background: var(--study-footer-bg);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .study-footer-left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      .study-modal-dont-show {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 13px;
+        color: var(--study-text-muted);
+        font-weight: 600;
+        transition: color 0.2s ease;
+      }
+
+      .study-modal-dont-show:hover {
+        color: var(--study-text-main);
+      }
+
+      .study-modal-dont-show input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 1.5px solid var(--study-border-box);
+        border-radius: 5px;
+        background: var(--study-bg-box);
+        cursor: pointer;
+        display: inline-grid;
+        place-content: center;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        margin: 0;
+        flex-shrink: 0;
+      }
+
+      .study-modal-dont-show input[type="checkbox"]::before {
+        content: "";
+        width: 9px;
+        height: 5px;
+        border-left: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        transform: rotate(-45deg) scale(0);
+        transform-origin: center center;
+        transition: transform 0.15s ease-in-out;
+        margin-top: -2px;
+      }
+
+      .study-modal-dont-show input[type="checkbox"]:checked {
+        background: var(--study-primary);
+        border-color: var(--study-primary);
+        box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+      }
+
+      .study-modal-dont-show input[type="checkbox"]:checked::before {
+        transform: rotate(-45deg) scale(1);
+      }
+
+      .study-modal-dont-show input[type="checkbox"]:focus-visible {
+        outline: 2px solid var(--study-primary);
+        outline-offset: 2px;
+      }
+
+      .study-modal-dont-show .dont-show-text {
+        font-size: 12.5px;
+        font-weight: 600;
+      }
+
+      .study-footer-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--study-text-muted);
+      }
+
+      .status-pulse-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+        animation: pulse 2s infinite;
+      }
+
+      .study-footer-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .btn-study-secondary {
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-size: 13.5px;
+        font-weight: 600;
+        background: var(--study-btn-secondary-bg);
+        border: 1px solid var(--study-btn-secondary-border);
+        color: var(--study-btn-secondary-text);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .btn-study-secondary:hover {
+        background: var(--study-border-box);
+        color: var(--study-text-main);
+      }
+
+      .btn-study-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 26px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 60%, #06b6d4 100%);
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
+        transition: all 0.2s ease;
+      }
+
+      .btn-study-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 22px rgba(79, 70, 229, 0.5);
+      }
+
+      .btn-study-primary .btn-arrow {
+        font-size: 16px;
+        transition: transform 0.2s;
+      }
+
+      .btn-study-primary:hover .btn-arrow {
+        transform: translateX(3px);
+      }
+
+      /* Responsive Rules */
+      @media (max-width: 768px) {
+        .study-modal-card {
+          border-radius: 20px;
+          max-height: 94vh;
+        }
+        .study-modal-header {
+          padding: 20px 20px 16px;
+        }
+        .study-modal-body {
+          padding: 16px 20px;
+          gap: 16px;
+        }
+        .study-workflow-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .study-modal-card .modal-title {
+          font-size: 20px;
+        }
+        .study-modal-footer {
+          padding: 16px;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 16px;
+        }
+        .study-footer-left {
+          align-items: center;
+          width: 100%;
+        }
+        .study-modal-dont-show {
+          justify-content: center;
+          text-align: center;
+        }
+        .study-footer-actions {
+          flex-direction: column;
+          width: 100%;
+        }
+        .btn-study-secondary,
+        .btn-study-primary {
+          width: 100%;
+          justify-content: center;
+          text-align: center;
+        }
+        .study-footer-status {
+          justify-content: center;
+        }
+      }
+
+      /* Dark Mode Theme Overrides */
+      body.dark-mode .study-modal-overlay,
+      :root.dark-mode .study-modal-overlay {
+        --study-primary: #818cf8;
+        --study-primary-hover: #a5b4fc;
+        --study-accent: #38bdf8;
+        --study-text-main: #f8fafc;
+        --study-text-muted: #94a3b8;
+        --study-bg-overlay: rgba(7, 11, 20, 0.86);
+        --study-bg-card: #0f172a;
+        --study-card-border: rgba(99, 102, 241, 0.28);
+        --study-card-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 45px -5px rgba(99, 102, 241, 0.25);
+        --study-bg-box: #1e293b;
+        --study-border-box: rgba(51, 65, 85, 0.75);
+        --study-box-hover-border: rgba(129, 140, 248, 0.5);
+        --study-box-hover-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.45);
+        --study-header-border: rgba(51, 65, 85, 0.6);
+        --study-footer-bg: #0b1120;
+        --study-footer-border: rgba(51, 65, 85, 0.6);
+        --study-badge-bg: rgba(99, 102, 241, 0.2);
+        --study-badge-border: rgba(99, 102, 241, 0.4);
+        --study-badge-text: #a5b4fc;
+        --study-banner-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(56, 189, 248, 0.1));
+        --study-banner-border: rgba(99, 102, 241, 0.35);
+        --study-glow-1: rgba(99, 102, 241, 0.2);
+        --study-glow-2: rgba(56, 189, 248, 0.16);
+        --study-close-bg: #1e293b;
+        --study-close-color: #94a3b8;
+        --study-close-hover: #334155;
+        --study-btn-secondary-bg: #1e293b;
+        --study-btn-secondary-border: #334155;
+        --study-btn-secondary-text: #cbd5e1;
+        --study-pill-tag-bg: rgba(15, 23, 42, 0.6);
+        --study-pill-tag-border: rgba(51, 65, 85, 0.6);
+        --study-pill-tag-text: #94a3b8;
+      }
+
+      body.dark-mode .step-1-color .study-step-badge,
+      :root.dark-mode .step-1-color .study-step-badge {
+        background: rgba(99, 102, 241, 0.2);
+        border-color: rgba(99, 102, 241, 0.4);
+        color: #a5b4fc;
+      }
+      body.dark-mode .step-2-color .study-step-badge,
+      :root.dark-mode .step-2-color .study-step-badge {
+        background: rgba(239, 68, 68, 0.2);
+        border-color: rgba(239, 68, 68, 0.4);
+        color: #fca5a5;
+      }
+      body.dark-mode .step-3-color .study-step-badge,
+      :root.dark-mode .step-3-color .study-step-badge {
+        background: rgba(168, 85, 247, 0.2);
+        border-color: rgba(168, 85, 247, 0.4);
+        color: #d8b4fe;
+      }
+      body.dark-mode .step-4-color .study-step-badge,
+      :root.dark-mode .step-4-color .study-step-badge {
+        background: rgba(6, 182, 212, 0.2);
+        border-color: rgba(6, 182, 212, 0.4);
+        color: #67e8f9;
+      }
+
+      /* --- Floating Quick Help / How to Study FAB Button --- */
+      .zenith-floating-help-btn {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 99990;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 60%, #06b6d4 100%);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 24px -4px rgba(79, 70, 229, 0.5), 0 0 16px rgba(6, 182, 212, 0.35);
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .zenith-floating-help-btn:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 12px 30px -4px rgba(79, 70, 229, 0.65), 0 0 22px rgba(6, 182, 212, 0.5);
+      }
+
+      .zenith-floating-help-btn .help-btn-icon {
+        font-size: 16px;
+        line-height: 1;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+      }
+
+      .zenith-floating-help-btn .help-btn-pulse {
+        position: absolute;
+        inset: -3px;
+        border-radius: 9999px;
+        border: 2px solid rgba(99, 102, 241, 0.6);
+        animation: helpPulse 2.5s infinite;
+        pointer-events: none;
+      }
+
+      @keyframes helpPulse {
+        0% {
+          transform: scale(0.95);
+          opacity: 0.8;
+        }
+        70% {
+          transform: scale(1.22);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1.22);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .zenith-floating-help-btn {
+          bottom: 74px; /* Placed cleanly above mobile bottom navigation bar */
+          right: 14px;
+          padding: 8px 14px;
+          font-size: 12px;
+          gap: 6px;
+        }
+      }
+
+      /* --- Krishsoft Smart Study Engine Cockpit Header --- */
+      .zenith-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 20px;
+        background: var(--bg-card, rgba(255, 255, 255, 0.85));
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--border-color, rgba(226, 232, 240, 0.8));
+        border-radius: 18px;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
+        transition: all 0.25s ease;
+      }
+
       body.dark-mode .zenith-topbar {
-        background: rgba(19, 27, 46, 0.85);
+        background: rgba(15, 23, 42, 0.88);
         border-color: rgba(255, 255, 255, 0.08);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 4px 25px -2px rgba(0, 0, 0, 0.4), 0 0 1px rgba(255, 255, 255, 0.1);
       }
+
       .zenith-brand {
         display: flex;
         align-items: center;
         gap: 12px;
         cursor: pointer;
+        user-select: none;
       }
+
+      .zenith-brand-logo-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       .zenith-brand-logo {
         width: 38px;
         height: 38px;
         border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+        transition: transform 0.2s ease;
       }
+
+      .zenith-brand:hover .zenith-brand-logo {
+        transform: scale(1.05);
+      }
+
+      .zenith-live-dot {
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        width: 10px;
+        height: 10px;
+        background: #10b981;
+        border: 2px solid var(--bg-card, #ffffff);
+        border-radius: 50%;
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+      }
+
+      body.dark-mode .zenith-live-dot {
+        border-color: #0f172a;
+      }
+
       .zenith-brand-title {
         font-size: 16px;
         font-weight: 800;
         letter-spacing: -0.3px;
-        background: linear-gradient(135deg, #4f46e5, #06b6d4);
+        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 45%, #06b6d4 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        line-height: 1.2;
+        line-height: 1.25;
       }
+
+      body.dark-mode .zenith-brand-title {
+        background: linear-gradient(135deg, #818cf8 0%, #a5b4fc 45%, #38bdf8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
       .zenith-brand-sub {
-        font-size: 10.5px;
-        color: var(--text-muted, #7f8fa6);
+        font-size: 11px;
+        color: var(--text-muted, #64748b);
         font-weight: 600;
+        letter-spacing: 0.01em;
       }
+
       .zenith-controls {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         flex-wrap: wrap;
       }
-      .zenith-grade-picker {
-        background: var(--bg-input, rgba(255, 255, 255, 0.9));
-        border: 1px solid var(--border-color, #dcdde1);
-        color: var(--text-main, #2d3436);
+
+      /* World-Class Cockpit Unified Button Style */
+      .zenith-cockpit-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 14px;
+        border-radius: 12px;
         font-size: 12px;
         font-weight: 700;
-        padding: 6px 12px;
-        border-radius: 10px;
         cursor: pointer;
-        outline: none;
-        transition: all 0.2s;
+        text-decoration: none;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        border: 1px solid transparent;
+        line-height: 1;
+        user-select: none;
+        white-space: nowrap;
       }
-      body.dark-mode .zenith-grade-picker {
-        background: #1e293b;
+
+      .zenith-cockpit-btn:hover {
+        transform: translateY(-1.5px);
+      }
+
+      /* Guide button */
+      .zenith-cockpit-btn.btn-guide {
+        background: rgba(99, 102, 241, 0.09);
+        border-color: rgba(99, 102, 241, 0.25);
+        color: #4f46e5;
+      }
+      body.dark-mode .zenith-cockpit-btn.btn-guide {
+        background: rgba(99, 102, 241, 0.18);
+        border-color: rgba(99, 102, 241, 0.35);
+        color: #a5b4fc;
+      }
+      .zenith-cockpit-btn.btn-guide:hover {
+        background: rgba(99, 102, 241, 0.16);
+        box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
+      }
+
+      /* Radar button */
+      .zenith-cockpit-btn.btn-radar {
+        position: relative;
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(245, 158, 11, 0.12));
+        border-color: rgba(239, 68, 68, 0.3);
+        color: #ef4444;
+      }
+      body.dark-mode .zenith-cockpit-btn.btn-radar {
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(245, 158, 11, 0.18));
+        border-color: rgba(239, 68, 68, 0.4);
+        color: #fca5a5;
+      }
+      .zenith-cockpit-btn.btn-radar:hover {
+        box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+      }
+
+      .radar-live-pulse {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #ef4444;
+        box-shadow: 0 0 6px #ef4444;
+        animation: pulseRadar 1.5s infinite;
+      }
+
+      @keyframes pulseRadar {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(1.3); }
+      }
+
+      /* Grade selector button */
+      .zenith-cockpit-btn.btn-grade,
+      .btn-academic-settings-pill {
+        background: rgba(148, 163, 184, 0.12);
+        border-color: rgba(148, 163, 184, 0.25);
+        color: var(--text-main, #0f172a);
+      }
+      body.dark-mode .zenith-cockpit-btn.btn-grade,
+      body.dark-mode .btn-academic-settings-pill {
+        background: rgba(30, 41, 59, 0.7);
+        border-color: rgba(71, 85, 105, 0.6);
         color: #f1f5f9;
-        border-color: #334155;
       }
+      .zenith-cockpit-btn.btn-grade:hover,
+      .btn-academic-settings-pill:hover {
+        border-color: #6366f1;
+        box-shadow: 0 4px 14px rgba(99, 102, 241, 0.2);
+      }
+
+      .btn-grade .btn-gear {
+        font-size: 11px;
+        opacity: 0.7;
+        transition: transform 0.3s ease;
+      }
+      .zenith-cockpit-btn.btn-grade:hover .btn-gear {
+        transform: rotate(60deg);
+      }
+
+      /* Unified User Cockpit Chip */
+      .zenith-user-cockpit-chip,
       .zenith-user-chip {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        padding: 5px 12px;
-        border-radius: 999px;
-        background: rgba(99, 102, 241, 0.08);
-        border: 1px solid rgba(99, 102, 241, 0.25);
+        gap: 10px;
+        padding: 4px 6px 4px 12px;
+        border-radius: 14px;
+        background: rgba(79, 70, 229, 0.08);
+        border: 1px solid rgba(79, 70, 229, 0.25);
         font-size: 12px;
-        font-weight: 600;
-        color: var(--text-main, #2f3542);
+        color: var(--text-main, #0f172a);
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all 0.2s ease;
       }
+
+      body.dark-mode .zenith-user-cockpit-chip,
       body.dark-mode .zenith-user-chip {
-        background: rgba(99, 102, 241, 0.15);
-        color: #e2e8f0;
+        background: rgba(30, 41, 59, 0.85);
         border-color: rgba(99, 102, 241, 0.3);
+        color: #f1f5f9;
       }
+
+      .zenith-user-cockpit-chip:hover,
+      .zenith-user-chip:hover {
+        border-color: rgba(99, 102, 241, 0.5);
+        box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
+      }
+
+      .zenith-user-info {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
       .zenith-user-avatar {
         width: 22px;
         height: 22px;
         border-radius: 50%;
         object-fit: cover;
       }
+
+      .zenith-user-name {
+        font-weight: 700;
+        font-size: 12.5px;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
       .zenith-grade-badge {
         font-size: 10px;
-        font-weight: 700;
+        font-weight: 800;
         padding: 2px 7px;
         border-radius: 6px;
         background: linear-gradient(135deg, #4f46e5, #6366f1);
-        color: #fff;
+        color: #ffffff;
+        letter-spacing: 0.02em;
       }
+
+      /* Sign Out / Sign In inside cockpit */
+      .zenith-cockpit-auth-btn,
       .btn-auth-action {
-        background: #4f46e5;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        padding: 5px 12px;
+        background: rgba(239, 68, 68, 0.12);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.25);
+        border-radius: 10px;
+        padding: 5px 11px;
         font-size: 11.5px;
         font-weight: 700;
         cursor: pointer;
-        transition: transform 0.15s, opacity 0.15s;
-      }
-      .btn-auth-action:hover {
-        opacity: 0.9;
-        transform: translateY(-1px);
-      }
-      .btn-zenith-admin {
-        background: linear-gradient(135deg, #ef4444, #f97316);
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        padding: 5px 12px;
-        font-size: 11.5px;
-        font-weight: 700;
-        cursor: pointer;
+        transition: all 0.18s ease;
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
-        animation: pulseAdminGlow 2s infinite;
       }
-      @keyframes pulseAdminGlow {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-        50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+
+      .zenith-cockpit-auth-btn:hover,
+      .btn-auth-action:hover {
+        background: #ef4444;
+        color: #ffffff;
+        box-shadow: 0 2px 10px rgba(239, 68, 68, 0.4);
+      }
+
+      /* Master Console */
+      .zenith-cockpit-btn.btn-master-console,
+      .btn-zenith-admin {
+        background: linear-gradient(135deg, #d97706, #b45309);
+        color: #ffffff;
+        border: 1px solid rgba(251, 191, 36, 0.5);
+        box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+        animation: pulseMasterGold 2.5s infinite;
+      }
+
+      @keyframes pulseMasterGold {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.4); }
+        50% { box-shadow: 0 0 0 6px rgba(217, 119, 6, 0); }
       }
 
       /* --- Mobile Bottom Navigation Bar (World-class Mobile UI) --- */
@@ -6170,10 +7182,10 @@
         <header class="zenith-lp-nav">
           <div class="zenith-lp-brand">
             <div class="zenith-lp-logo-box">
-              <img src="app-logo.svg" alt="Zenith Logo" />
+              <img src="app-logo.svg" alt="Krishsoft Logo" />
             </div>
             <div class="zenith-lp-brand-text">
-              <span class="zenith-lp-title">ZENITH STUDY OS</span>
+              <span class="zenith-lp-title">KRISHSOFT SMART STUDY ENGINE</span>
               <span class="zenith-lp-sub">ශ්‍රී ලංකා විෂය නිර්දේශ මෙහෙයුම් පද්ධතිය</span>
             </div>
             <span class="zenith-lp-grade-pill">Grades 6–11 O/L</span>
@@ -6184,9 +7196,16 @@
             <a href="#lp-telemetry" class="zenith-lp-link">Features &amp; Bento</a>
             <a href="#lp-repetition" class="zenith-lp-link">Spaced Repetition</a>
             <a href="#lp-ranks" class="zenith-lp-link">Exam Ranks</a>
+            <button type="button" onclick="openStudyModal()" class="zenith-lp-link" style="background: rgba(99,102,241,0.14); border: 1px solid rgba(99,102,241,0.35); border-radius: 20px; padding: 5px 14px; color: var(--primary, #6366f1); font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;" title="ස්වයංක්‍රීය මගපෙන්වීම: ක්‍රියා කරන ආකාරය">
+              <span>💡</span>
+              <span>How it Works (මගපෙන්වීම)</span>
+            </button>
           </nav>
 
           <div style="display:flex; align-items:center; gap:10px;">
+            <button type="button" onclick="openStudyModal()" class="zenith-lp-link" style="background:none; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 6px 12px; cursor:pointer; color: #cbd5e1; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;" title="ක්‍රියා කරන ආකාරය (Guide)">
+              <span>💡 Guide</span>
+            </button>
             <button type="button" onclick="scrollToLandingAuth()" class="zenith-lp-link" style="background:none; border:none; cursor:pointer;">
               Student Sign In
             </button>
@@ -6784,40 +7803,49 @@
     <!-- ========================================================================= -->
     <div id="zenithDashboardView" class="zenith-dashboard-view">
 
-    <!-- Zenith Top Navigation Bar -->
+    <!-- Krishsoft Smart Study Engine Top Navigation Bar -->
     <header class="zenith-topbar" role="banner">
-      <div class="zenith-brand" onclick="scrollToTopDashboard()" title="Zenith O-Level • Smart Study Engine">
-        <img src="app-logo.svg" alt="Zenith Logo" class="zenith-brand-logo" />
+      <div class="zenith-brand" onclick="scrollToTopDashboard()" title="Krishsoft Smart Study Engine • Autonomous Academic Cockpit">
+        <div class="zenith-brand-logo-box">
+          <img src="app-logo.svg" alt="Krishsoft Logo" class="zenith-brand-logo" />
+          <span class="zenith-live-dot" title="Study Engine Online"></span>
+        </div>
         <div>
-          <div class="zenith-brand-title">Zenith O-Level</div>
-          <div class="zenith-brand-sub">Smart Study Engine • Grades 6–11</div>
+          <div class="zenith-brand-title">Krishsoft Smart Study Engine</div>
+          <div class="zenith-brand-sub">Autonomous Academic Cockpit • Grades 6–11</div>
         </div>
       </div>
 
       <div class="zenith-controls">
-        <button type="button" class="btn-action-pill" onclick="showLandingPage()" style="background: rgba(99,102,241,0.12); color: var(--text-main); font-size: 11.5px; border: 1px solid rgba(99,102,241,0.3); cursor: pointer;" title="Landing Page එකට යන්න">
-          🏠 About
+        <button type="button" class="zenith-cockpit-btn btn-guide" onclick="openStudyModal()" title="ක්‍රියා කරන ආකාරය සහ ස්වයංක්‍රීය මගපෙන්වීම (How to Study &amp; Automated Engine Guide)">
+          <span style="font-size: 14px;">💡</span>
+          <span>How to Study</span>
         </button>
 
-        <a href="study-radar.html" class="btn-action-pill" style="background: linear-gradient(135deg, rgba(235,77,75,0.2), rgba(240,147,43,0.2)); color: #eb4d4b; font-size: 11.5px; border: 1px solid rgba(235,77,75,0.4); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; font-weight: 700;" title="Urgent Radar & Exam Score Progression පිටුවට පිවිසෙන්න">
-          ⚡ Exam Radar
+        <a href="study-radar.html" class="zenith-cockpit-btn btn-radar" title="Urgent Radar &amp; Exam Score Progression පිටුවට පිවිසෙන්න">
+          <span class="radar-live-pulse"></span>
+          <span style="font-size: 13px;">⚡</span>
+          <span>Exam Radar</span>
         </a>
 
-        <button type="button" class="btn-academic-settings-pill" onclick="openAcademicSettingsModal()" title="ශ්‍රේණිය සහ විෂයයන් වෙනස් කිරීමට ක්ලික් කරන්න (Change Grade &amp; Subjects in Settings)">
+        <button type="button" class="zenith-cockpit-btn btn-grade" onclick="openAcademicSettingsModal()" title="ශ්‍රේණිය සහ විෂයයන් වෙනස් කිරීමට ක්ලික් කරන්න (Change Grade &amp; Subjects in Settings)">
           <span>📚</span>
           <span id="zenithTopActiveGrade">Grade 9</span>
-          <span style="font-size:11px; opacity:0.7;">⚙️</span>
+          <span class="btn-gear">⚙️</span>
         </button>
 
-        <div id="zenithUserStatusBadge" class="zenith-user-chip guest" onclick="ZenithAuth.showAuthModal()" title="පරිශීලක ගිණුම (User Profile & Account)">
+        <div id="zenithUserStatusBadge" class="zenith-user-cockpit-chip guest" onclick="if (typeof ZenithAuth !== 'undefined' && ZenithAuth.handleUserBadgeClick) { ZenithAuth.handleUserBadgeClick(); } else if (typeof openAcademicSettingsModal === 'function') { openAcademicSettingsModal(); }" title="පරිශීලක ගිණුම (User Profile &amp; Account)">
           <img id="zenithUserAvatar" class="zenith-user-avatar" style="display:none;" alt="User Avatar" />
-          <span id="zenithUserName">Student (Guest)</span>
-          <span id="zenithUserGradeBadge" class="zenith-grade-badge">Grade 9</span>
-          <button type="button" id="btnZenithAuthAction" class="btn-auth-action" onclick="event.stopPropagation(); ZenithAuth.showAuthModal();">🔑 Sign In</button>
+          <div class="zenith-user-info">
+            <span id="zenithUserName" class="zenith-user-name">Student (Guest)</span>
+            <span id="zenithUserGradeBadge" class="zenith-grade-badge">Grade 9</span>
+          </div>
+          <button type="button" id="btnZenithAuthAction" class="zenith-cockpit-auth-btn" onclick="event.stopPropagation();">🔑 Sign In</button>
         </div>
 
-        <button type="button" id="btnZenithAdminPortal" class="btn-zenith-admin" style="display: none;" onclick="ZenithAuth.openAdminPortal()" title="Platform Master Console (Admin: krishaja@gmail.com)">
-          ⚡ Master Console
+        <button type="button" id="btnZenithAdminPortal" class="zenith-cockpit-btn btn-master-console" style="display: none;" onclick="ZenithAuth.openAdminPortal()" title="Platform Master Console (Admin: krishaja@gmail.com)">
+          <span>⚡</span>
+          <span>Master Console</span>
         </button>
       </div>
     </header>
@@ -7911,7 +8939,7 @@
                 <button type="button" class="academic-grade-btn" id="btnGrade_10" onclick="onAcademicGradeSelect(10)">10 ශ්‍රේණිය<br><span style="font-size: 9.5px; opacity:0.8;">Grade 10 (O/L)</span></button>
                 <button type="button" class="academic-grade-btn" id="btnGrade_11" onclick="onAcademicGradeSelect(11)">11 ශ්‍රේණිය<br><span style="font-size: 9.5px; opacity:0.8;">Grade 11 (O/L Exam)</span></button>
               </div>
-              <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.4; margin: 0 0 14px 0;">
+              <p class="academic-desc-text" style="font-size: 11.5px; color: var(--text-muted, #7f8fa6); line-height: 1.4; margin: 0 0 14px 0;">
                 ශ්‍රේණිය අනුව ජාතික විෂය නිර්දේශයේ (NIE) නිල විෂයයන් පහතින් සකස් වේ. ඔබේ පන්ති කාමරයේ හදාරන විෂයයන් සක්‍රිය කරගන්න.
               </p>
             </div>
@@ -19325,6 +20353,171 @@ function openSidebarModal() {
       </div>
     </div>
 
+    <!-- Smart Study Assistant Full Screen Modal Popup (Zenith Stitch Redesign) -->
+    <div class="study-modal-overlay" id="studyModal" onclick="if(event.target===this) closeStudyModal()">
+      <div class="study-modal-card" role="dialog" aria-modal="true" aria-labelledby="studyModalTitle" onclick="event.stopPropagation()">
+        
+        <!-- Compact Header -->
+        <div class="study-modal-header" id="studyModalHeader">
+          <div style="flex: 1; min-width: 0;">
+            <div class="study-modal-header-top">
+              <span class="study-modal-badge">
+                <span class="badge-icon">⚡</span>
+                <span class="badge-title">Krishsoft Smart Study Engine</span>
+                <span class="badge-dot">•</span>
+                <span class="badge-desc">Automated Guidance</span>
+              </span>
+            </div>
+            <h2 class="modal-title" id="studyModalTitle">
+              ස්වයංක්‍රීය මගපෙන්වීම: ඔබ ඊළඟට කළ යුත්තේ කුමක්ද?
+            </h2>
+            <p class="modal-subtitle">
+              <span class="subtitle-highlight">What To Do Next Engine</span>
+              <span class="subtitle-divider">—</span>
+              <span>Smart 4-Step Academic Workflow</span>
+            </p>
+          </div>
+          <button type="button" class="modal-close-btn" id="closeModalBtn" onclick="closeStudyModal()" aria-label="වසන්න (Close)">&times;</button>
+        </div>
+
+        <!-- Scrollable Body -->
+        <div class="study-modal-body">
+          <div class="study-workflow-grid">
+            
+            <!-- Step 01: Lesson & Homework Sync -->
+            <div class="study-step-card step-1-color">
+              <div class="study-step-header">
+                <div class="study-step-num-icon">
+                  <div class="study-step-number">01</div>
+                  <div class="study-step-icon">📘</div>
+                </div>
+                <span class="study-step-badge">Mark Lesson Done</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <h3 class="study-step-title">පියවර 01: පාඩම සහ අභ්‍යාස ලකුණු කරන්න</h3>
+                <p class="study-step-desc">
+                  Syllabus Manager හෝ විෂය කාඩ්පත් වලින් ඔබ ඉගෙනගත් ඒකකය (Lesson Done) සහ අභ්‍යාස (Homework Done) Tick කරන්න. <strong>ඔබ කළ යුතු මූලිකම ක්‍රියාව මෙය පමණි.</strong>
+                </p>
+              </div>
+              <div class="study-step-pill-tag">
+                <span class="tag-dot">✓</span>
+                <span>One-Click Checkbox • Status Realtime Sync</span>
+              </div>
+            </div>
+
+            <!-- Step 02: Urgent Radar Activation -->
+            <div class="study-step-card step-2-color">
+              <div class="study-step-header">
+                <div class="study-step-num-icon">
+                  <div class="study-step-number">02</div>
+                  <div class="study-step-icon">⚡</div>
+                </div>
+                <span class="study-step-badge">Urgent Model Paper 1</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <h3 class="study-step-title">පියවර 02: ⚡ Urgent Radar ස්වයංක්‍රීයව සක්‍රිය වේ</h3>
+                <p class="study-step-desc">
+                  පාඩමක් අවසන් කළ සැණින් එය ස්වයංක්‍රීයව 'Urgent Radar' ලැයිස්තුවට එක් වේ. Model Paper 1 ප්‍රශ්න පත්‍රය වහාම සම්පූර්ණ කර ලකුණු ලබාගත යුතු බව පද්ධතිය පෙන්වයි.
+                </p>
+              </div>
+              <div class="study-step-pill-tag">
+                <span class="tag-dot">⚡</span>
+                <span>Auto-Trigger • Exam Simulation Priority</span>
+              </div>
+            </div>
+
+            <!-- Step 03: Spaced Repetition Ordering -->
+            <div class="study-step-card step-3-color">
+              <div class="study-step-header">
+                <div class="study-step-num-icon">
+                  <div class="study-step-number">03</div>
+                  <div class="study-step-icon">🧠</div>
+                </div>
+                <span class="study-step-badge">Spaced Repetition</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <h3 class="study-step-title">පියවර 03: 🧠 දෛනික පුනරීක්ෂණ අනුපිළිවෙල</h3>
+                <p class="study-step-desc">
+                  Ebbinghaus Forgetting Curve මත දින 1, 3, 7, 21, 45 චක්‍ර මඟින් අද දින ඔබ නැවත කියවිය යුතු පාඩම් Dashboard එකේ ඉහළින්ම ස්වයංක්‍රීයව පෙළගස්වා නිර්දේශ කරයි.
+                </p>
+              </div>
+              <div class="study-step-pill-tag">
+                <span class="tag-dot">🧠</span>
+                <span>Intervals: Day 1, 3, 7, 21, 45 • Smart Retention</span>
+              </div>
+            </div>
+
+            <!-- Step 04: Focus Timer Execution -->
+            <div class="study-step-card step-4-color">
+              <div class="study-step-header">
+                <div class="study-step-num-icon">
+                  <div class="study-step-number">04</div>
+                  <div class="study-step-icon">⏱️</div>
+                </div>
+                <span class="study-step-badge">Deep Focus Execution</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <h3 class="study-step-title">පියවර 04: ⏱️ 50/10 Focus Timer එකෙන් අවසන් කරන්න</h3>
+                <p class="study-step-desc">
+                  Focus Timer හි Target Unit Picker එකෙන් අදාළ පාඩම තෝරාගෙන, විනාඩි 50 ක නොබිඳුණු අවධානයෙන් සහ Brown Noise සමඟින් අධ්‍යයනය කර ලකුණු සටහන් කරන්න.
+                </p>
+              </div>
+              <div class="study-step-pill-tag">
+                <span class="tag-dot">⏱️</span>
+                <span>50 Min Study / 10 Min Rest • Distraction Blocker</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Highlighted Summary Banner -->
+          <div class="study-workflow-summary-banner">
+            <div class="summary-banner-icon">✨</div>
+            <div class="summary-banner-content">
+              <div class="summary-banner-title">
+                ✓ ඔබ කළ යුත්තේ පාඩම Tick කිරීම පමණි — ඊළඟ පියවර පද්ධතිය ස්වයංක්‍රීයව සැලසුම් කරයි
+              </div>
+              <div class="summary-banner-desc">
+                Zero cognitive overload. Just check off your completed lessons and let Zenith automatically calculate urgent papers, spaced repetition cycles, and next focus targets.
+              </div>
+            </div>
+          </div>
+
+          <!-- End Section: Status, Don't Show Again & Action Buttons (Added to the End of Content) -->
+          <div class="study-modal-footer">
+            <div class="study-footer-left">
+              <div class="study-footer-status">
+                <span class="status-pulse-dot"></span>
+                <span>Adaptive Study Engine: Active • Realtime AI Logic</span>
+              </div>
+              <label class="study-modal-dont-show" for="studyModalDontShowCheckbox" title="මෙම පණිවිඩය මතු දිනවල ස්වයංක්‍රීයව පෙන්වීම නවත්වන්න (Don't show again on startup)">
+                <input type="checkbox" id="studyModalDontShowCheckbox" onchange="toggleStudyModalNeverShow(this.checked)" />
+                <span class="dont-show-text">නැවත පෙන්වන්න එපා (Don't show again)</span>
+              </label>
+            </div>
+            <div class="study-footer-actions">
+              <button type="button" class="btn-study-secondary" onclick="closeStudyModal()">
+                වසන්න (Close Guide)
+              </button>
+              <button type="button" class="btn-study-primary" id="startNowBtn" onclick="onStudyModalCtaClick()">
+                <span>මගේ Study Dashboard එකට යන්න (Enter)</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+          </div>
+
+        </div> <!-- /.study-modal-body -->
+
+      </div> <!-- /.study-modal-card -->
+    </div>
+
+    <!-- Floating Quick Help / How to Study FAB Button -->
+    <button type="button" class="zenith-floating-help-btn" onclick="openStudyModal()" title="ස්වයංක්‍රීය මගපෙන්වීම: ක්‍රියා කරන ආකාරය (How to Study &amp; Automated Engine Guide)" aria-label="How to Study Guide">
+      <span class="help-btn-pulse"></span>
+      <span class="help-btn-icon">💡</span>
+      <span class="help-btn-text">How to Study?</span>
+    </button>
+
     <!-- Mobile Bottom Navigation Bar -->
     <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
       <button type="button" class="mob-nav-item active" onclick="scrollToTopDashboard()">
@@ -19350,6 +20543,114 @@ function openSidebarModal() {
     </nav>
 
     <script>
+      // =========================================================
+      // SMART STUDY ASSISTANT FULL SCREEN MODAL POPUP
+      // =========================================================
+      function isStudyModalNeverShow() {
+        try {
+          return localStorage.getItem('zenith_study_modal_never_show') === 'true';
+        } catch (e) {
+          return false;
+        }
+      }
+
+      function toggleStudyModalNeverShow(checked) {
+        try {
+          if (checked) {
+            localStorage.setItem('zenith_study_modal_never_show', 'true');
+          } else {
+            localStorage.removeItem('zenith_study_modal_never_show');
+          }
+        } catch (e) {}
+      }
+
+      function openStudyModal() {
+        const modal = document.getElementById('studyModal');
+        if (!modal) return;
+        const cb = document.getElementById('studyModalDontShowCheckbox');
+        if (cb) {
+          cb.checked = isStudyModalNeverShow();
+        }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeStudyModal() {
+        const modal = document.getElementById('studyModal');
+        if (!modal) return;
+        const cb = document.getElementById('studyModalDontShowCheckbox');
+        if (cb) {
+          if (cb.checked) {
+            try { localStorage.setItem('zenith_study_modal_never_show', 'true'); } catch (e) {}
+          } else {
+            try { localStorage.removeItem('zenith_study_modal_never_show'); } catch (e) {}
+          }
+        }
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Expose globally so all modules and header links can trigger it
+      window.openStudyModal = openStudyModal;
+      window.closeStudyModal = closeStudyModal;
+
+      function onStudyModalCtaClick() {
+        closeStudyModal();
+        const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
+        if (user && !user.isGuest) {
+          if (typeof showDashboardView === 'function') showDashboardView();
+        } else {
+          if (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.showAuthModal === 'function') {
+            ZenithAuth.showAuthModal('login');
+          } else if (typeof showLandingPage === 'function') {
+            showLandingPage();
+          }
+        }
+      }
+
+      document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('studyModal');
+        if (modal && modal.classList.contains('active')) {
+          if (e.key === 'Escape') {
+            closeStudyModal();
+          } else if (e.key === 'Enter') {
+            const activeEl = document.activeElement;
+            if (activeEl && (activeEl.id === 'closeModalBtn' || activeEl.classList.contains('btn-study-secondary'))) {
+              closeStudyModal();
+            } else {
+              e.preventDefault();
+              onStudyModalCtaClick();
+            }
+          }
+        }
+      });
+
+      function checkAutoOpenStudyModal() {
+        try {
+          if (!isStudyModalNeverShow()) {
+            setTimeout(openStudyModal, 800);
+          }
+        } catch(e) {}
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkAutoOpenStudyModal);
+      } else {
+        setTimeout(checkAutoOpenStudyModal, 100);
+      }
+
+      // Forward mouse wheel and touch scrolling smoothly from topic area to modal body
+      document.addEventListener('wheel', (e) => {
+        const modal = document.getElementById('studyModal');
+        if (modal && modal.classList.contains('active')) {
+          const header = document.getElementById('studyModalHeader') || modal.querySelector('.study-modal-header');
+          const body = modal.querySelector('.study-modal-body');
+          if (header && body && header.contains(e.target)) {
+            body.scrollTop += e.deltaY;
+          }
+        }
+      }, { passive: true });
+
       function showLandingPage() {
         const lp = document.getElementById('zenithLandingPage');
         const dv = document.getElementById('zenithDashboardView');
@@ -19399,8 +20700,14 @@ function openSidebarModal() {
         if (badge) badge.innerText = `Grade ${g}`;
       }
 
+      function showSettingsModal() {
+        openSettingsModal();
+      }
+
       function openAcademicSettingsModal() {
-        showSettingsModal();
+        currentSettingsTab = 'academic';
+        currentAcademicEditingGrade = (typeof ZenithCurriculum !== 'undefined') ? ZenithCurriculum.getActiveGrade() : 9;
+        openSettingsModal();
         switchSettingsTab('academic');
       }
 
@@ -19425,7 +20732,7 @@ function openSidebarModal() {
 
         const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
         const uId = (user && !user.isGuest) ? user.id : null;
-        const currentActive = (typeof ZenithCurriculum !== 'undefined') ? ZenithCurriculum.getActiveSubjectsForUser(uId) : [];
+        const currentActive = (typeof ZenithCurriculum !== 'undefined') ? ZenithCurriculum.getActiveSubjectsForUser(uId, activeGrade) : [];
         const activeCodes = new Set(currentActive.map(s => s.code.toUpperCase()));
 
         let html = '';
@@ -19454,8 +20761,8 @@ function openSidebarModal() {
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span style="font-size: 16px;">${sub.icon}</span>
                   <div>
-                    <div style="font-size: 12px; font-weight: 700; color: var(--text-main);">${escapeHtml(sub.nameSi)}</div>
-                    <div style="font-size: 10px; color: var(--text-muted);">${escapeHtml(sub.nameEn)} (${sub.code})</div>
+                    <div class="academic-subj-title" style="font-size: 12px; font-weight: 700; color: var(--text-main, #2d3436);">${escapeHtml(sub.nameSi)}</div>
+                    <div class="academic-subj-code" style="font-size: 10px; color: var(--text-muted, #7f8fa6);">${escapeHtml(sub.nameEn)} (${sub.code})</div>
                   </div>
                 </div>
                 <input type="checkbox" class="chk-academic-subj" data-code="${sub.code}" ${isChecked ? 'checked' : ''} style="width: 17px; height: 17px; accent-color: #6366f1; cursor: pointer;">
@@ -19483,7 +20790,7 @@ function openSidebarModal() {
               <div class="academic-subj-item" style="opacity: 0.9;">
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span style="font-size: 16px;">${c.icon}</span>
-                  <span style="font-size: 12px; font-weight: 700; color: var(--text-main);">${c.nameSi} (${c.nameEn})</span>
+                  <span class="academic-subj-title" style="font-size: 12px; font-weight: 700; color: var(--text-main, #2d3436);">${c.nameSi} (${c.nameEn})</span>
                 </div>
                 <span style="font-size: 9.5px; font-weight: 800; color: #10b981; background: rgba(16,185,129,0.12); padding: 2px 7px; border-radius: 6px;">CORE අනිවාර්ය</span>
                 <input type="checkbox" class="chk-academic-subj" data-code="${c.code}" checked disabled style="display:none;">
@@ -19612,7 +20919,7 @@ function openSidebarModal() {
           ZenithCurriculum.setActiveGrade(grade);
           const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
           const uId = (user && !user.isGuest) ? user.id : null;
-          ZenithCurriculum.saveActiveSubjectsForUser(uId, subjsArray);
+          ZenithCurriculum.saveActiveSubjectsForUser(uId, subjsArray, grade);
 
           if (user && !user.isGuest && typeof ZenithAuth.getSupabaseClient === 'function') {
             const sb = ZenithAuth.getSupabaseClient();
@@ -19630,6 +20937,10 @@ function openSidebarModal() {
               }
             }
           }
+        }
+
+        if (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.setUserGrade === 'function') {
+          ZenithAuth.setUserGrade(grade);
         }
 
         localStorage.setItem('g9_subjects_config', JSON.stringify(subjsArray));

@@ -185,12 +185,15 @@
     const authActionBtn = document.getElementById('btnZenithAuthAction');
 
     if (nameEl) nameEl.innerText = user.fullName || 'Student';
+    const activeGradeNum = (typeof global.ZenithCurriculum !== 'undefined' && typeof global.ZenithCurriculum.getActiveGrade === 'function')
+      ? global.ZenithCurriculum.getActiveGrade()
+      : (user.grade || 9);
     if (gradeBadge) {
-      gradeBadge.innerText = `Grade ${user.grade || 9}`;
+      gradeBadge.innerText = `Grade ${activeGradeNum}`;
       gradeBadge.style.display = 'inline-block';
     }
     const topGradeEl = document.getElementById('zenithTopActiveGrade');
-    if (topGradeEl) topGradeEl.innerText = `Grade ${user.grade || 9}`;
+    if (topGradeEl) topGradeEl.innerText = `Grade ${activeGradeNum}`;
 
     if (avatarEl) {
       if (user.avatarUrl) {
@@ -204,16 +207,29 @@
     if (authActionBtn) {
       if (user.isGuest) {
         authActionBtn.innerText = '🔑 Log In / Sign Up';
-        authActionBtn.onclick = () => showAuthModal('login');
+        authActionBtn.onclick = (e) => {
+          if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          showAuthModal('login');
+        };
       } else {
         authActionBtn.innerText = '🚪 Sign Out';
-        authActionBtn.onclick = () => signOut();
+        authActionBtn.onclick = (e) => {
+          if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          signOut();
+        };
       }
     }
 
     if (badge) {
       badge.className = user.isGuest ? 'zenith-user-chip guest' : 'zenith-user-chip logged-in';
-      badge.title = user.isGuest ? 'Guest Mode (Click to Sign In)' : `Logged in as ${user.email}`;
+      badge.title = user.isGuest ? 'Guest Mode (Click to Sign In)' : `Logged in as ${user.email} (Click to manage Grade & Subjects)`;
+      badge.onclick = () => handleUserBadgeClick();
     }
 
     // Admin Panel Trigger Button (Req 12 & 13: strictly for krishaja@gmail.com)
@@ -288,6 +304,17 @@
     }
     currentUser = getStoredGuestUser();
     updateAuthUI();
+
+    // Ensure settings modal or academic modal is cleanly closed on sign out
+    if (typeof global.closeSettingsModal === 'function') {
+      try { global.closeSettingsModal(); } catch (e) {}
+    }
+    const sm = document.getElementById('academicSettingsModal') || document.getElementById('settingsModal');
+    if (sm) {
+      sm.classList.remove('active');
+      sm.style.display = 'none';
+    }
+
     if (typeof global.showLandingPage === 'function') {
       global.showLandingPage();
     }
@@ -360,6 +387,32 @@
     }
   }
 
+  function handleUserBadgeClick() {
+    const user = getCurrentUser();
+    if (user && !user.isGuest) {
+      if (typeof global.openAcademicSettingsModal === 'function') {
+        global.openAcademicSettingsModal();
+        return;
+      }
+    }
+    showAuthModal('login');
+  }
+
+  function setUserGrade(newGrade) {
+    const g = Number(newGrade) || 9;
+    if (!currentUser) currentUser = getCurrentUser();
+    if (currentUser) {
+      currentUser.grade = g;
+      if (currentUser.isGuest) {
+        setStoredGuestUser(currentUser);
+      }
+    }
+    if (global.ZenithCurriculum && typeof global.ZenithCurriculum.setActiveGrade === 'function') {
+      global.ZenithCurriculum.setActiveGrade(g);
+    }
+    updateAuthUI();
+  }
+
   // Export module
   global.ZenithAuth = {
     ADMIN_EMAIL,
@@ -381,7 +434,9 @@
     hideAuthModal,
     switchAuthTab,
     updateAuthUI,
-    openAdminPortal
+    openAdminPortal,
+    handleUserBadgeClick,
+    setUserGrade
   };
 
   // Run on DOM Ready

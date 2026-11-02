@@ -102,12 +102,15 @@
     return codes.map(code => getSubjectMetaByCode(code));
   }
 
-  function getActiveSubjectsForUser(userId) {
-    const currentGrade = getActiveGrade();
-    const storageKey = userId ? `zenith_subjs_${userId}_g${currentGrade}` : `g9_subjects_config`;
+  function getActiveSubjectsForUser(userId, targetGrade) {
+    const currentGrade = targetGrade || getActiveGrade();
+    const storageKey = userId ? `zenith_subjs_${userId}_g${currentGrade}` : (currentGrade === 9 ? `g9_subjects_config` : `zenith_subjs_g${currentGrade}`);
 
     try {
-      const raw = localStorage.getItem(storageKey);
+      let raw = localStorage.getItem(storageKey);
+      if (!raw && currentGrade === 9) {
+        raw = localStorage.getItem('g9_subjects_config');
+      }
       if (raw) {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed) && parsed.length > 0) {
@@ -124,9 +127,9 @@
     return getDefaultSubjectsForGrade(currentGrade);
   }
 
-  function saveActiveSubjectsForUser(userId, subjectsArray) {
-    const currentGrade = getActiveGrade();
-    const storageKey = userId ? `zenith_subjs_${userId}_g${currentGrade}` : `g9_subjects_config`;
+  function saveActiveSubjectsForUser(userId, subjectsArray, targetGrade) {
+    const currentGrade = targetGrade || getActiveGrade();
+    const storageKey = userId ? `zenith_subjs_${userId}_g${currentGrade}` : (currentGrade === 9 ? `g9_subjects_config` : `zenith_subjs_g${currentGrade}`);
     try {
       localStorage.setItem(storageKey, JSON.stringify(subjectsArray));
       localStorage.setItem('g9_subjects_config', JSON.stringify(subjectsArray)); // legacy sync

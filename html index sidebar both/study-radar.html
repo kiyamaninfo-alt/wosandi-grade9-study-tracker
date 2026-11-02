@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <base target="_top">
-  <title>Zenith O-Level • Urgent Radar & Exam Score Progression</title>
+  <title>Krishsoft Smart Study Engine • Urgent Radar & Exam Score Progression</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="app-logo.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -12,6 +12,22 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="/env.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function() {
+      const env = (typeof window !== 'undefined' && window.__ENV__) || {};
+      const suUrl = env.SUPABASE_URL || 'https://klcbypzapfojjakoehgx.supabase.co';
+      const suKey = env.SUPABASE_ANON_KEY || 'sb_publishable_hg4IZNmibddbNsxe5t0aZQ_1XUUBxBp';
+      if (typeof window !== 'undefined' && window.supabase && typeof window.supabase.createClient === 'function') {
+        window.supabaseClient = window.supabase.createClient(suUrl, suKey, {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        });
+      }
+    })();
+  </script>
   <script src="curriculum-catalog.js"></script>
   <script src="auth-manager.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -6333,6 +6349,9 @@
       border-radius: 10px;
       padding: 3px 10px;
       transition: all 0.2s;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
     }
     .chart-dropbox-wrap:hover {
       border-color: #8c7ae6;
@@ -6343,16 +6362,23 @@
       color: var(--text-main, #f0f6fc);
       border: none;
       font-family: inherit;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 700;
-      cursor: pointer;
+      cursor: pointer !important;
       outline: none;
-      padding: 3px 4px;
+      padding: 4px 6px;
+      -webkit-appearance: menulist !important;
+      appearance: menulist !important;
+      position: relative;
+      z-index: 2;
+      width: 100%;
     }
     .chart-dropbox-select option, .explorer-subject-select option {
       background: #0e131d;
       color: #f0f6fc;
-      padding: 6px;
+      padding: 8px 10px;
+      font-size: 12.5px;
+      font-weight: 600;
     }
     body:not(.dark-mode) .chart-dropbox-select option, body:not(.dark-mode) .explorer-subject-select option {
       background: #ffffff;
@@ -6379,16 +6405,20 @@
       font-size: 11.5px;
       font-weight: 700;
       color: var(--text-muted, #8b949e);
+      cursor: pointer;
     }
     .explorer-select-wrap {
       background: linear-gradient(135deg, rgba(140, 122, 230, 0.2), rgba(9, 132, 227, 0.2));
       border: 1.5px solid #8c7ae6;
       border-radius: 12px;
-      padding: 4px 12px;
+      padding: 4px 10px;
       display: flex;
       align-items: center;
       box-shadow: 0 4px 16px rgba(140, 122, 230, 0.25);
       transition: all 0.2s ease;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
     }
     .explorer-select-wrap:hover {
       border-color: #a29bfe;
@@ -6399,7 +6429,8 @@
       font-size: 13px;
       font-weight: 800;
       color: #a29bfe;
-      min-width: 220px;
+      min-width: 250px;
+      cursor: pointer !important;
     }
     .subject-kpi-strip {
       display: grid;
@@ -6628,9 +6659,21 @@
         </div>
         <div class="explorer-selector-container">
           <label for="subjectExplorerSelect" class="explorer-select-label">🎯 විෂය තෝරන්න (Drop Box):</label>
-          <div class="explorer-select-wrap">
+          <div class="explorer-select-wrap" onclick="const s = this.querySelector('select'); if (s) { s.focus(); try { s.showPicker(); } catch(_) {} }">
             <select id="subjectExplorerSelect" class="explorer-subject-select" onchange="onSubjectExplorerSelectChange(this.value)">
-              <!-- Populated dynamically with active subjects -->
+              <option value="MATH">📐 MATH — ගණිතය (Mathematics)</option>
+              <option value="SCI">🔬 SCI — විද්‍යාව (Science)</option>
+              <option value="SIN">📘 SIN — සිංහල (Sinhala)</option>
+              <option value="ENG">🔤 ENG — ඉංග්‍රීසි (English)</option>
+              <option value="BUD">☸️ BUD — බුද්ධ ධර්මය (Buddhism)</option>
+              <option value="HIST">🏛️ HIST — ඉතිහාසය (History)</option>
+              <option value="GEO">🌍 GEO — භූගෝල විද්‍යාව (Geography)</option>
+              <option value="CIV">⚖️ CIV — පුරවැසි අධ්‍යාපනය (Civic Education)</option>
+              <option value="HLTH">🏃‍♀️ HLTH — සෞඛ්‍ය හා ශාරීරික අධ්‍යාපනය (Health & PE)</option>
+              <option value="ICT">💻 ICT — තොරතුරු තාක්ෂණය (ICT)</option>
+              <option value="TAM">🗣️ TAM — දෙමළ (Tamil)</option>
+              <option value="AES">🎨 AES — සෞන්දර්ය විෂය (Aesthetics)</option>
+              <option value="PTS">🛠️ PTS — ප්‍රායෝගික හා තාක්ෂණික කුසලතා (PTS)</option>
             </select>
           </div>
         </div>
@@ -6700,9 +6743,23 @@
         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
           <div class="explorer-selector-container">
             <label for="fullPaperSubjectSelect" class="explorer-select-label">🎯 විෂය තෝරන්න (Drop Box):</label>
-            <div class="explorer-select-wrap">
+            <div class="explorer-select-wrap" onclick="const s = this.querySelector('select'); if (s) { s.focus(); try { s.showPicker(); } catch(_) {} }">
               <select id="fullPaperSubjectSelect" class="explorer-subject-select" onchange="switchChartTab(this.value)">
-                <!-- Populated dynamically -->
+                <option value="All">🌟 All Subjects (සමස්ත විෂයයන්)</option>
+                <option value="Overall Avg">🎯 සමස්ත සාමාන්‍යය % (Overall Avg)</option>
+                <option value="MATH">📐 MATH — ගණිතය (Mathematics)</option>
+                <option value="SCI">🔬 SCI — විද්‍යාව (Science)</option>
+                <option value="SIN">📘 SIN — සිංහල (Sinhala)</option>
+                <option value="ENG">🔤 ENG — ඉංග්‍රීසි (English)</option>
+                <option value="BUD">☸️ BUD — බුද්ධ ධර්මය (Buddhism)</option>
+                <option value="HIST">🏛️ HIST — ඉතිහාසය (History)</option>
+                <option value="GEO">🌍 GEO — භූගෝල විද්‍යාව (Geography)</option>
+                <option value="CIV">⚖️ CIV — පුරවැසි අධ්‍යාපනය (Civic Education)</option>
+                <option value="HLTH">🏃‍♀️ HLTH — සෞඛ්‍ය හා ශාරීරික අධ්‍යාපනය (Health & PE)</option>
+                <option value="ICT">💻 ICT — තොරතුරු තාක්ෂණය (ICT)</option>
+                <option value="TAM">🗣️ TAM — දෙමළ (Tamil)</option>
+                <option value="AES">🎨 AES — සෞන්දර්ය විෂය (Aesthetics)</option>
+                <option value="PTS">🛠️ PTS — ප්‍රායෝගික හා තාක්ෂණික කුසලතා (PTS)</option>
               </select>
             </div>
           </div>
@@ -6829,9 +6886,22 @@
         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
           <div class="explorer-selector-container">
             <label for="unitPaperSubjectSelect" class="explorer-select-label">🎯 විෂය තෝරන්න (Drop Box):</label>
-            <div class="explorer-select-wrap">
+            <div class="explorer-select-wrap" onclick="const s = this.querySelector('select'); if (s) { s.focus(); try { s.showPicker(); } catch(_) {} }">
               <select id="unitPaperSubjectSelect" class="explorer-subject-select" onchange="switchUnitChartTab(this.value)">
-                <!-- Populated dynamically -->
+                <option value="All">🌟 All Unit Papers (සියලු ඒකක පත්‍ර)</option>
+                <option value="MATH">📐 MATH — ගණිතය (Mathematics)</option>
+                <option value="SCI">🔬 SCI — විද්‍යාව (Science)</option>
+                <option value="SIN">📘 SIN — සිංහල (Sinhala)</option>
+                <option value="ENG">🔤 ENG — ඉංග්‍රීසි (English)</option>
+                <option value="BUD">☸️ BUD — බුද්ධ ධර්මය (Buddhism)</option>
+                <option value="HIST">🏛️ HIST — ඉතිහාසය (History)</option>
+                <option value="GEO">🌍 GEO — භූගෝල විද්‍යාව (Geography)</option>
+                <option value="CIV">⚖️ CIV — පුරවැසි අධ්‍යාපනය (Civic Education)</option>
+                <option value="HLTH">🏃‍♀️ HLTH — සෞඛ්‍ය හා ශාරීරික අධ්‍යාපනය (Health & PE)</option>
+                <option value="ICT">💻 ICT — තොරතුරු තාක්ෂණය (ICT)</option>
+                <option value="TAM">🗣️ TAM — දෙමළ (Tamil)</option>
+                <option value="AES">🎨 AES — සෞන්දර්ය විෂය (Aesthetics)</option>
+                <option value="PTS">🛠️ PTS — ප්‍රායෝගික හා තාක්ෂණික කුසලතා (PTS)</option>
               </select>
             </div>
           </div>
@@ -7542,7 +7612,16 @@
 
     // --- Global State & Telemetry Storage ---
     let supabase = null;
-    let telemetryData = null;
+    let dbExtractedSubjects = null;
+    let telemetryData = {
+      radar: [],
+      ebbinghaus: [],
+      ebbCycleData: { 1: [], 2: [], 3: [] },
+      fullPapersHistory: [],
+      unitPapersHistory: [],
+      tpList: [],
+      syllabusList: []
+    };
     let globalUrgentRadarFullList = [];
     let globalUrgentRadarFullUnitList = [];
     let globalTopHighestUnitList = [];
@@ -7600,6 +7679,7 @@
     }
 
     function onSubjectExplorerSelectChange(subjCode) {
+      if (!subjCode) return;
       currentExplorerSubject = subjCode;
       renderSubjectExplorerCard();
     }
@@ -7614,7 +7694,6 @@
     }
 
     function renderSubjectExplorerCard() {
-      if (!telemetryData) return;
       const subjs = getActiveSubjects();
       if (!subjs || subjs.length === 0) return;
       
@@ -7624,18 +7703,26 @@
 
       const selectEl = document.getElementById('subjectExplorerSelect');
       if (selectEl) {
-        selectEl.innerHTML = subjs.map(s => `
-          <option value="${s.code}" ${s.code === currentExplorerSubject ? 'selected' : ''}>
-            ${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})
-          </option>
-        `).join('');
-        selectEl.value = currentExplorerSubject;
+        if (selectEl.options.length === 0) {
+          selectEl.innerHTML = subjs.map(s => `
+            <option value="${s.code}">
+              ${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})
+            </option>
+          `).join('');
+        }
+        if (selectEl.value !== currentExplorerSubject) {
+          selectEl.value = currentExplorerSubject;
+        }
       }
 
       const subjMeta = getSubjectMeta(currentExplorerSubject);
-      const subjSyllabus = (telemetryData.syllabusList || []).filter(s => (s.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim());
-      const subjUnitPapers = (telemetryData.unitPapersHistory || []).filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks));
-      const subjFullPapers = (telemetryData.fullPapersHistory || []).filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks));
+      const sylList = (telemetryData && telemetryData.syllabusList) ? telemetryData.syllabusList : [];
+      const upList = (telemetryData && telemetryData.unitPapersHistory) ? telemetryData.unitPapersHistory : [];
+      const fpList = (telemetryData && telemetryData.fullPapersHistory) ? telemetryData.fullPapersHistory : [];
+
+      const subjSyllabus = sylList.filter(s => (s.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim());
+      const subjUnitPapers = upList.filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks));
+      const subjFullPapers = fpList.filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks));
 
       const allMarks = [...subjUnitPapers.map(p => Number(p.marks)), ...subjFullPapers.map(p => Number(p.marks))];
       const avg = allMarks.length > 0 ? Math.round(allMarks.reduce((a, b) => a + b, 0) / allMarks.length) : 0;
@@ -7664,7 +7751,7 @@
     function renderSubjectExplorerChart() {
       const canvas = document.getElementById('subjectExplorerChart');
       const emptyMsg = document.getElementById('noSubjectExplorerMsg');
-      if (!canvas || !telemetryData) return;
+      if (!canvas) return;
 
       const subjMeta = getSubjectMeta(currentExplorerSubject);
       const color = subjMeta.color || '#6c5ce7';
@@ -7672,8 +7759,11 @@
       const textColor = isDark ? '#e6edf3' : '#2d3436';
       const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)';
 
-      const subjSyllabus = (telemetryData.syllabusList || []).filter(s => (s.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim());
-      const subjUnitPapers = (telemetryData.unitPapersHistory || []).filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks));
+      const sylList = (telemetryData && telemetryData.syllabusList) ? telemetryData.syllabusList : [];
+      const upList = (telemetryData && telemetryData.unitPapersHistory) ? telemetryData.unitPapersHistory : [];
+
+      const subjSyllabus = sylList.filter(s => (s.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim());
+      const subjUnitPapers = upList.filter(p => (p.subject || '').toUpperCase().trim() === currentExplorerSubject.toUpperCase().trim() && p.marks !== null && !isNaN(p.marks));
 
       if (subjectExplorerChartInstance) {
         subjectExplorerChartInstance.destroy();
@@ -7681,6 +7771,18 @@
       }
 
       if (currentExplorerMode === 'units') {
+        if (subjSyllabus.length === 0) {
+          canvas.style.display = 'none';
+          if (emptyMsg) {
+            emptyMsg.style.display = 'flex';
+            emptyMsg.innerHTML = '<span style="font-size:16px;">⏳</span> දත්ත පූරණය වෙමින් පවතී... (Loading Database Syllabus...)';
+          }
+          return;
+        }
+
+        canvas.style.display = 'block';
+        if (emptyMsg) emptyMsg.style.display = 'none';
+
         const labels = [];
         const scores = [];
         const backgroundColors = [];
@@ -7828,7 +7930,7 @@
       if (!tbody) return;
 
       if (subjSyllabus.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:12px; color:var(--text-muted);">ඒකක දත්ත නොමැත.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:16px; color:var(--text-muted);">⏳ දත්ත පූරණය වෙමින් පවතී... (Loading Database Syllabus...)</td></tr>';
         return;
       }
 
@@ -7898,14 +8000,19 @@
     }
 
     function getActiveSubjects() {
+      if (dbExtractedSubjects && dbExtractedSubjects.length > 0) {
+        return dbExtractedSubjects;
+      }
       if (typeof ZenithCurriculum !== 'undefined') {
         const user = (typeof ZenithAuth !== 'undefined' && ZenithAuth.getCurrentUser) ? ZenithAuth.getCurrentUser() : null;
         const uId = (user && !user.isGuest && user.id !== 'wosandi_legacy_user') ? user.id : null;
         if (typeof ZenithCurriculum.getActiveSubjectsForUser === 'function') {
-          return ZenithCurriculum.getActiveSubjectsForUser(uId);
+          const zSubjs = ZenithCurriculum.getActiveSubjectsForUser(uId);
+          if (zSubjs && zSubjs.length > 0) return zSubjs;
         }
         if (typeof ZenithCurriculum.getActiveSubjects === 'function') {
-          return ZenithCurriculum.getActiveSubjects(uId);
+          const zSubjs = ZenithCurriculum.getActiveSubjects(uId);
+          if (zSubjs && zSubjs.length > 0) return zSubjs;
         }
       }
       if (!g9SubjectsCache) loadG9Subjects();
@@ -8001,19 +8108,52 @@
         let rawFullPapers = (fpRes.status === 'fulfilled' && fpRes.value && fpRes.value.data) ? fpRes.value.data : [];
         let srLogs = (srRes.status === 'fulfilled' && srRes.value && srRes.value.data) ? srRes.value.data : [];
 
-        // Dynamic Subjects Configuration Sync from Database
+        // Dynamic Subjects Configuration Sync from Database (canonical_syllabus & full_papers)
+        if (syllabusList && syllabusList.length > 0) {
+          const dbCodes = [];
+          const seen = new Set();
+          syllabusList.forEach(s => {
+            const c = (s.subject || '').toUpperCase().trim();
+            if (c && !seen.has(c)) {
+              seen.add(c);
+              dbCodes.push(c);
+            }
+          });
+          if (dbCodes.length > 0) {
+            const dbSubjs = dbCodes.map(c => getSubjectMeta(c));
+            dbExtractedSubjects = dbSubjs;
+            g9SubjectsCache = dbSubjs;
+            try {
+              localStorage.setItem('g9_subjects_config', JSON.stringify(dbSubjs));
+              if (userId) {
+                localStorage.setItem(`zenith_subjs_${userId}_g${userGrade}`, JSON.stringify(dbSubjs));
+              }
+            } catch(_) {}
+          }
+        }
+
         const subjectsConfigRow = rawFullPapers.find(r => r.time_taken === 'APP_CONFIG_SUBJECTS');
         if (subjectsConfigRow && subjectsConfigRow.remarks) {
           try {
             const parsedSubjs = JSON.parse(subjectsConfigRow.remarks);
             if (Array.isArray(parsedSubjs) && parsedSubjs.length > 0) {
+              dbExtractedSubjects = parsedSubjs;
               g9SubjectsCache = parsedSubjs;
-              try { localStorage.setItem('g9_subjects_config', JSON.stringify(parsedSubjs)); } catch(_) {}
+              try {
+                localStorage.setItem('g9_subjects_config', JSON.stringify(parsedSubjs));
+                if (userId) {
+                  localStorage.setItem(`zenith_subjs_${userId}_g${userGrade}`, JSON.stringify(parsedSubjs));
+                }
+              } catch(_) {}
             }
           } catch(e) {
             console.warn('Error syncing subjects config row from database:', e);
           }
         }
+
+        // Update Drop Boxes with loaded database subjects
+        updateChartTabBars();
+        renderSubjectExplorerCard();
 
         // Filter valid full papers (excluding system config rows)
         const fullPapers = rawFullPapers.filter(r => r.time_taken !== 'APP_CONFIG_PRINTED_PAPERS' && r.time_taken !== 'APP_CONFIG_SUBJECTS');
@@ -8205,6 +8345,7 @@
     // --- Drop Box Switcher for Active Subjects in All Charts ---
     function updateChartTabBars() {
       const subjs = getActiveSubjects();
+      if (!subjs || subjs.length === 0) return;
 
       // 1. Full Paper Chart: Populate Drop Box
       const fpSelect = document.getElementById('fullPaperSubjectSelect');
@@ -8212,10 +8353,12 @@
         let opts = '<option value="All">🌟 All Subjects (සමස්ත විෂයයන්)</option>';
         opts += '<option value="Overall Avg">🎯 සමස්ත සාමාන්‍යය % (Overall Avg)</option>';
         subjs.forEach(s => {
-          opts += `<option value="${s.code}" ${currentActiveChartTab === s.code ? 'selected' : ''}>${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})</option>`;
+          opts += `<option value="${s.code}">${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})</option>`;
         });
-        fpSelect.innerHTML = opts;
-        fpSelect.value = currentActiveChartTab;
+        if (fpSelect.innerHTML.trim() !== opts.trim()) {
+          fpSelect.innerHTML = opts;
+        }
+        if (currentActiveChartTab) fpSelect.value = currentActiveChartTab;
       }
 
       // 2. Unit Paper Chart: Populate Drop Box
@@ -8223,21 +8366,26 @@
       if (upSelect) {
         let opts = '<option value="All">🌟 All Unit Papers (සියලු ඒකක පත්‍ර)</option>';
         subjs.forEach(s => {
-          opts += `<option value="${s.code}" ${currentActiveUnitChartTab === s.code ? 'selected' : ''}>${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})</option>`;
+          opts += `<option value="${s.code}">${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})</option>`;
         });
-        upSelect.innerHTML = opts;
-        upSelect.value = currentActiveUnitChartTab;
+        if (upSelect.innerHTML.trim() !== opts.trim()) {
+          upSelect.innerHTML = opts;
+        }
+        if (currentActiveUnitChartTab) upSelect.value = currentActiveUnitChartTab;
       }
 
       // 3. Subject Explorer Drop Box
       const expSelect = document.getElementById('subjectExplorerSelect');
       if (expSelect) {
-        expSelect.innerHTML = subjs.map(s => `
-          <option value="${s.code}" ${s.code === currentExplorerSubject ? 'selected' : ''}>
+        let opts = subjs.map(s => `
+          <option value="${s.code}">
             ${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})
           </option>
         `).join('');
-        expSelect.value = currentExplorerSubject;
+        if (expSelect.innerHTML.trim() !== opts.trim()) {
+          expSelect.innerHTML = opts;
+        }
+        if (currentExplorerSubject) expSelect.value = currentExplorerSubject;
       }
     }
 
@@ -9155,8 +9303,10 @@
     // --- On DOM Content Loaded ---
     document.addEventListener('DOMContentLoaded', async () => {
       initSupabase();
-      if (window.ZenithAuth && typeof window.ZenithAuth.init === 'function') {
-        await window.ZenithAuth.init();
+      updateChartTabBars();
+      renderSubjectExplorerCard();
+      if (window.ZenithAuth && typeof window.ZenithAuth.initAuth === 'function') {
+        try { await window.ZenithAuth.initAuth(); } catch(_) {}
       }
       await refreshTelemetry();
     });
