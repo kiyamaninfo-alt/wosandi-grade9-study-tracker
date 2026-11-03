@@ -8835,6 +8835,28 @@
                 </button>
               </div>
             </div>
+
+            <!-- 6. Bug Report / Support (🐞 ගැටලුවක් වාර්තා කරන්න / Report a problem) -->
+            <div class="settings-section" style="margin-top: 14px; border-top: 1px dashed var(--border-color, #dfe6e9); padding-top: 12px;">
+              <label style="font-size: 11.5px; font-weight: 700; margin-bottom: 6px; display: block;" class="settings-title-label">
+                🐞 ගැටලුවක් වාර්තා කරන්න / Report a problem:
+              </label>
+              <div style="font-size: 10px; color: #7f8fa6; margin-bottom: 8px; line-height: 1.4;">
+                යෙදුම භාවිතයේදී ඔබට කිසියම් දෝෂයක් හෝ ගැටලුවක් මතු වූයේ නම් මෙහි කෙටියෙන් සඳහන් කර WhatsApp හරහා අප වෙත යොමු කරන්න.
+              </div>
+              <div class="form-group" style="margin-bottom: 8px;">
+                <textarea id="settingsBugDesc" maxlength="500" placeholder="ගැටලුව පිළිබඳ විස්තරය මෙහි ලියන්න (විකල්පයි)... / Describe the issue here (optional)..." style="width: 100%; min-height: 65px; padding: 8px; font-size: 11px; border-radius: 8px; border: 1px solid var(--border-color, #dfe6e9); box-sizing: border-box; resize: vertical; font-family: inherit;" oninput="const c = document.getElementById('settingsBugDescCount'); if (c) c.innerText = this.value.length;"></textarea>
+                <div style="font-size: 9px; color: #7f8fa6; text-align: right; margin-top: 2px;">
+                  <span id="settingsBugDescCount">0</span>/500
+                </div>
+              </div>
+              <button type="button" class="btn-action-pill" onclick="submitSettingsBugReport()" style="width: 100%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; padding: 9px; font-weight: 700; font-size: 11.5px; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);">
+                <span>💬</span> WhatsApp හරහා යවන්න / Send via WhatsApp
+              </button>
+              <div style="font-size: 9px; color: #7f8fa6; margin-top: 6px; line-height: 1.35; text-align: center;">
+                ℹ️ මෙම පණිවිඩය WhatsApp හි විවෘත වන අතර එය යැවීම සඳහා ඔබ Send එබිය යුතුය. ඔබගේ ඊමේල්, නම, මුරපද හෝ වෙනත් පෞද්ගලික දත්ත කිසිවක් මෙයට ඇතුළත් නොවේ. / Opens in WhatsApp and you must press Send. No personal details, passwords or credentials will be included.
+              </div>
+            </div>
           </div>
 
           <!-- TAB 2: Activity Log & Undo -->
@@ -9173,50 +9195,67 @@ window.supabaseClient = supabase;
       }
 
       function saveCountdownSettings(resetToAuto = false) {
-        const title = (document.getElementById('settingAppTitle') ? document.getElementById('settingAppTitle').value : '').trim() || 'Zenith O-Level • Smart Study Engine';
-        const dateInput = document.getElementById('settingTargetDate') ? document.getElementById('settingTargetDate').value : '';
-        const examInput = document.getElementById('settingExamLabel') ? document.getElementById('settingExamLabel').value.trim() : '';
+        try {
+          const title = (document.getElementById('settingAppTitle') ? document.getElementById('settingAppTitle').value : '').trim() || 'Zenith O-Level • Smart Study Engine';
+          const dateInput = document.getElementById('settingTargetDate') ? document.getElementById('settingTargetDate').value : '';
+          const examInput = document.getElementById('settingExamLabel') ? document.getElementById('settingExamLabel').value.trim() : '';
 
-        const estimated = getEstimatedNextTerm();
-        let cfg;
+          const estimated = getEstimatedNextTerm();
+          let cfg;
 
-        if (resetToAuto || !dateInput) {
-          cfg = {
-            title,
-            examLabel: examInput || estimated.examLabel,
-            targetDate: estimated.targetDate,
-            isAuto: true
-          };
-          if (document.getElementById('settingTargetDate')) document.getElementById('settingTargetDate').value = estimated.targetDate;
-          if (document.getElementById('settingExamLabel')) document.getElementById('settingExamLabel').value = estimated.examLabel;
-        } else {
-          cfg = {
-            title,
-            examLabel: examInput || 'Grade 9 Exam',
-            targetDate: dateInput,
-            isAuto: false
-          };
-        }
+          if (resetToAuto || !dateInput) {
+            cfg = {
+              title,
+              examLabel: examInput || estimated.examLabel,
+              targetDate: estimated.targetDate,
+              isAuto: true
+            };
+            if (document.getElementById('settingTargetDate')) document.getElementById('settingTargetDate').value = estimated.targetDate;
+            if (document.getElementById('settingExamLabel')) document.getElementById('settingExamLabel').value = estimated.examLabel;
+          } else {
+            cfg = {
+              title,
+              examLabel: examInput || 'Grade 9 Exam',
+              targetDate: dateInput,
+              isAuto: false
+            };
+          }
 
-        localStorage.setItem('g9_countdown_config', JSON.stringify(cfg));
+          localStorage.setItem('g9_countdown_config', JSON.stringify(cfg));
 
-        applyHeaderAndCountdownConfig();
-        updateCountdown();
-        loadCountdownSettingsUI();
+          applyHeaderAndCountdownConfig();
+          updateCountdown();
+          loadCountdownSettingsUI();
 
-        if (telemetryData && telemetryData.velocityMetrics) {
-          const v = telemetryData.velocityMetrics;
-          const daysToExam = Math.max(1, Math.floor((getTargetExamDate() - new Date().setHours(0,0,0,0)) / (1000 * 60 * 60 * 24)));
-          const weeksToExam = Math.max(1, Math.round(daysToExam / 7));
-          v.weeksToExam = weeksToExam;
-          const weeksEl = document.getElementById('veloWeeksLeft');
-          if (weeksEl) weeksEl.innerText = `${weeksToExam} Weeks to ${cfg.examLabel}`;
-        }
+          if (telemetryData && telemetryData.velocityMetrics) {
+            const v = telemetryData.velocityMetrics;
+            const daysToExam = Math.max(1, Math.floor((getTargetExamDate() - new Date().setHours(0,0,0,0)) / (1000 * 60 * 60 * 24)));
+            const weeksToExam = Math.max(1, Math.round(daysToExam / 7));
+            v.weeksToExam = weeksToExam;
+            const weeksEl = document.getElementById('veloWeeksLeft');
+            if (weeksEl) weeksEl.innerText = `${weeksToExam} Weeks to ${cfg.examLabel}`;
+          }
 
-        if (resetToAuto) {
-          alert(`✅ ඊළඟ වාර විභාගය (${cfg.examLabel}) ස්වයංක්‍රීය ඉලක්කය ලෙස සාර්ථකව සැකසිණි!`);
-        } else {
-          alert('✅ Countdown සහ Header ඉලක්ක සාර්ථකව සුරැකිණි!');
+          if (resetToAuto) {
+            if (typeof showHtmlAlert === 'function') {
+              showHtmlAlert(`✅ ඊළඟ වාර විභාගය (${cfg.examLabel}) ස්වයංක්‍රීය ඉලක්කය ලෙස සාර්ථකව සැකසිණි!`, false);
+            } else {
+              alert(`✅ ඊළඟ වාර විභාගය (${cfg.examLabel}) ස්වයංක්‍රීය ඉලක්කය ලෙස සාර්ථකව සැකසිණි!`);
+            }
+          } else {
+            if (typeof showHtmlAlert === 'function') {
+              showHtmlAlert('✅ Countdown සහ Header ඉලක්ක සාර්ථකව සුරැකිණි!', false);
+            } else {
+              alert('✅ Countdown සහ Header ඉලක්ක සාර්ථකව සුරැකිණි!');
+            }
+          }
+        } catch (err) {
+          console.error('Error saving countdown settings:', err);
+          if (typeof showFriendlyError === 'function') {
+            showFriendlyError(err, 'ඉලක්ක සැකසුම් සුරැකීම / Target Countdown Save');
+          } else {
+            alert('දෝෂයකි: ' + (err.message || 'ඉලක්ක සැකසුම් සුරැකීම අසාර්ථක විය'));
+          }
         }
       }
 
@@ -13617,6 +13656,7 @@ window.supabaseClient = supabase;
       }
 
       function triggerEbbConfirm(subject, subLesson, stage, cycle, syllabusId, code, matched) {
+        closeFriendlyErrorPopup();
         const badgeColor = matched ? matched.badgeColor : '#8c7ae6';
 
         pendingEbbConfirm = {
@@ -13758,10 +13798,11 @@ window.supabaseClient = supabase;
             renderEbbinghausModalContent();
           }
         } catch (err) {
+          console.error('confirmEbbDone error:', err);
           if (passInput) passInput.value = '';
           document.getElementById('ebbConfirmPopup').style.display = 'none';
           if (btn) { btn.disabled = false; btn.innerText = 'ඔව්, සම්පූර්ණයි ✅'; }
-          showHtmlAlert('දෝෂයකි: ' + (err.message || 'සටහන් කිරීම අසාර්ථක විය'), true);
+          showFriendlyError(err, 'Spaced Repetition තහවුරු කිරීම');
           pendingEbbConfirm = null;
         }
       }
@@ -13774,6 +13815,7 @@ window.supabaseClient = supabase;
         }
         document.getElementById('ebbConfirmPopup').style.display = 'none';
         pendingEbbConfirm = null;
+        closeFriendlyErrorPopup();
       }
 
       // =========================================================================
@@ -13782,6 +13824,7 @@ window.supabaseClient = supabase;
       let pendingResetRepetitionAction = null;
 
       function promptResetRepetition(subject, code, syllabusId, title) {
+        closeFriendlyErrorPopup();
         pendingResetRepetitionAction = {
           subject: (subject || '').toUpperCase().trim(),
           code: (code || '').trim(),
@@ -13828,6 +13871,7 @@ window.supabaseClient = supabase;
         const popup = document.getElementById('resetRepetitionPopup');
         if (popup) popup.style.display = 'none';
         pendingResetRepetitionAction = null;
+        closeFriendlyErrorPopup();
       }
 
       function closeResetRepetition(event) {
@@ -13888,7 +13932,7 @@ window.supabaseClient = supabase;
           }
         } catch (err) {
           console.error('Reset repetition error:', err);
-          showHtmlAlert('දෝෂයකි: ' + (err.message || 'Reset කිරීම අසාර්ථක විය'), true);
+          showFriendlyError(err, 'Spaced Repetition Reset කිරීම');
           if (okBtn) {
             okBtn.disabled = false;
             okBtn.innerText = 'ඔව්, Reset කරන්න 🔄';
@@ -16597,6 +16641,11 @@ window.supabaseClient = supabase;
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' || e.key === 'Esc') {
+          const errPopup = document.getElementById('friendlyErrorPopup');
+          if (errPopup && errPopup.style.display === 'flex') {
+            closeFriendlyErrorPopup();
+            return;
+          }
           const resetPopup = document.getElementById('resetRepetitionPopup');
           if (resetPopup && resetPopup.style.display === 'flex') {
             cancelResetRepetition();
@@ -16971,6 +17020,7 @@ window.supabaseClient = supabase;
       }
 
       function requestUndo(itemId, itemType) {
+        closeFriendlyErrorPopup();
         const allLogs = getAllActivityLogs();
         const item = allLogs.find(l => String(l.id) === String(itemId) && l.type === itemType);
         if (!item) {
@@ -17018,6 +17068,7 @@ window.supabaseClient = supabase;
         }
         const popup = document.getElementById('undoConfirmPopup');
         if (popup) popup.style.display = 'none';
+        closeFriendlyErrorPopup();
       }
 
       async function executeUndoConfirmed() {
@@ -17088,7 +17139,7 @@ window.supabaseClient = supabase;
           renderActivityLog();
         } catch (err) {
           console.error('executeUndoConfirmed error:', err);
-          showHtmlAlert('Undo කිරීමේදී දෝෂයක් හටගැනිණි: ' + (err.message || 'නැවත උත්සාහ කරන්න'), true);
+          showFriendlyError(err, 'ක්‍රියාව Undo කිරීම / Undo Action');
         } finally {
           if (okBtn) {
             okBtn.disabled = false;
@@ -17658,6 +17709,7 @@ window.supabaseClient = supabase;
 
       function openPrintPaperConfirm(syllabusId, subject, subUnitNumber, isCurrentlyPrinted, event) {
         if (event && event.stopPropagation) event.stopPropagation();
+        closeFriendlyErrorPopup();
 
         pendingPrintPaperConfirm = {
           syllabusId: syllabusId,
@@ -17699,6 +17751,7 @@ window.supabaseClient = supabase;
         const popup = document.getElementById('printPaperConfirmPopup');
         if (popup) popup.style.display = 'none';
         pendingPrintPaperConfirm = null;
+        closeFriendlyErrorPopup();
       }
 
       function closePrintPaperConfirm(event) {
@@ -17716,62 +17769,73 @@ window.supabaseClient = supabase;
           okBtn.innerText = 'සටහන් වෙමින් පවතී...';
         }
 
-        const { syllabusId, subject, subUnitNumber, isCurrentlyPrinted } = pendingPrintPaperConfirm;
-        const map = getPrintedPapersStorage();
-        const cleanSubj = (subject || '').toUpperCase().trim();
-        const cleanCode = (subUnitNumber || '').trim();
-        const key = syllabusId || `${cleanSubj}||${cleanCode}`;
-        const altKey = `${cleanSubj}||${cleanCode}`;
+        try {
+          const { syllabusId, subject, subUnitNumber, isCurrentlyPrinted } = pendingPrintPaperConfirm;
+          const map = getPrintedPapersStorage();
+          const cleanSubj = (subject || '').toUpperCase().trim();
+          const cleanCode = (subUnitNumber || '').trim();
+          const key = syllabusId || `${cleanSubj}||${cleanCode}`;
+          const altKey = `${cleanSubj}||${cleanCode}`;
 
-        const newPrintedState = !isCurrentlyPrinted;
-        const nowIso = new Date().toISOString();
+          const newPrintedState = !isCurrentlyPrinted;
+          const nowIso = new Date().toISOString();
 
-        if (newPrintedState) {
-          const record = {
-            printed: true,
-            printed_at: nowIso,
-            syllabus_id: syllabusId || null,
-            subject: cleanSubj,
-            sub_lesson_code: cleanCode
-          };
-          if (syllabusId) map[syllabusId] = record;
-          if (cleanSubj && cleanCode) map[altKey] = record;
-        } else {
-          if (syllabusId) delete map[syllabusId];
-          if (cleanSubj && cleanCode) {
-            delete map[altKey];
-            delete map[`${(subject || '').trim()}||${cleanCode}`];
-            delete map[`${cleanSubj.toLowerCase()}||${cleanCode}`];
-          }
-          // Clean any matching record in map
-          for (const k in map) {
-            const rec = map[k];
-            if (rec && typeof rec === 'object') {
-              if (syllabusId && rec.syllabus_id === syllabusId) delete map[k];
-              else if (cleanSubj && cleanCode &&
-                       (rec.subject || '').toUpperCase().trim() === cleanSubj &&
-                       String(rec.sub_lesson_code || '').trim() === cleanCode) {
-                delete map[k];
+          if (newPrintedState) {
+            const record = {
+              printed: true,
+              printed_at: nowIso,
+              syllabus_id: syllabusId || null,
+              subject: cleanSubj,
+              sub_lesson_code: cleanCode
+            };
+            if (syllabusId) map[syllabusId] = record;
+            if (cleanSubj && cleanCode) map[altKey] = record;
+          } else {
+            if (syllabusId) delete map[syllabusId];
+            if (cleanSubj && cleanCode) {
+              delete map[altKey];
+              delete map[`${(subject || '').trim()}||${cleanCode}`];
+              delete map[`${cleanSubj.toLowerCase()}||${cleanCode}`];
+            }
+            // Clean any matching record in map
+            for (const k in map) {
+              const rec = map[k];
+              if (rec && typeof rec === 'object') {
+                if (syllabusId && rec.syllabus_id === syllabusId) delete map[k];
+                else if (cleanSubj && cleanCode &&
+                         (rec.subject || '').toUpperCase().trim() === cleanSubj &&
+                         String(rec.sub_lesson_code || '').trim() === cleanCode) {
+                  delete map[k];
+                }
               }
             }
           }
-        }
 
-        await setPrintedPapersStorage(map);
-        cancelPrintPaperConfirm();
+          await setPrintedPapersStorage(map);
+          cancelPrintPaperConfirm();
 
-        showHtmlAlert(
-          newPrintedState 
-            ? `[${subject}] ${subUnitNumber} ප්‍රශ්න පත්‍රය මුද්‍රණය කළ බව සාර්ථකව සටහන් විය! 🖨️✅` 
-            : `[${subject}] ${subUnitNumber} මුද්‍රණ සටහන ඉවත් කරන ලදී.`, 
-          false
-        );
+          showHtmlAlert(
+            newPrintedState 
+              ? `[${subject}] ${subUnitNumber} ප්‍රශ්න පත්‍රය මුද්‍රණය කළ බව සාර්ථකව සටහන් විය! 🖨️✅` 
+              : `[${subject}] ${subUnitNumber} මුද්‍රණ සටහන ඉවත් කරන ලදී.`, 
+            false
+          );
 
-        if (typeof lastDashboardData !== 'undefined' && lastDashboardData) {
-          renderAnalyticsRankingCards(lastDashboardData);
-        }
-        if (typeof refreshTelemetry === 'function') {
-          refreshTelemetry().catch(console.error);
+          if (typeof lastDashboardData !== 'undefined' && lastDashboardData) {
+            renderAnalyticsRankingCards(lastDashboardData);
+          }
+          if (typeof refreshTelemetry === 'function') {
+            refreshTelemetry().catch(console.error);
+          }
+        } catch (err) {
+          console.error('confirmPrintPaperDone error:', err);
+          cancelPrintPaperConfirm();
+          showFriendlyError(err, 'ප්‍රශ්න පත්‍ර මුද්‍රණ සටහන / Print Paper Tracking');
+        } finally {
+          if (okBtn) {
+            okBtn.disabled = false;
+            okBtn.innerText = 'තහවුරු කරන්න ✅';
+          }
         }
       }
 
@@ -18276,7 +18340,7 @@ window.supabaseClient = supabase;
           await refreshTelemetry();
         } catch (err) {
           console.error('quickMarkLessonDone error:', err);
-          showHtmlAlert('දෝෂයකි: ' + (err.message || 'සටහන් කිරීම අසාර්ථක විය'), true);
+          showFriendlyError(err, 'Lesson Completed සටහන් කිරීම');
           if (btn) {
             btn.disabled = false;
             btn.innerText = '📘 ඉගෙන ගත්තද? Pending ⏳';
@@ -18315,7 +18379,7 @@ window.supabaseClient = supabase;
           await refreshTelemetry();
         } catch (err) {
           console.error('quickMarkHwDone error:', err);
-          showHtmlAlert('දෝෂයකි: ' + (err.message || 'සටහන් කිරීම අසාර්ථක විය'), true);
+          showFriendlyError(err, 'HW Completed සටහන් කිරීම');
           if (btn) {
             btn.disabled = false;
             btn.innerText = '📝 පාඩම් කලා';
@@ -18341,6 +18405,7 @@ function openSidebarModal() {
  }
       // 9. Log Full Paper Form
       function openFullPaperModal() {
+        closeFriendlyErrorPopup();
         const fpSelect = document.getElementById('fpSubject');
         if (fpSelect) {
           const curVal = fpSelect.value;
@@ -18360,6 +18425,7 @@ function openSidebarModal() {
         focusModal(modal);
       }
       function hideFullPaperModal() {
+        closeFriendlyErrorPopup();
         document.getElementById('fullPaperModal').style.display = 'none';
       }
       function closeFullPaperModal(event) { if (event.target.id === 'fullPaperModal') hideFullPaperModal(); }
@@ -18415,7 +18481,8 @@ function openSidebarModal() {
           document.getElementById('fpMarks').value = '';
           document.getElementById('fpTime').value = '';
           document.getElementById('fpRemarks').value = '';
-          if (passInput) passInput.value = '';
+          const fpPass = document.getElementById('fpPasswordInput');
+          if (fpPass) fpPass.value = '';
 
           try {
             confetti({
@@ -18430,7 +18497,7 @@ function openSidebarModal() {
         } catch (err) {
           btn.innerText = "💾 Save Full Paper";
           btn.disabled = false;
-          showHtmlAlert("දෝෂයකි: " + (err.message || "සම්බන්ධතාව අසාර්ථක විය"), true);
+          showFriendlyError(err, 'Full Paper සටහන් කිරීම / Full Paper Submission');
         }
       }
       // 10. Drilldown Tree Modal
@@ -18659,6 +18726,7 @@ function openSidebarModal() {
       let pendingSubLessonAction = null;
 
       function promptSubLessonToggle(subject, syllabusId, encodedTitle, type, currentDone, unitIdx) {
+        closeFriendlyErrorPopup();
         const title = decodeURIComponent(encodedTitle);
         pendingSubLessonAction = {
           subject: subject,
@@ -18753,6 +18821,7 @@ function openSidebarModal() {
         }
         const popup = document.getElementById('subLessonConfirmPopup');
         if (popup) popup.style.display = 'none';
+        closeFriendlyErrorPopup();
       }
 
       function closeSubLessonConfirm(event) {
@@ -18883,7 +18952,7 @@ function openSidebarModal() {
           }
         } catch (err) {
           console.error('executeSubLessonConfirmed error:', err);
-          showHtmlAlert('දෝෂයකි: ' + (err.message || 'සටහන් කිරීම අසාර්ථක විය'), true);
+          showFriendlyError(err, 'පාඩම තහවුරු කිරීම / Lesson & HW Toggle');
           if (okBtn) {
             okBtn.disabled = false;
             okBtn.innerText = action.currentDone ? 'ඔව්, Undo කරන්න ↩️' : 'ඔව්, සම්පූර්ණයි ✅';
@@ -18893,6 +18962,7 @@ function openSidebarModal() {
 
       // 11. Instant Search & Unit Paper Logging
       function openUnitPaperModal() {
+        closeFriendlyErrorPopup();
         const upFilter = document.getElementById('upSubjectFilter');
         if (upFilter) {
           const curVal = upFilter.value || 'ALL';
@@ -18936,6 +19006,7 @@ function openSidebarModal() {
       }
 
       function hideUnitPaperModal() {
+        closeFriendlyErrorPopup();
         const upPassInput = document.getElementById('upPasswordInput');
         if (upPassInput) upPassInput.value = '';
         const upPassErr = document.getElementById('upPasswordError');
@@ -19129,7 +19200,8 @@ function openSidebarModal() {
           updateLessonHwButtonUI(selectedSubLessonObj.lessonDone, selectedSubLessonObj.hwDone);
           await refreshTelemetry();
         } catch (err) {
-          showHtmlAlert("දෝෂයකි: " + (err.message || "යාවත්කාලීන කිරීම අසාර්ථක විය"), true);
+          console.error('triggerToggleHwLesson error:', err);
+          showFriendlyError(err, 'Lesson/HW තත්වය යාවත්කාලීන කිරීම');
         }
       }
 
@@ -19183,6 +19255,7 @@ function openSidebarModal() {
       }
 
       function cancelInlineConfirmation() {
+        closeFriendlyErrorPopup();
         document.getElementById('upConfirmCard').style.display = 'none';
         document.getElementById('btnSubmitUnitPaper').disabled = false;
       }
@@ -19264,7 +19337,7 @@ function openSidebarModal() {
   } catch (err) {
     btnYes.disabled = false;
     btnYes.innerText = "✅ ඔව්, සලකුණු කරන්න";
-    showHtmlAlert("දෝෂයකි: " + (err.message || "ක්‍රියාවලිය අසාර්ථක විය"), true);
+    showFriendlyError(err, 'Unit Paper ලකුණු සටහන් කිරීම / Unit Paper Submission');
   }
 }
 
@@ -19457,6 +19530,205 @@ function openSidebarModal() {
         }, 60);
       }
 
+      // =========================================================================
+      // BUG REPORT & FRIENDLY ERROR HANDLERS
+      // =========================================================================
+      const BUG_REPORT_WHATSAPP = '94759555924';
+      let currentFriendlyErrorContext = null;
+
+      function getBrowserShortName() {
+        const ua = navigator.userAgent || '';
+        if (ua.includes('Edg/')) return 'Edge';
+        if (ua.includes('Chrome/')) return 'Chrome';
+        if (ua.includes('Firefox/')) return 'Firefox';
+        if (ua.includes('Safari/') && !ua.includes('Chrome/')) return 'Safari';
+        if (ua.includes('OPR/') || ua.includes('Opera/')) return 'Opera';
+        return 'Browser';
+      }
+
+      function reportBug(context) {
+        context = context || {};
+        const appName = 'Wosandi Grade 9 Study Tracker';
+        const pageName = window.location.pathname.split('/').pop() || 'index.html';
+        const nowStr = new Date().toLocaleString('en-GB', { dateStyle: 'short', timeStyle: 'short' });
+        const browserName = getBrowserShortName();
+        const actionLabel = (context.action || context.contextLabel || 'General').trim();
+        const friendlySummary = (context.friendlySummary || context.summary || '').trim();
+        let techCode = (context.techText || (context.err && (context.err.code || context.err.message)) || '').toString().trim();
+        if (techCode.length > 300) {
+          techCode = techCode.slice(0, 297) + '...';
+        }
+        const userDesc = (context.userDescription || '').toString().trim();
+
+        let msg = `🐞 *[Bug Report / ගැටලු වාර්තාව]*\n` +
+          `📱 App: ${appName}\n` +
+          `📄 Page: ${pageName}\n` +
+          `🕒 Time: ${nowStr}\n` +
+          `🌐 Browser: ${browserName}\n` +
+          `🎯 Action: ${actionLabel}\n`;
+
+        if (friendlySummary) {
+          msg += `⚠️ Issue: ${friendlySummary}\n`;
+        }
+        if (techCode) {
+          msg += `💻 Code: ${techCode}\n`;
+        }
+        if (userDesc) {
+          msg += `📝 User Note: ${userDesc}\n`;
+        }
+
+        const url = `https://wa.me/${BUG_REPORT_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+
+      function friendlyError(err) {
+        let code = '';
+        let status = 0;
+        let msg = '';
+        let name = '';
+
+        if (err) {
+          if (typeof err === 'string') {
+            msg = err;
+          } else {
+            code = String(err.code || '');
+            status = Number(err.status || 0);
+            msg = String(err.message || '');
+            name = String(err.name || '');
+          }
+        }
+
+        let tech = '';
+        if (err) {
+          if (typeof err === 'string') tech = err;
+          else if (err.code) tech = `[Code: ${err.code}] ${err.message || ''}`;
+          else if (err.message) tech = err.message;
+          else {
+            try { tech = JSON.stringify(err); } catch(_) { tech = String(err); }
+          }
+        }
+        if (tech.length > 300) tech = tech.slice(0, 297) + '...';
+
+        // 1. Postgres 23505 Duplicate Key
+        if (code === '23505' || msg.includes('23505') || msg.toLowerCase().includes('duplicate key')) {
+          return {
+            si: 'මෙම තොරතුරු දැනටමත් පද්ධතියේ සටහන්ව පවතී (ද්විත්ව සටහනකි).',
+            en: 'This record already exists in the system (duplicate entry).',
+            tech: tech
+          };
+        }
+
+        // 2. Permission / RLS / Auth (42501, 401, 403)
+        if (code === '42501' || status === 401 || status === 403 || code === '401' || code === '403' ||
+            msg.toLowerCase().includes('permission') || msg.toLowerCase().includes('row-level security') ||
+            msg.includes('RLS') || msg.toLowerCase().includes('unauthorized') || msg.toLowerCase().includes('forbidden')) {
+          return {
+            si: 'මෙම ක්‍රියාව සිදු කිරීමට අවසර නොමැත. කරුණාකර ඔබගේ ගිණුමට නැවත ලොග් වන්න.',
+            en: 'Permission denied. Please check your login session or sign in again.',
+            tech: tech
+          };
+        }
+
+        // 3. Postgres 23503 Foreign Key
+        if (code === '23503' || msg.includes('23503') || msg.toLowerCase().includes('foreign key')) {
+          return {
+            si: 'අදාළ මූලික පාඩම හෝ විෂය දත්ත පද්ධතියෙන් සොයාගත නොහැකි විය.',
+            en: 'The related syllabus unit or subject record could not be found.',
+            tech: tech
+          };
+        }
+
+        // 4. Network failures or offline
+        if (navigator.onLine === false || name === 'TypeError' && msg.toLowerCase().includes('fetch') ||
+            msg.toLowerCase().includes('failed to fetch') || msg.toLowerCase().includes('networkerror') ||
+            msg.toLowerCase().includes('offline')) {
+          return {
+            si: 'අන්තර්ජාල සම්බන්ධතාවය ඇනහිට ඇත. කරුණාකර ඔබගේ සම්බන්ධතාවය පරීක්ෂා කර නැවත උත්සාහ කරන්න.',
+            en: 'Network connection issue. Please check your internet connection and try again.',
+            tech: tech
+          };
+        }
+
+        // 5. Timeouts
+        if (name === 'AbortError' || code === '20' || msg.toLowerCase().includes('timeout') || msg.toLowerCase().includes('timed out')) {
+          return {
+            si: 'සේවාදායකය ප්‍රතිචාර දැක්වීමට ගතවූ කාලය ඉක්මවා ගියේය. නැවත උත්සාහ කරන්න.',
+            en: 'The request timed out. Please try again.',
+            tech: tech
+          };
+        }
+
+        // 6. Generic Fallback
+        return {
+          si: 'ක්‍රියාව සම්පූර්ණ කිරීමේදී බලාපොරොත්තු නොවූ ගැටලුවක් මතු විය. කරුණාකර මොහොතකින් නැවත උත්සාහ කරන්න.',
+          en: 'An unexpected error occurred while processing your request. Please try again in a moment.',
+          tech: tech
+        };
+      }
+
+      function showFriendlyError(err, contextLabel) {
+        const fe = friendlyError(err);
+        currentFriendlyErrorContext = {
+          action: contextLabel || 'General Action',
+          friendlySummary: `${fe.si} / ${fe.en}`,
+          techText: fe.tech,
+          err: err
+        };
+
+        const popup = document.getElementById('friendlyErrorPopup');
+        const msgEl = document.getElementById('friendlyErrorMsg');
+        const techEl = document.getElementById('friendlyErrorTechCode');
+        const detailsEl = document.getElementById('friendlyErrorDetails');
+        const reportBtn = document.getElementById('friendlyErrorReportBtn');
+
+        if (msgEl) {
+          msgEl.innerHTML = `
+            <div style="font-weight: 700; margin-bottom: 5px; color: inherit;">
+              ${escapeHtml(contextLabel ? `[${contextLabel}] ` : '')}${escapeHtml(fe.si)}
+            </div>
+            <div style="font-size: 10.5px; opacity: 0.85; color: inherit;">
+              ${escapeHtml(fe.en)}
+            </div>
+          `;
+        }
+        if (techEl) {
+          techEl.innerText = fe.tech || 'No additional technical details.';
+        }
+        if (detailsEl) {
+          detailsEl.open = false;
+        }
+        if (reportBtn) {
+          reportBtn.onclick = function() {
+            reportBug(currentFriendlyErrorContext);
+          };
+        }
+        if (popup) {
+          popup.style.display = 'flex';
+          focusModal(popup);
+        }
+      }
+
+      function closeFriendlyErrorPopup() {
+        const popup = document.getElementById('friendlyErrorPopup');
+        if (popup) popup.style.display = 'none';
+        currentFriendlyErrorContext = null;
+      }
+
+      function submitSettingsBugReport() {
+        const descEl = document.getElementById('settingsBugDesc');
+        const desc = descEl ? descEl.value.trim() : '';
+        reportBug({
+          action: 'Settings Bug Report',
+          userDescription: desc,
+          friendlySummary: desc ? 'පරිශීලකයා විසින් වාර්තා කරන ලද ගැටලුවකි / User reported problem' : 'සාමාන්‍ය ගැටලු වාර්තාවක් / General problem report'
+        });
+      }
+
+      window.reportBug = reportBug;
+      window.friendlyError = friendlyError;
+      window.showFriendlyError = showFriendlyError;
+      window.closeFriendlyErrorPopup = closeFriendlyErrorPopup;
+
       // Generic HTML Alert Popup helper (replaces all native alert() calls)
       function showHtmlAlert(msg, isError) {
         const popup = document.getElementById('genericAlertPopup');
@@ -19515,6 +19787,7 @@ function openSidebarModal() {
       // Full Unit Paper Modal & Breakdown Controllers
       // =========================================================================
       function openFullUnitPaperModal(preselectedSubject, preselectedUnit) {
+        closeFriendlyErrorPopup();
         const modal = document.getElementById('fullUnitPaperModal');
         if (!modal) return;
         modal.style.display = 'flex';
@@ -19546,6 +19819,7 @@ function openSidebarModal() {
       }
 
       function hideFullUnitPaperModal() {
+        closeFriendlyErrorPopup();
         const modal = document.getElementById('fullUnitPaperModal');
         if (modal) modal.style.display = 'none';
       }
@@ -19719,7 +19993,7 @@ function openSidebarModal() {
             submitBtn.disabled = false;
             submitBtn.innerText = '💾 Save ' + getOrdinalNumberText(userPaperNo) + ' full unit paper Marks';
           }
-          showHtmlAlert('දෝෂයකි: ' + (err.message || 'Full Unit Paper එක සටහන් කිරීම අසාර්ථක විය'), true);
+          showFriendlyError(err, 'Full Unit Paper ලකුණු සටහන් කිරීම');
         }
       }
 
@@ -19750,6 +20024,7 @@ function openSidebarModal() {
       let pendingUrgentRadarConfirm = null;
 
       function handleUrgentRadarTick(idx, checkbox, isFs, isFullUnit) {
+        closeFriendlyErrorPopup();
         if (!checkbox) return;
         checkbox.checked = false; // Revert until confirmation password verified
 
@@ -19819,6 +20094,7 @@ function openSidebarModal() {
         const popup = document.getElementById('urgentRadarConfirmPopup');
         if (popup) popup.style.display = 'none';
         pendingUrgentRadarConfirm = null;
+        closeFriendlyErrorPopup();
       }
 
       function closeUrgentRadarConfirm(event) {
@@ -19903,7 +20179,7 @@ function openSidebarModal() {
             okBtn.disabled = false;
             okBtn.innerText = 'ඔව්, Paper 1 අවසන් ✅';
           }
-          showHtmlAlert('දෝෂයකි: ' + (err.message || 'සටහන් කිරීම අසාර්ථක විය'), true);
+          showFriendlyError(err, 'Urgent Radar Model Paper 1 තහවුරු කිරීම');
           pendingUrgentRadarConfirm = null;
         }
       }
@@ -19959,6 +20235,30 @@ function openSidebarModal() {
         <button id="genericAlertOkBtn" class="alert-popup-btn" style="background: linear-gradient(135deg, #636e72, #2d3436);" onclick="document.getElementById('genericAlertPopup').style.display='none'">
           OK
         </button>
+      </div>
+    </div>
+
+    <!-- Friendly Error Popup with WhatsApp Bug Reporter -->
+    <div id="friendlyErrorPopup" class="modal-overlay-alert" style="z-index: 100010;" onclick="closeFriendlyErrorPopup()">
+      <div class="alert-popup-card" style="border-top: 5px solid #e74c3c; max-width: 420px; width: 92%;" onclick="event.stopPropagation()">
+        <div class="alert-popup-icon" id="friendlyErrorIcon">⚠️</div>
+        <div class="alert-popup-title" id="friendlyErrorTitle" style="color: #e74c3c;">ගැටලුවක් මතු විය / Something Went Wrong</div>
+        
+        <div id="friendlyErrorMsg" class="alert-popup-msg" style="background: rgba(231, 76, 60, 0.08); border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(231, 76, 60, 0.22); color: inherit; font-size: 11.5px; line-height: 1.6; text-align: left;"></div>
+
+        <details id="friendlyErrorDetails" style="margin-top: 10px; font-size: 10px; text-align: left; background: var(--bg-card-sub, #f8f9fa); border: 1px solid var(--border-color, #dfe6e9); border-radius: 8px; padding: 6px 10px;">
+          <summary style="cursor: pointer; font-weight: 700; color: #7f8fa6;">විස්තර බලන්න / Show technical details</summary>
+          <pre id="friendlyErrorTechCode" style="margin: 6px 0 0; font-size: 9.5px; white-space: pre-wrap; word-break: break-all; font-family: monospace; color: #c0392b; max-height: 100px; overflow-y: auto;"></pre>
+        </details>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px;">
+          <button id="friendlyErrorReportBtn" type="button" class="alert-popup-btn" style="background: linear-gradient(135deg, #25D366, #128C7E); color: white; font-weight: 700; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);">
+            🐞 වාර්තා කරන්න / Report
+          </button>
+          <button type="button" onclick="closeFriendlyErrorPopup()" class="alert-popup-btn" style="background: #f1f2f6; color: #636e72; border: 1px solid #dfe6e9; font-weight: 600;">
+            වසන්න / Close
+          </button>
+        </div>
       </div>
     </div>
 
@@ -20741,87 +21041,100 @@ function openSidebarModal() {
       }
 
       async function saveAcademicSettings() {
-        const grade = currentAcademicEditingGrade || (typeof ZenithCurriculum !== 'undefined' ? ZenithCurriculum.getActiveGrade() : 9);
-        let selectedCodes = [];
+        try {
+          const grade = currentAcademicEditingGrade || (typeof ZenithCurriculum !== 'undefined' ? ZenithCurriculum.getActiveGrade() : 9);
+          let selectedCodes = [];
 
-        if (grade <= 9) {
-          document.querySelectorAll('.chk-academic-subj').forEach(chk => {
-            if (chk.checked) {
-              const code = chk.getAttribute('data-code');
-              if (code) selectedCodes.push(code.toUpperCase());
-            }
-          });
-        } else {
-          document.querySelectorAll('.chk-academic-subj').forEach(chk => {
-            if (chk.checked) {
-              const code = chk.getAttribute('data-code');
-              if (code && !selectedCodes.includes(code.toUpperCase())) {
-                selectedCodes.push(code.toUpperCase());
+          if (grade <= 9) {
+            document.querySelectorAll('.chk-academic-subj').forEach(chk => {
+              if (chk.checked) {
+                const code = chk.getAttribute('data-code');
+                if (code) selectedCodes.push(code.toUpperCase());
               }
-            }
-          });
-          const b1 = document.getElementById('selBasket1')?.value;
-          const b2 = document.getElementById('selBasket2')?.value;
-          const b3 = document.getElementById('selBasket3')?.value;
-          if (b1 && !selectedCodes.includes(b1.toUpperCase())) selectedCodes.push(b1.toUpperCase());
-          if (b2 && !selectedCodes.includes(b2.toUpperCase())) selectedCodes.push(b2.toUpperCase());
-          if (b3 && !selectedCodes.includes(b3.toUpperCase())) selectedCodes.push(b3.toUpperCase());
-        }
-
-        if (selectedCodes.length === 0) {
-          alert('⚠️ කරුණාකර අවම වශයෙන් එක් විෂයයක්වත් තෝරන්න.');
-          return;
-        }
-
-        const subjsArray = selectedCodes.map(code => {
-          if (typeof ZenithCurriculum !== 'undefined') {
-            return ZenithCurriculum.getSubjectMetaByCode(code);
+            });
+          } else {
+            document.querySelectorAll('.chk-academic-subj').forEach(chk => {
+              if (chk.checked) {
+                const code = chk.getAttribute('data-code');
+                if (code && !selectedCodes.includes(code.toUpperCase())) {
+                  selectedCodes.push(code.toUpperCase());
+                }
+              }
+            });
+            const b1 = document.getElementById('selBasket1')?.value;
+            const b2 = document.getElementById('selBasket2')?.value;
+            const b3 = document.getElementById('selBasket3')?.value;
+            if (b1 && !selectedCodes.includes(b1.toUpperCase())) selectedCodes.push(b1.toUpperCase());
+            if (b2 && !selectedCodes.includes(b2.toUpperCase())) selectedCodes.push(b2.toUpperCase());
+            if (b3 && !selectedCodes.includes(b3.toUpperCase())) selectedCodes.push(b3.toUpperCase());
           }
-          return { code, nameSi: code, nameEn: code, color: '#6366f1', icon: '📘', active: true };
-        });
 
-        if (typeof ZenithCurriculum !== 'undefined') {
-          ZenithCurriculum.setActiveGrade(grade);
-          const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
-          const uId = (user && !user.isGuest) ? user.id : null;
-          ZenithCurriculum.saveActiveSubjectsForUser(uId, subjsArray, grade);
+          if (selectedCodes.length === 0) {
+            if (typeof showHtmlAlert === 'function') {
+              showHtmlAlert('⚠️ කරුණාකර අවම වශයෙන් එක් විෂයයක්වත් තෝරන්න.', true);
+            } else {
+              alert('⚠️ කරුණාකර අවම වශයෙන් එක් විෂයයක්වත් තෝරන්න.');
+            }
+            return;
+          }
 
-          if (user && !user.isGuest && typeof ZenithAuth.getSupabaseClient === 'function') {
-            const sb = ZenithAuth.getSupabaseClient();
-            if (sb && navigator.onLine) {
-              try {
-                await sb.from('user_profiles').update({ grade: grade, updated_at: new Date().toISOString() }).eq('id', user.id);
-                await sb.from('user_subjects_config').upsert([{
+          const subjsArray = selectedCodes.map(code => {
+            if (typeof ZenithCurriculum !== 'undefined') {
+              return ZenithCurriculum.getSubjectMetaByCode(code);
+            }
+            return { code, nameSi: code, nameEn: code, color: '#6366f1', icon: '📘', active: true };
+          });
+
+          if (typeof ZenithCurriculum !== 'undefined') {
+            ZenithCurriculum.setActiveGrade(grade);
+            const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
+            const uId = (user && !user.isGuest) ? user.id : null;
+            ZenithCurriculum.saveActiveSubjectsForUser(uId, subjsArray, grade);
+
+            if (user && !user.isGuest && typeof ZenithAuth.getSupabaseClient === 'function') {
+              const sb = ZenithAuth.getSupabaseClient();
+              if (sb && navigator.onLine) {
+                const { error: profErr } = await sb.from('user_profiles').update({ grade: grade, updated_at: new Date().toISOString() }).eq('id', user.id);
+                if (profErr) console.warn('Academic settings profile sync notice:', profErr);
+                const { error: subjErr } = await sb.from('user_subjects_config').upsert([{
                   user_id: user.id,
                   grade: grade,
                   subjects: subjsArray,
                   updated_at: new Date().toISOString()
                 }], { onConflict: 'user_id,grade' });
-              } catch (e) {
-                console.warn('Academic settings remote sync notice:', e);
+                if (subjErr) throw subjErr;
               }
             }
           }
-        }
 
-        if (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.setUserGrade === 'function') {
-          ZenithAuth.setUserGrade(grade);
-        }
+          if (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.setUserGrade === 'function') {
+            ZenithAuth.setUserGrade(grade);
+          }
 
-        localStorage.setItem('g9_subjects_config', JSON.stringify(subjsArray));
-        g9SubjectsCache = null;
+          localStorage.setItem('g9_subjects_config', JSON.stringify(subjsArray));
+          g9SubjectsCache = null;
 
-        updateTopbarActiveGrade();
-        if (typeof loadG9Subjects === 'function') loadG9Subjects();
-        if (typeof renderSubjects === 'function') renderSubjects();
-        if (typeof refreshTelemetry === 'function') refreshTelemetry();
+          updateTopbarActiveGrade();
+          if (typeof loadG9Subjects === 'function') loadG9Subjects();
+          if (typeof renderSubjects === 'function') renderSubjects();
+          if (typeof refreshTelemetry === 'function') refreshTelemetry();
 
-        hideSettingsModal();
+          hideSettingsModal();
 
-        if (typeof showActionFeedbackToast === 'function') {
-          showActionFeedbackToast(`✅ ශ්‍රේණිය ${grade} සහ විෂයයන් ${subjsArray.length} සාර්ථකව සුරැකිණි!`);
-        } else {
-          alert(`✅ ශ්‍රේණිය ${grade} සහ විෂයයන් ${subjsArray.length} සාර්ථකව සුරැකිණි!`);
+          if (typeof showActionFeedbackToast === 'function') {
+            showActionFeedbackToast(`✅ ශ්‍රේණිය ${grade} සහ විෂයයන් ${subjsArray.length} සාර්ථකව සුරැකිණි!`);
+          } else if (typeof showHtmlAlert === 'function') {
+            showHtmlAlert(`✅ ශ්‍රේණිය ${grade} සහ විෂයයන් ${subjsArray.length} සාර්ථකව සුරැකිණි!`, false);
+          } else {
+            alert(`✅ ශ්‍රේණිය ${grade} සහ විෂයයන් ${subjsArray.length} සාර්ථකව සුරැකිණි!`);
+          }
+        } catch (err) {
+          console.error('saveAcademicSettings error:', err);
+          if (typeof showFriendlyError === 'function') {
+            showFriendlyError(err, 'ශ්‍රේණිය සහ විෂය සැකසුම් සුරැකීම / Academic Settings Save');
+          } else {
+            alert('දෝෂයකි: ' + (err.message || 'සැකසුම් සුරැකීම අසාර්ථක විය'));
+          }
         }
       }
 
