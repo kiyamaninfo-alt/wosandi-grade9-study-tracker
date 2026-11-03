@@ -1107,7 +1107,7 @@
               try {
                 const { data: customData, error: customErr } = await supabase
                   .from('user_custom_units')
-                  .select('id, user_id, subject, unit_number, unit_name, sub_lesson_code, sub_lesson_title, is_deleted, sort_order')
+                  .select('id, user_id, subject, unit_number, unit_name, sub_lesson_code, sub_lesson_title, is_deleted')
                   .eq('user_id', userId);
                 if (!customErr && Array.isArray(customData)) {
                   saveLocalCustomUnits(customData);

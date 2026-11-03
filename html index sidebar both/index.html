@@ -12789,7 +12789,7 @@ window.supabaseClient = supabase;
                 try {
                   const { data: customData, error: customErr } = await supabase
                     .from('user_custom_units')
-                    .select('id, user_id, subject, unit_number, unit_name, sub_lesson_code, sub_lesson_title, is_deleted, sort_order')
+                    .select('id, user_id, subject, unit_number, unit_name, sub_lesson_code, sub_lesson_title, is_deleted')
                     .eq('user_id', activeUserId);
                   if (!customErr && Array.isArray(customData)) {
                     const cacheKey = (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.getScopedKey === 'function')
@@ -17066,10 +17066,11 @@ window.supabaseClient = supabase;
               updatePayload.hw_done = false;
               updatePayload.hw_done_at = null;
             }
-            const { error } = await supabase
-              .from('tracker_progress')
-              .update(updatePayload)
-              .eq('syllabus_id', item.syllabusId);
+            const currentUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+            let tpUpdateQuery = supabase.from('tracker_progress').update(updatePayload).eq('syllabus_id', item.syllabusId);
+            if (currentUid) tpUpdateQuery = tpUpdateQuery.eq('user_id', currentUid);
+            else tpUpdateQuery = tpUpdateQuery.is('user_id', null);
+            const { error } = await tpUpdateQuery;
             if (error) throw error;
 
             if (typeof selectedSubLessonObj !== 'undefined' && selectedSubLessonObj && selectedSubLessonObj.syllabusId === item.syllabusId) {
@@ -18255,15 +18256,17 @@ window.supabaseClient = supabase;
 
         try {
           const nowIso = new Date().toISOString();
-          const { error } = await supabase
-            .from('tracker_progress')
-            .update({
-              lesson_done: true,
-              lesson_done_at: nowIso,
-              lesson_days: 0,
-              updated_at: nowIso
-            })
-            .eq('syllabus_id', syllabusId);
+          const updatePayload = {
+            lesson_done: true,
+            lesson_done_at: nowIso,
+            lesson_days: 0,
+            updated_at: nowIso
+          };
+          const currentUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+          let tpUpdateQuery = supabase.from('tracker_progress').update(updatePayload).eq('syllabus_id', syllabusId);
+          if (currentUid) tpUpdateQuery = tpUpdateQuery.eq('user_id', currentUid);
+          else tpUpdateQuery = tpUpdateQuery.is('user_id', null);
+          const { error } = await tpUpdateQuery;
 
           if (error) throw error;
 
@@ -18292,15 +18295,17 @@ window.supabaseClient = supabase;
 
         try {
           const nowIso = new Date().toISOString();
-          const { error } = await supabase
-            .from('tracker_progress')
-            .update({
-              hw_done: true,
-              hw_done_at: nowIso,
-              hw_days: 0,
-              updated_at: nowIso
-            })
-            .eq('syllabus_id', syllabusId);
+          const updatePayload = {
+            hw_done: true,
+            hw_done_at: nowIso,
+            hw_days: 0,
+            updated_at: nowIso
+          };
+          const currentUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+          let tpUpdateQuery = supabase.from('tracker_progress').update(updatePayload).eq('syllabus_id', syllabusId);
+          if (currentUid) tpUpdateQuery = tpUpdateQuery.eq('user_id', currentUid);
+          else tpUpdateQuery = tpUpdateQuery.is('user_id', null);
+          const { error } = await tpUpdateQuery;
 
           if (error) throw error;
 
@@ -19108,10 +19113,11 @@ function openSidebarModal() {
             updatePayload.hw_days = 0;
           }
 
-          const { data: updated, error: updErr } = await supabase
-            .from('tracker_progress')
-            .update(updatePayload)
-            .eq('syllabus_id', syl.id)
+          const currentUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+          let tpUpdateQuery = supabase.from('tracker_progress').update(updatePayload).eq('syllabus_id', syl.id);
+          if (currentUid) tpUpdateQuery = tpUpdateQuery.eq('user_id', currentUid);
+          else tpUpdateQuery = tpUpdateQuery.is('user_id', null);
+          const { data: updated, error: updErr } = await tpUpdateQuery
             .select()
             .single();
 
@@ -19229,10 +19235,10 @@ function openSidebarModal() {
 
           if (insErr) throw insErr;
 
-    await supabase
-      .from('tracker_progress')
-      .update({ paper_days: 0, updated_at: new Date().toISOString() })
-      .eq('syllabus_id', syl.id);
+          let tpUpdateQuery = supabase.from('tracker_progress').update({ paper_days: 0, updated_at: new Date().toISOString() }).eq('syllabus_id', syl.id);
+          if (currentUid) tpUpdateQuery = tpUpdateQuery.eq('user_id', currentUid);
+          else tpUpdateQuery = tpUpdateQuery.is('user_id', null);
+          await tpUpdateQuery;
 
     document.getElementById('upConfirmCard').style.display = 'none';
     document.getElementById('upPrimaryActionRow').style.display = 'none';
@@ -19693,10 +19699,11 @@ function openSidebarModal() {
           if (insErr) throw insErr;
 
           // Reset paper_days in tracker_progress for syllabus records in this unit
-          await supabase
-            .from('tracker_progress')
-            .update({ paper_days: 0, updated_at: new Date().toISOString() })
-            .eq('syllabus_id', firstSyllabusId);
+          const currentUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+          let tpUpdateQuery = supabase.from('tracker_progress').update({ paper_days: 0, updated_at: new Date().toISOString() }).eq('syllabus_id', firstSyllabusId);
+          if (currentUid) tpUpdateQuery = tpUpdateQuery.eq('user_id', currentUid);
+          else tpUpdateQuery = tpUpdateQuery.is('user_id', null);
+          await tpUpdateQuery;
 
           hideFullUnitPaperModal();
 
@@ -19858,13 +19865,14 @@ function openSidebarModal() {
           if (insErr) throw insErr;
 
           // Reset paper_days in tracker_progress so this item leaves Urgent Radar immediately
-          const { error: tpErr } = await supabase
-            .from('tracker_progress')
-            .update({
-              paper_days: 0,
-              updated_at: new Date().toISOString()
-            })
-            .eq('syllabus_id', item.syllabusId);
+          const currentUid = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUserId() : null;
+          let tpUpdateQuery = supabase.from('tracker_progress').update({
+            paper_days: 0,
+            updated_at: new Date().toISOString()
+          }).eq('syllabus_id', item.syllabusId);
+          if (currentUid) tpUpdateQuery = tpUpdateQuery.eq('user_id', currentUid);
+          else tpUpdateQuery = tpUpdateQuery.is('user_id', null);
+          const { error: tpErr } = await tpUpdateQuery;
 
           if (tpErr) throw tpErr;
 
@@ -20622,7 +20630,7 @@ function openSidebarModal() {
             `;
           });
         } else {
-          const core6 = [
+          const commonSubjects = [
             { code: 'MATH', nameSi: 'ගණිතය', nameEn: 'Mathematics', icon: '📐' },
             { code: 'SCI', nameSi: 'විද්‍යාව', nameEn: 'Science', icon: '🔬' },
             { code: 'SIN', nameSi: 'සිංහල භාෂාව හා සාහිත්‍යය', nameEn: 'Sinhala', icon: '📘' },
@@ -20631,22 +20639,19 @@ function openSidebarModal() {
             { code: 'HIST', nameSi: 'ඉතිහාසය', nameEn: 'History', icon: '🏛️' }
           ];
 
-          html += `
-            <div style="font-size: 11px; font-weight: 800; color: #6366f1; text-transform: uppercase; margin-bottom: 4px;">
-              ⭐ අනිවාර්ය ප්‍රධාන විෂයයන් 6 (Core Subjects):
-            </div>
-          `;
-
-          core6.forEach(c => {
+          commonSubjects.forEach(c => {
+            const isChecked = activeCodes.size === 0 || activeCodes.has(c.code.toUpperCase());
             html += `
-              <div class="academic-subj-item" style="opacity: 0.9;">
+              <label class="academic-subj-item" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span style="font-size: 16px;">${c.icon}</span>
-                  <span class="academic-subj-title" style="font-size: 12px; font-weight: 700; color: var(--text-main, #2d3436);">${c.nameSi} (${c.nameEn})</span>
+                  <div>
+                    <div class="academic-subj-title" style="font-size: 12px; font-weight: 700; color: var(--text-main, #2d3436);">${escapeHtml(c.nameSi)}</div>
+                    <div class="academic-subj-code" style="font-size: 10px; color: var(--text-muted, #7f8fa6);">${escapeHtml(c.nameEn)} (${c.code})</div>
+                  </div>
                 </div>
-                <span style="font-size: 9.5px; font-weight: 800; color: #10b981; background: rgba(16,185,129,0.12); padding: 2px 7px; border-radius: 6px;">CORE අනිවාර්ය</span>
-                <input type="checkbox" class="chk-academic-subj" data-code="${c.code}" checked disabled style="display:none;">
-              </div>
+                <input type="checkbox" class="chk-academic-subj" data-code="${c.code}" ${isChecked ? 'checked' : ''} style="width: 17px; height: 17px; accent-color: #6366f1; cursor: pointer;">
+              </label>
             `;
           });
 
@@ -20720,12 +20725,12 @@ function openSidebarModal() {
         const defaults = (typeof ZenithCurriculum !== 'undefined') ? ZenithCurriculum.getDefaultSubjectsForGrade(activeGrade) : [];
         const defCodes = new Set(defaults.map(d => d.code.toUpperCase()));
 
-        if (activeGrade <= 9) {
-          document.querySelectorAll('.chk-academic-subj').forEach(chk => {
-            const code = chk.getAttribute('data-code');
-            if (code) chk.checked = defCodes.has(code.toUpperCase());
-          });
-        } else {
+        document.querySelectorAll('.chk-academic-subj').forEach(chk => {
+          const code = chk.getAttribute('data-code');
+          if (code) chk.checked = defCodes.has(code.toUpperCase());
+        });
+
+        if (activeGrade > 9) {
           const s1 = document.getElementById('selBasket1');
           const s2 = document.getElementById('selBasket2');
           const s3 = document.getElementById('selBasket3');
@@ -20746,18 +20751,26 @@ function openSidebarModal() {
               if (code) selectedCodes.push(code.toUpperCase());
             }
           });
-          if (selectedCodes.length === 0) {
-            alert('⚠️ කරුණාකර අවම වශයෙන් එක් විෂයයක්වත් තෝරන්න.');
-            return;
-          }
         } else {
-          selectedCodes = ['MATH', 'SCI', 'SIN', 'ENG', 'BUD', 'HIST'];
+          document.querySelectorAll('.chk-academic-subj').forEach(chk => {
+            if (chk.checked) {
+              const code = chk.getAttribute('data-code');
+              if (code && !selectedCodes.includes(code.toUpperCase())) {
+                selectedCodes.push(code.toUpperCase());
+              }
+            }
+          });
           const b1 = document.getElementById('selBasket1')?.value;
           const b2 = document.getElementById('selBasket2')?.value;
           const b3 = document.getElementById('selBasket3')?.value;
-          if (b1) selectedCodes.push(b1.toUpperCase());
-          if (b2) selectedCodes.push(b2.toUpperCase());
-          if (b3) selectedCodes.push(b3.toUpperCase());
+          if (b1 && !selectedCodes.includes(b1.toUpperCase())) selectedCodes.push(b1.toUpperCase());
+          if (b2 && !selectedCodes.includes(b2.toUpperCase())) selectedCodes.push(b2.toUpperCase());
+          if (b3 && !selectedCodes.includes(b3.toUpperCase())) selectedCodes.push(b3.toUpperCase());
+        }
+
+        if (selectedCodes.length === 0) {
+          alert('⚠️ කරුණාකර අවම වශයෙන් එක් විෂයයක්වත් තෝරන්න.');
+          return;
         }
 
         const subjsArray = selectedCodes.map(code => {
