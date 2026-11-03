@@ -3676,9 +3676,7 @@
       body.dark-mode .unit-bar-bg {
         background: #21262d !important;
       }
-      body.dark-mode #upMarksError,
-      body.dark-mode #upPasswordError,
-      body.dark-mode #fpPasswordError {
+      body.dark-mode #upMarksError {
         color: #ff6b6b !important;
       }
 
@@ -7375,13 +7373,7 @@
               <textarea class="form-textarea" id="fpRemarks" rows="2" placeholder="අමාරු වූ කොටස් හෝ සටහන්..."></textarea>
             </div>
 
-            <div class="form-group" style="margin-top: 8px;">
-              <label class="form-label" style="font-weight: 700;">🔒 තහවුරු කිරීමේ මුරපදය (Security Password) *</label>
-              <input type="password" class="form-input" id="fpPasswordInput" placeholder="මුරපදය ඇතුළත් කරන්න..." style="font-size: 11px; padding: 7px 10px; text-align: center; letter-spacing: 2px;" autocomplete="off" required>
-              <div id="fpPasswordError" style="display: none; color: #d63031; font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
-                ⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.
-              </div>
-            </div>
+
 
             <button type="submit" class="submit-btn" id="fpSubmitBtn">💾 Save Full Paper</button>
           </form>
@@ -7479,13 +7471,7 @@
               <div class="confirm-details" id="confirmDetailsTxt">
                 විස්තර පූරණය වෙමින් පවතී...
               </div>
-              <div class="form-group" style="margin: 8px 0 6px;">
-                <label class="form-label" style="font-size: 10px; color: inherit; font-weight: 700;">🔒 තහවුරු කිරීමේ මුරපදය (Security Password) *</label>
-                <input type="password" class="form-input" id="upPasswordInput" placeholder="මුරපදය ඇතුළත් කරන්න..." style="font-size: 11px; padding: 6px 10px; text-align: center; letter-spacing: 2px;" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();executeConfirmedUnitPaper();}">
-                <div id="upPasswordError" style="display: none; color: #d63031; font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
-                  ⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.
-                </div>
-              </div>
+
               <div class="confirm-btns">
                 <button type="button" class="btn-confirm-yes" id="btnConfirmYes" onclick="executeConfirmedUnitPaper()">
                   ✅ ඔව්, සලකුණු කරන්න
@@ -7537,14 +7523,6 @@
           <input type="number" class="form-input" id="urgentRadarMarksInput" placeholder="ලකුණු ප්‍රතිශතය (0 - 100, උදා: 75)" min="0" max="100" style="font-size: 11px; padding: 6px 10px; text-align: center;">
         </div>
 
-        <div class="form-group" style="margin: 6px 0 4px; text-align: left;">
-          <label class="form-label" style="font-size: 10px; color: inherit; font-weight: 700;">🔒 තහවුරු කිරීමේ මුරපදය (Security Password) *</label>
-          <input type="password" class="form-input" id="urgentRadarPasswordInput" placeholder="මුරපදය ඇතුළත් කරන්න..." style="font-size: 11px; padding: 6px 10px; text-align: center; letter-spacing: 2px;" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();confirmUrgentRadarDone();}">
-          <div id="urgentRadarPasswordError" style="display: none; color: #d63031; font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
-            ⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.
-          </div>
-        </div>
-
         <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 10px; margin-top: 14px;">
           <button id="urgentRadarConfirmOkBtn" class="alert-popup-btn" onclick="confirmUrgentRadarDone()" style="background: linear-gradient(135deg, #eb4d4b, #d63031); color: white; box-shadow: 0 4px 14px rgba(235,77,75,0.3); font-weight: 700;">
             ඔව්, Paper 1 අවසන් ✅
@@ -7560,13 +7538,6 @@
         <div class="alert-popup-icon">🧠</div>
         <div class="alert-popup-title" style="color: #6c5ce7;">Spaced Repetition — තහවුරු කිරීම</div>
         <div id="ebbConfirmMsg" class="alert-popup-msg" style="background:#f3e7f9; border-radius:10px; padding:12px 10px; border:1px solid #d0adf5; color: #2d3436;"></div>
-        <div class="form-group" style="margin: 10px 0 4px; text-align: left;">
-          <label class="form-label" style="font-size: 10px; color: inherit; font-weight: 700;">🔒 තහවුරු කිරීමේ මුරපදය (Security Password) *</label>
-          <input type="password" class="form-input" id="ebbPasswordInput" placeholder="මුරපදය ඇතුළත් කරන්න..." style="font-size: 11px; padding: 6px 10px; text-align: center; letter-spacing: 2px;" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();confirmEbbDone();}">
-          <div id="ebbPasswordError" style="display: none; color: #d63031; font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
-            ⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.
-          </div>
-        </div>
         <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 10px; margin-top: 14px;">
           <button id="ebbConfirmOkBtn" class="alert-popup-btn" onclick="confirmEbbDone()" style="background: linear-gradient(135deg, #6c5ce7, #8c7ae6); box-shadow: 0 4px 14px rgba(108,92,231,0.3);">
             ඔව්, සම්පූර්ණයි ✅
@@ -7588,10 +7559,10 @@
         <div class="alert-popup-title" style="color: #e74c3c;">Spaced Repetition — Reset කිරීම</div>
         <div id="resetRepetitionMsg" class="alert-popup-msg" style="background: rgba(231, 76, 60, 0.08); border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(231, 76, 60, 0.25); color: inherit; font-size: 11px; line-height: 1.5;"></div>
         <div class="form-group" style="margin: 10px 0 4px; text-align: left;">
-          <label class="form-label" style="font-size: 10px; color: inherit; font-weight: 700;">🔒 තහවුරු කිරීමේ මුරපදය (Security Password) *</label>
-          <input type="password" class="form-input" id="resetRepetitionPasswordInput" placeholder="මුරපදය ඇතුළත් කරන්න..." style="font-size: 11px; padding: 6px 10px; text-align: center; letter-spacing: 2px;" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();executeResetRepetitionConfirmed();}">
+          <label class="form-label" style="font-size: 10px; color: inherit; font-weight: 700;">තහවුරු කිරීමට RESET ලෙස ටයිප් කරන්න / Type RESET to confirm *</label>
+          <input type="text" class="form-input" id="resetRepetitionPasswordInput" placeholder="තහවුරු කිරීමට RESET ලෙස ටයිප් කරන්න / Type RESET to confirm" style="font-size: 11px; padding: 6px 10px; text-align: center; letter-spacing: 1px;" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();executeResetRepetitionConfirmed();}">
           <div id="resetRepetitionPasswordError" style="display: none; color: #d63031; font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
-            ⚠️ මුරපදය වැරදියි! කරුණාකර නැවත උත්සාහ කරන්න.
+            ⚠️ කරුණාකර තහවුරු කිරීමට "RESET" ලෙස ටයිප් කරන්න / Please type "RESET" to confirm.
           </div>
         </div>
         <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 10px; margin-top: 14px;">
@@ -7611,7 +7582,7 @@
   <script>
 
     // --- Global State & Telemetry Storage ---
-    let supabase = null;
+    let supabaseClient = null;
     let dbExtractedSubjects = null;
     let telemetryData = {
       radar: [],
@@ -8068,17 +8039,17 @@
       const suUrl = env.SUPABASE_URL || 'https://klcbypzapfojjakoehgx.supabase.co';
       const suKey = env.SUPABASE_ANON_KEY || 'sb_publishable_hg4IZNmibddbNsxe5t0aZQ_1XUUBxBp';
       if (window.supabase && typeof window.supabase.createClient === 'function') {
-        supabase = window.supabase.createClient(suUrl, suKey);
+        supabaseClient = window.supabase.createClient(suUrl, suKey);
       } else if (window.supabaseClient) {
-        supabase = window.supabaseClient;
+        supabaseClient = window.supabaseClient;
       }
-      window.supabaseClient = supabase;
+      window.supabaseClient = supabaseClient;
     }
 
     // --- Fetch Telemetry & Populate All Cards ---
     async function refreshTelemetry() {
-      if (!supabase) initSupabase();
-      if (!supabase) return;
+      if (!supabaseClient) initSupabase();
+      if (!supabaseClient) return;
 
       const user = (window.ZenithAuth && typeof window.ZenithAuth.getCurrentUser === 'function')
         ? window.ZenithAuth.getCurrentUser()
@@ -8094,11 +8065,11 @@
 
       try {
         // Resilient parallel data fetching
-        const sylPromise = supabase.from('canonical_syllabus').select('*').order('sort_order', { ascending: true });
-        const tpPromise = userId ? supabase.from('tracker_progress').select('*').eq('user_id', userId) : supabase.from('tracker_progress').select('*').is('user_id', null);
-        const upPromise = userId ? supabase.from('unit_papers').select('*').eq('user_id', userId).order('logged_at', { ascending: true }) : supabase.from('unit_papers').select('*').is('user_id', null).order('logged_at', { ascending: true });
-        const fpPromise = userId ? supabase.from('full_papers').select('*').eq('user_id', userId).order('exam_date', { ascending: true }).order('logged_at', { ascending: true }) : supabase.from('full_papers').select('*').order('exam_date', { ascending: true }).order('logged_at', { ascending: true });
-        const srPromise = userId ? supabase.from('spaced_repetition_log').select('*').eq('user_id', userId) : supabase.from('spaced_repetition_log').select('*').is('user_id', null);
+        const sylPromise = supabaseClient.from('canonical_syllabus').select('*').order('sort_order', { ascending: true });
+        const tpPromise = userId ? supabaseClient.from('tracker_progress').select('*').eq('user_id', userId) : supabaseClient.from('tracker_progress').select('*').is('user_id', null);
+        const upPromise = userId ? supabaseClient.from('unit_papers').select('*').eq('user_id', userId).order('logged_at', { ascending: true }) : supabaseClient.from('unit_papers').select('*').is('user_id', null).order('logged_at', { ascending: true });
+        const fpPromise = userId ? supabaseClient.from('full_papers').select('*').eq('user_id', userId).order('exam_date', { ascending: true }).order('logged_at', { ascending: true }) : supabaseClient.from('full_papers').select('*').order('exam_date', { ascending: true }).order('logged_at', { ascending: true });
+        const srPromise = userId ? supabaseClient.from('spaced_repetition_log').select('*').eq('user_id', userId) : supabaseClient.from('spaced_repetition_log').select('*').is('user_id', null);
 
         const [sylRes, tpRes, upRes, fpRes, srRes] = await Promise.allSettled([sylPromise, tpPromise, upPromise, fpPromise, srPromise]);
 
@@ -8445,10 +8416,6 @@
       }
       const marksInput = document.getElementById('urgentRadarMarksInput');
       if (marksInput) marksInput.value = '';
-      const passInp = document.getElementById('urgentRadarPasswordInput');
-      if (passInp) passInp.value = '';
-      const passErr = document.getElementById('urgentRadarPasswordError');
-      if (passErr) passErr.style.display = 'none';
 
       const popup = document.getElementById('urgentRadarConfirmPopup');
       if (popup) popup.style.display = 'flex';
@@ -8468,18 +8435,6 @@
 
     async function confirmUrgentRadarDone() {
       if (!pendingUrgentRadarConfirm) return;
-      const passInp = document.getElementById('urgentRadarPasswordInput');
-      const passVal = passInp ? passInp.value.trim() : '';
-      const passErr = document.getElementById('urgentRadarPasswordError');
-
-      if (passVal !== '3408') {
-        if (passErr) {
-          passErr.innerText = passVal === '' ? '⚠️ කරුණාකර මුරපදය ඇතුළත් කරන්න!' : '⚠️ මුරපදය වැරදියි! කරුණාකර 3408 ඇතුළත් කරන්න.';
-          passErr.style.display = 'block';
-        }
-        if (passInp) passInp.focus();
-        return;
-      }
 
       const item = pendingUrgentRadarConfirm;
       const marksVal = document.getElementById('urgentRadarMarksInput').value;
@@ -8499,9 +8454,9 @@
         };
         if (userId) insPayload.user_id = userId;
 
-        await supabase.from('unit_papers').insert([insPayload]);
+        await supabaseClient.from('unit_papers').insert([insPayload]);
         
-        let tpUp = supabase.from('tracker_progress').update({
+        let tpUp = supabaseClient.from('tracker_progress').update({
           paper_days: 0,
           updated_at: new Date().toISOString()
         }).eq('syllabus_id', item.syllabusId);
@@ -8612,11 +8567,6 @@
       if (msg) {
         msg.innerHTML = `<strong>[${item.subject}] Unit ${item.unitNumber}</strong>: ${escapeHtml(item.unitName)}<br><span style="color:#6c5ce7; font-weight:600;">Cycle ${currentEbbCycle} (දින ${item.days})</span> Spaced Repetition නැවත ආවර්ජනය සම්පූර්ණ කළ බව තහවුරු කරන්නද?`;
       }
-      const passInp = document.getElementById('ebbPasswordInput');
-      if (passInp) passInp.value = '';
-      const passErr = document.getElementById('ebbPasswordError');
-      if (passErr) passErr.style.display = 'none';
-
       const popup = document.getElementById('ebbConfirmPopup');
       if (popup) popup.style.display = 'flex';
     }
@@ -8629,18 +8579,6 @@
 
     async function confirmEbbDone() {
       if (!pendingEbbConfirm) return;
-      const passInp = document.getElementById('ebbPasswordInput');
-      const passVal = passInp ? passInp.value.trim() : '';
-      const passErr = document.getElementById('ebbPasswordError');
-
-      if (passVal !== '3408') {
-        if (passErr) {
-          passErr.innerText = passVal === '' ? '⚠️ කරුණාකර මුරපදය ඇතුළත් කරන්න!' : '⚠️ මුරපදය වැරදියි! කරුණාකර 3408 ඇතුළත් කරන්න.';
-          passErr.style.display = 'block';
-        }
-        if (passInp) passInp.focus();
-        return;
-      }
 
       const item = pendingEbbConfirm;
       const user = window.ZenithAuth ? window.ZenithAuth.getCurrentUser() : null;
@@ -8656,7 +8594,7 @@
           completed_at: new Date().toISOString()
         };
         if (userId) insPayload.user_id = userId;
-        await supabase.from('spaced_repetition_log').insert([insPayload]);
+        await supabaseClient.from('spaced_repetition_log').insert([insPayload]);
 
         cancelEbbConfirm();
         try {
@@ -8668,6 +8606,166 @@
       } catch(err) {
         showHtmlAlert('දෝෂයකි: ' + (err.message || 'ක්‍රියාව අසාර්ථක විය'), true);
       }
+    }
+
+    // --- Spaced Repetition Reset Actions ---
+    let pendingResetRepetitionAction = null;
+
+    function triggerResetFromConfirmPopup() {
+      if (!pendingEbbConfirm) return;
+      pendingResetRepetitionAction = { ...pendingEbbConfirm };
+      const item = pendingResetRepetitionAction;
+      cancelEbbConfirm();
+
+      const msgEl = document.getElementById('resetRepetitionMsg');
+      if (msgEl) {
+        msgEl.innerHTML = `<strong>[${item.subject}] Unit ${item.unitNumber}</strong>: ${escapeHtml(item.unitName)}<br>` +
+          `මෙම ඒකකයේ සියලුම Spaced Repetition ආවර්ජන දත්ත මකාදමා නැවත <strong>Cycle 1 Day 1</strong> වෙත Reset කිරීමට අවශ්‍යද?<br>` +
+          `<span style="color:#d63031; font-weight:700;">⚠️ මෙය ආපසු හැරවිය නොහැකි ක්‍රියාවකි (Irreversible).</span>`;
+      }
+      const passInp = document.getElementById('resetRepetitionPasswordInput');
+      if (passInp) passInp.value = '';
+      const passErr = document.getElementById('resetRepetitionPasswordError');
+      if (passErr) passErr.style.display = 'none';
+
+      const popup = document.getElementById('resetRepetitionPopup');
+      if (popup) {
+        popup.style.display = 'flex';
+        setTimeout(() => { if (passInp) passInp.focus(); }, 60);
+      }
+    }
+
+    function cancelResetRepetition() {
+      const passInp = document.getElementById('resetRepetitionPasswordInput');
+      if (passInp) passInp.value = '';
+      const passErr = document.getElementById('resetRepetitionPasswordError');
+      if (passErr) passErr.style.display = 'none';
+      const popup = document.getElementById('resetRepetitionPopup');
+      if (popup) popup.style.display = 'none';
+      pendingResetRepetitionAction = null;
+    }
+
+    function closeResetRepetition(event) {
+      if (event && event.target && event.target.id === 'resetRepetitionPopup') {
+        cancelResetRepetition();
+      }
+    }
+
+    async function executeResetRepetitionConfirmed() {
+      if (!pendingResetRepetitionAction) {
+        cancelResetRepetition();
+        return;
+      }
+
+      const passInput = document.getElementById('resetRepetitionPasswordInput');
+      const passVal = passInput ? passInput.value.trim() : '';
+      const passErr = document.getElementById('resetRepetitionPasswordError');
+
+      if (passVal.trim().toUpperCase() !== 'RESET') {
+        if (passErr) {
+          passErr.innerText = '⚠️ කරුණාකර තහවුරු කිරීමට "RESET" ලෙස ටයිප් කරන්න / Please type "RESET" to confirm.';
+          passErr.style.display = 'block';
+        }
+        if (passInput) passInput.focus();
+        return;
+      }
+      if (passErr) passErr.style.display = 'none';
+
+      const action = pendingResetRepetitionAction;
+
+      // Derive unitCode strictly from real fields without defaulting to 'Unit 01'
+      let unitCode = null;
+      if (action.sub_lesson_code && typeof action.sub_lesson_code === 'string' && action.sub_lesson_code.trim()) {
+        unitCode = action.sub_lesson_code.trim();
+      } else if (action.code && typeof action.code === 'string' && action.code.trim()) {
+        unitCode = action.code.trim();
+      } else if (action.unitNumber !== undefined && action.unitNumber !== null) {
+        const rawUnit = String(action.unitNumber).trim();
+        const unitMatch = rawUnit.match(/^Unit\s*(\d+)/i);
+        if (unitMatch) {
+          unitCode = 'Unit ' + String(parseInt(unitMatch[1], 10)).padStart(2, '0');
+        } else {
+          const parsedNum = parseInt(rawUnit, 10);
+          if (!isNaN(parsedNum) && parsedNum > 0) {
+            unitCode = 'Unit ' + String(parsedNum).padStart(2, '0');
+          }
+        }
+      }
+
+      const subject = action.subject ? String(action.subject).trim().toUpperCase() : '';
+
+      // If unitCode or subject cannot be determined, do not delete anything
+      if (!unitCode || !subject) {
+        cancelResetRepetition();
+        showHtmlAlert('දෝෂයකි: පාඩම හෝ ඒකකය හඳුනාගත නොහැකි බැවින් Reset කළ නොහැක / Error: Could not identify the unit to reset.', true);
+        return;
+      }
+
+      const okBtn = document.getElementById('resetRepetitionOkBtn');
+      if (okBtn) {
+        okBtn.disabled = true;
+        okBtn.innerText = 'Reset වෙමින්... ⏳';
+      }
+
+      const user = window.ZenithAuth ? window.ZenithAuth.getCurrentUser() : null;
+      const userId = user && !user.isGuest ? user.id : null;
+
+      try {
+        let delQuery = supabaseClient.from('spaced_repetition_log').delete();
+        if (action.syllabusId) {
+          delQuery = delQuery.or(`syllabus_id.eq.${action.syllabusId},and(subject.eq.${subject},sub_lesson_code.eq.${unitCode})`);
+        } else {
+          delQuery = delQuery.eq('subject', subject).eq('sub_lesson_code', unitCode);
+        }
+        if (userId) {
+          delQuery = delQuery.eq('user_id', userId);
+        } else {
+          delQuery = delQuery.is('user_id', null);
+        }
+
+        const { error: delErr } = await delQuery;
+        if (delErr) throw delErr;
+
+        cancelResetRepetition();
+        showHtmlAlert(`[${subject}] ${unitCode} Repetition ඉතිහාසය සාර්ථකව Cycle 1 Day 1 වෙත Reset කරන ලදී! 🔄`, false);
+        await refreshTelemetry();
+      } catch (err) {
+        console.error('Reset repetition error:', err);
+        showHtmlAlert('දෝෂයකි: ' + (err.message || 'Reset කිරීම අසාර්ථක විය'), true);
+        if (okBtn) {
+          okBtn.disabled = false;
+          okBtn.innerText = 'ඔව්, Reset කරන්න 🔄';
+        }
+      }
+    }
+
+    // --- Unit Paper Modal Helpers ---
+    function hideUnitPaperModal() {
+      const modal = document.getElementById('unitPaperModal');
+      if (modal) modal.style.display = 'none';
+      cancelInlineConfirmation();
+    }
+
+    function closeUnitPaperModal(event) {
+      if (event && event.target && event.target.id === 'unitPaperModal') hideUnitPaperModal();
+    }
+
+    function showInlineConfirmation() {
+      const card = document.getElementById('upConfirmCard');
+      const actionRow = document.getElementById('upPrimaryActionRow');
+      if (card) card.style.display = 'block';
+      if (actionRow) actionRow.style.display = 'none';
+    }
+
+    function cancelInlineConfirmation() {
+      const card = document.getElementById('upConfirmCard');
+      const actionRow = document.getElementById('upPrimaryActionRow');
+      if (card) card.style.display = 'none';
+      if (actionRow) actionRow.style.display = 'grid';
+    }
+
+    async function executeConfirmedUnitPaper() {
+      hideUnitPaperModal();
     }
 
     // --- Analytics Pill Helper ---
@@ -9288,7 +9386,7 @@
         };
         if (userId) ins.user_id = userId;
 
-        await supabase.from('full_papers').insert([ins]);
+        await supabaseClient.from('full_papers').insert([ins]);
         hideFullPaperModal();
         try {
           confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
