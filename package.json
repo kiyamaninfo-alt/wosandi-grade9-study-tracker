@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "mock:add": "node scripts/mock-data.js add",
+    "mock:delete": "node scripts/mock-data.js delete",
+    "mock:status": "node scripts/mock-data.js status"
   }
 }

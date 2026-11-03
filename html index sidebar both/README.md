@@ -1,7 +1,7 @@
 # Frontend Web & PWA Presentation Layer
 
 ## Overview
-Standalone multi-page HTML5, Vanilla JavaScript, and CSS3 Progressive Web Application (PWA) client interface for the Zenith / Wosandi Study Tracker. Delivers the primary student dashboard, syllabus management with PIN authorization, study analytics with Chart.js visualization, spaced repetition radar, offline service worker caching, and multi-tenant authentication with an administrator portal.
+Standalone multi-page HTML5, Vanilla JavaScript, and CSS3 Progressive Web Application (PWA) client interface for the Zenith / Wosandi Study Tracker. Delivers the primary student dashboard, syllabus management with role-based authorization, study analytics with Chart.js visualization, spaced repetition radar, offline service worker caching, and multi-tenant authentication with an administrator portal.
 
 ## Interface
 - `[curriculum-catalog.js:ZenithCurriculum]`: Global curriculum catalog managing grade stages (6–11), master subject dictionaries, and bilingual localized metadata.
@@ -16,7 +16,7 @@ Standalone multi-page HTML5, Vanilla JavaScript, and CSS3 Progressive Web Applic
 - `[curriculum-catalog.js:ZenithCurriculum.getActiveSubjectsForUser(userId, targetGrade)]`: Resolves active subjects configuration for a tenant from scoped localStorage.
 - `[curriculum-catalog.js:ZenithCurriculum.saveActiveSubjectsForUser(userId, subjectsArray, targetGrade)]`: Persists active subject configurations for a tenant.
 - `[auth-manager.js:ZenithAuth]`: Multi-tenant user authentication and session management module.
-- `[auth-manager.js:ZenithAuth.ADMIN_EMAIL]`: Platform administrator email constant (`krishaja@gmail.com`).
+- `[auth-manager.js:ZenithAuth.ADMIN_EMAIL]`: Platform administrator email constant designating the root platform administrator.
 - `[auth-manager.js:ZenithAuth.getCurrentUser()]`: Returns active user profile object or guest user fallback.
 - `[auth-manager.js:ZenithAuth.getUserId()]`: Returns authenticated Supabase user UUID or `null` for guest/legacy users.
 - `[auth-manager.js:ZenithAuth.isAdminUser()]`: Validates if the active session matches `ADMIN_EMAIL` or contains the `admin` role.
@@ -44,18 +44,18 @@ Standalone multi-page HTML5, Vanilla JavaScript, and CSS3 Progressive Web Applic
 - `[sw.js:CACHE_NAME]`: Service Worker cache storage identifier (`al-study-tracker-v12`).
 - `[sw.js:PRECACHE_ASSETS]`: Core PWA static files cached on service worker installation.
 - `[index.html]`: Primary student dashboard covering 1-level unit hierarchy, unit paper logging, timer, and offline sync.
-- `[sidebar.html]`: Syllabus and subject catalog manager protected by PIN `[PIN]`.
+- `[sidebar.html]`: Syllabus and subject catalog manager with role-based authorization (admin master updates vs student/guest tenant data).
 - `[study-analytics.html]`: Chart.js progress tracking, score trends, and overall average calculations.
-- `[study-radar.html]`: Spaced repetition radar and urgent revision priority queue.
+- `[study-radar.html]`: Spaced repetition radar and urgent revision priority queue (Supabase client initialized as `supabaseClient`).
 
 ## Invariants
 - `[curriculum-catalog.js:setActiveGrade]`: Grade values must strictly clamp between 6 and 11 (`Math.min(11, Math.max(6, Number(gradeNum) || 9))`).
 - `[curriculum-catalog.js:saveActiveSubjectsForUser]`: Grade 9 subject configurations always mirror to legacy key `g9_subjects_config` for backward compatibility.
-- `[auth-manager.js:isAdminUser]`: Administrative privileges strictly require `email === 'krishaja@gmail.com'` or `user.role === 'admin'`.
+- `[auth-manager.js:isAdminUser]`: Administrative privileges strictly require verified admin status (matching the designated administrator email or role 'admin').
 - `[auth-manager.js:getScopedKey]`: Guest or legacy user ID `wosandi_legacy_user` must never receive a storage key suffix, ensuring legacy local data remains intact.
 - `[admin-portal.js:IIFE Guard]`: Module execution aborts immediately if `ZenithAuth.isAdminUser()` returns `false`.
 - `[sw.js:fetch]`: Service Worker fetch handler strictly ignores requests to `supabase.co` REST/Realtime endpoints to avoid caching live database mutations.
-- `[sidebar.html:Security PIN]`: Protected write/edit syllabus operations require PIN `[PIN]`.
+- `[sidebar.html:Role-Based Authorization & Confirmation Guards]`: Master curriculum definitions in `canonical_syllabus` can only be modified by authenticated administrators (`ZenithAuth.isAdminUser()`). Normal students and guests add, edit, and delete their own subjects and units saved strictly to their own tenant data (`user_custom_units` and `user_subjects_config`, or `localStorage` for guests) and never to `canonical_syllabus`. Routine destructive actions use a standard confirm dialog with a clearly visible Cancel button; wiping spaced repetition history or restoring default subjects requires typing `RESET`, validated with `.trim().toUpperCase() === 'RESET'`.
 
 ## Side Effects
 - `[auth-manager.js:handleAuthenticatedUser]`: Upserts user profiles into Supabase table `public.user_profiles`.

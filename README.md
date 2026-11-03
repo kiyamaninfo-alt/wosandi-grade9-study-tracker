@@ -32,8 +32,10 @@ Zenith (incorporating the Wosandi Grade 9 Study Tracker) is a standalone, multi-
 - **Architecture Integrity**: The system strictly maintains a standalone HTML5/CSS3/Vanilla JS PWA architecture. It is intentionally free of React, Vite, or heavy frontend build pipelines.
 - **Syllabus Hierarchy**: Strictly 1-level unit hierarchy (Main Units only). Sub-unit layers (`1.1`, `1.2`) are forbidden in UI representations; database compatibility is maintained by mirroring unit numbers and names to `sub_lesson_code` and `sub_lesson_title`.
 - **Dynamic Curriculum Engine**: Supports dynamic subject configurations across Grades 6–11 (defaults to 13 Grade 9 subjects: MATH, SCI, SIN, ENG, BUD, HIST, GEO, CIV, HLTH, ICT, TAM, AES, PTS), persisted in `ZenithCurriculum` and `localStorage` (`g9_subjects_config`).
-- **Security PIN**: Protected administrative syllabus and unit modifications require PIN `[PIN]`.
-- **Administrator Role Boundary**: Administrative capabilities in `admin-portal.js` and `auth-manager.js` are strictly gatekept to email `krishaja@gmail.com` or verified role `admin`.
+- **Role-Based Authorization Model**: Master curriculum definitions in `canonical_syllabus` can only be modified by authenticated administrators (`ZenithAuth.isAdminUser()`). Normal students and guest sessions may add, edit, and delete their own subjects and units, which are saved strictly to their own tenant data (`user_custom_units` and `user_subjects_config`, or `localStorage` for guests) and never to `canonical_syllabus`.
+- **Destructive Action Guards**: Routine destructive actions (such as deleting study sessions or confirming paper logging) require a standard confirmation modal with a clearly visible Cancel button. Destructive reset actions (wiping spaced repetition history or restoring default subjects) require typing `RESET`, validated with `.trim().toUpperCase() === 'RESET'`.
+- **Administrator Role Boundary**: Administrative capabilities in `admin-portal.js` and `auth-manager.js` are gatekept strictly by verifying administrator privileges via `ZenithAuth.isAdminUser()`.
+- **Supabase Client in study-radar.html**: The Supabase client variable in `study-radar.html` is named `supabaseClient` to avoid global namespace collisions in browsers.
 - **Tenant Isolation**: User data isolation is enforced via Supabase `user_id` query scoping, while guest sessions default cleanly to profile `wosandi_legacy_user` without disrupting existing local storage.
 
 ## Global Side Effects
