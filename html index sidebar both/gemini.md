@@ -4,14 +4,20 @@ Stack: Standalone Multi-Page HTML5 / Vanilla JS / CSS3 PWA (`index.html`, `sideb
 ## 1. Core Architecture & File Roles:
 - **DO NOT convert to React/Vite**: Preserve the existing standalone HTML/CSS/JS PWA architecture (`index.html`, `sidebar.html`, `study-analytics.html`, `sw.js`).
 - **Keep Existing Supabase Env/Config Untouched**: Do not delete or break existing Supabase client initialization; the user will swap `.env` and URLs later.
-- **Security PIN**: Maintain password `3408` for all protected write/edit actions.
+- **Role-Based Authorization & Confirmation Guards**:
+  - Hardcoded authentication prompts are retired.
+  - Only authenticated platform administrators (`ZenithAuth.isAdminUser()`) may modify master curriculum in `canonical_syllabus`.
+  - Normal students and guest sessions may add, edit, and delete their own subjects and units, saved strictly to their own tenant data (`user_custom_units` and `user_subjects_config` in Supabase, or scoped `localStorage` for guests) and never to `canonical_syllabus`.
+  - Routine destructive actions (such as session deletions or paper confirmations) use a standard confirmation modal with a clearly visible Cancel button.
+  - High-impact data reset actions (wiping spaced repetition history or restoring default subjects) require typing `RESET`, validated with `.trim().toUpperCase() === 'RESET'`, accompanied by bilingual Sinhala and English instructions.
+- **Supabase Client in study-radar.html**: The Supabase client variable in `study-radar.html` is named `supabaseClient` to prevent browser global naming collisions.
 
 ## 2. Grade 9 Domain Rules (Dynamic Subjects & NO Sub-Units):
 - **Dynamic Multi-Subject Engine (Up to 13+ Subjects)**:
   - Never hardcode only `ICT`, `ET`, `SFT`.
   - Use a dynamic subject configuration (`getActiveSubjects()`) stored in `localStorage` (`g9_subjects_config`) and synced with Supabase, with sensible Grade 9 defaults (Mathematics, Science, Sinhala, English, Buddhism, History, Geography, Civic Ed, Health, ICT, Tamil, Aesthetics, PTS).
   - Each subject has `{ code, nameSi, nameEn, color, icon, active }`.
-  - Allow adding, editing, enabling/disabling subjects via `sidebar.html` (protected by PIN `3408`).
+  - Allow adding, editing, enabling/disabling subjects via `sidebar.html` (authenticated admins write to master catalog; normal students and guests manage scoped tenant data).
 - **Strict 1-Level Unit Hierarchy (NO SUB-UNITS)**:
   - Completely remove the Sub-Units layer (`1.1`, `1.2`). Every subject consists strictly of **Main Units** (`unit_number`: 1, 2, 3... and `unit_name`: "ඒකකය 01: ...").
   - For backward-compatible database storage in `canonical_syllabus`, automatically set `sub_lesson_code = "Unit " + unit_number` and `sub_lesson_title = unit_name`.
