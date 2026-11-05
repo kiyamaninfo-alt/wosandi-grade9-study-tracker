@@ -1,6 +1,6 @@
 /**
- * Zenith O-Level • Smart Study Engine
- * Authentication & Multi-Tenant User Management
+ * Krishsoft Smart Study Engine
+ * Autonomous Academic Cockpit • Grades 6–11
  * Supports: Google OAuth, Email/Password, Guest/Wosandi Mode, Admin Role Verification
  */
 

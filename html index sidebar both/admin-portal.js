@@ -278,10 +278,8 @@
         <div class="zenith-admin-modal" role="dialog" aria-modal="true" aria-labelledby="zenithAdminHeading">
           <div class="zenith-admin-header">
             <div class="zenith-admin-title-wrap">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-              </svg>
-              <h2 id="zenithAdminHeading" style="margin:0;font-size:18px;font-weight:700;">Zenith Platform Master Console</h2>
+              <img src="app-logo.svg" alt="Krishsoft Logo" style="width:24px;height:24px;border-radius:6px;flex-shrink:0;" />
+              <h2 id="zenithAdminHeading" style="margin:0;font-size:18px;font-weight:700;">Krishsoft Smart Study Engine • Master Console</h2>
               <span class="zenith-admin-badge">Admin: ${ADMIN_EMAIL}</span>
             </div>
             <button class="zenith-close-btn" id="btnZenithAdminClose" title="Close Admin Portal">&times;</button>

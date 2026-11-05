@@ -7175,38 +7175,22 @@
             </svg>
           </div>
 
-          <!-- Top Branding & Mathematical Identity -->
+          <!-- Top Branding -->
           <header class="zenith-lp-brand-hdr">
             <div class="zenith-lp-brand-flex">
-              <div class="zenith-lp-phi-badge">
-                <span class="zenith-lp-phi-symbol">φ</span>
-              </div>
+              <img src="app-logo.svg" alt="Krishsoft Logo" class="zenith-brand-logo" style="width:38px;height:38px;border-radius:10px;box-shadow:0 4px 12px rgba(140,122,230,0.35);" />
               <div>
-                <span class="zenith-lp-brand-title">Zenith 1.618</span>
-                <span class="zenith-lp-brand-sub">Mathematical Study Protocol</span>
+                <span class="zenith-lp-brand-title">Krishsoft Smart Study Engine</span>
+                <span class="zenith-lp-brand-sub">Autonomous Academic Cockpit • Grades 6–11</span>
               </div>
-            </div>
-            <div class="zenith-lp-status-pills">
-              <span class="zenith-lp-badge-cockpit">
-                <span class="zenith-lp-badge-dot"></span>
-                GRADE 9 COCKPIT
-              </span>
-              <span class="zenith-lp-phi-num">
-                φ = 1.618033
-              </span>
             </div>
           </header>
 
           <!-- Center Hero Editorial Typography -->
           <div class="zenith-lp-hero-center">
-            <!-- Topic Tag -->
-            <div class="zenith-lp-topic-tag">
-              <span class="zenith-lp-topic-line"></span>
-              <span class="zenith-lp-topic-txt">Focused Syllabus Progression</span>
-            </div>
             <!-- Headline -->
             <h1 class="zenith-lp-hero-h1">
-              Master the Grade 9 syllabus through <span class="zenith-lp-italic-gold">harmonic</span>, distraction-free precision.
+              Master your syllabus through <span class="zenith-lp-italic-gold">harmonic</span>, distraction-free precision.
             </h1>
             <!-- Description -->
             <p class="zenith-lp-hero-desc">
@@ -7238,20 +7222,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Bottom Frame Micro-Telemetry Coordinates -->
-          <footer class="zenith-lp-coord-footer">
-            <div class="zenith-lp-coord-left">
-              <span>SEC: 09-CANON</span>
-              <span class="zenith-lp-dot-sep">•</span>
-              <span>LATENCY: 0.00ms</span>
-              <span class="zenith-lp-dot-sep">•</span>
-              <span>RATIO: 1 : 1.618</span>
-            </div>
-            <div class="zenith-lp-coord-right">
-              LOC // [0.6180, 0.3820]
-            </div>
-          </footer>
         </section>
 
         <!-- RIGHT COLUMN: 38.2% Focused Authentication Monolith -->
@@ -7268,7 +7238,7 @@
                 <span class="material-symbols-outlined zenith-lp-lock-icon">lock_open</span>
               </div>
               <p class="zenith-lp-card-sub">
-                Access your Grade 9 study cockpit
+                Autonomous Academic Cockpit • Grades 6–11
               </p>
             </div>
 
@@ -7326,17 +7296,6 @@
                 <span>Sign in with Google</span>
               </button>
             </form>
-
-            <!-- Cryptographic Session Guarantee -->
-            <div class="zenith-lp-crypto-note">
-              <span class="material-symbols-outlined zenith-lp-shield-icon">verified_user</span>
-              <span>256-bit encrypted academic cockpit session</span>
-            </div>
-          </div>
-
-          <!-- Mathematical Proportional Anchor Footnote -->
-          <div class="zenith-lp-footnote">
-            <span>ZONE 02 // INSPECTION VOID (38.2%)</span>
           </div>
         </section>
       </main>
@@ -8361,7 +8320,7 @@
               </div>
               <div class="form-group" style="margin-bottom: 8px;">
                 <label style="font-size: 10px; font-weight: 600; display: block; margin-bottom: 3px;">Dashboard Title (ප්‍රධාන සිරස්තලය):</label>
-                <input type="text" class="form-input" id="settingAppTitle" placeholder="Zenith O-Level • Smart Study Engine" style="width: 100%; padding: 6px 8px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-color, #dfe6e9); box-sizing: border-box;">
+                <input type="text" class="form-input" id="settingAppTitle" placeholder="Krishsoft Smart Study Engine • Grades 6–11" style="width: 100%; padding: 6px 8px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border-color, #dfe6e9); box-sizing: border-box;">
               </div>
               <div class="form-group" style="margin-bottom: 8px;">
                 <label style="font-size: 10px; font-weight: 600; display: block; margin-bottom: 3px;">Target Exam Name (ඉලක්ක විභාගයේ නම):</label>
@@ -8527,7 +8486,7 @@
  <div class="modal-overlay" id="sidebarModal" onclick="closeSidebarModal(event)">
  <div class="modal-window" style="max-width: 460px; height: 85vh;" onclick="event.stopPropagation()">
  <div class="modal-header" style="background: linear-gradient(135deg, #8c7ae6, #6c5ce7);">
- <div class="modal-title">📚 Syllabus Manager & Sidebar</div>
+ <div class="modal-title">📚 Krishsoft Smart Study Engine • Syllabus Manager</div>
  <button class="modal-close-btn" onclick="hideSidebarModal()">✕</button>
  </div>
  <div class="modal-body" style="padding: 0; height: 100%; overflow: hidden;">
@@ -8672,7 +8631,7 @@ window.supabaseClient = supabase;
       function getCountdownConfig() {
         const estimated = getEstimatedNextTerm();
         const defaultCfg = {
-          title: 'Zenith O-Level • Smart Study Engine',
+          title: 'Krishsoft Smart Study Engine • Grades 6–11',
           targetDate: estimated.targetDate,
           examLabel: '3rd Term Test (3 වන වාර විභාගය)',
           isAuto: true
@@ -8723,7 +8682,7 @@ window.supabaseClient = supabase;
         if (badgeEl) {
           badgeEl.innerHTML = `⏳ ඉලක්කය (Target): <strong>${cfg.examLabel || '3rd Term Test (3 වන වාර විභාගය)'}</strong>`;
         }
-        document.title = cfg.title || 'Zenith O-Level • Smart Study Engine';
+        document.title = cfg.title || 'Krishsoft Smart Study Engine • Grades 6–11';
       }
 
       function loadCountdownSettingsUI() {
@@ -8749,7 +8708,7 @@ window.supabaseClient = supabase;
 
       function saveCountdownSettings(resetToAuto = false) {
         try {
-          const title = (document.getElementById('settingAppTitle') ? document.getElementById('settingAppTitle').value : '').trim() || 'Zenith O-Level • Smart Study Engine';
+          const title = (document.getElementById('settingAppTitle') ? document.getElementById('settingAppTitle').value : '').trim() || 'Krishsoft Smart Study Engine • Grades 6–11';
           const dateInput = document.getElementById('settingTargetDate') ? document.getElementById('settingTargetDate').value : '';
           const examInput = document.getElementById('settingExamLabel') ? document.getElementById('settingExamLabel').value.trim() : '';
 
@@ -19968,7 +19927,7 @@ function openSidebarModal() {
               <input type="email" id="loginEmail" class="zenith-auth-input" placeholder="Email Address (e.g. student@gmail.com)" required autocomplete="username" />
               <input type="password" id="loginPassword" class="zenith-auth-input" placeholder="Password" required autocomplete="current-password" />
               <div id="loginErrorMsg" style="display: none; color: #ef4444; font-size: 11.5px; margin-bottom: 10px; font-weight: 600;"></div>
-              <button type="submit" class="zenith-auth-submit" id="btnLoginSubmit">🔑 Sign In to Zenith</button>
+              <button type="submit" class="zenith-auth-submit" id="btnLoginSubmit">🔑 Sign In to Krishsoft Smart Study Engine</button>
             </form>
           </div>
 
@@ -20078,14 +20037,14 @@ function openSidebarModal() {
                 <span class="badge-icon">⚡</span>
                 <span class="badge-title">Krishsoft Smart Study Engine</span>
                 <span class="badge-dot">•</span>
-                <span class="badge-desc">Automated Guidance</span>
+                <span class="badge-desc">Autonomous Academic Cockpit • Grades 6–11</span>
               </span>
             </div>
             <h2 class="modal-title" id="studyModalTitle">
               ස්වයංක්‍රීය මගපෙන්වීම: ඔබ ඊළඟට කළ යුත්තේ කුමක්ද?
             </h2>
             <p class="modal-subtitle">
-              <span class="subtitle-highlight">What To Do Next Engine</span>
+              <span class="subtitle-highlight">Autonomous Academic Cockpit • Grades 6–11</span>
               <span class="subtitle-divider">—</span>
               <span>Smart 4-Step Academic Workflow</span>
             </p>
@@ -20867,7 +20826,7 @@ function openSidebarModal() {
         const targetDate = (dateInput && dateInput.value) ? dateInput.value : getEstimatedNextTerm().targetDate;
 
         const cfg = {
-          title: 'Zenith O-Level • Smart Study Engine',
+          title: 'Krishsoft Smart Study Engine • Grades 6–11',
           examLabel: title,
           targetDate: targetDate
         };

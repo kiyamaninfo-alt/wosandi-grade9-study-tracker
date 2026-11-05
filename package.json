@@ -1,5 +1,5 @@
 {
-  "name": "wosandi-grade9-study-tracker",
+  "name": "krishsoft-smart-study-engine",
   "version": "1.0.0",
   "scripts": {
     "dev": "node server.js",
