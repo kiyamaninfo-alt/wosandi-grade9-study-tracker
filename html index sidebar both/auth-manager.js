@@ -302,6 +302,10 @@
         await sb.auth.signOut();
       } catch (_) {}
     }
+    try {
+      sessionStorage.removeItem('zenith_guest_active');
+      sessionStorage.removeItem('zenith_current_view');
+    } catch (_) {}
     currentUser = getStoredGuestUser();
     updateAuthUI();
 

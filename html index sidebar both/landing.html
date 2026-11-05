@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="dark h-full" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Zenith 1.618 — Harmonic Grade 9 Cockpit</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="app-logo.svg">
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#dfe2ef",
+            "on-primary": "#3c2f00",
+            "tertiary-fixed": "#c4e7ff",
+            "on-error-container": "#ffdad6",
+            "outline": "#99907c",
+            "secondary": "#c0c1ff",
+            "on-secondary-fixed-variant": "#2f2ebe",
+            "surface-bright": "#353943",
+            "on-secondary-fixed": "#07006c",
+            "primary-fixed-dim": "#e9c349",
+            "secondary-container": "#3131c0",
+            "secondary-fixed-dim": "#c0c1ff",
+            "secondary-fixed": "#e1e0ff",
+            "primary-container": "#d4af37",
+            "surface-container": "#1c1f29",
+            "tertiary-fixed-dim": "#7bd0ff",
+            "on-tertiary-fixed": "#001e2c",
+            "on-tertiary-container": "#004b67",
+            "background": "#0f131c",
+            "surface-container-low": "#181b25",
+            "primary-fixed": "#ffe088",
+            "surface": "#0f131c",
+            "tertiary-container": "#3bbffa",
+            "on-background": "#dfe2ef",
+            "surface-container-highest": "#31353f",
+            "tertiary": "#93d7ff",
+            "on-secondary-container": "#b0b2ff",
+            "surface-container-high": "#262a34",
+            "on-tertiary": "#00354a",
+            "primary": "#f2ca50",
+            "error-container": "#93000a",
+            "on-surface-variant": "#d0c5af",
+            "surface-tint": "#e9c349",
+            "surface-variant": "#31353f",
+            "on-primary-fixed": "#241a00",
+            "outline-variant": "#4d4635",
+            "inverse-on-surface": "#2c303a",
+            "on-primary-fixed-variant": "#574500",
+            "on-surface": "#dfe2ef",
+            "surface-dim": "#0f131c",
+            "surface-container-lowest": "#0a0e17",
+            "on-secondary": "#1000a9",
+            "on-primary-container": "#554300",
+            "on-error": "#690005",
+            "inverse-primary": "#735c00",
+            "error": "#ffb4ab"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin": "4.236rem",
+            "space-md": "1rem",
+            "space-sm": "0.618rem",
+            "space-xs": "0.382rem",
+            "space-2xl": "4.236rem",
+            "margin-sm": "1.618rem",
+            "gutter": "1.618rem",
+            "space-xl": "2.618rem",
+            "space-lg": "1.618rem",
+            "gutter-sm": "1rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Newsreader", "serif"],
+            "headline-sm": ["Newsreader", "serif"],
+            "body-lg": ["Geist", "sans-serif"],
+            "display-lg-mobile": ["Newsreader", "serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "label-md": ["Geist", "sans-serif"],
+            "body-sm": ["Geist", "sans-serif"],
+            "display-lg": ["Newsreader", "serif"],
+            "label-lg": ["Geist", "sans-serif"],
+            "label-sm": ["Geist", "sans-serif"],
+            "body-md": ["Geist", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-md": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "0em", fontWeight: "500" }],
+            "body-lg": ["18px", { lineHeight: "29px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "display-lg-mobile": ["42px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "300" }],
+            "headline-lg": ["42px", { lineHeight: "52px", letterSpacing: "-0.02em", fontWeight: "400" }],
+            "headline-lg-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "label-md": ["11px", { lineHeight: "16px", letterSpacing: "0.06em", fontWeight: "500" }],
+            "body-sm": ["13px", { lineHeight: "21px", letterSpacing: "0.01em", fontWeight: "400" }],
+            "display-lg": ["68px", { lineHeight: "76px", letterSpacing: "-0.03em", fontWeight: "300" }],
+            "label-lg": ["13px", { lineHeight: "18px", letterSpacing: "0.04em", fontWeight: "500" }],
+            "label-sm": ["9px", { lineHeight: "13px", letterSpacing: "0.08em", fontWeight: "600" }],
+            "body-md": ["15px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+    }
+    .specular-border {
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+    }
+    .golden-halo {
+      box-shadow: 0 0 50px -10px rgba(212, 175, 55, 0.08);
+    }
+    .golden-glow-focus:focus-within {
+      box-shadow: 0 0 20px -3px rgba(212, 175, 55, 0.22);
+    }
+    @media (max-width: 900px) {
+      .golden-ratio-split {
+        flex-direction: column !important;
+        overflow-y: auto !important;
+        height: auto !important;
+        min-height: 100vh !important;
+      }
+      .golden-left-col {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: 2rem 1.5rem !important;
+      }
+      .golden-right-col {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        padding: 2.5rem 1.5rem !important;
+      }
+    }
+  </style>
+  <script src="/env.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="curriculum-catalog.js"></script>
+  <script src="auth-manager.js"></script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface h-screen w-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container font-body-md text-body-md antialiased">
+  <!-- Atmospheric Cosmic & Ratio Backdrop -->
+  <div class="fixed inset-0 pointer-events-none z-0">
+    <div class="absolute -top-[25%] -left-[10%] w-[65vw] h-[65vw] rounded-full bg-gradient-to-br from-primary/5 via-primary-container/2 to-transparent blur-[140px]"></div>
+    <div class="absolute -bottom-[20%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-t from-secondary-container/10 via-transparent to-transparent blur-[160px]"></div>
+    <!-- Micro-Coordinate Grid Lines -->
+    <div class="absolute inset-0 opacity-[0.025]" style="background-size: 61.8px 61.8px; background-image: linear-gradient(to right, #dfe2ef 1px, transparent 1px), linear-gradient(to bottom, #dfe2ef 1px, transparent 1px);"></div>
+  </div>
+
+  <!-- Golden Ratio Split Matrix: 61.8% to 38.2% -->
+  <main class="relative z-10 flex h-screen w-screen overflow-hidden golden-ratio-split">
+    <!-- LEFT COLUMN: 61.8% Pure Cognitive Flow & Editorial Mastery -->
+    <section class="golden-left-col flex-[0_0_61.8%] w-[61.8%] h-full flex flex-col justify-between p-space-2xl border-r border-outline-variant/20 relative backdrop-blur-[2px]">
+      <!-- Golden Spiral Abstract Wireframe Overlay -->
+      <div class="absolute inset-0 pointer-events-none opacity-20 overflow-hidden select-none">
+        <svg class="w-full h-full stroke-outline-variant/40 fill-none" preserveAspectRatio="none" viewBox="0 0 1000 618">
+          <!-- Primary Golden Rectangle Subdivision lines -->
+          <line stroke-dasharray="3 6" stroke-width="0.8" x1="618" x2="618" y1="0" y2="618"></line>
+          <line stroke-dasharray="3 6" stroke-width="0.8" x1="618" x2="1000" y1="382" y2="382"></line>
+          <line stroke-dasharray="3 6" stroke-width="0.8" x1="764" x2="764" y1="382" y2="618"></line>
+          <circle class="fill-primary" cx="618" cy="382" r="2.5"></circle>
+          <circle class="fill-outline" cx="0" cy="0" r="1.5"></circle>
+          <circle class="fill-outline" cx="1000" cy="618" r="1.5"></circle>
+          <!-- Phi Harmonic Spiral Curve (Subtle Vector) -->
+          <path class="stroke-primary/30" d="M 0 618 A 618 618 0 0 1 618 0 A 382 382 0 0 1 1000 382 A 236 236 0 0 1 764 618" stroke-width="0.75"></path>
+        </svg>
+      </div>
+
+      <!-- Top Branding & Mathematical Identity -->
+      <header class="relative z-10 flex items-center justify-between">
+        <div class="flex items-center space-x-space-md">
+          <div class="w-8 h-8 rounded border border-primary/30 bg-primary/5 flex items-center justify-center specular-border shadow-[0_0_15px_rgba(212,175,55,0.15)]">
+            <span class="text-primary font-headline-sm text-headline-sm italic leading-none select-none">φ</span>
+          </div>
+          <div>
+            <span class="font-label-lg text-label-lg tracking-wider text-on-surface font-semibold">Zenith 1.618</span>
+            <span class="block font-label-sm text-label-sm text-on-surface-variant/60 tracking-widest uppercase">Mathematical Study Protocol</span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-space-sm">
+          <span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded border border-outline-variant/30 bg-surface-container-low/60 backdrop-blur-md font-label-sm text-label-sm tracking-widest text-on-surface-variant uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            GRADE 9 COCKPIT
+          </span>
+          <span class="font-label-md text-label-md text-primary font-mono px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
+            φ = 1.618033
+          </span>
+        </div>
+      </header>
+
+      <!-- Center Hero Editorial Typography -->
+      <div class="relative z-10 max-w-2xl my-auto pr-space-xl">
+        <!-- Topic Tag -->
+        <div class="flex items-center gap-2 mb-space-md">
+          <span class="h-px w-8 bg-primary/40"></span>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-medium">Focused Syllabus Progression</span>
+        </div>
+        <!-- Headline -->
+        <h1 class="font-headline-lg text-headline-lg text-on-surface leading-[1.12] mb-space-lg font-light tracking-tight">
+          Master the Grade 9 syllabus through <span class="italic font-normal text-primary">harmonic</span>, distraction-free precision.
+        </h1>
+        <!-- Description -->
+        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-space-xl max-w-xl font-light">
+          Engineered around pure cognitive flow and mathematical rigor to accelerate your exam readiness. Track your syllabus progression, master high-yield topics, and review key concepts without visual noise.
+        </p>
+
+        <!-- Golden Ratio Analytical Micro-Metrics -->
+        <div class="grid grid-cols-3 gap-space-md pt-space-lg border-t border-outline-variant/20">
+          <div class="flex flex-col space-y-1">
+            <div class="flex items-center space-x-1.5">
+              <span class="material-symbols-outlined text-primary text-base">lens_blur</span>
+              <span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-semibold">100% Focused</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant/70">Pure visual silence</span>
+          </div>
+          <div class="flex flex-col space-y-1">
+            <div class="flex items-center space-x-1.5">
+              <span class="material-symbols-outlined text-primary text-base">filter_vintage</span>
+              <span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-semibold">Zero Noise</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant/70">Calculated cognitive load</span>
+          </div>
+          <div class="flex flex-col space-y-1">
+            <div class="flex items-center space-x-1.5">
+              <span class="material-symbols-outlined text-primary text-base">architecture</span>
+              <span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-semibold">Structured</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant/70">Curriculum-aligned mastery</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Frame Micro-Telemetry Coordinates -->
+      <footer class="relative z-10 flex items-center justify-between text-on-surface-variant/50 font-label-sm text-label-sm pt-space-sm border-t border-outline-variant/10">
+        <div class="flex items-center space-x-space-md">
+          <span>SEC: 09-CANON</span>
+          <span class="text-outline-variant/40">•</span>
+          <span>LATENCY: 0.00ms</span>
+          <span class="text-outline-variant/40">•</span>
+          <span>RATIO: 1 : 1.618</span>
+        </div>
+        <div class="font-mono text-primary/70">
+          LOC // [0.6180, 0.3820]
+        </div>
+      </footer>
+    </section>
+
+    <!-- RIGHT COLUMN: 38.2% Focused Authentication Monolith -->
+    <section class="golden-right-col flex-[0_0_38.2%] w-[38.2%] h-full flex flex-col justify-center items-center px-space-xl relative bg-surface-container-lowest/80">
+      <!-- Subtle Specular Lens Glow Behind Card -->
+      <div class="absolute w-72 h-72 rounded-full bg-primary/5 blur-[90px] pointer-events-none"></div>
+
+      <!-- Monolithic Glassmorphic Login Card -->
+      <div class="w-full max-w-sm rounded-xl p-8 bg-surface-container/60 backdrop-blur-2xl border border-outline-variant/30 specular-border golden-halo relative z-10 transition-all duration-300">
+        <!-- Header -->
+        <div class="mb-space-lg text-left">
+          <div class="flex items-center justify-between mb-1.5">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-medium">Sign In</h2>
+            <span class="material-symbols-outlined text-on-surface-variant/40 text-lg">lock_open</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">
+            Access your Grade 9 study cockpit
+          </p>
+        </div>
+
+        <!-- Form Elements -->
+        <form class="space-y-space-md" onsubmit="handleLandingEmailLogin(event)">
+          <!-- Identity Input -->
+          <div class="space-y-1.5 text-left">
+            <label class="block font-label-md text-label-md text-on-surface-variant tracking-wider uppercase" for="lpLoginEmail">Email or Student ID</label>
+            <div class="relative golden-glow-focus rounded transition-all">
+              <input id="lpLoginEmail" class="w-full bg-surface-container-lowest/90 border border-outline-variant/30 rounded px-3.5 py-2.5 text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/30 focus:border-primary focus:outline-none transition-colors" placeholder="name@institution.edu" required="" type="email" autocomplete="username"/>
+              <span class="material-symbols-outlined absolute right-3 top-2.5 text-outline-variant/60 text-lg pointer-events-none">fingerprint</span>
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="space-y-1.5 text-left">
+            <div class="flex items-center justify-between">
+              <label class="block font-label-md text-label-md text-on-surface-variant tracking-wider uppercase" for="lpLoginPassword">Password</label>
+              <a class="font-label-sm text-label-sm text-primary/80 hover:text-primary transition-colors underline-offset-4 hover:underline" href="javascript:void(0)" onclick="alert('Please contact your administrator or instructor to reset your password.')">
+                Forgot password?
+              </a>
+            </div>
+            <div class="relative golden-glow-focus rounded transition-all">
+              <input id="lpLoginPassword" class="w-full bg-surface-container-lowest/90 border border-outline-variant/30 rounded px-3.5 py-2.5 text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/30 focus:border-primary focus:outline-none transition-colors" placeholder="••••••••••••" required="" type="password" autocomplete="current-password"/>
+              <span class="material-symbols-outlined absolute right-3 top-2.5 text-outline-variant/60 text-lg pointer-events-none">vpn_key</span>
+            </div>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div id="lpLoginError" class="hidden text-xs text-rose-400 bg-rose-950/40 border border-rose-800/50 rounded p-2"></div>
+
+          <!-- Primary Submit Action -->
+          <div class="pt-1">
+            <button id="btnLpLoginSubmit" class="w-full group relative flex items-center justify-center gap-2 py-2.5 px-space-md rounded bg-primary-container/15 hover:bg-primary-container/25 border border-primary/40 hover:border-primary/80 text-on-surface font-label-lg text-label-lg transition-all duration-200 specular-border shadow-[0_0_20px_rgba(212,175,55,0.12)] active:scale-[0.99]" type="submit">
+              <span>Sign In</span>
+              <span class="material-symbols-outlined text-primary text-base group-hover:translate-x-0.5 transition-transform duration-150">arrow_forward</span>
+            </button>
+          </div>
+
+          <!-- Proportional Divider -->
+          <div class="relative flex py-1 items-center">
+            <div class="flex-grow border-t border-outline-variant/25"></div>
+            <span class="flex-shrink mx-3 font-label-sm text-label-sm uppercase tracking-widest text-outline-variant/70">or</span>
+            <div class="flex-grow border-t border-outline-variant/25"></div>
+          </div>
+
+          <!-- Secondary Action: Guest Cockpit -->
+          <button class="w-full flex items-center justify-center gap-2 py-2 px-space-md rounded bg-surface-container-lowest/40 hover:bg-surface-container-low/70 border border-outline-variant/20 hover:border-outline-variant/40 text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-all duration-150 active:scale-[0.99]" type="button" onclick="handleLandingGuestAccess()">
+            <span>Continue as Guest</span>
+            <span class="material-symbols-outlined text-sm opacity-60">north_east</span>
+          </button>
+        </form>
+
+        <!-- Cryptographic Session Guarantee -->
+        <div class="mt-space-lg pt-space-md border-t border-outline-variant/15 flex items-center justify-center gap-1.5 text-on-surface-variant/40 font-label-sm text-label-sm tracking-wider">
+          <span class="material-symbols-outlined text-[13px] text-primary/60">verified_user</span>
+          <span>256-bit encrypted academic cockpit session</span>
+        </div>
+      </div>
+
+      <!-- Mathematical Proportional Anchor Footnote -->
+      <div class="absolute bottom-space-2xl text-center pointer-events-none">
+        <span class="font-label-sm text-label-sm text-outline-variant/50 tracking-widest uppercase">
+          ZONE 02 // INSPECTION VOID (38.2%)
+        </span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    async function handleLandingEmailLogin(e) {
+      if (e) e.preventDefault();
+      const email = document.getElementById('lpLoginEmail').value;
+      const pass = document.getElementById('lpLoginPassword').value;
+      const errEl = document.getElementById('lpLoginError');
+      const btn = document.getElementById('btnLpLoginSubmit');
+      if (errEl) errEl.classList.add('hidden');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span>Signing In...</span>';
+      }
+
+      if (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.signInWithEmail === 'function') {
+        const res = await ZenithAuth.signInWithEmail(email, pass);
+        if (res.error) {
+          if (errEl) {
+            errEl.textContent = res.error.message || 'Authentication failed. Please verify credentials.';
+            errEl.classList.remove('hidden');
+          }
+          if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = '<span>Sign In</span><span class="material-symbols-outlined text-primary text-base">arrow_forward</span>';
+          }
+        } else {
+          sessionStorage.setItem('zenith_current_view', 'dashboard');
+          window.location.href = 'index.html';
+        }
+      } else {
+        sessionStorage.setItem('zenith_guest_active', 'true');
+        sessionStorage.setItem('zenith_current_view', 'dashboard');
+        window.location.href = 'index.html';
+      }
+    }
+
+    function handleLandingGuestAccess() {
+      sessionStorage.setItem('zenith_guest_active', 'true');
+      sessionStorage.setItem('zenith_current_view', 'dashboard');
+      window.location.href = 'index.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (typeof ZenithAuth !== 'undefined' && typeof ZenithAuth.init === 'function') {
+        await ZenithAuth.init();
+        const user = ZenithAuth.getUser();
+        if (user && !user.isGuest) {
+          window.location.href = 'index.html';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
