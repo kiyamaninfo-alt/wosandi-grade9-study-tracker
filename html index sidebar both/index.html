@@ -20266,6 +20266,8 @@ function openSidebarModal() {
       }
 
       function openStudyModal() {
+        const lp = document.getElementById('zenithLandingPage');
+        if (lp && lp.style.display !== 'none') return; // Strictly never open popup on landing page
         const modal = document.getElementById('studyModal');
         if (!modal) return;
         const cb = document.getElementById('studyModalDontShowCheckbox');
@@ -20327,9 +20329,17 @@ function openSidebarModal() {
       });
 
       function checkAutoOpenStudyModal() {
+        const lp = document.getElementById('zenithLandingPage');
+        if (lp && lp.style.display !== 'none') return; // Strictly disable popup on landing page
+        const user = (typeof ZenithAuth !== 'undefined') ? ZenithAuth.getUser() : null;
+        if (!user || user.isGuest) return; // Do not auto-open popup for landing / guest sessions
         try {
           if (!isStudyModalNeverShow()) {
-            setTimeout(openStudyModal, 800);
+            setTimeout(() => {
+              const currentLp = document.getElementById('zenithLandingPage');
+              if (currentLp && currentLp.style.display !== 'none') return;
+              openStudyModal();
+            }, 800);
           }
         } catch(e) {}
       }
@@ -20353,6 +20363,7 @@ function openSidebarModal() {
       }, { passive: true });
 
       function showLandingPage() {
+        if (typeof closeStudyModal === 'function') closeStudyModal();
         const lp = document.getElementById('zenithLandingPage');
         const dv = document.getElementById('zenithDashboardView');
         const nav = document.querySelector('.mobile-bottom-nav');
