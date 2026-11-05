@@ -10,7 +10,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Noto+Sans+Sinhala:wght@400..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="/env.js"></script>
@@ -60,7 +60,7 @@
         --text-muted: #7f8fa6;
       }
       body {
- font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
+ font-family: 'Geist', 'Noto Sans Sinhala', sans-serif;
         background: linear-gradient(135deg, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
         margin: 0;
         padding: 14px;
@@ -786,7 +786,7 @@
         background: #ffffff;
         border: 1.5px solid rgba(0, 0, 0, 0.08);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: 'Geist', 'Noto Sans Sinhala', sans-serif;
         font-size: 11px;
         font-weight: 500;
         color: #2d3436;
@@ -1207,7 +1207,7 @@
         border: 1px solid rgba(140, 122, 230, 0.18);
         border-left: 5px solid var(--primary, #8c7ae6);
         transition: all 0.2s ease;
-        font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
+        font-family: 'Geist', 'Noto Sans Sinhala', sans-serif;
       }
       .focus-timer-header {
         display: flex;
@@ -1699,7 +1699,7 @@
       .focus-digital-time {
         font-size: 32px;
         font-weight: 800;
-        font-family: 'Poppins', monospace, sans-serif;
+        font-family: 'Geist', monospace, sans-serif; font-variant-numeric: tabular-nums; font-feature-settings: 'tnum';
         color: var(--text-dark, #2d3436);
         letter-spacing: 0.5px;
         line-height: 1;
@@ -1968,7 +1968,7 @@
       }
       .focus-target-modal-body {
         padding: 16px;
-        font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
+        font-family: 'Geist', 'Noto Sans Sinhala', sans-serif;
         max-height: 82vh;
         overflow-y: auto;
       }
@@ -5055,6 +5055,26 @@
         }
       }
 
+      
+      /* Global Numbers, countdown, velocity scores: Geist + tabular-nums */
+      .time-num,
+      .timer-clock,
+      .focus-timer-clock,
+      .velocity-box,
+      .velocity-date-badge,
+      .countdown-container,
+      .stat-value,
+      .score-badge,
+      .radar-val,
+      .telemetry-num,
+      .zenith-lp-phi-num,
+      .zenith-lp-coord-right,
+      [data-numeric] {
+        font-family: 'Geist', monospace, sans-serif !important;
+        font-variant-numeric: tabular-nums !important;
+        font-feature-settings: "tnum" 1 !important;
+      }
+
       /* --- Zenith 1.618 Harmonic Obsidian Minimal Landing Page (Stitch Design System) --- */
       .zenith-landing-wrap {
         display: none;
@@ -5062,7 +5082,7 @@
         min-height: 100vh;
         margin: 0;
         padding: 0;
-        font-family: 'Geist\, 'Poppins\, 'Noto Sans Sinhala\, sans-serif;
+        font-family: 'Geist', 'Noto Sans Sinhala', sans-serif;
         color: #dfe2ef;
         background: #090d16;
         position: relative;
@@ -5150,7 +5170,7 @@
       }
       .zenith-lp-phi-symbol {
         color: #f2ca50;
-        font-family: 'Newsreader\, serif;
+        font-family: 'Geist', sans-serif;
         font-size: 20px;
         font-style: italic;
         line-height: 1;
@@ -5238,7 +5258,7 @@
         color: #f2ca50;
       }
       .zenith-lp-hero-h1 {
-        font-family: 'Newsreader\, serif;
+        font-family: 'Geist', sans-serif;
         font-size: 42px;
         font-weight: 300;
         line-height: 1.15;
@@ -5362,7 +5382,7 @@
         margin-bottom: 4px;
       }
       .zenith-lp-card-h2 {
-        font-family: 'Newsreader\, serif;
+        font-family: 'Geist', sans-serif;
         font-size: 24px;
         font-weight: 500;
         letter-spacing: -0.01em;
@@ -7085,7 +7105,7 @@
       font-size: 16px;
       font-weight: 800;
       color: var(--text-main, #ffffff);
-      font-family: 'Space Grotesk', monospace;
+      font-family: 'Geist', monospace, sans-serif; font-variant-numeric: tabular-nums; font-feature-settings: 'tnum';
     }
     .portal-quick-chip .chip-lbl {
       font-size: 10px;
@@ -15505,7 +15525,7 @@ window.supabaseClient = supabase;
               return;
             }
 
-            ctx.font = 'bold 9px Poppins, sans-serif';
+            ctx.font = 'bold 9px Geist, "Noto Sans Sinhala", sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'bottom';
 

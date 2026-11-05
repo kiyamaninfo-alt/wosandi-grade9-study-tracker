@@ -7,7 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="app-logo.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Noto+Sans+Sinhala:wght@400..700&display=swap" rel="stylesheet">
     <script src="/env.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="curriculum-catalog.js"></script>
@@ -67,12 +67,17 @@
         color-scheme: dark;
       }
       body {
-        font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
+        font-family: 'Geist', 'Noto Sans Sinhala', sans-serif;
         background-color: var(--bg-color);
         color: var(--text-dark);
         margin: 0;
         padding: 10px;
         font-size: 11px;
+      }
+      .stat-num, .counter, .unit-badge, .tab-badge, [data-numeric] {
+        font-family: 'Geist', sans-serif;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum";
       }
       :root.dark-mode body, body.dark-mode {
         background-color: var(--bg-color);

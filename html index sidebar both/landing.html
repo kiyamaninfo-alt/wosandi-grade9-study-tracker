@@ -11,7 +11,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&amp;family=Noto+Sans+Sinhala:wght@400..700&amp;display=swap" rel="stylesheet"/>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script id="tailwind-config">
@@ -86,18 +86,18 @@
             "gutter-sm": "1rem"
           },
           "fontFamily": {
-            "headline-md": ["Newsreader", "serif"],
-            "headline-sm": ["Newsreader", "serif"],
-            "body-lg": ["Geist", "sans-serif"],
-            "display-lg-mobile": ["Newsreader", "serif"],
-            "headline-lg": ["Newsreader", "serif"],
-            "headline-lg-mobile": ["Newsreader", "serif"],
-            "label-md": ["Geist", "sans-serif"],
-            "body-sm": ["Geist", "sans-serif"],
-            "display-lg": ["Newsreader", "serif"],
-            "label-lg": ["Geist", "sans-serif"],
-            "label-sm": ["Geist", "sans-serif"],
-            "body-md": ["Geist", "sans-serif"]
+            "headline-md": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "headline-sm": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "body-lg": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "display-lg-mobile": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "headline-lg": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "headline-lg-mobile": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "label-md": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "body-sm": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "display-lg": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "label-lg": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "label-sm": ["Geist", "Noto Sans Sinhala", "sans-serif"],
+            "body-md": ["Geist", "Noto Sans Sinhala", "sans-serif"]
           },
           "fontSize": {
             "headline-md": ["26px", { lineHeight: "34px", letterSpacing: "-0.01em", fontWeight: "400" }],
@@ -128,6 +128,13 @@
       box-shadow: 0 0 50px -10px rgba(212, 175, 55, 0.08);
     }
     .golden-glow-focus:focus-within {
+      box-shadow: 0 0 20px -3px rgba(212, 175, 55, 0.22);
+    }
+    .font-mono, [data-numeric], .tabular-nums {
+      font-family: 'Geist', monospace !important;
+      font-variant-numeric: tabular-nums !important;
+      font-feature-settings: "tnum" 1 !important;
+    }
       box-shadow: 0 0 20px -3px rgba(212, 175, 55, 0.22);
     }
     @media (max-width: 900px) {
