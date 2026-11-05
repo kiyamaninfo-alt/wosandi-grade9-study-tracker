@@ -6461,6 +6461,11 @@
       }
 
       /* --- Floating Quick Help / How to Study FAB Button --- */
+      #zenithLandingPage:not([style*="display: none"]) ~ * .zenith-floating-help-btn,
+      #zenithLandingPage:not([style*="display: none"]) ~ .zenith-floating-help-btn {
+        display: none !important;
+      }
+
       .zenith-floating-help-btn {
         position: fixed;
         bottom: 24px;
@@ -8509,6 +8514,13 @@
         </div>
       </div>
     </div>
+
+    <!-- Floating Quick Help / How to Study FAB Button (Dashboard View Only) -->
+    <button type="button" class="zenith-floating-help-btn" onclick="openStudyModal()" title="ස්වයංක්‍රීය මගපෙන්වීම: ක්‍රියා කරන ආකාරය (How to Study &amp; Automated Engine Guide)" aria-label="How to Study Guide">
+      <span class="help-btn-pulse"></span>
+      <span class="help-btn-icon">💡</span>
+      <span class="help-btn-text">How to Study?</span>
+    </button>
     </div> <!-- /zenithDashboardView -->
 
 <!-- Embedded Sidebar Modal -->
@@ -20212,13 +20224,6 @@ function openSidebarModal() {
       </div> <!-- /.study-modal-card -->
     </div>
 
-    <!-- Floating Quick Help / How to Study FAB Button -->
-    <button type="button" class="zenith-floating-help-btn" onclick="openStudyModal()" title="ස්වයංක්‍රීය මගපෙන්වීම: ක්‍රියා කරන ආකාරය (How to Study &amp; Automated Engine Guide)" aria-label="How to Study Guide">
-      <span class="help-btn-pulse"></span>
-      <span class="help-btn-icon">💡</span>
-      <span class="help-btn-text">How to Study?</span>
-    </button>
-
     <!-- Mobile Bottom Navigation Bar -->
     <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
       <button type="button" class="mob-nav-item active" onclick="scrollToTopDashboard()">
@@ -20367,9 +20372,11 @@ function openSidebarModal() {
         const lp = document.getElementById('zenithLandingPage');
         const dv = document.getElementById('zenithDashboardView');
         const nav = document.querySelector('.mobile-bottom-nav');
+        const helpBtn = document.querySelector('.zenith-floating-help-btn');
         if (lp) lp.style.display = 'block';
         if (dv) dv.style.display = 'none';
         if (nav) nav.style.display = 'none';
+        if (helpBtn) helpBtn.style.display = 'none';
         sessionStorage.setItem('zenith_current_view', 'landing');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -20385,9 +20392,11 @@ function openSidebarModal() {
         const lp = document.getElementById('zenithLandingPage');
         const dv = document.getElementById('zenithDashboardView');
         const nav = document.querySelector('.mobile-bottom-nav');
+        const helpBtn = document.querySelector('.zenith-floating-help-btn');
         if (lp) lp.style.display = 'none';
         if (dv) dv.style.display = 'block';
         if (nav && window.innerWidth <= 768) nav.style.display = 'flex';
+        if (helpBtn) helpBtn.style.display = 'inline-flex';
         sessionStorage.setItem('zenith_current_view', 'dashboard');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (typeof refreshTelemetry === 'function') {
