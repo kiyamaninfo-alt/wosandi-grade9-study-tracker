@@ -236,7 +236,7 @@
         border-color: var(--primary);
       }
       .form-input:disabled {
-        background: #f1f2f6;
+        background: var(--bg);
         color: var(--text-disabled);
         cursor: not-allowed;
       }
@@ -457,8 +457,8 @@
         display: none;
         line-height: 1.4;
       }
-      .status-box.success { background: var(--primary-muted); color: var(--primary); border: 1px solid #c8e6c9; }
-      .status-box.error { background: #FFEBEE; color: var(--error); border: 1px solid #FFCDD2; }
+      .status-box.success { background: var(--primary-muted); color: var(--primary); border: 1px solid var(--border); }
+      .status-box.error { background: rgba(198, 40, 40, 0.12); color: var(--error); border: 1px solid rgba(198, 40, 40, 0.3); }
       :root.dark-mode .status-box.success, body.dark-mode .status-box.success { background: var(--primary-muted); color: var(--success); border-color: rgba(129, 199, 132, 0.35); }
       :root.dark-mode .status-box.error, body.dark-mode .status-box.error { background: rgba(239, 83, 80, 0.15); color: var(--error); border-color: rgba(239, 83, 80, 0.35); }
 
@@ -497,10 +497,10 @@
 
     <!-- Tab Navigation (4 Tabs) -->
     <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchTab('tabSearch')">🔍 සොයන්න</button>
-      <button class="tab-btn" onclick="switchTab('tabAdd')">➕ එක් කරන්න</button>
-      <button class="tab-btn" onclick="switchTab('tabEdit')">✏️ සංස්කරණය</button>
-      <button class="tab-btn" onclick="switchTab('tabSubjects')">📚 විෂයයන්</button>
+      <button class="tab-btn active" onclick="switchTab('tabSearch')">සොයන්න</button>
+      <button class="tab-btn" onclick="switchTab('tabAdd')">එක් කරන්න</button>
+      <button class="tab-btn" onclick="switchTab('tabEdit')">සංස්කරණය</button>
+      <button class="tab-btn" onclick="switchTab('tabSubjects')">විෂයයන්</button>
     </div>
 
     <!-- 1. SEARCH & JUMP TAB -->
@@ -553,7 +553,7 @@
     <div id="tabEdit" class="tab-content">
       <div class="card">
         <div id="editEmptyMsg" style="text-align: center; color: var(--text-muted); padding: 20px 0;">
-          කරුණාකර <strong>🔍 සොයන්න</strong> ටැබ් එක වෙත ගොස් සංස්කරණය කිරීමට අවශ්‍ය පාඩමෙහි <strong>✏️ Edit</strong> ඔබන්න.
+          කරුණාකර <strong>සොයන්න</strong> ටැබ් එක වෙත ගොස් සංස්කරණය කිරීමට අවශ්‍ය පාඩමෙහි <strong>Edit</strong> ඔබන්න.
         </div>
 
         <form id="editForm" style="display: none;" onsubmit="submitEditLesson(event)">
@@ -571,8 +571,8 @@
           </div>
 
           <div style="display: flex; gap: 6px; margin-top: 12px;">
-            <button type="submit" class="btn-primary" id="editBtn" style="flex: 2;">💾 නම යාවත්කාලීන කරන්න</button>
-            <button type="button" class="btn-secondary" id="editDeleteBtn" onclick="deleteLesson(currentEditingItem ? currentEditingItem.subject : null, currentEditingItem ? currentEditingItem.unitNum : null)" style="flex: 1; background: #e74c3c; color: #fff; border: none; padding: 8px 10px; font-weight: 600; font-size: 11px; border-radius: 6px; cursor: pointer;">🗑️ මකන්න</button>
+            <button type="submit" class="btn-primary" id="editBtn" style="flex: 2;">නම යාවත්කාලීන කරන්න</button>
+            <button type="button" class="btn-secondary" id="editDeleteBtn" onclick="deleteLesson(currentEditingItem ? currentEditingItem.subject : null, currentEditingItem ? currentEditingItem.unitNum : null)" style="flex: 1; background: var(--error); color: #fff; border: none; padding: 8px 10px; font-weight: 600; font-size: 11px; border-radius: 6px; cursor: pointer;">මකන්න</button>
           </div>
         </form>
         <div class="status-box" id="editStatus"></div>
@@ -584,17 +584,17 @@
       <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
           <div>
-            <div style="font-weight: 700; font-size: 12px; color: var(--text-dark);">📚 විෂය කළමනාකරණය</div>
+            <div style="font-weight: 700; font-size: 12px; color: var(--text-dark);">විෂය කළමනාකරණය</div>
             <div style="font-size: 9.5px; color: var(--text-muted);" id="activeSubjectsCount">ක්‍රියාකාරී: 13 / 13</div>
           </div>
           <button type="button" class="btn-secondary" onclick="resetSubjectsToDefault()" style="width: auto; padding: 4px 8px; font-size: 9px;" title="පෙරනිමි විෂයයන් 13 යළි පිහිටුවන්න">
-            🔄 පෙරනිමි (Reset)
+            පෙරනිමි (Reset)
           </button>
         </div>
 
         <!-- Add / Edit Subject Form -->
         <form id="subjectForm" onsubmit="submitSubjectForm(event)">
-          <div style="font-weight: 700; font-size: 11px; margin-bottom: 8px; color: var(--primary);" id="subjFormTitle">➕ නව විෂයයක් එක් කරන්න</div>
+          <div style="font-weight: 700; font-size: 11px; margin-bottom: 8px; color: var(--primary);" id="subjFormTitle">නව විෂයයක් එක් කරන්න</div>
           
           <div class="form-group">
             <label class="form-label">විෂය කේතය (Subject Code) *</label>
@@ -921,9 +921,9 @@
         let html = '';
         g9Subjects.forEach((s) => {
           const isActive = s.active !== false;
-          const color = s.color || '#8c7ae6';
-          const statusBg = isActive ? 'rgba(46, 204, 113, 0.15)' : 'rgba(127, 143, 166, 0.15)';
-          const statusColor = isActive ? '#2ecc71' : '#7f8fa6';
+          const color = s.color || 'var(--primary)';
+          const statusBg = isActive ? 'rgba(129, 199, 132, 0.15)' : 'rgba(160, 164, 171, 0.15)';
+          const statusColor = isActive ? 'var(--success)' : 'var(--text-muted)';
           const statusText = isActive ? 'ක්‍රියාකාරී' : 'අක්‍රියයි';
 
           html += `
@@ -945,10 +945,10 @@
               </div>
               <div class="subj-card-actions">
                 <button type="button" class="action-btn" onclick="toggleSubjectActive('${s.code}')">
-                  ${isActive ? '⏸️ අක්‍රිය කරන්න' : '▶️ ක්‍රියාකාරී කරන්න'}
+                  ${isActive ? 'අක්‍රිය කරන්න' : 'ක්‍රියාකාරී කරන්න'}
                 </button>
-                <button type="button" class="action-btn edit" onclick="startEditSubject('${s.code}')">✏️ Edit</button>
-                <button type="button" class="action-btn del" onclick="deleteSubject('${s.code}')">🗑️ මකන්න</button>
+                <button type="button" class="action-btn edit" onclick="startEditSubject('${s.code}')">Edit</button>
+                <button type="button" class="action-btn del" onclick="deleteSubject('${s.code}')">මකන්න</button>
               </div>
             </div>
           `;
@@ -980,7 +980,7 @@
       }
 
       function resetSubjectsToDefault() {
-        const typed = prompt("⚠️ සියලු විෂයයන් පෙරනිමි තත්ත්වයට පත් කිරීමට 'RESET' ලෙස ටයිප් කරන්න / Type 'RESET' to restore default subjects:");
+        const typed = prompt("සියලු විෂයයන් පෙරනිමි තත්ත්වයට පත් කිරීමට 'RESET' ලෙස ටයිප් කරන්න / Type 'RESET' to restore default subjects:");
         if (!typed || typed.trim().toUpperCase() !== 'RESET') {
           if (typed !== null) alert("ක්‍රියාව අවලංගු විය: 'RESET' නිවැරදිව ටයිප් කරන්න / Action canceled: Type 'RESET' to confirm.");
           return;
@@ -998,15 +998,15 @@
         if (!s) return;
         editingSubjCode = s.code;
 
-        document.getElementById('subjFormTitle').innerText = `✏️ විෂය සංස්කරණය: [${s.code}]`;
+        document.getElementById('subjFormTitle').innerText = `විෂය සංස්කරණය: [${s.code}]`;
         document.getElementById('subjCode').value = s.code;
         document.getElementById('subjCode').disabled = true;
         document.getElementById('subjNameSi').value = s.nameSi || '';
         document.getElementById('subjNameEn').value = s.nameEn || '';
-        document.getElementById('subjColor').value = s.color || '#0984e3';
+        document.getElementById('subjColor').value = s.color || '#2E7D32';
         document.getElementById('subjIcon').value = s.icon || '📘';
         document.getElementById('subjActive').checked = s.active !== false;
-        document.getElementById('subjSubmitBtn').innerText = "💾 විෂය යාවත්කාලීන කරන්න";
+        document.getElementById('subjSubmitBtn').innerText = "විෂය යාවත්කාලීන කරන්න";
         document.getElementById('cancelEditSubjBtn').style.display = 'block';
 
         document.getElementById('subjectForm').scrollIntoView({ behavior: 'smooth' });
@@ -1014,12 +1014,12 @@
 
       function cancelEditSubject() {
         editingSubjCode = null;
-        document.getElementById('subjFormTitle').innerText = "➕ නව විෂයයක් එක් කරන්න";
+        document.getElementById('subjFormTitle').innerText = "නව විෂයයක් එක් කරන්න";
         document.getElementById('subjCode').value = '';
         document.getElementById('subjCode').disabled = false;
         document.getElementById('subjNameSi').value = '';
         document.getElementById('subjNameEn').value = '';
-        document.getElementById('subjColor').value = '#0984e3';
+        document.getElementById('subjColor').value = '#2E7D32';
         document.getElementById('subjIcon').value = '📘';
         document.getElementById('subjActive').checked = true;
         document.getElementById('subjSubmitBtn').innerText = "+ නව විෂය එක් කරන්න";
@@ -1320,9 +1320,9 @@
               </div>
               <div class="res-unit">${escapeHtml(item.unit)}</div>
               <div class="res-actions">
-                <button type="button" class="action-btn jump" onclick="jumpToRow('${item.subject}', '${escapeHtml(item.code)}', ${item.unitNum})">🎯 පනින්න</button>
-                <button type="button" class="action-btn edit" onclick="startEditing('${item.subject}', ${item.unitNum})">✏️ Edit</button>
-                <button type="button" class="action-btn del" onclick="deleteLesson('${item.subject}', ${item.unitNum})" style="background: rgba(231, 76, 60, 0.15); color: #e74c3c;">🗑️ මකන්න</button>
+                <button type="button" class="action-btn jump" onclick="jumpToRow('${item.subject}', '${escapeHtml(item.code)}', ${item.unitNum})">පනින්න</button>
+                <button type="button" class="action-btn edit" onclick="startEditing('${item.subject}', ${item.unitNum})">Edit</button>
+                <button type="button" class="action-btn del" onclick="deleteLesson('${item.subject}', ${item.unitNum})" style="background: rgba(239, 83, 80, 0.15); color: var(--error);">මකන්න</button>
               </div>
             </div>
           `;
@@ -1658,7 +1658,7 @@
           }
 
           btn.disabled = false;
-          btn.innerText = "💾 නම යාවත්කාලීන කරන්න";
+          btn.innerText = "නම යාවත්කාලීන කරන්න";
           showStatus('editStatus', `[${currentEditingItem.subject}] ඒකකය ${formattedUnitNum} සාර්ථකව යාවත්කාලීන කරන ලදී!`, true);
 
           await loadSyllabus();
@@ -1667,7 +1667,7 @@
           }
         } catch (err) {
           btn.disabled = false;
-          btn.innerText = "💾 නම යාවත්කාලීන කරන්න";
+          btn.innerText = "නම යාවත්කාලීන කරන්න";
           showStatus('editStatus', "දෝෂයකි: " + (err.message || "යාවත්කාලීන කිරීම අසාර්ථක විය"), false);
         }
       }

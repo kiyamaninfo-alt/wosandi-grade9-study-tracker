@@ -223,13 +223,13 @@
           color: #fff;
         }
         .zenith-btn-edit {
-          background: rgba(59, 130, 246, 0.15);
-          color: #60a5fa;
-          border: 1px solid rgba(59, 130, 246, 0.3);
+          background: rgba(100, 181, 246, 0.15);
+          color: #64B5F6;
+          border: 1px solid rgba(100, 181, 246, 0.3);
         }
         .zenith-btn-edit:hover {
-          background: #3b82f6;
-          color: #fff;
+          background: #64B5F6;
+          color: #0A1F0C;
         }
         .zenith-admin-filter-bar {
           display: flex;
@@ -249,12 +249,12 @@
           outline: none;
         }
         .zenith-admin-input:focus {
-          border-color: #6366f1;
+          border-color: #66BB6A;
         }
         .zenith-close-btn {
           background: transparent;
           border: none;
-          color: #94a3b8;
+          color: #A0A4AB;
           font-size: 20px;
           cursor: pointer;
           width: 36px;
@@ -335,14 +335,14 @@
 
               <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius:14px; padding: 20px;">
                 <h3 style="margin-top:0;font-size:16px;">Platform Status & Cloud Sync</h3>
-                <p style="color:#94a3b8;font-size:13px;line-height:1.6;">
+                <p style="color:#A0A4AB;font-size:13px;line-height:1.6;">
                   Zenith O-Level Multi-Tenant Engine is running on Supabase. User isolation is enforced by <code>user_id</code> and safe row-level policies. Legacy Wosandi tracker data is preserved with null <code>user_id</code>.
                 </p>
                 <div style="display:flex; gap:12px; margin-top:16px;">
-                  <button class="zenith-btn-sm" style="background:#4f46e5;color:#fff;padding:8px 16px;" id="btnAdminRefreshAll">
+                  <button class="zenith-btn-sm" style="background:#66BB6A;color:#0A1F0C;font-weight:700;padding:8px 16px;" id="btnAdminRefreshAll">
                     ↻ Refresh Global Telemetry
                   </button>
-                  <button class="zenith-btn-sm" style="background:#059669;color:#fff;padding:8px 16px;" id="btnAdminExportAll">
+                  <button class="zenith-btn-sm" style="background:#2A2A2A;color:#E8EAED;border:1px solid #3A3A3A;font-weight:600;padding:8px 16px;" id="btnAdminExportAll">
                     ↓ Export Global JSON Snapshot
                   </button>
                 </div>
@@ -353,7 +353,7 @@
             <div class="zenith-admin-tab-panel" id="zenithAdminPanel-users">
               <div class="zenith-admin-filter-bar">
                 <input type="text" class="zenith-admin-input" id="adminUserSearch" placeholder="Search by name, email or grade..." style="min-width:280px;" />
-                <span id="adminUserCountBadge" style="font-size:13px;color:#94a3b8;">Loading users...</span>
+                <span id="adminUserCountBadge" style="font-size:13px;color:#A0A4AB;">Loading users...</span>
               </div>
               <div class="zenith-admin-table-container">
                 <table class="zenith-admin-table" id="adminUsersTable">
@@ -368,7 +368,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td colspan="6" style="text-align:center;padding:24px;color:#94a3b8;">Loading user profiles...</td></tr>
+                    <tr><td colspan="6" style="text-align:center;padding:24px;color:#A0A4AB;">Loading user profiles...</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -378,7 +378,7 @@
             <div class="zenith-admin-tab-panel" id="zenithAdminPanel-sessions">
               <div class="zenith-admin-filter-bar">
                 <input type="text" class="zenith-admin-input" id="adminSessionSearch" placeholder="Filter by subject or lesson..." style="min-width:260px;" />
-                <span id="adminSessionCountBadge" style="font-size:13px;color:#94a3b8;">Loading sessions...</span>
+                <span id="adminSessionCountBadge" style="font-size:13px;color:#A0A4AB;">Loading sessions...</span>
               </div>
               <div class="zenith-admin-table-container">
                 <table class="zenith-admin-table" id="adminSessionsTable">
@@ -394,7 +394,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">Loading study sessions...</td></tr>
+                    <tr><td colspan="7" style="text-align:center;padding:24px;color:#A0A4AB;">Loading study sessions...</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -404,7 +404,7 @@
             <div class="zenith-admin-tab-panel" id="zenithAdminPanel-papers">
               <div class="zenith-admin-filter-bar">
                 <input type="text" class="zenith-admin-input" id="adminPaperSearch" placeholder="Filter by subject..." style="min-width:260px;" />
-                <span id="adminPaperCountBadge" style="font-size:13px;color:#94a3b8;">Loading papers...</span>
+                <span id="adminPaperCountBadge" style="font-size:13px;color:#A0A4AB;">Loading papers...</span>
               </div>
               <div class="zenith-admin-table-container">
                 <table class="zenith-admin-table" id="adminPapersTable">
@@ -420,7 +420,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">Loading exam papers...</td></tr>
+                    <tr><td colspan="7" style="text-align:center;padding:24px;color:#A0A4AB;">Loading exam papers...</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -431,7 +431,7 @@
               <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius:14px; padding: 20px; margin-bottom: 20px;">
                 <h4 style="margin:0 0 12px 0;">Post Broadcast Announcement</h4>
                 <div style="display:flex; flex-direction:column; gap:12px;">
-                  <input type="text" id="adminAnnounceTitle" class="zenith-admin-input" placeholder="Title (e.g. 🎯 2nd Term Examination Dates Released!)" />
+                  <input type="text" id="adminAnnounceTitle" class="zenith-admin-input" placeholder="Title (e.g. 2nd Term Examination Dates Released!)" />
                   <textarea id="adminAnnounceMsg" class="zenith-admin-input" rows="3" placeholder="Message content for all students..."></textarea>
                   <div style="display:flex; gap:12px; align-items:center;">
                     <select id="adminAnnounceGrade" class="zenith-admin-input" style="width:160px;">
@@ -443,8 +443,8 @@
                       <option value="7">Grade 7</option>
                       <option value="6">Grade 6</option>
                     </select>
-                    <button class="zenith-btn-sm" id="btnAdminPostAnnouncement" style="background:#4f46e5;color:#fff;padding:8px 20px;">
-                      📢 Publish to Students
+                    <button class="zenith-btn-sm" id="btnAdminPostAnnouncement" style="background:#66BB6A;color:#0A1F0C;font-weight:700;padding:8px 20px;">
+                      Publish to Students
                     </button>
                   </div>
                 </div>
@@ -462,7 +462,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td colspan="4" style="text-align:center;padding:20px;color:#94a3b8;">No announcements posted yet.</td></tr>
+                    <tr><td colspan="4" style="text-align:center;padding:20px;color:#A0A4AB;">No announcements posted yet.</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -679,8 +679,8 @@
         <tr>
           <td><strong>${u.email || 'N/A'}</strong></td>
           <td>${u.full_name || 'Student'}</td>
-          <td><span style="background:rgba(99,102,241,0.2);padding:2px 8px;border-radius:6px;color:#a5b4fc;font-weight:600;">Grade ${u.grade || 9}</span></td>
-          <td><span style="color:${u.role === 'admin' ? '#ef4444' : '#10b981'};font-weight:600;">${u.role || 'student'}</span></td>
+          <td><span style="background:rgba(102,187,106,0.15);padding:2px 8px;border-radius:6px;color:#81C784;font-weight:600;">Grade ${u.grade || 9}</span></td>
+          <td><span style="color:${u.role === 'admin' ? '#EF5350' : '#81C784'};font-weight:600;">${u.role || 'student'}</span></td>
           <td>${u.created_at ? new Date(u.created_at).toLocaleDateString() : 'N/A'}</td>
           <td>
             <button class="zenith-btn-sm zenith-btn-edit" onclick="ZenithAdmin.inspectUser('${u.id}')">Inspect</button>
@@ -754,13 +754,13 @@
       if (badge) badge.textContent = `Showing last ${list.length} sessions`;
 
       if (!list || list.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No study sessions recorded yet.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:24px;color:#A0A4AB;">No study sessions recorded yet.</td></tr>';
         return;
       }
 
       tbody.innerHTML = list.map(s => {
         const mins = Math.round((s.duration_seconds || 0) / 60);
-        const scope = s.user_id ? `${s.user_id.slice(0, 8)}...` : '<span style="color:#f59e0b;">Wosandi Legacy</span>';
+        const scope = s.user_id ? `${s.user_id.slice(0, 8)}...` : '<span style="color:#FFB74D;">Wosandi Legacy</span>';
         const dateStr = s.created_at ? new Date(s.created_at).toLocaleString() : 'N/A';
         return `
           <tr>
@@ -769,7 +769,7 @@
             <td>${s.lesson_name || `Unit ${s.lesson_number || ''}`}</td>
             <td>${mins} mins</td>
             <td>${dateStr}</td>
-            <td><span style="color:${s.completed ? '#10b981' : '#f59e0b'};font-weight:600;">${s.completed ? 'Completed' : 'Partial'}</span></td>
+            <td><span style="color:${s.completed ? '#81C784' : '#FFB74D'};font-weight:600;">${s.completed ? 'Completed' : 'Partial'}</span></td>
             <td>
               <button class="zenith-btn-sm zenith-btn-delete" onclick="ZenithAdmin.deleteSession('${s.id}')">Delete</button>
             </td>
@@ -840,18 +840,18 @@
       if (badge) badge.textContent = `Showing last ${list.length} papers`;
 
       if (!list || list.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:24px;color:#94a3b8;">No paper logs found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:24px;color:#A0A4AB;">No paper logs found.</td></tr>';
         return;
       }
 
       tbody.innerHTML = list.map(p => {
-        const scope = p.user_id ? `${p.user_id.slice(0, 8)}...` : '<span style="color:#f59e0b;">Wosandi Legacy</span>';
+        const scope = p.user_id ? `${p.user_id.slice(0, 8)}...` : '<span style="color:#FFB74D;">Wosandi Legacy</span>';
         const dateStr = p.created_at ? new Date(p.created_at).toLocaleDateString() : 'N/A';
         const score = p.marks !== undefined ? `${p.marks}%` : (p.score !== undefined ? `${p.score}%` : 'N/A');
         const tableName = p.paperType === 'Unit Paper' ? 'unit_papers' : 'full_papers';
         return `
           <tr>
-            <td><span style="background:rgba(59,130,246,0.15);color:#60a5fa;padding:2px 8px;border-radius:6px;font-weight:600;">${p.paperType}</span></td>
+            <td><span style="background:rgba(100,181,246,0.15);color:#64B5F6;padding:2px 8px;border-radius:6px;font-weight:600;">${p.paperType}</span></td>
             <td><code>${scope}</code></td>
             <td><strong>${p.subject || 'N/A'}</strong></td>
             <td>${p.unit_name || p.paper_name || p.paper_title || 'Exam'}</td>
@@ -921,14 +921,14 @@
       if (!tbody) return;
 
       if (!list || list.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:20px;color:#94a3b8;">No announcements posted yet.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:20px;color:#A0A4AB;">No announcements posted yet.</td></tr>';
         return;
       }
 
       tbody.innerHTML = list.map(a => `
         <tr>
-          <td><strong>${a.title}</strong><div style="font-size:12px;color:#94a3b8;margin-top:2px;">${a.content || ''}</div></td>
-          <td><span style="background:rgba(99,102,241,0.2);padding:2px 8px;border-radius:6px;color:#a5b4fc;">Grade: ${a.target_grade || 'ALL'}</span></td>
+          <td><strong>${a.title}</strong><div style="font-size:12px;color:#A0A4AB;margin-top:2px;">${a.content || ''}</div></td>
+          <td><span style="background:rgba(102,187,106,0.15);padding:2px 8px;border-radius:6px;color:#81C784;">Grade: ${a.target_grade || 'ALL'}</span></td>
           <td>${a.created_at ? new Date(a.created_at).toLocaleDateString() : 'N/A'}</td>
           <td>
             <button class="zenith-btn-sm zenith-btn-delete" onclick="ZenithAdmin.deleteAnnouncement('${a.id}')">Delete</button>

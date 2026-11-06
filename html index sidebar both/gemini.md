@@ -31,3 +31,42 @@ Stack: Standalone Multi-Page HTML5 / Vanilla JS / CSS3 PWA (`index.html`, `sideb
 ## 3. Token Optimization & Surgical Editing Rules:
 - **Large File Handling (`index.html` is ~747KB)**: NEVER rewrite or output the entire file. Always inspect specific line ranges or function names and apply **surgical diffs** only to the targeted sections.
 - **Preserve All Premium Features**: Keep Dark/Light/System themes, Font Scale slider, Sinhala/English toggle, Deep Focus Timer (Brown Noise, Wake Lock, Target Picker), Offline IndexedDB Sync Queue, Activity Log & Undo, and A4 PDF Export.
+
+## 4. Strict UI Standardization & Color System (MANDATORY FOR ALL FUTURE WORK):
+- **Emoji Elimination Rule**:
+  - **NO emojis anywhere in UI text, navigation, tabs, action buttons, card headers, metric tiles, or modal popups.**
+  - **Emojis are reserved EXCLUSIVELY for subject configuration icons** (e.g. 📐 for Mathematics, 🔬 for Science, 📘 for Sinhala, etc. in `getActiveSubjects()`). All other emojis (such as 🔍, ➕, ✏️, 📚, 📝, 🎯, 🎓, ⚡, 🔔, 🏆, 🚀, 💡, ⏱️, 📊, 📈, 🔄, 💾, 🗑️, etc.) must be completely removed.
+- **Strict Color Tokens (Dark Mode 🌙)**:
+  - Base Background (`--bg`): `#121212` (not pure black `#000`)
+  - Surface Cards (`--surface`, `--card-bg`): `#1E1E1E`
+  - Elevated Modals/Dropdowns (`--elevated`, `--card-inner`): `#2A2A2A`
+  - Border/Dividers (`--border`, `--border-color`): `#3A3A3A`
+  - Primary Green (`--primary`): `#66BB6A`
+  - Primary Hover (`--primary-hover`): `#81C784`
+  - Primary Muted Tint (`--primary-muted`): `#1B3A1E`
+  - On-Primary Text (`--on-primary`): `#0A1F0C` (**MANDATORY: Dark text on light green, NEVER white text on green in dark mode**)
+  - Main Text (`--text`, `--text-main`): `#E8EAED` (Soft white, avoids halation)
+  - Secondary/Muted Text (`--text-muted`): `#A0A4AB`
+  - Disabled Text (`--text-disabled`): `#6B6F76`
+  - Accent / Streak (`--accent`): `#FFCA28` (Dark text `--on-accent: #3E2A00`)
+  - Success: `#81C784` | Error: `#EF5350` | Warning: `#FFB74D` | Info: `#64B5F6`
+- **Strict Color Tokens (Light Mode ☀️)**:
+  - Base Background (`--bg`): `#F1F8F4` (Clean white with subtle green hint)
+  - Surface Cards (`--surface`, `--card-bg`): `#FFFFFF`
+  - Elevated Modals/Dropdowns (`--elevated`): `#FFFFFF` + soft shadow
+  - Border/Dividers (`--border`, `--border-color`): `#D6DED8`
+  - Primary Green (`--primary`): `#2E7D32`
+  - Primary Hover (`--primary-hover`): `#1B5E20`
+  - Primary Muted Tint (`--primary-muted`): `#E3F1E4` (with `#1B5E20` text)
+  - On-Primary Text (`--on-primary`): `#FFFFFF` (White text on dark green)
+  - Main Text (`--text`, `--text-main`): `#1F2937`
+  - Secondary/Muted Text (`--text-muted`): `#4B5563`
+  - Disabled Text (`--text-disabled`): `#9CA3AF`
+  - Accent / Streak (`--accent`): `#F9A825` (Dark text `--on-accent: #3E2A00`)
+  - Success: `#2E7D32` | Error: `#C62828` | Warning: `#B26A00` | Info: `#1565C0`
+- **PWA Meta Standards**:
+  - `manifest.json`: `theme_color: #2E7D32`, `background_color: #F1F8F4`
+  - HTML headers must include:
+    `<meta name="theme-color" media="(prefers-color-scheme: light)" content="#2E7D32">`
+    `<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212">`
+

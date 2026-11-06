@@ -206,7 +206,7 @@
 
     if (authActionBtn) {
       if (user.isGuest) {
-        authActionBtn.innerText = '🔑 Log In / Sign Up';
+        authActionBtn.innerText = 'Log In / Sign Up';
         authActionBtn.onclick = (e) => {
           if (e) {
             e.preventDefault();
@@ -215,7 +215,7 @@
           showAuthModal('login');
         };
       } else {
-        authActionBtn.innerText = '🚪 Sign Out';
+        authActionBtn.innerText = 'Sign Out';
         authActionBtn.onclick = (e) => {
           if (e) {
             e.preventDefault();
@@ -246,7 +246,7 @@
   async function signInWithGoogle() {
     const sb = getSupabaseClient();
     if (!sb) {
-      alert('⚠️ Database connection not available. Please check network.');
+      alert('Database connection not available. Please check network.');
       return;
     }
     const origin = window.location.origin + window.location.pathname;
@@ -290,7 +290,7 @@
     });
     if (!res.error) {
       hideAuthModal();
-      alert('✅ සාර්ථකව ලියාපදිංචි විය! (Account created successfully)');
+      alert('සාර්ථකව ලියාපදිංචි විය! (Account created successfully)');
     }
     return res;
   }
@@ -372,7 +372,7 @@
 
   function openAdminPortal() {
     if (!isAdminUser()) {
-      alert('⛔ Access Denied. Admin privileges required.');
+      alert('Access Denied. Admin privileges required.');
       return;
     }
     // Lazy load admin portal script if not yet loaded

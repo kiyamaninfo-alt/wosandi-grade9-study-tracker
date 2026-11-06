@@ -6547,9 +6547,9 @@
         </div>
       </div>
       <div class="radar-header-right">
-        <a href="sidebar.html" class="btn-nav-link" title="Syllabus Manager">📚 Syllabus Manager</a>
-        <a href="study-analytics.html" class="btn-nav-link" title="Study Analytics & Heatmap">⏱️ Focus Analytics</a>
-        <button type="button" class="btn-theme-toggle" onclick="toggleTheme()" title="Dark / Light Theme Toggle">🌓</button>
+        <a href="sidebar.html" class="btn-nav-link" title="Syllabus Manager">Syllabus Manager</a>
+        <a href="study-analytics.html" class="btn-nav-link" title="Study Analytics & Heatmap">Focus Analytics</a>
+        <button type="button" class="btn-theme-toggle" onclick="toggleTheme()" title="Dark / Light Theme Toggle">Theme</button>
         <div id="zenithUserStatusBadge" class="zenith-user-chip" onclick="ZenithAuth.showAuthModal()" title="පරිශීලක ගිණුම (User Account)">
           <span id="zenithUserName">Student</span>
           <span id="zenithUserGradeBadge" class="zenith-grade-badge">Grade 9</span>
@@ -6559,15 +6559,15 @@
 
     <!-- Quick Navigation Sticky Pills -->
     <nav class="radar-quick-nav">
-      <a href="#cardUrgentRadar" class="quick-nav-chip chip-radar">⚡ Urgent Radar (Model Paper 1)</a>
-      <a href="#cardEbbinghaus" class="quick-nav-chip chip-sr">🧠 Spaced Repetition Cycles</a>
-      <a href="#cardSubjectExplorer" class="quick-nav-chip chip-explorer">📊 Subject Graph Explorer (Drop Box)</a>
-      <a href="#fullPaperChartCard" class="quick-nav-chip chip-fp">📈 Full Papers Progression</a>
-      <a href="#unitPaperChartCard" class="quick-nav-chip chip-up">📊 Unit Papers Progression</a>
-      <a href="#cardTopHighestUnitPapers" class="quick-nav-chip chip-rank">🏆 Top 5 Unit Papers</a>
-      <a href="#cardLowestScoreUnitPapers" class="quick-nav-chip chip-warn">⚠️ Least 5 Unit Papers</a>
-      <a href="#cardOldestLessonPending" class="quick-nav-chip chip-teach">📘 Teaching Lessons</a>
-      <a href="#cardOldestBothPendingNoPaper" class="quick-nav-chip chip-wait">⏳ Pending Test Papers</a>
+      <a href="#cardUrgentRadar" class="quick-nav-chip chip-radar">Urgent Radar (Model Paper 1)</a>
+      <a href="#cardEbbinghaus" class="quick-nav-chip chip-sr">Spaced Repetition Cycles</a>
+      <a href="#cardSubjectExplorer" class="quick-nav-chip chip-explorer">Subject Graph Explorer (Drop Box)</a>
+      <a href="#fullPaperChartCard" class="quick-nav-chip chip-fp">Full Papers Progression</a>
+      <a href="#unitPaperChartCard" class="quick-nav-chip chip-up">Unit Papers Progression</a>
+      <a href="#cardTopHighestUnitPapers" class="quick-nav-chip chip-rank">Top 5 Unit Papers</a>
+      <a href="#cardLowestScoreUnitPapers" class="quick-nav-chip chip-warn">Least 5 Unit Papers</a>
+      <a href="#cardOldestLessonPending" class="quick-nav-chip chip-teach">Teaching Lessons</a>
+      <a href="#cardOldestBothPendingNoPaper" class="quick-nav-chip chip-wait">Pending Test Papers</a>
     </nav>
 
     <!-- The 10 Relocated Exam Analytics & Progression Cards -->
@@ -6575,12 +6575,11 @@
     <div class="ranking-card radar-card" id="cardUrgentRadar" onclick="handleCardClick('urgentRadar', event)">
       <div class="ranking-header">
         <div class="ranking-title">
-          <span class="ranking-icon">⚡</span>
-          <span id="urgentRadarCardTitle">⚡ වහාම Model Paper 1 කළ යුතු පාඩම් (Urgent Radar)</span>
+          <span id="urgentRadarCardTitle">වහාම Model Paper 1 කළ යුතු පාඩම් (Urgent Radar)</span>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="urgentRadarCardBadge" style="background: rgba(235, 77, 75, 0.12); color: #eb4d4b;">Urgent Radar</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('urgentRadar', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
+          <span class="ranking-badge" id="urgentRadarCardBadge" style="background: rgba(239, 83, 80, 0.12); color: var(--error);">Urgent Radar</span>
+          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('urgentRadar', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">Top 10</button>
         </div>
       </div>
       <div class="ranking-subtitle" id="urgentRadarCardSubtitle">
@@ -6588,10 +6587,10 @@
       </div>
       <div class="ranking-tab-group" style="margin: 0 0 10px 0; display: none !important;" onclick="event.stopPropagation()">
         <button type="button" class="ranking-tab-btn active" id="btnUrgentTabSubunit" onclick="switchUrgentRadarTab('subunit', event)">
-          <span>📑 Sub-Unit Radar</span>
+          <span>Sub-Unit Radar</span>
         </button>
         <button type="button" class="ranking-tab-btn" id="btnUrgentTabFullunit" onclick="switchUrgentRadarTab('fullunit', event)">
-          <span>📚 Full Unit Radar</span>
+          <span>Full Unit Radar</span>
         </button>
       </div>
       <div class="ranking-table-responsive">
@@ -6607,7 +6606,7 @@
           </thead>
           <tbody id="radarList">
             <tr>
-              <td colspan="5" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත පූරණය වෙමින් පවතී... ⏳</td>
+              <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 14px;">දත්ත පූරණය වෙමින් පවතී...</td>
             </tr>
           </tbody>
         </table>
@@ -6616,7 +6615,6 @@
 
     <!-- Subject Balance Alert Banner -->
     <div class="balance-alert-card" id="balanceAlertBox">
-      <span style="font-size: 14px;">⚖️</span>
       <span id="balanceAlertTxt">විෂයයන් අතර ප්‍රශ්න පත්‍ර ප්‍රගතිය සමතුලිතව පවත්වා ගන්න.</span>
     </div>
 
@@ -6624,12 +6622,11 @@
     <div class="ranking-card ebbinghaus-card" id="cardEbbinghaus" onclick="handleCardClick('ebbinghaus', event)">
       <div class="ranking-header">
         <div class="ranking-title">
-          <span class="ranking-icon">🧠</span>
-          <span>🧠 හර්මන් එබින්ගවුස්ගේ "අමතකවීමේ වක්‍රය" — Spaced Repetition Cycles</span>
+          <span>හර්මන් එබින්ගවුස්ගේ "අමතකවීමේ වක්‍රය" — Spaced Repetition Cycles</span>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" style="background: rgba(140, 122, 230, 0.12); color: #8c7ae6;">Cycles</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('ebbinghaus', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
+          <span class="ranking-badge" style="background: var(--primary-muted); color: var(--primary);">Cycles</span>
+          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('ebbinghaus', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">Top 10</button>
         </div>
       </div>
       <div class="ranking-subtitle">
@@ -6637,20 +6634,20 @@
       </div>
 
       <!-- Cycle Tab Bar (dynamically populated by JS) -->
-      <div id="ebbCycleTabBar" style="display:flex; gap:6px; flex-wrap:wrap; padding:6px 0 4px; border-bottom:1px solid #f0f0f7;">
+      <div id="ebbCycleTabBar" style="display:flex; gap:6px; flex-wrap:wrap; padding:6px 0 4px; border-bottom:1px solid var(--border-color);">
         <!-- Tabs injected by renderEbbCycleTabs() -->
-        <div style="font-size:10px; color:#a4b0be; padding:4px;">දත්ත පූරණය වෙමින්...</div>
+        <div style="font-size:10px; color:var(--text-muted); padding:4px;">දත්ත පූරණය වෙමින්...</div>
       </div>
 
       <!-- Day Stage Filter Buttons -->
       <div style="padding:6px 0 4px; display:flex; align-items:center; flex-wrap:wrap; gap:4px;">
-        <span style="font-size:8.5px; color:#8c7ae6; font-weight:600; margin-right:2px;">👇 Filter:</span>
-        <button class="ebb-filter-btn" id="ebbF0"  onclick="filterEbbinghaus(0)"  style="background:#636e72; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">📋 සියල්ල</button>
-        <button class="ebb-filter-btn" id="ebbF1"  onclick="filterEbbinghaus(1)"  style="background:#e74c3c; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">⚡ දිනය 1</button>
-        <button class="ebb-filter-btn" id="ebbF3"  onclick="filterEbbinghaus(3)"  style="background:#f39c12; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">📝 දිනය 3</button>
-        <button class="ebb-filter-btn" id="ebbF7"  onclick="filterEbbinghaus(7)"  style="background:#e67e22; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">🔁 දිනය 7</button>
-        <button class="ebb-filter-btn" id="ebbF21" onclick="filterEbbinghaus(21)" style="background:#8c7ae6; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">🧠 දිනය 21</button>
-        <button class="ebb-filter-btn" id="ebbF45" onclick="filterEbbinghaus(45)" style="background:#27ae60; color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">♾️ දිනය 45+</button>
+        <span style="font-size:8.5px; color:var(--primary); font-weight:600; margin-right:2px;">Filter:</span>
+        <button class="ebb-filter-btn" id="ebbF0"  onclick="filterEbbinghaus(0)"  style="background:var(--text-muted); color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">සියල්ල</button>
+        <button class="ebb-filter-btn" id="ebbF1"  onclick="filterEbbinghaus(1)"  style="background:var(--error); color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">දිනය 1</button>
+        <button class="ebb-filter-btn" id="ebbF3"  onclick="filterEbbinghaus(3)"  style="background:var(--warning); color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">දිනය 3</button>
+        <button class="ebb-filter-btn" id="ebbF7"  onclick="filterEbbinghaus(7)"  style="background:var(--accent); color:#3E2A00; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">දිනය 7</button>
+        <button class="ebb-filter-btn" id="ebbF21" onclick="filterEbbinghaus(21)" style="background:var(--primary); color:var(--on-primary); font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">දිනය 21</button>
+        <button class="ebb-filter-btn" id="ebbF45" onclick="filterEbbinghaus(45)" style="background:var(--success); color:white; font-size:8.5px; font-weight:700; padding:3px 7px; border-radius:4px; border:none; cursor:pointer;">දිනය 45+</button>
       </div>
 
       <!-- Cycle description line -->
@@ -6672,7 +6669,7 @@
           </thead>
           <tbody id="ebbinghausList">
             <tr>
-              <td colspan="5" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත පූරණය වෙමින් පවතී... ⏳</td>
+              <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 14px;">දත්ත පූරණය වෙමින් පවතී...</td>
             </tr>
           </tbody>
         </table>
@@ -6685,14 +6682,13 @@
     <div class="chart-card subject-explorer-card" id="cardSubjectExplorer" style="margin-top: 14px;">
       <div class="chart-header" style="flex-wrap: wrap; gap: 10px;">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span class="explorer-header-icon" style="font-size: 20px;">📊</span>
           <div>
             <div style="font-weight: 800; font-size: 14px; color: var(--text-main, #f0f6fc);">විෂය අනුව ප්‍රස්තාරික විමර්ශනය (Subject Graph Explorer)</div>
             <div style="font-size: 11px; color: var(--text-muted, #8b949e);">Drop Box එකෙන් ඕනෑම විෂයයක් තෝරා එහි ඒකක ප්‍රස්ථාර සහ ප්‍රගතිය බලන්න</div>
           </div>
         </div>
         <div class="explorer-selector-container">
-          <label for="subjectExplorerSelect" class="explorer-select-label">🎯 විෂය තෝරන්න (Drop Box):</label>
+          <label for="subjectExplorerSelect" class="explorer-select-label">විෂය තෝරන්න (Drop Box):</label>
           <div class="explorer-select-wrap" onclick="const s = this.querySelector('select'); if (s) { s.focus(); try { s.showPicker(); } catch(_) {} }">
             <select id="subjectExplorerSelect" class="explorer-subject-select" onchange="onSubjectExplorerSelectChange(this.value)">
               <option value="MATH">📐 MATH — ගණිතය (Mathematics)</option>
@@ -6735,14 +6731,14 @@
 
       <!-- Mode Switcher Tabs for Explorer Graph -->
       <div class="chart-tab-bar" style="margin: 10px 0 12px; display: flex; gap: 6px;">
-        <button type="button" class="chart-tab-btn active" id="btnExplorerModeUnits" onclick="switchExplorerMode('units')">📊 ඒකක අනුව ලකුණු (Unit-by-Unit Scores)</button>
-        <button type="button" class="chart-tab-btn" id="btnExplorerModeTrend" onclick="switchExplorerMode('trend')">📈 කාලානුක්‍රමික ප්‍රගතිය (Progression Timeline)</button>
+        <button type="button" class="chart-tab-btn active" id="btnExplorerModeUnits" onclick="switchExplorerMode('units')">ඒකක අනුව ලකුණු (Unit-by-Unit Scores)</button>
+        <button type="button" class="chart-tab-btn" id="btnExplorerModeTrend" onclick="switchExplorerMode('trend')">කාලානුක්‍රමික ප්‍රගතිය (Progression Timeline)</button>
       </div>
 
       <!-- Canvas for Explorer Chart -->
       <div class="chart-container" style="height: 220px; position: relative;">
         <canvas id="subjectExplorerChart"></canvas>
-        <div id="noSubjectExplorerMsg" class="chart-empty-msg" style="display: none;">මෙම විෂය සඳහා තවම ප්‍රශ්න පත්‍ර සටහන් කර නොමැත 📝</div>
+        <div id="noSubjectExplorerMsg" class="chart-empty-msg" style="display: none;">මෙම විෂය සඳහා තවම ප්‍රශ්න පත්‍ර සටහන් කර නොමැත</div>
       </div>
 
       <!-- Unit Performance Breakdown Table for Selected Subject -->
@@ -6768,7 +6764,6 @@
     <div class="chart-card subject-explorer-card" id="fullPaperChartCard" style="margin-top: 14px;">
       <div class="chart-header" style="flex-wrap: wrap; gap: 10px;">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span class="explorer-header-icon" style="font-size: 20px;">📈</span>
           <div>
             <div style="font-weight: 800; font-size: 14px; color: var(--text-main, #f0f6fc);" id="chartCardHeading">සම්පූර්ණ ප්‍රශ්න පත්‍ර ප්‍රගතිය (Full Paper Progression)</div>
             <div style="font-size: 11px; color: var(--text-muted, #8b949e);">Drop Box එකෙන් විෂය හෝ සමස්ත සාමාන්‍යය තෝරා ලකුණු ප්‍රස්ථාරය බලන්න</div>
@@ -6776,11 +6771,11 @@
         </div>
         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
           <div class="explorer-selector-container">
-            <label for="fullPaperSubjectSelect" class="explorer-select-label">🎯 විෂය තෝරන්න (Drop Box):</label>
+            <label for="fullPaperSubjectSelect" class="explorer-select-label">විෂය තෝරන්න (Drop Box):</label>
             <div class="explorer-select-wrap" onclick="const s = this.querySelector('select'); if (s) { s.focus(); try { s.showPicker(); } catch(_) {} }">
               <select id="fullPaperSubjectSelect" class="explorer-subject-select" onchange="switchChartTab(this.value)">
-                <option value="All">🌟 All Subjects (සමස්ත විෂයයන්)</option>
-                <option value="Overall Avg">🎯 සමස්ත සාමාන්‍යය % (Overall Avg)</option>
+                <option value="All">All Subjects (සමස්ත විෂයයන්)</option>
+                <option value="Overall Avg">සමස්ත සාමාන්‍යය % (Overall Avg)</option>
                 <option value="MATH">📐 MATH — ගණිතය (Mathematics)</option>
                 <option value="SCI">🔬 SCI — විද්‍යාව (Science)</option>
                 <option value="SIN">📘 SIN — සිංහල (Sinhala)</option>
@@ -6799,8 +6794,8 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <span style="font-size: 9.5px; color: var(--text-muted, #a4b0be); font-weight: 600;" id="chartZoomIndicator">Adaptive Zoom</span>
-            <button type="button" class="chart-data-toggle-btn" id="btnFullPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
-            <button type="button" class="chart-fullscreen-btn" id="btnFullPaperFs" onclick="toggleChartFullscreen('fullPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
+            <button type="button" class="chart-data-toggle-btn" id="btnFullPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">Values: ON</button>
+            <button type="button" class="chart-fullscreen-btn" id="btnFullPaperFs" onclick="toggleChartFullscreen('fullPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">Fullscreen</button>
           </div>
         </div>
       </div>
@@ -6830,19 +6825,19 @@
 
       <div class="chart-container" onclick="openChartFullscreenIfNormal('fullPaperChartCard')" style="cursor: pointer;" title="Click to view full screen (සම්පූර්ණ තිරය සඳහා ක්ලික් කරන්න)">
         <canvas id="scoreChart" style="display: none;"></canvas>
-        <div id="noChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Full Paper එකක් සටහන් කර නොමැත 📝</div>
+        <div id="noChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Full Paper එකක් සටහන් කර නොමැත</div>
       </div>
 
       <!-- Full Paper Multi-Window Analytics Panel (Dynamic by tab: ICT, ET, SFT, All, Z-score) -->
       <div class="zscore-panel" id="fullPaperAnalyticsPanel">
         <div class="zscore-panel-title">
-          <span id="fullPanelTitle">📊 Full Paper සාමාන්‍ය ලකුණු විග්‍රහය (Analytics)</span>
-          <span style="font-size: 8px; color: #6c5ce7; font-weight: 600;" id="fullPanelBadge">📘 ICT විෂය සඳහා</span>
+          <span id="fullPanelTitle">Full Paper සාමාන්‍ය ලකුණු විග්‍රහය (Analytics)</span>
+          <span style="font-size: 8px; color: var(--primary); font-weight: 600;" id="fullPanelBadge">ICT විෂය සඳහා</span>
         </div>
 
         <div class="zscore-grid">
           <div class="zscore-box">
-            <div class="zscore-box-lbl" id="fullTimeBoxLbl">📅 කාල පරාස අනුව</div>
+            <div class="zscore-box-lbl" id="fullTimeBoxLbl">කාල පරාස අනුව</div>
             <div class="zscore-row">
               <div class="zscore-pill">
                 <span class="zscore-pill-tag">දින 7:</span>
@@ -6868,7 +6863,7 @@
           </div>
 
           <div class="zscore-box">
-            <div class="zscore-box-lbl" id="fullCntBoxLbl">📝 ප්‍රශ්න පත්‍ර ගණන අනුව</div>
+            <div class="zscore-box-lbl" id="fullCntBoxLbl">ප්‍රශ්න පත්‍ර ගණන අනුව</div>
             <div class="zscore-row">
               <div class="zscore-pill">
                 <span class="zscore-pill-tag">Papers 3:</span>
@@ -6911,7 +6906,6 @@
     <div class="chart-card subject-explorer-card" id="unitPaperChartCard" style="margin-top: 14px;">
       <div class="chart-header" style="flex-wrap: wrap; gap: 10px;">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span class="explorer-header-icon" style="font-size: 20px;">📝</span>
           <div>
             <div style="font-weight: 800; font-size: 14px; color: var(--text-main, #f0f6fc);" id="unitChartCardHeading">ඒකක ප්‍රශ්න පත්‍ර ප්‍රගතිය (Unit Paper Progression)</div>
             <div style="font-size: 11px; color: var(--text-muted, #8b949e);">Drop Box එකෙන් විෂය තෝරා එක් එක් ඒකකයේ ප්‍රශ්න පත්‍ර ලකුණු ප්‍රස්ථාරය බලන්න</div>
@@ -6919,10 +6913,10 @@
         </div>
         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
           <div class="explorer-selector-container">
-            <label for="unitPaperSubjectSelect" class="explorer-select-label">🎯 විෂය තෝරන්න (Drop Box):</label>
+            <label for="unitPaperSubjectSelect" class="explorer-select-label">විෂය තෝරන්න (Drop Box):</label>
             <div class="explorer-select-wrap" onclick="const s = this.querySelector('select'); if (s) { s.focus(); try { s.showPicker(); } catch(_) {} }">
               <select id="unitPaperSubjectSelect" class="explorer-subject-select" onchange="switchUnitChartTab(this.value)">
-                <option value="All">🌟 All Unit Papers (සියලු ඒකක පත්‍ර)</option>
+                <option value="All">All Unit Papers (සියලු ඒකක පත්‍ර)</option>
                 <option value="MATH">📐 MATH — ගණිතය (Mathematics)</option>
                 <option value="SCI">🔬 SCI — විද්‍යාව (Science)</option>
                 <option value="SIN">📘 SIN — සිංහල (Sinhala)</option>
@@ -6941,8 +6935,8 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <span style="font-size: 9.5px; color: var(--text-muted, #a4b0be); font-weight: 600;" id="unitChartZoomIndicator">Adaptive Zoom</span>
-            <button type="button" class="chart-data-toggle-btn" id="btnUnitPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
-            <button type="button" class="chart-fullscreen-btn" id="btnUnitPaperFs" onclick="toggleChartFullscreen('unitPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
+            <button type="button" class="chart-data-toggle-btn" id="btnUnitPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">Values: ON</button>
+            <button type="button" class="chart-fullscreen-btn" id="btnUnitPaperFs" onclick="toggleChartFullscreen('unitPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">Fullscreen</button>
           </div>
         </div>
       </div>
@@ -6972,20 +6966,20 @@
 
       <div class="chart-container" onclick="openChartFullscreenIfNormal('unitPaperChartCard')" style="cursor: pointer;" title="Click to view full screen (සම්පූර්ණ තිරය සඳහා ක්ලික් කරන්න)">
         <canvas id="unitScoreChart" style="display: none;"></canvas>
-        <div id="noUnitChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Unit Paper එකක් සටහන් කර නොමැත 📝</div>
+        <div id="noUnitChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Unit Paper එකක් සටහන් කර නොමැත</div>
       </div>
 
       <!-- Unit Paper Multi-Window Analytics Panel (Count: 3,5,7,10,20,50,All & Time: 3,5,7,14,30,60,90d,All) -->
       <div class="zscore-panel" id="upAnalyticsPanel" style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed #dfe6e9;">
         <div class="zscore-panel-title">
-          <span>📊 Unit Paper සාමාන්‍ය ලකුණු විග්‍රහය (Analytics)</span>
-          <span style="font-size: 8.5px; color: #6c5ce7; font-weight: 600;" id="upAnalyticsSubjectBadge">සියලු විෂයයන් (All)</span>
+          <span>Unit Paper සාමාන්‍ය ලකුණු විග්‍රහය (Analytics)</span>
+          <span style="font-size: 8.5px; color: var(--primary); font-weight: 600;" id="upAnalyticsSubjectBadge">සියලු විෂයයන් (All)</span>
         </div>
 
         <div class="zscore-grid">
           <!-- 1. By Paper Count -->
           <div class="zscore-box">
-            <div class="zscore-box-lbl">📝 ප්‍රශ්න පත්‍ර ගණන අනුව (Count Avg)</div>
+            <div class="zscore-box-lbl">ප්‍රශ්න පත්‍ර ගණන අනුව (Count Avg)</div>
             <div class="zscore-row">
               <div class="zscore-pill">
                 <span class="zscore-pill-tag">Papers 3:</span>
@@ -7020,7 +7014,7 @@
 
           <!-- 2. By Time Range -->
           <div class="zscore-box">
-            <div class="zscore-box-lbl">📅 කාල පරාස අනුව (Time Window Avg)</div>
+            <div class="zscore-box-lbl">කාල පරාස අනුව (Time Window Avg)</div>
             <div class="zscore-row">
               <div class="zscore-pill">
                 <span class="zscore-pill-tag">දින 3:</span>
@@ -7066,11 +7060,11 @@
     <!-- Full Unit Test Paper Score Progression Card (3rd Chart) - Unified into Unit Papers Chart -->
     <div class="chart-card" id="fullUnitPaperChartCard" style="margin-top: 14px; display: none !important;">
       <div class="chart-header">
-        <span id="fullUnitChartCardHeading">📈 Full Unit Paper Score Progression (All)</span>
+        <span id="fullUnitChartCardHeading">Full Unit Paper Score Progression (All)</span>
         <div style="display: flex; align-items: center; gap: 8px;">
           <span style="font-size: 8.5px; color: #a4b0be;" id="fullUnitChartZoomIndicator">Adaptive Zoom</span>
-          <button type="button" class="chart-data-toggle-btn" id="btnFullUnitPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">🏷️ Values: ON</button>
-          <button type="button" class="chart-fullscreen-btn" id="btnFullUnitPaperFs" onclick="toggleChartFullscreen('fullUnitPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">⛶ Fullscreen</button>
+          <button type="button" class="chart-data-toggle-btn" id="btnFullUnitPaperDataLabels" onclick="toggleChartDataLabels(event)" title="Toggle Data Values (ලකුණු අගයන් පෙන්වන්න/සඟවන්න)">Values: ON</button>
+          <button type="button" class="chart-fullscreen-btn" id="btnFullUnitPaperFs" onclick="toggleChartFullscreen('fullUnitPaperChartCard')" title="Full Screen (සම්පූර්ණ තිරය)">Fullscreen</button>
         </div>
       </div>
 
@@ -7086,7 +7080,7 @@
 
       <div class="chart-container" onclick="openChartFullscreenIfNormal('fullUnitPaperChartCard')" style="cursor: pointer;" title="Click to view full screen (සම්පූර්ණ තිරය සඳහා ක්ලික් කරන්න)">
         <canvas id="fullUnitScoreChart" style="display: none;"></canvas>
-        <div id="noFullUnitChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Full Unit Paper එකක් සටහන් කර නොමැත 📝</div>
+        <div id="noFullUnitChartMsg" class="chart-empty-msg">තවම ලකුණු සහිත Full Unit Paper එකක් සටහන් කර නොමැත</div>
       </div>
 
       <!-- Full Unit Papers Quick Summary Bar -->
@@ -7105,14 +7099,14 @@
       <!-- Full Unit Paper Multi-Window Analytics Panel -->
       <div class="zscore-panel" id="fupAnalyticsPanel" style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed #dfe6e9;">
         <div class="zscore-panel-title">
-          <span>📊 Full Unit Paper සාමාන්‍ය ලකුණු විග්‍රහය (Analytics)</span>
+          <span>Full Unit Paper සාමාන්‍ය ලකුණු විග්‍රහය (Analytics)</span>
           <span style="font-size: 8.5px; color: #6c5ce7; font-weight: 600;" id="fupAnalyticsSubjectBadge">සියලු විෂයයන් (All)</span>
         </div>
 
         <div class="zscore-grid">
           <!-- 1. By Paper Count -->
           <div class="zscore-box">
-            <div class="zscore-box-lbl">📝 ප්‍රශ්න පත්‍ර ගණන අනුව (Count Avg)</div>
+            <div class="zscore-box-lbl">ප්‍රශ්න පත්‍ර ගණන අනුව (Count Avg)</div>
             <div class="zscore-row">
               <div class="zscore-pill">
                 <span class="zscore-pill-tag">Papers 3:</span>
@@ -7147,7 +7141,7 @@
 
           <!-- 2. By Time Range -->
           <div class="zscore-box">
-            <div class="zscore-box-lbl">📅 කාල පරාස අනුව (Time Window Avg)</div>
+            <div class="zscore-box-lbl">කාල පරාස අනුව (Time Window Avg)</div>
             <div class="zscore-row">
               <div class="zscore-pill">
                 <span class="zscore-pill-tag">දින 3:</span>
@@ -7194,12 +7188,11 @@
     <div class="ranking-card" id="cardTopHighestUnitPapers" onclick="handleCardClick('topHighest', event)">
       <div class="ranking-header">
         <div class="ranking-title">
-          <span class="ranking-icon">🏆</span>
-          <span id="cardBTitle">🏆 වැඩිම ලකුණු සහිත Unit Papers</span>
+          <span id="cardBTitle">වැඩිම ලකුණු සහිත Unit Papers</span>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="cardBBadge" style="background: rgba(39, 174, 96, 0.12); color: #27ae60;">Top 5 High</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('topHighest', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
+          <span class="ranking-badge" id="cardBBadge" style="background: rgba(46, 125, 50, 0.12); color: var(--success);">Top 5 High</span>
+          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('topHighest', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">Top 10</button>
         </div>
       </div>
       <div class="ranking-subtitle" id="cardBSub">
@@ -7209,10 +7202,10 @@
       <!-- Tab Controls for Card B -->
       <div class="ranking-tab-group" id="topHighestTabBar" style="display: none !important;" onclick="event.stopPropagation()">
         <button type="button" class="ranking-tab-btn active" id="btnTopHighestSubUnit" onclick="switchTopHighestTab('subunit', event)">
-          <span>📑 Unit Breakdown</span>
+          <span>Unit Breakdown</span>
         </button>
         <button type="button" class="ranking-tab-btn" id="btnTopHighestUnit" onclick="switchTopHighestTab('unit', event)">
-          <span>📚 Main Unit-Wise Average</span>
+          <span>Main Unit-Wise Average</span>
         </button>
       </div>
 
@@ -7230,7 +7223,7 @@
           </thead>
           <tbody id="topHighestUnitPapersBody">
             <tr>
-              <td colspan="6" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත ලබාගනිමින් පවතී... ⏳</td>
+              <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 14px;">දත්ත ලබාගනිමින් පවතී...</td>
             </tr>
           </tbody>
         </table>
@@ -7241,12 +7234,11 @@
     <div class="ranking-card" id="cardLowestScoreUnitPapers" onclick="handleCardClick('lowestScore', event)">
       <div class="ranking-header">
         <div class="ranking-title">
-          <span class="ranking-icon">⚠️</span>
-          <span id="cardCTitle">📉 අඩුම ලකුණු සහිත Unit Papers</span>
+          <span id="cardCTitle">අඩුම ලකුණු සහිත Unit Papers</span>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="cardCBadge" style="background: rgba(235, 77, 75, 0.12); color: #eb4d4b;">Least 5</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('lowestScore', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
+          <span class="ranking-badge" id="cardCBadge" style="background: rgba(239, 83, 80, 0.12); color: var(--error);">Least 5</span>
+          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('lowestScore', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">Top 10</button>
         </div>
       </div>
       <div class="ranking-subtitle" id="cardCSub">
@@ -7256,10 +7248,10 @@
       <!-- Tab Controls for Card C -->
       <div class="ranking-tab-group" id="lowestScoreTabBar" style="display: none !important;" onclick="event.stopPropagation()">
         <button type="button" class="ranking-tab-btn active" id="btnLowestScoreSubUnit" onclick="switchLowestScoreTab('subunit', event)">
-          <span>📑 Unit Breakdown</span>
+          <span>Unit Breakdown</span>
         </button>
         <button type="button" class="ranking-tab-btn" id="btnLowestScoreUnit" onclick="switchLowestScoreTab('unit', event)">
-          <span>📚 Main Unit-Wise Average</span>
+          <span>Main Unit-Wise Average</span>
         </button>
       </div>
 
@@ -7277,7 +7269,7 @@
           </thead>
           <tbody id="lowestScoreUnitPapersBody">
             <tr>
-              <td colspan="6" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත ලබාගනිමින් පවතී... ⏳</td>
+              <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 14px;">දත්ත ලබාගනිමින් පවතී...</td>
             </tr>
           </tbody>
         </table>
@@ -7288,12 +7280,11 @@
     <div class="ranking-card" id="cardOldestLessonPending" onclick="handleCardClick('currentlyTeaching', event)">
       <div class="ranking-header">
         <div class="ranking-title">
-          <span class="ranking-icon">📘</span>
-          <span id="cardDTitle">📘 📘 දැනට උගන්වන පාඩම්</span>
+          <span id="cardDTitle">දැනට උගන්වන පාඩම්</span>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="cardDBadge" style="background: rgba(9, 132, 227, 0.12); color: #0984e3;">දැනට උගන්වන</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('currentlyTeaching', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
+          <span class="ranking-badge" id="cardDBadge" style="background: rgba(46, 125, 50, 0.12); color: var(--primary);">දැනට උගන්වන</span>
+          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('currentlyTeaching', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">Top 10</button>
         </div>
       </div>
       <div class="ranking-subtitle" id="cardDSub">
@@ -7315,7 +7306,7 @@
           </thead>
           <tbody id="oldestLessonPendingBody">
             <tr>
-              <td colspan="8" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත ලබාගනිමින් පවතී... ⏳</td>
+              <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 14px;">දත්ත ලබාගනිමින් පවතී...</td>
             </tr>
           </tbody>
         </table>
@@ -7326,12 +7317,11 @@
     <div class="ranking-card" id="cardOldestBothPendingNoPaper" onclick="handleCardClick('pendingTestPapers', event)">
       <div class="ranking-header">
         <div class="ranking-title">
-          <span class="ranking-icon">⏳</span>
-          <span id="cardETitle">⏳ ⏳ ⏳ උගන්නලා , පාඩම් කරලා තියන නමුත් පේපර් නොකරපු පාඩම්</span>
+          <span id="cardETitle">උගන්නලා , පාඩම් කරලා තියන නමුත් පේපර් නොකරපු පාඩම්</span>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
-          <span class="ranking-badge" id="cardEBadge" style="background: rgba(225, 112, 85, 0.12); color: #e17055;">පේපර් කළ යුතු</span>
-          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('pendingTestPapers', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">⛶ Top 10</button>
+          <span class="ranking-badge" id="cardEBadge" style="background: rgba(249, 168, 37, 0.12); color: var(--accent);">පේපර් කළ යුතු</span>
+          <button type="button" class="card-fs-btn" onclick="openDataCardFullscreen('pendingTestPapers', event)" title="View Top 10 Fullscreen (සම්පූර්ණ තිරය)">Top 10</button>
         </div>
       </div>
       <div class="ranking-subtitle" id="cardESub">
@@ -7353,7 +7343,7 @@
           </thead>
           <tbody id="oldestBothPendingBody">
             <tr>
-              <td colspan="8" style="text-align: center; color: #a4b0be; padding: 14px;">දත්ත ලබාගනිමින් පවතී... ⏳</td>
+              <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 14px;">දත්ත ලබාගනිමින් පවතී...</td>
             </tr>
           </tbody>
         </table>
@@ -7375,8 +7365,8 @@
     </div>
 <div class="modal-overlay" id="fullPaperModal" onclick="closeFullPaperModal(event)">
       <div class="modal-window" style="max-width: 420px;" onclick="event.stopPropagation()">
-        <div class="modal-header" style="background: #1c1f29; border-bottom: 1px solid rgba(77, 70, 53, 0.35);">
-          <div class="modal-title">📝 Log Full Exam Paper</div>
+        <div class="modal-header" style="background: var(--surface); border-bottom: 1px solid var(--border);">
+          <div class="modal-title">Log Full Exam Paper</div>
           <button class="modal-close-btn" onclick="hideFullPaperModal()">✕</button>
         </div>
         <div class="modal-body">
@@ -7411,15 +7401,15 @@
 
 
 
-            <button type="submit" class="submit-btn" id="fpSubmitBtn">💾 Save Full Paper</button>
+            <button type="submit" class="submit-btn" id="fpSubmitBtn">Save Full Paper</button>
           </form>
         </div>
       </div>
     </div>
 <div class="modal-overlay" id="unitPaperModal" onclick="closeUnitPaperModal(event)">
       <div class="modal-window" style="max-width: 440px;" onclick="event.stopPropagation()">
-        <div class="modal-header" style="background: linear-gradient(135deg, #00cec9, #0984e3);">
-          <div class="modal-title">📄 Log Unit Exam Paper</div>
+        <div class="modal-header" style="background: var(--surface); border-bottom: 1px solid var(--border);">
+          <div class="modal-title">Log Unit Exam Paper</div>
           <button class="modal-close-btn" onclick="hideUnitPaperModal()">✕</button>
         </div>
         <div class="modal-body">
@@ -7437,7 +7427,7 @@
             </div>
           </div>
 
-          <div id="upSuggestionsBox" style="max-height: 140px; overflow-y: auto; display: none; background: #ffffff; border: 1px solid #dfe6e9; border-radius: 8px; margin-bottom: 10px;"></div>
+          <div id="upSuggestionsBox" style="max-height: 140px; overflow-y: auto; display: none; background: var(--elevated); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px;"></div>
 
           <div class="up-status-box" id="upSelectedCard">
             <div class="up-info-badge-row">
@@ -7449,34 +7439,34 @@
 
             <div class="up-toggle-row">
               <button type="button" class="toggle-btn" id="btnToggleLesson" onclick="askLessonConfirm()">
-                <span>📘 ඉගෙන ගත්තද?</span> <strong id="lblLessonState">Pending</strong>
+                <span>ඉගෙන ගත්තද?</span> <strong id="lblLessonState">Pending</strong>
               </button>
               <button type="button" class="toggle-btn" id="btnToggleHW" onclick="askHwConfirm()">
-                <span>📝 පාඩම් කලා :</span> <strong id="lblHwState">Pending</strong>
+                <span>පාඩම් කලා :</span> <strong id="lblHwState">Pending</strong>
               </button>
             </div>
 
             <!-- Lesson Confirmation Box -->
-            <div id="lessonConfirmBox" style="display:none; background:#e8f4fd; border:1.5px solid #74b9ff; border-radius:10px; padding:10px 14px; margin-bottom:8px;">
-              <div class="confirm-box-title" style="font-size:12px; font-weight:700; color:#0984e3; margin-bottom:6px;">📘 Lesson Update Confirmation</div>
-              <div class="confirm-box-msg" style="font-size:11px; color:#2d3436; margin-bottom:10px; line-height:1.5;">
+            <div id="lessonConfirmBox" style="display:none; background:var(--primary-muted); border:1.5px solid var(--border); border-radius:10px; padding:10px 14px; margin-bottom:8px;">
+              <div class="confirm-box-title" style="font-size:12px; font-weight:700; color:var(--primary); margin-bottom:6px;">Lesson Update Confirmation</div>
+              <div class="confirm-box-msg" style="font-size:11px; color:var(--text); margin-bottom:10px; line-height:1.5;">
                 Are you Learning this lesson? Please confirm.
               </div>
               <div style="display:flex; gap:8px;">
-                <button type="button" onclick="confirmToggle('LESSON')" style="flex:1; padding:7px 10px; background:linear-gradient(135deg,#00b894,#00cec9); color:white; border:none; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">✅ Yes, Confirm</button>
-                <button type="button" onclick="cancelToggleConfirm('lesson')" style="flex:1; padding:7px 10px; background:#f1f2f6; color:#636e72; border:1px solid #dfe6e9; border-radius:8px; font-size:11px; font-weight:600; cursor:pointer;">❌ Cancel</button>
+                <button type="button" onclick="confirmToggle('LESSON')" style="flex:1; padding:7px 10px; background:var(--primary); color:var(--on-primary); border:none; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">Yes, Confirm</button>
+                <button type="button" onclick="cancelToggleConfirm('lesson')" style="flex:1; padding:7px 10px; background:var(--surface); color:var(--text-muted); border:1px solid var(--border); border-radius:8px; font-size:11px; font-weight:600; cursor:pointer;">Cancel</button>
               </div>
             </div>
 
             <!-- HW Confirmation Box -->
-            <div id="hwConfirmBox" style="display:none; background:#fff3e0; border:1.5px solid #fdcb6e; border-radius:10px; padding:10px 14px; margin-bottom:8px;">
-              <div class="confirm-box-title" style="font-size:12px; font-weight:700; color:#e17055; margin-bottom:6px;">📝 HW / Study Confirmation</div>
-              <div class="confirm-box-msg" style="font-size:11px; color:#2d3436; margin-bottom:10px; line-height:1.5;">
+            <div id="hwConfirmBox" style="display:none; background:var(--primary-muted); border:1.5px solid var(--border); border-radius:10px; padding:10px 14px; margin-bottom:8px;">
+              <div class="confirm-box-title" style="font-size:12px; font-weight:700; color:var(--accent); margin-bottom:6px;">HW / Study Confirmation</div>
+              <div class="confirm-box-msg" style="font-size:11px; color:var(--text); margin-bottom:10px; line-height:1.5;">
                 Did you do Homework or studied the subject? Please confirm.
               </div>
               <div style="display:flex; gap:8px;">
-                <button type="button" onclick="confirmToggle('HW')" style="flex:1; padding:7px 10px; background:linear-gradient(135deg,#e17055,#d63031); color:white; border:none; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">✅ Yes, Confirm</button>
-                <button type="button" onclick="cancelToggleConfirm('hw')" style="flex:1; padding:7px 10px; background:#f1f2f6; color:#636e72; border:1px solid #dfe6e9; border-radius:8px; font-size:11px; font-weight:600; cursor:pointer;">❌ Cancel</button>
+                <button type="button" onclick="confirmToggle('HW')" style="flex:1; padding:7px 10px; background:var(--accent); color:var(--on-accent); border:none; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer;">Yes, Confirm</button>
+                <button type="button" onclick="cancelToggleConfirm('hw')" style="flex:1; padding:7px 10px; background:var(--surface); color:var(--text-muted); border:1px solid var(--border); border-radius:8px; font-size:11px; font-weight:600; cursor:pointer;">Cancel</button>
               </div>
             </div>
 
@@ -7488,8 +7478,8 @@
               <label class="form-label">ලකුණු % (Marks) *</label>
               <input type="number" class="form-input" id="upMarksInput" placeholder="ලකුණු ප්‍රතිශතය ඇතුළත් කරන්න (0 - 100)" min="0" max="100" required
                 onfocus="if(!checkMarksGate()){ this.blur(); }">
-              <div id="upMarksError" style="display: none; color: #d63031; font-size: 10px; margin-top: 4px; font-weight: 600;">
-                ⚠️ කරුණාකර වලංගු ලකුණු ප්‍රතිශතයක් (0 - 100) ඇතුළත් කරන්න.
+              <div id="upMarksError" style="display: none; color: var(--error); font-size: 10px; margin-top: 4px; font-weight: 600;">
+                කරුණාකර වලංගු ලකුණු ප්‍රතිශතයක් (0 - 100) ඇතුළත් කරන්න.
               </div>
             </div>
 
@@ -7498,28 +7488,28 @@
                 + 1 වන Paper එක Tick කරන්න
               </button>
               <button type="button" class="btn-up-cancel" onclick="hideUnitPaperModal()">
-                ❌ Cancel
+                Cancel
               </button>
             </div>
 
             <div class="up-confirm-card" id="upConfirmCard">
-              <div class="confirm-title">⚠️ කරුණාකර තහවුරු කරන්න:</div>
+              <div class="confirm-title">කරුණාකර තහවුරු කරන්න:</div>
               <div class="confirm-details" id="confirmDetailsTxt">
                 විස්තර පූරණය වෙමින් පවතී...
               </div>
 
               <div class="confirm-btns">
                 <button type="button" class="btn-confirm-yes" id="btnConfirmYes" onclick="executeConfirmedUnitPaper()">
-                  ✅ ඔව්, සලකුණු කරන්න
+                  ඔව්, සලකුණු කරන්න
                 </button>
                 <button type="button" class="btn-confirm-no" onclick="cancelInlineConfirmation()">
-                  ❌ අවලංගුයි
+                  අවලංගුයි
                 </button>
               </div>
             </div>
 
             <div class="up-success-box" id="upSuccessCard">
-              <span style="font-size: 14px;">🎉</span> Paper එක සාර්ථකව සටහන් විය! (තත්පර 3කින් වැසෙයි...)
+              Paper එක සාර්ථකව සටහන් විය! (තත්පර 3කින් වැසෙයි...)
             </div>
           </div>
         </div>
@@ -7549,10 +7539,9 @@
       </div>
     </div>
 <div id="urgentRadarConfirmPopup" class="modal-overlay-alert" style="z-index: 100003;" onclick="closeUrgentRadarConfirm(event)">
-      <div class="alert-popup-card" style="border-top: 5px solid #eb4d4b; max-width: 390px;" onclick="event.stopPropagation()">
-        <div class="alert-popup-icon">⚡</div>
-        <div class="alert-popup-title" style="color: #eb4d4b;">Model Paper 1 — තහවුරු කිරීම</div>
-        <div id="urgentRadarConfirmMsg" class="alert-popup-msg" style="background: rgba(235, 77, 75, 0.08); border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(235, 77, 75, 0.25); color: inherit; font-size: 11px; line-height: 1.5; text-align: left;"></div>
+      <div class="alert-popup-card" style="border-top: 5px solid var(--error); max-width: 390px;" onclick="event.stopPropagation()">
+        <div class="alert-popup-title" style="color: var(--error);">Model Paper 1 — තහවුරු කිරීම</div>
+        <div id="urgentRadarConfirmMsg" class="alert-popup-msg" style="background: var(--elevated); border-radius: 10px; padding: 12px 10px; border: 1px solid var(--border); color: var(--text); font-size: 11px; line-height: 1.5; text-align: left;"></div>
         
         <div class="form-group" style="margin: 10px 0 4px; text-align: left;">
           <label class="form-label" style="font-size: 10px; color: inherit; font-weight: 700;">ලකුණු % (Paper 1 Marks - Optional):</label>
@@ -7560,53 +7549,51 @@
         </div>
 
         <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 10px; margin-top: 14px;">
-          <button id="urgentRadarConfirmOkBtn" class="alert-popup-btn" onclick="confirmUrgentRadarDone()" style="background: linear-gradient(135deg, #eb4d4b, #d63031); color: white; box-shadow: 0 4px 14px rgba(235,77,75,0.3); font-weight: 700;">
-            ඔව්, Paper 1 අවසන් ✅
+          <button id="urgentRadarConfirmOkBtn" class="alert-popup-btn" onclick="confirmUrgentRadarDone()" style="background: var(--error); color: #ffffff; box-shadow: 0 4px 14px rgba(239,83,80,0.3); font-weight: 700;">
+            ඔව්, Paper 1 අවසන්
           </button>
-          <button type="button" onclick="cancelUrgentRadarConfirm()" class="alert-popup-btn" style="background: #f1f2f6; color: #636e72; border: 1px solid #dfe6e9; font-weight: 600;">
-            අවලංගු කරන්න ✕
+          <button type="button" onclick="cancelUrgentRadarConfirm()" class="alert-popup-btn" style="background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); font-weight: 600;">
+            අවලංගු කරන්න
           </button>
         </div>
       </div>
     </div>
 <div id="ebbConfirmPopup" class="modal-overlay-alert" style="z-index: 100005;">
-      <div class="alert-popup-card" style="border-top: 5px solid #8c7ae6;">
-        <div class="alert-popup-icon">🧠</div>
-        <div class="alert-popup-title" style="color: #6c5ce7;">Spaced Repetition — තහවුරු කිරීම</div>
-        <div id="ebbConfirmMsg" class="alert-popup-msg" style="background:#f3e7f9; border-radius:10px; padding:12px 10px; border:1px solid #d0adf5; color: #2d3436;"></div>
+      <div class="alert-popup-card" style="border-top: 5px solid var(--primary);">
+        <div class="alert-popup-title" style="color: var(--primary);">Spaced Repetition — තහවුරු කිරීම</div>
+        <div id="ebbConfirmMsg" class="alert-popup-msg" style="background: var(--elevated); border-radius:10px; padding:12px 10px; border:1px solid var(--border); color: var(--text);"></div>
         <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 10px; margin-top: 14px;">
-          <button id="ebbConfirmOkBtn" class="alert-popup-btn" onclick="confirmEbbDone()" style="background: rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.6); color: #f8fafc; box-shadow: 0 4px 14px rgba(212,175,55,0.25);">
-            ඔව්, සම්පූර්ණයි ✅
+          <button id="ebbConfirmOkBtn" class="alert-popup-btn" onclick="confirmEbbDone()" style="background: var(--primary); color: var(--on-primary); font-weight: 700;">
+            ඔව්, සම්පූර්ණයි
           </button>
-          <button onclick="cancelEbbConfirm()" class="alert-popup-btn" style="background: #f1f2f6; color: #636e72; border: 1px solid #dfe6e9; font-weight: 600;">
-            නැත ❌
+          <button onclick="cancelEbbConfirm()" class="alert-popup-btn" style="background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); font-weight: 600;">
+            නැත
           </button>
         </div>
-        <div style="margin-top: 10px; text-align: center; border-top: 1px dashed rgba(140, 122, 230, 0.35); padding-top: 8px;">
-          <button type="button" onclick="triggerResetFromConfirmPopup()" style="background: none; border: none; color: #e74c3c; font-size: 10px; cursor: pointer; text-decoration: underline; font-weight: 600;">
-            🔄 මෙම පාඩමේ Repetition ඉතිහාසය Reset කරන්න (Cycle 1 Day 1)
+        <div style="margin-top: 10px; text-align: center; border-top: 1px dashed var(--border); padding-top: 8px;">
+          <button type="button" onclick="triggerResetFromConfirmPopup()" style="background: none; border: none; color: var(--error); font-size: 10px; cursor: pointer; text-decoration: underline; font-weight: 600;">
+            මෙම පාඩමේ Repetition ඉතිහාසය Reset කරන්න (Cycle 1 Day 1)
           </button>
         </div>
       </div>
     </div>
 <div id="resetRepetitionPopup" class="modal-overlay-alert" style="z-index: 100006;" onclick="closeResetRepetition(event)">
-      <div class="alert-popup-card" style="border-top: 5px solid #e74c3c; max-width: 390px;" onclick="event.stopPropagation()">
-        <div class="alert-popup-icon">🔄</div>
-        <div class="alert-popup-title" style="color: #e74c3c;">Spaced Repetition — Reset කිරීම</div>
-        <div id="resetRepetitionMsg" class="alert-popup-msg" style="background: rgba(231, 76, 60, 0.08); border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(231, 76, 60, 0.25); color: inherit; font-size: 11px; line-height: 1.5;"></div>
+      <div class="alert-popup-card" style="border-top: 5px solid var(--error); max-width: 390px;" onclick="event.stopPropagation()">
+        <div class="alert-popup-title" style="color: var(--error);">Spaced Repetition — Reset කිරීම</div>
+        <div id="resetRepetitionMsg" class="alert-popup-msg" style="background: var(--elevated); border-radius: 10px; padding: 12px 10px; border: 1px solid var(--border); color: var(--text); font-size: 11px; line-height: 1.5;"></div>
         <div class="form-group" style="margin: 10px 0 4px; text-align: left;">
           <label class="form-label" style="font-size: 10px; color: inherit; font-weight: 700;">තහවුරු කිරීමට RESET ලෙස ටයිප් කරන්න / Type RESET to confirm *</label>
           <input type="text" class="form-input" id="resetRepetitionPasswordInput" placeholder="තහවුරු කිරීමට RESET ලෙස ටයිප් කරන්න / Type RESET to confirm" style="font-size: 11px; padding: 6px 10px; text-align: center; letter-spacing: 1px;" autocomplete="off" onkeydown="if(event.key==='Enter'){event.preventDefault();executeResetRepetitionConfirmed();}">
-          <div id="resetRepetitionPasswordError" style="display: none; color: #d63031; font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
-            ⚠️ කරුණාකර තහවුරු කිරීමට "RESET" ලෙස ටයිප් කරන්න / Please type "RESET" to confirm.
+          <div id="resetRepetitionPasswordError" style="display: none; color: var(--error); font-size: 10px; margin-top: 3px; font-weight: 600; text-align: center;">
+            කරුණාකර තහවුරු කිරීමට "RESET" ලෙස ටයිප් කරන්න / Please type "RESET" to confirm.
           </div>
         </div>
         <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 10px; margin-top: 14px;">
-          <button id="resetRepetitionOkBtn" class="alert-popup-btn" onclick="executeResetRepetitionConfirmed()" style="background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; box-shadow: 0 4px 14px rgba(231,76,60,0.3); font-weight: 700;">
-            ඔව්, Reset කරන්න 🔄
+          <button id="resetRepetitionOkBtn" class="alert-popup-btn" onclick="executeResetRepetitionConfirmed()" style="background: var(--error); color: #ffffff; box-shadow: 0 4px 14px rgba(239,83,80,0.3); font-weight: 700;">
+            ඔව්, Reset කරන්න
           </button>
-          <button type="button" onclick="cancelResetRepetition()" class="alert-popup-btn" style="background: #f1f2f6; color: #636e72; border: 1px solid #dfe6e9; font-weight: 600;">
-            අවලංගු කරන්න ✕
+          <button type="button" onclick="cancelResetRepetition()" class="alert-popup-btn" style="background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); font-weight: 600;">
+            අවලංගු කරන්න
           </button>
         </div>
       </div>
@@ -7782,7 +7769,7 @@
           canvas.style.display = 'none';
           if (emptyMsg) {
             emptyMsg.style.display = 'flex';
-            emptyMsg.innerHTML = '<span style="font-size:16px;">⏳</span> දත්ත පූරණය වෙමින් පවතී... (Loading Database Syllabus...)';
+            emptyMsg.innerHTML = 'දත්ත පූරණය වෙමින් පවතී... (Loading Database Syllabus...)';
           }
           return;
         }
@@ -7937,7 +7924,7 @@
       if (!tbody) return;
 
       if (subjSyllabus.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:16px; color:var(--text-muted);">⏳ දත්ත පූරණය වෙමින් පවතී... (Loading Database Syllabus...)</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:16px; color:var(--text-muted);">දත්ත පූරණය වෙමින් පවතී... (Loading Database Syllabus...)</td></tr>';
         return;
       }
 
@@ -7959,10 +7946,10 @@
             <td>
               <a href="javascript:void(0)" onclick="openDrilldownModal('${currentExplorerSubject}', '${escapeHtml(uNo)}')" class="sub-unit-link unit-name-txt">${escapeHtml(uName)}</a>
             </td>
-            <td style="text-align: center;"><span style="font-weight:700; color:${pCount > 0 ? '#20bf6b' : 'var(--text-muted)'};">${pCount}</span></td>
+            <td style="text-align: center;"><span style="font-weight:700; color:${pCount > 0 ? 'var(--success)' : 'var(--text-muted)'};">${pCount}</span></td>
             <td style="text-align: center;">${scoreDisplay}</td>
             <td style="text-align: center;">
-              <button type="button" class="btn-action-sm" onclick="openDrilldownModal('${currentExplorerSubject}', '${escapeHtml(uNo)}')" style="padding:3px 8px; font-size:10.5px;">🔍 විමසුම</button>
+              <button type="button" class="btn-action-sm" onclick="openDrilldownModal('${currentExplorerSubject}', '${escapeHtml(uNo)}')" style="padding:3px 8px; font-size:10.5px;">විමසුම</button>
             </td>
           </tr>
         `;
@@ -8357,8 +8344,8 @@
       // 1. Full Paper Chart: Populate Drop Box
       const fpSelect = document.getElementById('fullPaperSubjectSelect');
       if (fpSelect) {
-        let opts = '<option value="All">🌟 All Subjects (සමස්ත විෂයයන්)</option>';
-        opts += '<option value="Overall Avg">🎯 සමස්ත සාමාන්‍යය % (Overall Avg)</option>';
+        let opts = '<option value="All">All Subjects (සමස්ත විෂයයන්)</option>';
+        opts += '<option value="Overall Avg">සමස්ත සාමාන්‍යය % (Overall Avg)</option>';
         subjs.forEach(s => {
           opts += `<option value="${s.code}">${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})</option>`;
         });
@@ -8371,7 +8358,7 @@
       // 2. Unit Paper Chart: Populate Drop Box
       const upSelect = document.getElementById('unitPaperSubjectSelect');
       if (upSelect) {
-        let opts = '<option value="All">🌟 All Unit Papers (සියලු ඒකක පත්‍ර)</option>';
+        let opts = '<option value="All">All Unit Papers (සියලු ඒකක පත්‍ර)</option>';
         subjs.forEach(s => {
           opts += `<option value="${s.code}">${s.icon || '📘'} ${s.code} — ${s.nameSi} (${s.nameEn})</option>`;
         });
@@ -8413,7 +8400,7 @@
 
       const items = (globalUrgentRadarFullList || []).slice(0, 5);
       if (items.length === 0) {
-        radarDiv.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #20bf6b; font-weight: 700; padding: 16px;">සියලු ඒකක සඳහා Model Paper 1 සම්පූර්ණයි! ඔබ විශිෂ්ටයි! 🚀</td></tr>';
+        radarDiv.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--success); font-weight: 700; padding: 16px;">සියලු ඒකක සඳහා Model Paper 1 සම්පූර්ණයි! ඔබ විශිෂ්ටයි!</td></tr>';
         return;
       }
 
@@ -8422,8 +8409,8 @@
           <tr>
             <td class="col-rank">
               <div style="display: flex; align-items: center; justify-content: center; gap: 5px;">
-                <input type="checkbox" class="ebb-tick radar-tick" id="radarChk_${idx}" style="--chk-accent:#eb4d4b;" onchange="handleUrgentRadarTick(${idx}, this, false)" title="Paper 1 අවසන් බව සලකුණු කරන්න">
-                <span class="rank-pill rank-badge-warn" style="font-size: 8.5px; padding: 1px 4px;">#${idx + 1} ⚡</span>
+                <input type="checkbox" class="ebb-tick radar-tick" id="radarChk_${idx}" style="--chk-accent:var(--error);" onchange="handleUrgentRadarTick(${idx}, this, false)" title="Paper 1 අවසන් බව සලකුණු කරන්න">
+                <span class="rank-pill rank-badge-warn" style="font-size: 8.5px; padding: 1px 4px;">#${idx + 1}</span>
               </div>
             </td>
             <td class="col-subj">${renderSubjectPill(item.subject)}</td>
@@ -8431,7 +8418,7 @@
             <td class="col-unit-name">
               <a href="javascript:void(0)" onclick="openDrilldownModal('${item.subject}', '${escapeHtml(item.unitNumber)}')" class="sub-unit-link unit-name-txt">${escapeHtml(item.unitName)}</a>
             </td>
-            <td class="col-metric-wide"><span class="radar-tag" style="white-space: nowrap; color: #eb4d4b; font-weight: 700;">දින ${item.colH}ක්</span></td>
+            <td class="col-metric-wide"><span class="radar-tag" style="white-space: nowrap; color: var(--error); font-weight: 700;">දින ${item.colH}ක්</span></td>
           </tr>
         `;
       }).join('');
@@ -8508,7 +8495,7 @@
           confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors: ['#eb4d4b', '#ff7675', '#55efc4', '#fdcb6e'] });
         } catch(_) {}
 
-        showHtmlAlert(`[${item.subject}] Unit ${item.unitNumber} සඳහා Model Paper 1 සාර්ථකව සටහන් විය! 🎉`);
+        showHtmlAlert(`[${item.subject}] Unit ${item.unitNumber} සඳහා Model Paper 1 සාර්ථකව සටහන් විය!`);
         await refreshTelemetry();
       } catch(err) {
         showHtmlAlert('දෝෂයකි: ' + (err.message || 'සටහන් කිරීම අසාර්ථක විය'), true);
@@ -8565,7 +8552,7 @@
       const displayItems = filtered.slice(0, 5);
 
       if (displayItems.length === 0) {
-        ebbList.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #20bf6b; font-weight: 700; padding: 16px;">මෙම චක්‍රයේ Spaced Repetition සියල්ල සම්පූර්ණයි! 🧠</td></tr>';
+        ebbList.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--success); font-weight: 700; padding: 16px;">මෙම චක්‍රයේ Spaced Repetition සියල්ල සම්පූර්ණයි!</td></tr>';
         return;
       }
 
@@ -8601,7 +8588,7 @@
       pendingEbbConfirm = { ...item, checkboxEl: checkbox };
       const msg = document.getElementById('ebbConfirmMsg');
       if (msg) {
-        msg.innerHTML = `<strong>[${item.subject}] Unit ${item.unitNumber}</strong>: ${escapeHtml(item.unitName)}<br><span style="color:#6c5ce7; font-weight:600;">Cycle ${currentEbbCycle} (දින ${item.days})</span> Spaced Repetition නැවත ආවර්ජනය සම්පූර්ණ කළ බව තහවුරු කරන්නද?`;
+        msg.innerHTML = `<strong>[${item.subject}] Unit ${item.unitNumber}</strong>: ${escapeHtml(item.unitName)}<br><span style="color:var(--primary); font-weight:600;">Cycle ${currentEbbCycle} (දින ${item.days})</span> Spaced Repetition නැවත ආවර්ජනය සම්පූර්ණ කළ බව තහවුරු කරන්නද?`;
       }
       const popup = document.getElementById('ebbConfirmPopup');
       if (popup) popup.style.display = 'flex';
@@ -8637,7 +8624,7 @@
           confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 }, colors: ['#8c7ae6', '#a29bfe', '#55efc4'] });
         } catch(_) {}
 
-        showHtmlAlert(`[${item.subject}] Unit ${item.unitNumber} Repetition සාර්ථකව සම්පූර්ණ විය! 🧠`);
+        showHtmlAlert(`[${item.subject}] Unit ${item.unitNumber} Repetition සාර්ථකව සම්පූර්ණ විය!`);
         await refreshTelemetry();
       } catch(err) {
         showHtmlAlert('දෝෂයකි: ' + (err.message || 'ක්‍රියාව අසාර්ථක විය'), true);
@@ -8657,7 +8644,7 @@
       if (msgEl) {
         msgEl.innerHTML = `<strong>[${item.subject}] Unit ${item.unitNumber}</strong>: ${escapeHtml(item.unitName)}<br>` +
           `මෙම ඒකකයේ සියලුම Spaced Repetition ආවර්ජන දත්ත මකාදමා නැවත <strong>Cycle 1 Day 1</strong> වෙත Reset කිරීමට අවශ්‍යද?<br>` +
-          `<span style="color:#d63031; font-weight:700;">⚠️ මෙය ආපසු හැරවිය නොහැකි ක්‍රියාවකි (Irreversible).</span>`;
+          `<span style="color:var(--error); font-weight:700;">මෙය ආපසු හැරවිය නොහැකි ක්‍රියාවකි (Irreversible).</span>`;
       }
       const passInp = document.getElementById('resetRepetitionPasswordInput');
       if (passInp) passInp.value = '';
@@ -8699,7 +8686,7 @@
 
       if (passVal.trim().toUpperCase() !== 'RESET') {
         if (passErr) {
-          passErr.innerText = '⚠️ කරුණාකර තහවුරු කිරීමට "RESET" ලෙස ටයිප් කරන්න / Please type "RESET" to confirm.';
+          passErr.innerText = 'කරුණාකර තහවුරු කිරීමට "RESET" ලෙස ටයිප් කරන්න / Please type "RESET" to confirm.';
           passErr.style.display = 'block';
         }
         if (passInput) passInput.focus();
@@ -8740,7 +8727,7 @@
       const okBtn = document.getElementById('resetRepetitionOkBtn');
       if (okBtn) {
         okBtn.disabled = true;
-        okBtn.innerText = 'Reset වෙමින්... ⏳';
+        okBtn.innerText = 'Reset වෙමින්...';
       }
 
       const user = window.ZenithAuth ? window.ZenithAuth.getCurrentUser() : null;
@@ -8763,14 +8750,14 @@
         if (delErr) throw delErr;
 
         cancelResetRepetition();
-        showHtmlAlert(`[${subject}] ${unitCode} Repetition ඉතිහාසය සාර්ථකව Cycle 1 Day 1 වෙත Reset කරන ලදී! 🔄`, false);
+        showHtmlAlert(`[${subject}] ${unitCode} Repetition ඉතිහාසය සාර්ථකව Cycle 1 Day 1 වෙත Reset කරන ලදී!`, false);
         await refreshTelemetry();
       } catch (err) {
         console.error('Reset repetition error:', err);
         showHtmlAlert('දෝෂයකි: ' + (err.message || 'Reset කිරීම අසාර්ථක විය'), true);
         if (okBtn) {
           okBtn.disabled = false;
-          okBtn.innerText = 'ඔව්, Reset කරන්න 🔄';
+          okBtn.innerText = 'ඔව්, Reset කරන්න';
         }
       }
     }
@@ -8823,7 +8810,7 @@
       const badge = document.getElementById('fullPanelBadge');
       if (badge) {
         const meta = getSubjectMeta(currentActiveChartTab);
-        badge.innerText = currentActiveChartTab === 'All' ? '🌟 සියලු විෂයයන්' : (currentActiveChartTab === 'Overall Avg' ? '🎯 සමස්ත සාමාන්‍යය' : `${meta.icon || '📘'} ${meta.nameSi} (${currentActiveChartTab})`);
+        badge.innerText = currentActiveChartTab === 'All' ? 'සියලු විෂයයන්' : (currentActiveChartTab === 'Overall Avg' ? 'සමස්ත සාමාන්‍යය' : `${meta.icon || '📘'} ${meta.nameSi} (${currentActiveChartTab})`);
       }
 
       const getSliceAvg = (n) => {
@@ -8864,7 +8851,7 @@
       const badge = document.getElementById('upAnalyticsSubjectBadge');
       if (badge) {
         const meta = getSubjectMeta(currentActiveUnitChartTab);
-        badge.innerText = currentActiveUnitChartTab === 'All' ? '🌟 සියලු විෂයයන්' : `${meta.icon || '📘'} ${meta.nameSi} (${currentActiveUnitChartTab})`;
+        badge.innerText = currentActiveUnitChartTab === 'All' ? 'සියලු විෂයයන්' : `${meta.icon || '📘'} ${meta.nameSi} (${currentActiveUnitChartTab})`;
       }
 
       const getSliceAvg = (n) => {
@@ -8924,10 +8911,10 @@
 
       const subjMeta = getSubjectMeta(currentActiveChartTab);
       heading.innerText = currentActiveChartTab === 'All'
-        ? '📈 සම්පූර්ණ ප්‍රශ්න පත්‍ර ප්‍රගතිය (Full Paper Progression - All)'
+        ? 'සම්පූර්ණ ප්‍රශ්න පත්‍ර ප්‍රගතිය (Full Paper Progression - All)'
         : (currentActiveChartTab === 'Overall Avg'
-          ? '🎯 සමස්ත සාමාන්‍ය ප්‍රගතිය (Overall Average %)'
-          : `📈 ${subjMeta.icon || '📘'} ${subjMeta.nameSi} (${currentActiveChartTab}) Full Paper ප්‍රගතිය`);
+          ? 'සමස්ත සාමාන්‍ය ප්‍රගතිය (Overall Average %)'
+          : `${subjMeta.icon || '📘'} ${subjMeta.nameSi} (${currentActiveChartTab}) Full Paper ප්‍රගතිය`);
 
       // Update Full Paper KPI Diagnostics Strip
       const fpTotalEl = document.getElementById('fpKpiTotal');
@@ -9032,8 +9019,8 @@
 
       const subjMeta = getSubjectMeta(currentActiveUnitChartTab);
       heading.innerText = currentActiveUnitChartTab === 'All'
-        ? '📈 ඒකක ප්‍රශ්න පත්‍ර ප්‍රගතිය (Unit Paper Progression - All)'
-        : `📈 ${subjMeta.icon || '📘'} ${subjMeta.nameSi} (${currentActiveUnitChartTab}) Unit Paper ප්‍රගතිය`;
+        ? 'ඒකක ප්‍රශ්න පත්‍ර ප්‍රගතිය (Unit Paper Progression - All)'
+        : `${subjMeta.icon || '📘'} ${subjMeta.nameSi} (${currentActiveUnitChartTab}) Unit Paper ප්‍රගතිය`;
 
       // Update Unit Paper KPI Diagnostics Strip
       const upTotalEl = document.getElementById('upKpiTotal');
@@ -9125,11 +9112,11 @@
       const top5 = (globalTopHighestUnitList || []).slice(0, 5);
 
       if (top5.length === 0) {
-        bBody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #a4b0be; padding: 14px;">තවම ලකුණු සහිත Unit Paper එකක් සටහන් කර නොමැත 📝</td></tr>';
+        bBody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 14px;">තවම ලකුණු සහිත Unit Paper එකක් සටහන් කර නොමැත</td></tr>';
         return;
       }
 
-      const rankLabels = ['🥇 1st', '🥈 2nd', '🥉 3rd', '4th', '5th'];
+      const rankLabels = ['1st', '2nd', '3rd', '4th', '5th'];
       bBody.innerHTML = top5.map((item, idx) => {
         return `
           <tr>
@@ -9152,20 +9139,20 @@
       const low5 = (globalLowestScoreUnitList || []).slice(0, 5);
 
       if (low5.length === 0) {
-        cBody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #20bf6b; padding: 14px;">අවදානම් ලකුණු සහිත ඒකක නොමැත! විශිෂ්ටයි! 🚀</td></tr>';
+        cBody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--success); padding: 14px;">අවදානම් ලකුණු සහිත ඒකක නොමැත! විශිෂ්ටයි!</td></tr>';
         return;
       }
 
       cBody.innerHTML = low5.map((item, idx) => {
         return `
           <tr>
-            <td class="col-rank"><span class="rank-pill rank-badge-warn">#${idx + 1} ⚠️</span></td>
+            <td class="col-rank"><span class="rank-pill rank-badge-warn">#${idx + 1}</span></td>
             <td class="col-subj">${renderSubjectPill(item.subject)}</td>
             <td class="col-unit-no"><span class="chip-badge chip-unit-no">Unit ${escapeHtml(item.unitNumber)}</span></td>
             <td class="col-unit-name">
               <a href="javascript:void(0)" onclick="openDrilldownModal('${item.subject}', '${escapeHtml(item.unitNumber)}')" class="sub-unit-link unit-name-txt">${escapeHtml(item.unitName)}</a>
             </td>
-            <td class="col-metric"><span class="marks-pill marks-low" style="font-weight:700; color:#eb4d4b;">${item.avgMarks}%</span></td>
+            <td class="col-metric"><span class="marks-pill marks-low" style="font-weight:700; color:var(--error);">${item.avgMarks}%</span></td>
             <td class="col-date">${item.lastDate || '-'}</td>
           </tr>
         `;
@@ -9179,14 +9166,14 @@
       const list = (globalPendingLessonsFullList || []).slice(0, 5);
 
       if (list.length === 0) {
-        dBody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #20bf6b; font-weight: 700; padding: 14px;">දැනට උගන්වන පාඩම් සියල්ල අවසන් කර ඇත! ✅</td></tr>';
+        dBody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--success); font-weight: 700; padding: 14px;">දැනට උගන්වන පාඩම් සියල්ල අවසන් කර ඇත!</td></tr>';
         return;
       }
 
       dBody.innerHTML = list.map((item, idx) => {
         return `
           <tr>
-            <td class="col-rank"><span class="rank-pill rank-badge-teaching">#${idx + 1} 📘</span></td>
+            <td class="col-rank"><span class="rank-pill rank-badge-teaching">#${idx + 1}</span></td>
             <td class="col-subj">${renderSubjectPill(item.subject)}</td>
             <td class="col-unit-no"><span class="chip-badge chip-unit-no">Unit ${escapeHtml(item.unitNumber)}</span></td>
             <td class="col-unit-name">
@@ -9207,14 +9194,14 @@
       const list = (globalPendingPapersFullList || []).slice(0, 5);
 
       if (list.length === 0) {
-        eBody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #20bf6b; font-weight: 700; padding: 14px;">පාඩම් කළ සියලු ඒකක වල ප්‍රශ්න පත්‍ර සම්පූර්ණයි! 🎯</td></tr>';
+        eBody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--success); font-weight: 700; padding: 14px;">පාඩම් කළ සියලු ඒකක වල ප්‍රශ්න පත්‍ර සම්පූර්ණයි!</td></tr>';
         return;
       }
 
       eBody.innerHTML = list.map((item, idx) => {
         return `
           <tr>
-            <td class="col-rank"><span class="rank-pill rank-badge-warn">#${idx + 1} ⏳</span></td>
+            <td class="col-rank"><span class="rank-pill rank-badge-warn">#${idx + 1}</span></td>
             <td class="col-subj">${renderSubjectPill(item.subject)}</td>
             <td class="col-unit-no"><span class="chip-badge chip-unit-no">Unit ${escapeHtml(item.unitNumber)}</span></td>
             <td class="col-unit-name">
@@ -9244,25 +9231,25 @@
       if (!modal || !titleEl || !theadEl || !tbodyEl) return;
 
       if (cardType === 'urgentRadar') {
-        titleEl.innerHTML = '⚡ වහාම Model Paper 1 කළ යුතු පාඩම් (Urgent Radar)';
+        titleEl.innerHTML = 'වහාම Model Paper 1 කළ යුතු පාඩම් (Urgent Radar)';
         badgeEl.innerText = 'Top 10 Urgent Radar';
-        headerEl.style.background = 'linear-gradient(135deg, #eb4d4b, #d63031)';
+        headerEl.style.background = 'var(--error)';
         subEl.innerText = 'පාඩම් කිරීම (HW) අවසන් වූ නමුත් තවමත් ප්‍රශ්න පත්‍රයක් සම්පූර්ණ නොකළ මුල් ඒකක 10.';
         theadEl.innerHTML = '<tr><th>Done</th><th>Subject</th><th>Unit No</th><th>Unit Name</th><th>Days Elapsed</th></tr>';
         const items = (globalUrgentRadarFullList || []).slice(0, 10);
-        tbodyEl.innerHTML = items.length === 0 ? '<tr><td colspan="5" style="text-align:center; color:#20bf6b;">සියල්ල සම්පූර්ණයි!</td></tr>' : items.map((it, idx) => `
+        tbodyEl.innerHTML = items.length === 0 ? '<tr><td colspan="5" style="text-align:center; color:var(--success);">සියල්ල සම්පූර්ණයි!</td></tr>' : items.map((it, idx) => `
           <tr>
             <td><input type="checkbox" onchange="handleUrgentRadarTick(${idx}, this, true)"></td>
             <td>${renderSubjectPill(it.subject)}</td>
             <td>Unit ${it.unitNumber}</td>
             <td>${escapeHtml(it.unitName)}</td>
-            <td style="color:#eb4d4b; font-weight:700;">දින ${it.colH}ක්</td>
+            <td style="color:var(--error); font-weight:700;">දින ${it.colH}ක්</td>
           </tr>
         `).join('');
       } else if (cardType === 'topHighest') {
-        titleEl.innerHTML = '🏆 වැඩිම ලකුණු සහිත Unit Papers';
+        titleEl.innerHTML = 'වැඩිම ලකුණු සහිත Unit Papers';
         badgeEl.innerText = 'Top 10 High';
-        headerEl.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+        headerEl.style.background = 'var(--primary)';
         subEl.innerText = 'විභාග සාර්ථකත්වය වෙනුවෙන් ඉහළම ප්‍රතිඵල ලබාගත් ඒකක 10.';
         theadEl.innerHTML = '<tr><th>Rank</th><th>Subject</th><th>Unit No</th><th>Unit Name</th><th>Avg Marks</th><th>Date</th></tr>';
         const items = (globalTopHighestUnitList || []).slice(0, 10);
@@ -9272,32 +9259,32 @@
             <td>${renderSubjectPill(it.subject)}</td>
             <td>Unit ${it.unitNumber}</td>
             <td>${escapeHtml(it.unitName)}</td>
-            <td style="color:#27ae60; font-weight:700;">${it.avgMarks}%</td>
+            <td style="color:var(--success); font-weight:700;">${it.avgMarks}%</td>
             <td>${it.lastDate}</td>
           </tr>
         `).join('');
       } else if (cardType === 'lowestScore') {
-        titleEl.innerHTML = '⚠️ අඩුම ලකුණු සහිත Unit Papers';
+        titleEl.innerHTML = 'අඩුම ලකුණු සහිත Unit Papers';
         badgeEl.innerText = 'Least 10 Low';
-        headerEl.style.background = 'linear-gradient(135deg, #eb4d4b, #c0392b)';
+        headerEl.style.background = 'var(--error)';
         subEl.innerText = 'වැඩි අවධානයක් යොමුකළ යුතු ඒකක 10.';
         theadEl.innerHTML = '<tr><th>Rank</th><th>Subject</th><th>Unit No</th><th>Unit Name</th><th>Avg Marks</th><th>Date</th></tr>';
         const items = (globalLowestScoreUnitList || []).slice(0, 10);
-        tbodyEl.innerHTML = items.length === 0 ? '<tr><td colspan="6" style="text-align:center; color:#20bf6b;">අවදානම් ලකුණු සහිත ඒකක නොමැත!</td></tr>' : items.map((it, idx) => `
+        tbodyEl.innerHTML = items.length === 0 ? '<tr><td colspan="6" style="text-align:center; color:var(--success);">අවදානම් ලකුණු සහිත ඒකක නොමැත!</td></tr>' : items.map((it, idx) => `
           <tr>
             <td>#${idx + 1}</td>
             <td>${renderSubjectPill(it.subject)}</td>
             <td>Unit ${it.unitNumber}</td>
             <td>${escapeHtml(it.unitName)}</td>
-            <td style="color:#eb4d4b; font-weight:700;">${it.avgMarks}%</td>
+            <td style="color:var(--error); font-weight:700;">${it.avgMarks}%</td>
             <td>${it.lastDate}</td>
           </tr>
         `).join('');
       } else {
         // Fallback for teaching / pending
-        titleEl.innerHTML = '📋 විස්තරාත්මක ලැයිස්තුව';
+        titleEl.innerHTML = 'විස්තරාත්මක ලැයිස්තුව';
         badgeEl.innerText = 'Top 10';
-        headerEl.style.background = 'linear-gradient(135deg, #2d3436, #636e72)';
+        headerEl.style.background = 'var(--surface)';
         subEl.innerText = 'ඒකක විමසුම.';
         theadEl.innerHTML = '<tr><th>#</th><th>Subject</th><th>Unit No</th><th>Unit Name</th><th>Days</th></tr>';
         const items = (globalPendingLessonsFullList || []).slice(0, 10);
@@ -9427,7 +9414,7 @@
         try {
           confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
         } catch(_) {}
-        showHtmlAlert(`[${subj}] Full Paper ලකුණු සාර්ථකව සටහන් විය! 🎉`);
+        showHtmlAlert(`[${subj}] Full Paper ලකුණු සාර්ථකව සටහන් විය!`);
         await refreshTelemetry();
       } catch(err) {
         showHtmlAlert('දෝෂයකි: ' + (err.message || 'සටහන් කිරීම අසාර්ථක විය'), true);
