@@ -1,7 +1,10 @@
-const CACHE_NAME = 'al-study-tracker-v12';
+const CACHE_NAME = 'al-study-tracker-v13';
 const PRECACHE_ASSETS = [
   './',
+  './landing.html',
+  './manifest.json',
   './app-logo.svg',
+  './favicon.svg',
   './study-radar',
   './study-radar.html',
   './study-analytics',

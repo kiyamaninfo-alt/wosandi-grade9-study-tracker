@@ -49,7 +49,7 @@
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(10, 15, 29, 0.82);
+          background: rgba(0, 0, 0, 0.75);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           z-index: 100000;
@@ -66,10 +66,10 @@
           pointer-events: auto;
         }
         .zenith-admin-modal {
-          background: #1c1f29;
-          color: #f8fafc;
-          border: 1px solid rgba(77, 70, 53, 0.35);
-          box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.1);
+          background: #1E1E1E;
+          color: #E8EAED;
+          border: 1px solid #3A3A3A;
+          box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
           border-radius: 20px;
           width: 96vw;
           max-width: 1240px;
@@ -85,8 +85,8 @@
           align-items: center;
           justify-content: space-between;
           padding: 16px 24px;
-          border-bottom: 1px solid rgba(77, 70, 53, 0.35);
-          background: rgba(10, 14, 23, 0.4);
+          border-bottom: 1px solid #3A3A3A;
+          background: #2A2A2A;
         }
         .zenith-admin-title-wrap {
           display: flex;
@@ -94,9 +94,9 @@
           gap: 12px;
         }
         .zenith-admin-badge {
-          background: rgba(212, 175, 55, 0.18);
-          border: 1px solid rgba(212, 175, 55, 0.5);
-          color: #f2ca50;
+          background: #1B3A1E;
+          border: 1px solid rgba(129, 199, 132, 0.4);
+          color: #81C784;
           font-size: 11px;
           font-weight: 700;
           padding: 3px 8px;
@@ -108,14 +108,14 @@
           display: flex;
           gap: 8px;
           padding: 10px 24px;
-          background: rgba(0, 0, 0, 0.3);
-          border-bottom: 1px solid rgba(77, 70, 53, 0.25);
+          background: #1E1E1E;
+          border-bottom: 1px solid #3A3A3A;
           overflow-x: auto;
         }
         .zenith-admin-tab-btn {
           background: transparent;
           border: none;
-          color: #d0c5af;
+          color: #A0A4AB;
           padding: 8px 16px;
           border-radius: 8px;
           cursor: pointer;
@@ -128,14 +128,15 @@
           white-space: nowrap;
         }
         .zenith-admin-tab-btn:hover {
-          color: #f8fafc;
-          background: rgba(255, 255, 255, 0.05);
+          color: #E8EAED;
+          background: #2A2A2A;
         }
         .zenith-admin-tab-btn.active {
-          color: #f8fafc;
-          background: rgba(212, 175, 55, 0.2);
-          border: 1px solid rgba(212, 175, 55, 0.5);
-          box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+          color: #0A1F0C;
+          background: #66BB6A;
+          border: 1px solid #66BB6A;
+          font-weight: 700;
+          box-shadow: 0 2px 8px rgba(102, 187, 106, 0.3);
         }
         .zenith-admin-body {
           flex: 1;
@@ -156,8 +157,8 @@
           margin-bottom: 24px;
         }
         .zenith-stat-card {
-          background: rgba(10, 14, 23, 0.6);
-          border: 1px solid rgba(77, 70, 53, 0.3);
+          background: #2A2A2A;
+          border: 1px solid #3A3A3A;
           border-radius: 14px;
           padding: 16px;
           display: flex;
@@ -166,20 +167,20 @@
         }
         .zenith-stat-label {
           font-size: 12px;
-          color: #d0c5af;
+          color: #A0A4AB;
           text-transform: uppercase;
           font-weight: 600;
         }
         .zenith-stat-val {
           font-size: 26px;
           font-weight: 800;
-          color: #f8fafc;
+          color: #E8EAED;
         }
         .zenith-admin-table-container {
           overflow-x: auto;
-          border: 1px solid rgba(77, 70, 53, 0.35);
+          border: 1px solid #3A3A3A;
           border-radius: 12px;
-          background: rgba(10, 14, 23, 0.5);
+          background: #1E1E1E;
         }
         .zenith-admin-table {
           width: 100%;
@@ -188,20 +189,20 @@
           text-align: left;
         }
         .zenith-admin-table th {
-          background: rgba(10, 14, 23, 0.8);
+          background: #2A2A2A;
           padding: 12px 16px;
-          color: #d0c5af;
+          color: #A0A4AB;
           font-weight: 600;
-          border-bottom: 1px solid rgba(77, 70, 53, 0.35);
+          border-bottom: 1px solid #3A3A3A;
           white-space: nowrap;
         }
         .zenith-admin-table td {
           padding: 12px 16px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-          color: #cbd5e1;
+          border-bottom: 1px solid #2A2A2A;
+          color: #E8EAED;
         }
         .zenith-admin-table tr:hover td {
-          background: rgba(255, 255, 255, 0.02);
+          background: rgba(102, 187, 106, 0.05);
         }
         .zenith-btn-sm {
           padding: 4px 10px;
